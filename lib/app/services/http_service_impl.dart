@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import './http_service.dart';
+import 'http_service.dart';
 
 //TODO: Add PUT, PATCH, DELETE Requests
-
+//TODO: Handle Errors Very Very Nicely. Still Exception are not catched properly.
+//! Try making request without auth-token and see logs and Dart Network Inspector
 final baseUrl = dotenv.env['SERVER_ADDRESS']! + dotenv.env['PORT']!;
 
 class HttpImplementation implements HttpService {
@@ -12,29 +13,44 @@ class HttpImplementation implements HttpService {
 
   @override
   void init() {
-    _dio = Dio(BaseOptions(baseUrl: baseUrl));
+    _dio = Dio(BaseOptions(
+      baseUrl: baseUrl,
+      contentType: 'application/json',
+    ));
     initializeInterceptors();
   }
 
   //GET Request
   @override
-  Future<Response> getRequest(
-      String url, Map<String, dynamic>? parameters, String? authToken) async {
+  Future<Response?> getRequest(String url,
+      {Map<String, dynamic>? parameters, String? authToken}) async {
     late Response response;
-    Options options = Options(headers: {'auth-token': authToken});
 
-    response =
-        await _dio.get(url, queryParameters: parameters, options: options);
+    if (parameters != null && authToken != null) {
+      Options options = Options(headers: {'auth-token': authToken});
+      response = await _dio.get(
+        url,
+        queryParameters: parameters,
+        options: options,
+      );
+    } else {
+      response = await _dio.get(url);
+    }
 
     return response;
   }
 
   //POST REQUEST
   @override
-  Future<Response> postRequest(String url, Map data, String? authToken) async {
+  Future<Response> postRequest(String url,
+      {Map<String, dynamic>? data, String? authToken}) async {
     late Response response;
-    Options options = Options(headers: {'auth-token': authToken});
-    response = await _dio.post(url, data: data, options: options);
+    if (authToken != null && data != null) {
+      Options options = Options(headers: {'auth-token': authToken});
+      response = await _dio.post(url, data: data, options: options);
+    } else {
+      response = await _dio.post(url);
+    }
 
     return response;
   }
@@ -44,7 +60,8 @@ class HttpImplementation implements HttpService {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (req, handler) {
-          print("${req.method} | ${req.baseUrl} | ${req.path}");
+          print(
+              "${req.method} | ${req.baseUrl} | ${req.path} | ${req.headers}");
           return handler.next(req); //continue
         },
         onResponse: (res, handler) {
@@ -55,18 +72,19 @@ class HttpImplementation implements HttpService {
         onError: (DioError e, handler) {
           Response<dynamic>? result = e.response;
           //Could Not connect to server
-          if (result == null) {
-            print(result!.requestOptions);
+
+          //Connected to Server but did not received expected response. 2xx error
+          if (result != null) {
+            print(result.data);
+            print(result.headers);
             print(result.statusCode);
             print(result.statusMessage);
           }
-          //Connected to Server but did not received expected response. 2xx error
+          //Could Not connect to server
           else {
-            print(result.data);
-            print(result.headers);
-            print(result.requestOptions);
+            print(e.message);
           }
-          print(e.message);
+
           return handler.next(e); //continue
         },
       ),
