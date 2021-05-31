@@ -61,7 +61,7 @@ class HttpImplementation implements HttpService {
       InterceptorsWrapper(
         onRequest: (req, handler) {
           print(
-              "${req.method} | ${req.baseUrl} | ${req.path} | ${req.headers}");
+              "${req.method} | ${req.baseUrl} | ${req.path} | ${req.data}| {req.headers}");
           return handler.next(req); //continue
         },
         onResponse: (res, handler) {
