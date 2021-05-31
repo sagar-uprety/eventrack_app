@@ -1,5 +1,6 @@
-import './event.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'event.dart';
 
 part 'event_list.g.dart';
 
