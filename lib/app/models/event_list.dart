@@ -10,7 +10,8 @@ part 'event_list.g.dart';
 class EventList {
   EventList(this.eventList);
 
-  @JsonKey(name: "data")
+  //this key is taken from our response in server.
+  @JsonKey(name: "event_list")
   List<Event> eventList;
 
   factory EventList.fromJson(Map<String, dynamic> json) =>

@@ -8,12 +8,12 @@ part of 'event_list.dart';
 
 EventList _$EventListFromJson(Map<String, dynamic> json) {
   return EventList(
-    (json['data'] as List<dynamic>)
+    (json['event_list'] as List<dynamic>)
         .map((e) => Event.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
 
 Map<String, dynamic> _$EventListToJson(EventList instance) => <String, dynamic>{
-      'data': instance.eventList,
+      'event_list': instance.eventList,
     };
