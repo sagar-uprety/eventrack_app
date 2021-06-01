@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/utilities/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +11,8 @@ Future main() async {
   runApp(
     GetMaterialApp(
       title: "Eventrack",
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.darkTheme,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),

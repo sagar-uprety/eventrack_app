@@ -18,7 +18,7 @@ class SignupView extends GetView<SignupController> {
         body: Form(
           key: _formKey,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -32,6 +32,7 @@ class SignupView extends GetView<SignupController> {
                     print(signupController.emailController.value);
                   }, */
                 ),
+                SizedBox(height: 14),
                 TextFormField(
                   decoration: InputDecoration(labelText: "Password"),
                   controller: signupController.passwordController,

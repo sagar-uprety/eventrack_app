@@ -54,8 +54,11 @@ class SignupController extends GetxController {
 
     } */
     try {
-      await _signupProvider.registerUser(
-          data: {"email": "test1@gmail.com", "password": "nepal123"});
+      await _signupProvider.registerUser(data: {
+        "name": 'Test Test',
+        "email": "test12@gmail.com",
+        "password": "nepal123"
+      });
     } catch (e) {
       print(e);
     }

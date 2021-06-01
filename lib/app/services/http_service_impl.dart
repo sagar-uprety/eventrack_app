@@ -22,21 +22,31 @@ class HttpImplementation implements HttpService {
 
   //GET Request
   @override
-  Future<Response?> getRequest(String url,
-      {Map<String, dynamic>? parameters, String? authToken}) async {
+  Future<Response?> getRequest(
+    String url, {
+    Map<String, dynamic>? parameters,
+    String? authToken =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGI0YjFmNjU1ODZjYTJkYWMwNzA1MWQiLCJpYXQiOjE2MjI1NTc2NzQsImV4cCI6MTYyNTE0OTY3NH0.P94VS_bTVR_HbgJ0utRBobs2Dw_wjaTmfkx9DfmnGvo',
+  }) async {
     late Response response;
-
-    if (parameters != null && authToken != null) {
-      Options options = Options(headers: {'auth-token': authToken});
-      response = await _dio.get(
-        url,
-        queryParameters: parameters,
-        options: options,
-      );
-    } else {
-      response = await _dio.get(url);
-    }
-
+    // _dio.options.headers = {
+    //   'auth-token':
+    //       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGI0YjFmNjU1ODZjYTJkYWMwNzA1MWQiLCJpYXQiOjE2MjI1NTc2NzQsImV4cCI6MTYyNTE0OTY3NH0.P94VS_bTVR_HbgJ0utRBobs2Dw_wjaTmfkx9DfmnGvo'
+    // };
+    // if (parameters != null && authToken != null) {
+    //   Options options = Options(headers: {'auth-token': authToken});
+    //   response = await _dio.get(
+    //     url,
+    //     queryParameters: parameters,
+    //     options: options,
+    //   );
+    // } else {
+    //   response = await _dio.get(url);
+    //   print("Response: $response");
+    // }
+    if (authToken != null) _dio.options.headers = {'auth-token': authToken};
+    response = await _dio.get(url, queryParameters: parameters);
+    print(response.data['event_list']);
     return response;
   }
 
@@ -45,12 +55,15 @@ class HttpImplementation implements HttpService {
   Future<Response> postRequest(String url,
       {Map<String, dynamic>? data, String? authToken}) async {
     late Response response;
-    if (authToken != null && data != null) {
-      Options options = Options(headers: {'auth-token': authToken});
-      response = await _dio.post(url, data: data, options: options);
-    } else {
-      response = await _dio.post(url);
-    }
+
+    // if (authToken != null && data != null) {
+    //   Options options = Options(headers: {'auth-token': authToken});
+    //   response = await _dio.post(url, data: data, options: options);
+    // } else {
+    //   response = await _dio.post(url, data: data);
+    // }
+    if (authToken != null) _dio.options.headers = {'auth-token': authToken};
+    response = await _dio.post(url, data: data);
 
     return response;
   }
