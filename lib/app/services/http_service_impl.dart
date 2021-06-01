@@ -49,7 +49,7 @@ class HttpImplementation implements HttpService {
       Options options = Options(headers: {'auth-token': authToken});
       response = await _dio.post(url, data: data, options: options);
     } else {
-      response = await _dio.post(url);
+      response = await _dio.post(url, data: data);
     }
 
     return response;
