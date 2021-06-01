@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../controllers/event_detail_controller.dart';
 
 class EventDetailView extends GetView<EventDetailController> {
-  Event event = Get.arguments;
+  final Event event = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
