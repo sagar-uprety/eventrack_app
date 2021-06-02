@@ -46,10 +46,6 @@ class SignupView extends GetView<SignupController> {
                   onPressed: signupController.onPressedsignUp,
                   child: Text("Register"),
                 ),
-                OutlinedButton(
-                  onPressed: signupController.onPressedsignUp,
-                  child: Text("Register"),
-                ),
               ],
             ),
           ),

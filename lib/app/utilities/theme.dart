@@ -31,13 +31,13 @@ abstract class AppTheme {
     appBarTheme: BarsTheme.appBarTheme,
     bottomNavigationBarTheme: BarsTheme.buttomNavBarTheme,
     tabBarTheme: BarsTheme.tabBarTheme,
-
     //Widgets
     dividerTheme: AppWidgetsTheme.dividerTheme,
+    chipTheme: AppWidgetsTheme.chipTheme,
     popupMenuTheme: AppWidgetsTheme.popUpMenuTheme,
     dialogTheme: AppWidgetsTheme.dialogTheme,
     cardTheme: AppWidgetsTheme.cardTheme,
-    chipTheme: AppWidgetsTheme.chipTheme,
+    bottomSheetTheme: AppWidgetsTheme.bottomSheetTheme,
     textButtonTheme: AppWidgetsTheme.textButtonTheme,
     elevatedButtonTheme: AppWidgetsTheme.elevatedButtonTheme,
     outlinedButtonTheme: AppWidgetsTheme.outlinedButtonTheme,
@@ -230,6 +230,19 @@ abstract class AppWidgetsTheme {
     ),
     titleTextStyle: AppTextTheme().headline4,
     contentTextStyle: AppTextTheme().subtitle2,
+  );
+
+  static final bottomSheetTheme = BottomSheetThemeData(
+    backgroundColor: AppColors.darkGrey,
+    elevation: 4,
+    modalBackgroundColor: AppColors.darkGrey,
+    modalElevation: 4,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(5),
+        topRight: Radius.circular(5),
+      ),
+    ),
   );
 
   static final popUpMenuTheme = PopupMenuThemeData(
