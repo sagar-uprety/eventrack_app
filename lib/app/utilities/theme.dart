@@ -8,7 +8,7 @@ abstract class AppTheme {
   static final _darkTheme = ThemeData(
     brightness: Brightness.dark,
     platform: TargetPlatform.android,
-    //TODO: Add fontFamily
+    fontFamily: 'Sarabun',
     textTheme: AppTextTheme(),
     applyElevationOverlayColor: true,
 
@@ -40,6 +40,7 @@ abstract class AppTheme {
     chipTheme: AppWidgetsTheme.chipTheme,
     textButtonTheme: AppWidgetsTheme.textButtonTheme,
     elevatedButtonTheme: AppWidgetsTheme.elevatedButtonTheme,
+    outlinedButtonTheme: AppWidgetsTheme.outlinedButtonTheme,
     checkboxTheme: AppWidgetsTheme.checkboxTheme,
     switchTheme: AppWidgetsTheme.switchTheme,
     inputDecorationTheme: AppWidgetsTheme.inputDecorationTheme,
@@ -255,26 +256,36 @@ abstract class AppWidgetsTheme {
   static final textButtonTheme = TextButtonThemeData(
     style: ButtonStyle(
       textStyle: MaterialStateProperty.all(
-        TextStyle(
-          fontSize: 16,
-          decoration: TextDecoration.none,
-          color: AppColors.purple,
-          letterSpacing: 0.4,
-        ),
+        AppTextTheme().headline6.copyWith(
+              fontSize: 16,
+              decoration: TextDecoration.none,
+              fontFamily: 'Sarabun',
+            ),
       ),
     ),
   );
 
   static final elevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      textStyle: AppTextTheme().headline6,
+      textStyle: AppTextTheme().bodyText1.copyWith(fontFamily: 'Sarabun'),
       primary: AppColors.purple,
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       elevation: 5,
       minimumSize: Size(200, 44),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
-      ),
+      shape: StadiumBorder(),
+      alignment: Alignment.center,
+    ),
+  );
+
+  static final outlinedButtonTheme = OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      textStyle: AppTextTheme().bodyText1.copyWith(fontFamily: 'Sarabun'),
+      primary: AppColors.purple,
+      onSurface: AppColors.red,
+      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      elevation: 0,
+      minimumSize: Size(200, 44),
+      shape: StadiumBorder(),
       alignment: Alignment.center,
     ),
   );

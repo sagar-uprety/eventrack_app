@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,7 @@ class SignupView extends GetView<SignupController> {
           title: Text('Sign Up'),
           centerTitle: true,
         ),
+        drawer: buildAppDrawer(),
         body: Form(
           key: _formKey,
           child: Padding(
@@ -43,7 +45,11 @@ class SignupView extends GetView<SignupController> {
                 ElevatedButton(
                   onPressed: signupController.onPressedsignUp,
                   child: Text("Register"),
-                )
+                ),
+                OutlinedButton(
+                  onPressed: signupController.onPressedsignUp,
+                  child: Text("Register"),
+                ),
               ],
             ),
           ),
