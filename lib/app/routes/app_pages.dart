@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:eventrack_app/app/modules/edit_User_Profile/bindings/edit_user_profile_binding.dart';
+import 'package:eventrack_app/app/modules/edit_User_Profile/views/edit_user_profile_view.dart';
 import 'package:eventrack_app/app/modules/event_detail/bindings/event_detail_binding.dart';
 import 'package:eventrack_app/app/modules/event_detail/views/event_detail_view.dart';
 import 'package:eventrack_app/app/modules/user_profile/bindings/user_profile_binding.dart';
@@ -51,6 +53,11 @@ class AppPages {
       name: _Paths.USER_PROFILE,
       page: () => UserProfileView(),
       binding: UserProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_USER_PROFILE,
+      page: () => EditUserProfileView(),
+      binding: EditUserProfileBinding(),
     ),
   ];
 }
