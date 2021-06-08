@@ -9,6 +9,7 @@ abstract class Routes {
   static const SIGNUP = _Paths.SIGNUP;
   static const BROWSE_EVENTS = _Paths.BROWSE_EVENTS;
   static const EVENT_DETAIL = _Paths.EVENT_DETAIL;
+  static const USER_PROFILE = _Paths.USER_PROFILE;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const SIGNUP = '/signup';
   static const BROWSE_EVENTS = '/browse-events';
   static const EVENT_DETAIL = '/event-detail';
+  static const USER_PROFILE = '/user-profile';
 }

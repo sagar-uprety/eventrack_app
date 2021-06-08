@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import 'package:eventrack_app/app/modules/event_detail/bindings/event_detail_binding.dart';
 import 'package:eventrack_app/app/modules/event_detail/views/event_detail_view.dart';
+import 'package:eventrack_app/app/modules/user_profile/bindings/user_profile_binding.dart';
+import 'package:eventrack_app/app/modules/user_profile/views/user_profile_view.dart';
 
 import '../modules/browse_events/bindings/browse_events_binding.dart';
 import '../modules/browse_events/views/browse_events_view.dart';
@@ -17,7 +19,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SIGNUP;
+  static const INITIAL = Routes.USER_PROFILE;
 
   static final routes = [
     GetPage(
@@ -44,6 +46,11 @@ class AppPages {
       name: _Paths.EVENT_DETAIL,
       page: () => EventDetailView(),
       binding: EventDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.USER_PROFILE,
+      page: () => UserProfileView(),
+      binding: UserProfileBinding(),
     ),
   ];
 }
