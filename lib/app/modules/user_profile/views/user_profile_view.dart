@@ -35,22 +35,28 @@ class UserProfileView extends GetView<UserProfileController> {
                       clipBehavior: Clip.none,
                       fit: StackFit.expand,
                       children: [
-                        ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: Container(
-                            height: hrheight*0.145,
-                            width: hrwidth*0.24,
-                            child: Image.network(
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundImage: NetworkImage(
                               "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg",
-                              height:hrheight*0.145,
-                              width: hrwidth*0.24,
-                              fit: BoxFit.fill,
                             ),
-                          ),
                         ),
+                        // ClipRRect(
+                        // borderRadius: BorderRadius.circular(10.0),
+                        // child: Container(
+                        //     height: hrheight*0.145,
+                        //     width: hrwidth*0.24,
+                        //     child: Image.network(
+                        //       "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg",
+                        //       height:hrheight*0.145,
+                        //       width: hrwidth*0.24,
+                        //       fit: BoxFit.fill,
+                        //     ),
+                        //   ),
+                        // ),
                         Positioned(
-                          bottom: -5,
-                          right: -14,
+                          bottom: 5,
+                          right: -10,
                           child: SizedBox(
                             height: 35,
                             width: 35,
@@ -58,19 +64,18 @@ class UserProfileView extends GetView<UserProfileController> {
                               elevation: 0.0,
                               backgroundColor: Color(0xFFC4D5EE),
                               child: Icon(
-                                Icons.camera_alt_outlined,
+                                Icons.edit_rounded,
                                 color: Colors.blue,
                                 size: 20,
                               ),
                               onPressed: (){
                                 print("Change picture");
                               },
-                              shape: RoundedRectangleBorder(
+                              shape: CircleBorder(
                                 side: BorderSide(
                                   width: 3,
                                   color: Colors.white
                                 ),
-                                borderRadius: BorderRadius.all(Radius.circular(10))
                               ),
                             ),
                           ),
@@ -78,12 +83,6 @@ class UserProfileView extends GetView<UserProfileController> {
                       ],
                     ),
                    ),  
-                  // Text(
-                  //   'UserProfileView is working',
-                  //   style: TextStyle(fontSize: 20),
-                  // ),
-                  // Text("$hrwidth"),
-                  
                 ],
               ),
             ),
@@ -93,25 +92,6 @@ class UserProfileView extends GetView<UserProfileController> {
             UserProfileCard(hrwidth: hrwidth, title: "Phone number", value: "+977 9873567245"),
             UserProfileCard(hrwidth: hrwidth, title: "Address", value: "Kathmandu",),
             UserProfileCard(hrwidth: hrwidth, title: "Gender", value: "Female",),
-            FloatingActionButton(
-                              elevation: 0.0,
-                              backgroundColor: Color(0xFFC4D5EE),
-                              child: Icon(
-                                Icons.camera_alt_outlined,
-                                color: Colors.blue,
-                                size: 20,
-                              ),
-                              onPressed: (){
-                                Get.toNamed(Routes.EDIT_USER_PROFILE);
-                              },
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 3,
-                                  color: Colors.white
-                                ),
-                                borderRadius: BorderRadius.all(Radius.circular(10))
-                              ),
-                            ),
           ],
         ),
       ),
