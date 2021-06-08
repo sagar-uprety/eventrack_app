@@ -1,4 +1,7 @@
+import 'dart:ui';
+import 'Imagefile.dart';
 import 'package:flutter/material.dart';
+import './Location.dart';
 
 class DetailBody extends StatelessWidget {
   const DetailBody({Key? key}) : super(key: key);
@@ -9,37 +12,7 @@ class DetailBody extends StatelessWidget {
       scrollDirection: Axis.vertical,
       child: Column(
         children: [
-          Stack(
-            children: [
-              Image.network(
-                'https://picsum.photos/250?image=9',
-                height: 400,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 340.0, left: 10.0),
-                child: Column(
-                  children: [
-                    Text(
-                      "EventTrack",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      "2076/09/08",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          color: Colors.black),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          ImageContainer(),
           SizedBox(
             height: 10.0,
           ),
@@ -53,7 +26,8 @@ class DetailBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: Text(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset"),
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s ...",
+            ),
           ),
           SizedBox(
             height: 10.0,
@@ -68,12 +42,27 @@ class DetailBody extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
-          Container(
-            child: Image.network(
-              'https://picsum.photos/250?image=9',
-              height: 200,
-              width: 200,
-              fit: BoxFit.cover,
+          // Location(),
+          SizedBox(
+            height: 15.0,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 80,
+              right: 80.0,
+              top: 200.0,
+            ),
+            child: Container(
+              width: 550.0,
+              height: 50.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                color: Colors.purple,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 100.0, top: 20.0),
+                child: Text("Submit"),
+              ),
             ),
           ),
         ],
