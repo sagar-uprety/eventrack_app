@@ -1,9 +1,8 @@
 import 'dart:ui';
 import 'package:eventrack_app/app/utilities/colors.dart';
 
-import 'Imagefile.dart';
+import 'ImageContainer.dart';
 import 'package:flutter/material.dart';
-import './Location.dart';
 
 class DetailBody extends StatelessWidget {
   const DetailBody({Key? key}) : super(key: key);
@@ -32,24 +31,26 @@ class DetailBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: Text(
-              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s ...",
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...",
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(context)
                   .textTheme
                   .bodyText1!
-                  .copyWith(fontSize: 12, height: 1.5),
+                  .copyWith(fontSize: 13, height: 1.5),
             ),
           ),
           SizedBox(
             height: 10.0,
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 315),
+            padding: const EdgeInsets.only(right: 310),
             child: Text(
               "Read more",
               style: Theme.of(context)
                   .textTheme
                   .bodyText1!
-                  .copyWith(fontSize: 13, color: AppColors.purple),
+                  .copyWith(fontSize: 14, color: AppColors.purple),
             ),
           ),
           SizedBox(
@@ -57,7 +58,7 @@ class DetailBody extends StatelessWidget {
           ),
           Container(
             height: 160,
-            width: 250,
+            width: 350,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
@@ -73,8 +74,8 @@ class DetailBody extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(
-              left: 50,
-              right: 50.0,
+              left: 30,
+              right: 30.0,
               top: 40.0,
             ),
             child: Container(
@@ -85,8 +86,13 @@ class DetailBody extends StatelessWidget {
                 color: Colors.purple,
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 120.0, top: 20.0),
-                child: Text("Submit"),
+                padding: const EdgeInsets.only(left: 150.0, top: 15.0),
+                child: Text(
+                  "Submit",
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontSize: 16,
+                      ),
+                ),
               ),
             ),
           ),

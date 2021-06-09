@@ -60,7 +60,9 @@ class EventDetailView extends StatelessWidget {
       ),
       actions: [
         IconButton(
-          icon: Icon(MfgLabs.heart),
+          icon: Icon(
+            MfgLabs.heart,
+          ),
           onPressed: () {},
         ),
       ],
