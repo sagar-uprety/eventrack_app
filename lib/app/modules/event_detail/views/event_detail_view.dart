@@ -38,6 +38,7 @@
 import 'package:flutter/material.dart';
 
 import 'components/detailbody.dart';
+import 'package:fluttericon/mfg_labs_icons.dart';
 
 class EventDetailView extends StatelessWidget {
   const EventDetailView({Key? key}) : super(key: key);
@@ -59,7 +60,7 @@ class EventDetailView extends StatelessWidget {
       ),
       actions: [
         IconButton(
-          icon: Icon(Icons.headset_sharp),
+          icon: Icon(MfgLabs.heart),
           onPressed: () {},
         ),
       ],
