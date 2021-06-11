@@ -41,19 +41,6 @@ class UserProfileView extends GetView<UserProfileController> {
                               "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg",
                             ),
                         ),
-                        // ClipRRect(
-                        // borderRadius: BorderRadius.circular(10.0),
-                        // child: Container(
-                        //     height: hrheight*0.145,
-                        //     width: hrwidth*0.24,
-                        //     child: Image.network(
-                        //       "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg",
-                        //       height:hrheight*0.145,
-                        //       width: hrwidth*0.24,
-                        //       fit: BoxFit.fill,
-                        //     ),
-                        //   ),
-                        // ),
                         Positioned(
                           bottom: 5,
                           right: -10,
@@ -69,7 +56,7 @@ class UserProfileView extends GetView<UserProfileController> {
                                 size: 20,
                               ),
                               onPressed: (){
-                                print("Change picture");
+                                Get.toNamed(Routes.EDIT_USER_PROFILE);
                               },
                               shape: CircleBorder(
                                 side: BorderSide(
@@ -131,9 +118,9 @@ class UserProfileCard extends StatelessWidget {
               children: <Widget>[
                 Text(
                   title,
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
                     fontSize: 16,
-                    fontWeight: FontWeight.bold
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 SizedBox(
@@ -141,7 +128,7 @@ class UserProfileCard extends StatelessWidget {
                 ),
                 Text(
                   value,
-                   style: TextStyle(
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
                     fontSize: 16,
                   ),
                 ),
