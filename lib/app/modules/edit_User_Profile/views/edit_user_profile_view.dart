@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../controllers/edit_user_profile_controller.dart';
 
-class EditUserProfileView extends GetView<EditUserProfileController> {
+class EditUserProfileView extends GetView<EditUserProfileController>  {
   final EditUserProfileController editController = Get.put(EditUserProfileController());
   void hideKeyboard(BuildContext context) {
         FocusScope.of(context).requestFocus(FocusNode());
@@ -30,7 +30,7 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
               print("Back");
             },
           ),
-          title: Text('User Profile'),
+          title: Text('Edit User Data'),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -47,22 +47,15 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
                         clipBehavior: Clip.none,
                         fit: StackFit.expand,
                         children: [
-                          ClipRRect(
-                          borderRadius: BorderRadius.circular(10.0),
-                          child: Container(
-                              height: hrheight*0.145,
-                              width: hrwidth*0.24,
-                              child: Image.network(
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage: NetworkImage(
                                 "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg",
-                                height:hrheight*0.145,
-                                width: hrwidth*0.24,
-                                fit: BoxFit.fill,
                               ),
-                            ),
                           ),
                           Positioned(
                             bottom: -5,
-                            right: -14,
+                            right: -10,
                             child: SizedBox(
                               height: 35,
                               width: 35,
@@ -77,12 +70,11 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
                                 onPressed: (){
                                   print("Change picture");
                                 },
-                                shape: RoundedRectangleBorder(
+                                shape: CircleBorder(
                                   side: BorderSide(
                                     width: 3,
                                     color: Colors.white
                                   ),
-                                  borderRadius: BorderRadius.all(Radius.circular(10))
                                 ),
                               ),
                             ),
@@ -90,44 +82,15 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
                         ],
                       ),
                      ),  
-                    // Text(
-                    //   'UserProfileView is working',
-                    //   style: TextStyle(fontSize: 20),
-                    // ),
-                    // Text("$hrwidth"),
-                    
                   ],
                 ),
               ),
-              TextField1(),
-              // TextFieldWidget(),
-              // CupertinoTextField(
-              //   placeholder: "Shreya Shrestha",
-              //   controller: TextEditingController(text: "Shreya Shrestha", ),
-              // ),
-      //         Text(
-      //               "Your Name",
-      //               style: TextStyle(
-      //                 fontSize: 16,
-      //                 fontWeight: FontWeight.bold
-      //               ),
-      //             ),
-      //              GestureDetector(
-      //   onTap: (){
-      //     FocusScopeNode currentFocus = FocusScope.of(context);
-    
-      //     if (!currentFocus.hasPrimaryFocus) {
-      //       currentFocus.unfocus();
-      //     }
-      //   },
-        // child: TextField1(),
-      // ),
-      //         UserProfileCard(hrwidth: hrwidth, title: "Name", value: "Rose Watson",),
-      //         UserProfileCard(hrwidth: hrwidth, title: "Email", value: "someone@example.com",),
-      //         UserProfileCard(hrwidth: hrwidth, title: "Username", value: "rosewat34",),
-      //         UserProfileCard(hrwidth: hrwidth, title: "Phone number", value: "+977 9873567245"),
-      //         UserProfileCard(hrwidth: hrwidth, title: "Address", value: "Kathmandu",),
-      //         UserProfileCard(hrwidth: hrwidth, title: "Gender", value: "Female",),
+              EditUserTextField(hrwidth: hrwidth, title: "Name", value: "Rose Watson",icon: Icon(Icons.person),),
+              EditUserTextField(hrwidth: hrwidth, title: "Email", value: "someone@example.com", icon: Icon(Icons.email),),
+              EditUserTextField(hrwidth: hrwidth, title: "Username", value: "rosewat34",icon: Icon(Icons.account_circle),),
+              EditUserTextField(hrwidth: hrwidth, title: "Phone number", value: "+977 9873567245", icon: Icon(Icons.phone),),
+              EditUserTextField(hrwidth: hrwidth, title: "Address", value: "Kathmandu",icon: Icon(Icons.location_on),),
+              EditUserTextField(hrwidth: hrwidth, title: "Gender", value: "Female",icon: Icon(Icons.person),),
             ],
           ),
         ),
@@ -136,37 +99,80 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
   }
 }
 
-class TextField1 extends StatelessWidget {
-  const TextField1({
+class EditUserTextField extends StatelessWidget {
+ 
+  const EditUserTextField({
     Key? key,
+    required this.hrwidth,
+    required this.title,
+    required this.value,
+    required this.icon
   }) : super(key: key);
+
+  final double hrwidth;
+  final String title;
+  final String value;
+  final Widget icon;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-              controller: TextEditingController.fromValue(TextEditingValue(text: "Shreya Shrestha", selection: TextSelection.collapsed(offset: "Shreya Shrestha".length))),
-              textAlign: TextAlign.center,
+    return Container(
+      margin: EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 0),
+       padding: EdgeInsets.all(10),
+       width: hrwidth,
+       height: 74,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                          fontSize: 16, 
+                          fontWeight: FontWeight.bold
+            ),
+          ),
+          Container(
+            height: 35,
+            padding: EdgeInsets.all(0),
+            child: TextField(
+              textAlignVertical: TextAlignVertical.top,
+              controller: TextEditingController.fromValue(TextEditingValue(text: value, selection: TextSelection.collapsed(offset: value.length))),
+              textAlign: TextAlign.start,
+              enabled: true,
+              enableInteractiveSelection: true,
               autofocus: false,
               decoration: InputDecoration(
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: const BorderSide(color: Color(0xFFB1BFDB), width: 1.5),
-                ),
-                contentPadding: EdgeInsets.all(20.0),
-                labelText: 'Task',
-                labelStyle: TextStyle(
-                  color: Colors.white,
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Color(0xFFB1BFDB),
+                suffixIcon: icon,
+                labelStyle: TextStyle(color: Colors.white),
+                  contentPadding: EdgeInsets.only(bottom: 12),
+                  fillColor: Color(0xff1a1a1a).withOpacity(0.88),
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 0.5,
+                      color: Colors.white
+                    )
                   ),
-                  borderRadius: BorderRadius.circular(5)
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 0.5,
+                      color: Colors.white,
+                    )
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 0.5,
+                      color: Colors.white,
+                    )
+                  ),
                 ),
-              ),
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            );
+                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                  fontSize: 16
+                ),
+            )
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -212,8 +218,8 @@ class UserProfileCard extends StatelessWidget {
                 ),
                 Text(
                   value,
-                   style: TextStyle(
-                    fontSize: 16,
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    fontSize: 16
                   ),
                 ),
               ],
