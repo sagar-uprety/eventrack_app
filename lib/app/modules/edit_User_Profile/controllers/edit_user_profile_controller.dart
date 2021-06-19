@@ -9,9 +9,6 @@ class EditUserProfileController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-     
-    final TextEditingController controller = TextEditingController(text: "Shreya Shrestha");
-    print(controller);
   
   }
 

@@ -73,12 +73,15 @@ class UserProfileView extends GetView<UserProfileController> {
                 ],
               ),
             ),
-            UserProfileCard(hrwidth: hrwidth, title: "Name", value: "Rose Watson",),
-            UserProfileCard(hrwidth: hrwidth, title: "Email", value: "someone@example.com",),
-            UserProfileCard(hrwidth: hrwidth, title: "Username", value: "rosewat34",),
-            UserProfileCard(hrwidth: hrwidth, title: "Phone number", value: "+977 9873567245"),
-            UserProfileCard(hrwidth: hrwidth, title: "Address", value: "Kathmandu",),
-            UserProfileCard(hrwidth: hrwidth, title: "Gender", value: "Female",),
+            UserProfileCard(hrwidth: hrwidth, hrheight: hrheight, title: "Name", value: "Rose Watson",),
+            UserProfileCard(hrwidth: hrwidth, hrheight: hrheight, title: "Email", value: "someone@example.com",),
+            UserProfileCard(hrwidth: hrwidth, hrheight: hrheight, title: "Username", value: "rosewat34",),
+            UserProfileCard(hrwidth: hrwidth, hrheight: hrheight, title: "Phone number", value: "+977 9873567245"),
+            UserProfileCard(hrwidth: hrwidth, hrheight: hrheight, title: "Address", value: "Kathmandu",),
+            UserProfileCard(hrwidth: hrwidth, hrheight: hrheight, title: "Gender", value: "Female",),
+            SizedBox(
+                height: hrheight*0.05,
+              )
           ],
         ),
       ),
@@ -90,18 +93,20 @@ class UserProfileCard extends StatelessWidget {
   const UserProfileCard({
     Key? key,
     required this.hrwidth,
+    required this.hrheight,
     required this.title,
     required this.value
   }) : super(key: key);
 
   final double hrwidth;
+  final double hrheight;
   final String title;
   final String value;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+      margin: EdgeInsets.symmetric(vertical: hrheight*0.008, horizontal: hrwidth*0.042),
       padding: EdgeInsets.all(10),
       width: hrwidth,
       decoration: BoxDecoration(

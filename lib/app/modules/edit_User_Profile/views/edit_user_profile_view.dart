@@ -10,6 +10,8 @@ class EditUserProfileView extends GetView<EditUserProfileController>  {
   void hideKeyboard(BuildContext context) {
         FocusScope.of(context).requestFocus(FocusNode());
       } 
+
+    
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
@@ -28,6 +30,7 @@ class EditUserProfileView extends GetView<EditUserProfileController>  {
           leading: BackButton(
             onPressed: (){
               print("Back");
+               Get.back();
             },
           ),
           title: Text('Edit User Data'),
@@ -85,15 +88,144 @@ class EditUserProfileView extends GetView<EditUserProfileController>  {
                   ],
                 ),
               ),
-              EditUserTextField(hrwidth: hrwidth, title: "Name", value: "Rose Watson",icon: Icon(Icons.person),),
-              EditUserTextField(hrwidth: hrwidth, title: "Email", value: "someone@example.com", icon: Icon(Icons.email),),
-              EditUserTextField(hrwidth: hrwidth, title: "Username", value: "rosewat34",icon: Icon(Icons.account_circle),),
-              EditUserTextField(hrwidth: hrwidth, title: "Phone number", value: "+977 9873567245", icon: Icon(Icons.phone),),
-              EditUserTextField(hrwidth: hrwidth, title: "Address", value: "Kathmandu",icon: Icon(Icons.location_on),),
-              EditUserTextField(hrwidth: hrwidth, title: "Gender", value: "Female",icon: Icon(Icons.person),),
+              EditUserTextField(hrwidth: hrwidth, hrheight: hrheight, title: "Name", value: "Rose Watson",icon: Icon(Icons.person), editable: true,),
+              EditUserTextField(hrwidth: hrwidth, hrheight: hrheight, title: "Email", value: "someone@example.com", icon: Icon(Icons.email), editable: false),
+              EditUserTextField(hrwidth: hrwidth, hrheight: hrheight, title: "Username", value: "rosewat34",icon: Icon(Icons.account_circle),editable: true),
+              EditUserTextField(hrwidth: hrwidth, hrheight: hrheight, title: "Phone number", value: "+977 9873567245", icon: Icon(Icons.phone),editable: true),
+              EditUserTextField(hrwidth: hrwidth, hrheight: hrheight, title: "Address", value: "Kathmandu",icon: Icon(Icons.location_on),editable: true),
+              Center(
+                child: SelectGender(hrheight: hrheight, hrwidth: hrwidth,)
+              ),
+              SizedBox(
+                height: hrheight*0.01,
+              ),
+              Center(
+                child: TextButton(
+                  child: Text("Change Password"), 
+                  onPressed: (){
+                    print('PasswordChanged');
+                  },),
+              ),
+              SizedBox(
+                height: hrheight*0.01,
+              ),
+              Center(
+                child: ElevatedButton(
+                  onPressed: (){
+                    print("Saved");
+                  }, 
+                  child: Text("Save")
+                ),
+              ),
+              SizedBox(
+                height: hrheight*0.01,
+              )
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class SelectGender extends StatefulWidget {
+  const SelectGender({
+    required this.hrwidth,
+    required this.hrheight,
+    Key? key,
+  }) : super(key: key);
+
+  final double hrwidth;
+  final double hrheight;
+
+  @override
+  _SelectGenderState createState() => _SelectGenderState();
+}
+
+class _SelectGenderState extends State<SelectGender> {
+  
+  @override
+  Widget build(BuildContext context) {
+    Object? currentGender = "Female";
+    List gender = [
+    "Male",
+    "Female"
+  ];
+    return Container(
+      width: widget.hrwidth,
+      padding: EdgeInsets.all(10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: widget.hrwidth,
+            margin: EdgeInsets.symmetric( horizontal: widget.hrwidth*0.042),
+            child: Text(
+              "Gender",
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+            )
+          ),
+          GestureDetector(
+            child: Container(
+              margin: EdgeInsets.symmetric( horizontal: widget.hrwidth*0.042),
+              // padding: EdgeInsets.only(right: 10),
+              width: widget.hrwidth,
+              height: 30,
+              child: DropdownButtonFormField(
+                icon: Icon(Icons.arrow_drop_down),
+                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        fontSize: 16,
+                      ),
+                decoration: InputDecoration(
+                    labelStyle: TextStyle(color: Colors.white),
+                    contentPadding: EdgeInsets.only(bottom: 12, right: 10),
+                    fillColor: Color(0xff1a1a1a).withOpacity(0),
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 0.5,
+                        color: Colors.white
+                      )
+                    ),
+                    disabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 0.5,
+                        color: Colors.white,
+                      )
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 0.5,
+                        color: Colors.white,
+                      )
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 0.5,
+                        color: Colors.white,
+                      )
+                    ),
+                ),
+                value: currentGender,
+                items: gender
+                   .map((gender) => DropdownMenuItem(
+                    child: Text(gender.toString()),
+                    value: gender,
+                  )
+                  ) .toList(),
+               hint: Text("Gender"),
+               onChanged: (value) {
+                 setState(() {
+                   currentGender = value;
+                 });
+                 print(value);
+               },
+                ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -104,126 +236,98 @@ class EditUserTextField extends StatelessWidget {
   const EditUserTextField({
     Key? key,
     required this.hrwidth,
+    required this.hrheight,
     required this.title,
     required this.value,
-    required this.icon
+    required this.icon,
+    required this.editable
   }) : super(key: key);
 
   final double hrwidth;
+  final double hrheight;
   final String title;
   final String value;
   final Widget icon;
+  final bool editable;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 0),
+      margin: EdgeInsets.symmetric(vertical: hrheight*0.008, horizontal: hrwidth*0.042),
        padding: EdgeInsets.all(10),
        width: hrwidth,
-       height: 74,
+       height: 80,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                          fontSize: 16, 
-                          fontWeight: FontWeight.bold
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(bottom: 3),
+              child: Text(
+               title,
+                style: (editable) ? Theme.of(context).textTheme.bodyText2!.copyWith(
+                              fontSize: 16, 
+                              fontWeight: FontWeight.bold
+                ):Theme.of(context).textTheme.bodyText2!.copyWith(
+                              fontSize: 16, 
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xff818181)
+                ),
+              ),
             ),
           ),
-          Container(
-            height: 35,
-            padding: EdgeInsets.all(0),
-            child: TextField(
-              textAlignVertical: TextAlignVertical.top,
-              controller: TextEditingController.fromValue(TextEditingValue(text: value, selection: TextSelection.collapsed(offset: value.length))),
-              textAlign: TextAlign.start,
-              enabled: true,
-              enableInteractiveSelection: true,
-              autofocus: false,
-              decoration: InputDecoration(
-                suffixIcon: icon,
-                labelStyle: TextStyle(color: Colors.white),
-                  contentPadding: EdgeInsets.only(bottom: 12),
-                  fillColor: Color(0xff1a1a1a).withOpacity(0.88),
-                  border: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 0.5,
-                      color: Colors.white
-                    )
+          Expanded(
+            child: Container(
+              height: 40,
+              padding: EdgeInsets.all(0),
+              child: TextField(
+                textAlignVertical: TextAlignVertical.top,
+                controller: TextEditingController.fromValue(TextEditingValue(text: value, selection: TextSelection.collapsed(offset: value.length))),
+                textAlign: TextAlign.start,
+                enabled: editable,
+                enableInteractiveSelection: editable,
+                autofocus: false,
+                decoration: InputDecoration(
+                  suffixIcon: icon,
+                  labelStyle: TextStyle(color: Colors.white),
+                    contentPadding: EdgeInsets.only(bottom: 20),
+                    fillColor: Color(0xff1a1a1a).withOpacity(0),
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 0.5,
+                        color: Colors.white
+                      )
+                    ),
+                    disabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 0.5,
+                        color: Colors.white,
+                      )
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 0.5,
+                        color: Colors.white,
+                      )
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 0.5,
+                        color: Colors.white,
+                      )
+                    ),
                   ),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 0.5,
-                      color: Colors.white,
-                    )
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 0.5,
-                      color: Colors.white,
-                    )
-                  ),
-                ),
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  fontSize: 16
-                ),
-            )
+                  style: (editable) ? Theme.of(context).textTheme.bodyText2!.copyWith(
+                    fontSize: 16
+                  ): Theme.of(context).textTheme.bodyText2!.copyWith(
+                    fontSize: 16,
+                    color: Color(0xff818181)
+                  )
+              )
+            ),
           ),
         ],
       ),
     );
-  }
-}
-
-class UserProfileCard extends StatelessWidget {
-  const UserProfileCard({
-    Key? key,
-    required this.hrwidth,
-    required this.title,
-    required this.value
-  }) : super(key: key);
-
-  final double hrwidth;
-  final String title;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-      padding: EdgeInsets.all(10),
-      width: hrwidth,
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            width: 0.5,
-            color: Colors.white
-          ),
-        ),
-      ),
-            child: Column(
-              mainAxisAlignment:  MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  value,
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    fontSize: 16
-                  ),
-                ),
-              ],
-            ),
-          );
   }
 }
