@@ -16,13 +16,6 @@ class EditUserProfileController extends GetxController {
   );
 
 
-  unfocus(BuildContext context){
-    FocusScopeNode currentFocus = FocusScope.of(context);
-    if (!currentFocus.hasPrimaryFocus) {
-      currentFocus.unfocus();
-    }
-  }
-
   Object? currentGender = "Female";
   List gender = [
     "Male",
