@@ -1,11 +1,34 @@
+import 'package:eventrack_app/app/models/user.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class EditUserProfileController extends GetxController {
   //TODO: Implement EditUserProfileController
 
-  final count = 0.obs;
-  
+  final user = User(
+    "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg",
+    "Rose Watson", 
+    "Some@example.com", 
+    "shreya2057", 
+    "+977 9863556656", 
+    "Kathmandu", 
+    "Female"
+  );
+
+
+  unfocus(BuildContext context){
+    FocusScopeNode currentFocus = FocusScope.of(context);
+    if (!currentFocus.hasPrimaryFocus) {
+      currentFocus.unfocus();
+    }
+  }
+
+  Object? currentGender = "Female";
+  List gender = [
+    "Male",
+    "Female"
+  ];
+
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +42,4 @@ class EditUserProfileController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }

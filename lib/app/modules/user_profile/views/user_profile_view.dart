@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/modules/user_profile/views/user_profile_card.dart';
 import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,7 @@ import '../controllers/user_profile_controller.dart';
 class UserProfileView extends GetView<UserProfileController> {
   @override
   Widget build(BuildContext context) {
+    final userController = Get.find<UserProfileController>();
     MediaQueryData queryData = MediaQuery.of(context);
     double hrwidth = queryData.size.width;
     double hrheight =  queryData.size.height;
@@ -38,8 +40,8 @@ class UserProfileView extends GetView<UserProfileController> {
                         CircleAvatar(
                           radius: 50,
                           backgroundImage: NetworkImage(
-                              "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg",
-                            ),
+                            userController.user.profileImage
+                          ),
                         ),
                         Positioned(
                           bottom: 5,
@@ -73,12 +75,11 @@ class UserProfileView extends GetView<UserProfileController> {
                 ],
               ),
             ),
-            UserProfileCard(hrwidth: hrwidth, hrheight: hrheight, title: "Name", value: "Rose Watson",),
-            UserProfileCard(hrwidth: hrwidth, hrheight: hrheight, title: "Email", value: "someone@example.com",),
-            UserProfileCard(hrwidth: hrwidth, hrheight: hrheight, title: "Username", value: "rosewat34",),
-            UserProfileCard(hrwidth: hrwidth, hrheight: hrheight, title: "Phone number", value: "+977 9873567245"),
-            UserProfileCard(hrwidth: hrwidth, hrheight: hrheight, title: "Address", value: "Kathmandu",),
-            UserProfileCard(hrwidth: hrwidth, hrheight: hrheight, title: "Gender", value: "Female",),
+            UserProfileCard(title: "Name", value: userController.user.username,),
+            UserProfileCard(title: "Email", value: userController.user.email,),
+            UserProfileCard(title: "Phone number", value: userController.user.phoneNo),
+            UserProfileCard(title: "Address", value: userController.user.address,),
+            UserProfileCard(title: "Gender", value: userController.user.gender,),
             SizedBox(
                 height: hrheight*0.05,
               )
@@ -86,59 +87,5 @@ class UserProfileView extends GetView<UserProfileController> {
         ),
       ),
     );
-  }
-}
-
-class UserProfileCard extends StatelessWidget {
-  const UserProfileCard({
-    Key? key,
-    required this.hrwidth,
-    required this.hrheight,
-    required this.title,
-    required this.value
-  }) : super(key: key);
-
-  final double hrwidth;
-  final double hrheight;
-  final String title;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: hrheight*0.008, horizontal: hrwidth*0.042),
-      padding: EdgeInsets.all(10),
-      width: hrwidth,
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            width: 0.5,
-            color: Colors.white
-          ),
-        ),
-      ),
-            child: Column(
-              mainAxisAlignment:  MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  value,
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
-              ],
-            ),
-          );
   }
 }
