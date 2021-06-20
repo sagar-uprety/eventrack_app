@@ -11,6 +11,7 @@ abstract class Routes {
   static const EVENT_DETAIL = _Paths.EVENT_DETAIL;
   static const USER_PROFILE = _Paths.USER_PROFILE;
   static const EDIT_USER_PROFILE = _Paths.EDIT_USER_PROFILE;
+  static const USER_LIST = _Paths.USER_LIST;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const EVENT_DETAIL = '/event-detail';
   static const USER_PROFILE = '/user-profile';
   static const EDIT_USER_PROFILE = '/edit-user-profile';
+  static const USER_LIST = '/user-list';
 }
