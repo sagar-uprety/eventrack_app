@@ -13,7 +13,9 @@ class SignupView extends GetView<SignupController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Sign Up'),
+          title: Text(
+            'Sign Up',
+          ),
           centerTitle: true,
         ),
         drawer: buildAppDrawer(),
