@@ -1,4 +1,3 @@
-import 'package:eventrack_app/app/modules/event_detail/views/event_detail_view.dart';
 import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
