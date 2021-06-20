@@ -24,3 +24,8 @@ flutter:
 
   assets:
     - .env
+
+  fonts:
+    - family: Sarabun
+      fonts: 
+        - asset: assets/fonts/Sarabun/Sarabun-Regular.ttf
