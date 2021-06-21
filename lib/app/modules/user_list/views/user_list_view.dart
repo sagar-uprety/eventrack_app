@@ -1,5 +1,7 @@
 import 'package:eventrack_app/app/modules/user_list/views/components/dialog.dart';
 import 'package:eventrack_app/app/modules/user_list/views/user_list.dart';
+import 'package:eventrack_app/app/utilities/colors.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -34,8 +36,8 @@ class UserListView extends GetView<UserListController> {
         itemCount: userListController.users.length,
         itemBuilder: (context, index){
           final item = userListController.users[index].toString();
-          return Dismissible(
-            key: Key(item), 
+          return Slidable(
+            actionPane: SlidableScrollActionPane(),
             child: ListTile(
               contentPadding: EdgeInsets.all(0),
               title: UserListCard(
@@ -44,28 +46,44 @@ class UserListView extends GetView<UserListController> {
                 profileImage: '${userListController.users[index].profileImage}',
               ),
             ),
-             background: Container(
-              height: 50,
-              padding: EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(Icons.delete),
-                  Text(
-                    "Delete",
-                  )
-                ],
+            key: Key(item),
+            actionExtentRatio: 0.25,
+            secondaryActions: <Widget>[
+              IconSlideAction(
+                color: AppColors.background,
+                iconWidget: Icon(
+                  Icons.more_horiz,
+                ),
+                caption: "More",
+                onTap: () async{
+                  print('archive');
+                  return showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return DeleteDialog();
+                    }
+                  );
+                },
               ),
+              IconSlideAction(
+                color: AppColors.background,
+                iconWidget: Icon(
+                  Icons.cancel_outlined,
+                  size: 26,
+                ),
+                caption: "Cancel",
+                onTap: () async{
+                 Get.back();
+                },
+              ),
+            ],
+            dismissal: SlidableDismissal(
+              child: SlidableDrawerDismissal(
+              ),
+              onDismissed: (actiontype){
+                print('deleted');
+              },
             ),
-            direction: DismissDirection.endToStart,
-            confirmDismiss: (direction) async {
-              return showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return DeleteDialog();
-                  }
-            );
-          } 
           );
         },
         
