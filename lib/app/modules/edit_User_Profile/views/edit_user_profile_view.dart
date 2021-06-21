@@ -34,7 +34,7 @@ class EditUserProfileView extends GetView<EditUserProfileController>  {
           centerTitle: true,
         ),
         body: Padding(
-          padding: EdgeInsets.only(top: 20),
+          padding: EdgeInsets.only(top: hrwidth*0.03),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
