@@ -50,7 +50,6 @@ class FormInputField extends StatelessWidget {
             .textTheme
             .bodyText1!
             .copyWith(color: AppColors.dark50),
-        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         filled: true,
         fillColor: AppColors.dark25,
         border: OutlineInputBorder(
@@ -61,7 +60,7 @@ class FormInputField extends StatelessWidget {
         ),
         errorBorder: UnderlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppColors.red, width: 2),
+          borderSide: BorderSide(color: AppColors.red, width: 4),
         ),
         errorStyle: Theme.of(context)
             .textTheme
@@ -75,6 +74,6 @@ class FormInputField extends StatelessWidget {
       maxLines: maxLines,
       maxLength: maxLength,
       validator: validator,
-    ).paddingSymmetric(horizontal: 24, vertical: 8);
+    ).paddingSymmetric(horizontal: 15, vertical: 8);
   }
 }

@@ -14,8 +14,8 @@ abstract class AppTheme {
 
     // Colors
     scaffoldBackgroundColor: AppColors.background,
-    primarySwatch: Colors.cyan,
-    primaryColor: AppColors.dark25,
+    primarySwatch: Colors.blueGrey,
+    primaryColor: AppColors.dark50,
     accentColor: AppColors.dark50,
     shadowColor: AppColors.dark80,
     disabledColor: AppColors.dark50,
@@ -23,9 +23,10 @@ abstract class AppTheme {
     errorColor: AppColors.red,
     dividerColor: AppColors.dark50,
 
-    // Icon Theme
+    // Widget Theme
     primaryIconTheme: _primaryIconTheme,
     accentIconTheme: _accentIconTheme,
+    timePickerTheme: _timePickerTheme,
   );
 
   static final TextTheme _textTheme = TextTheme(
@@ -105,7 +106,7 @@ abstract class AppTheme {
       color: AppColors.dark10,
       letterSpacing: 1.5,
       fontSize: 18,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.bold,
     ),
   );
 
@@ -117,5 +118,13 @@ abstract class AppTheme {
   static final _accentIconTheme = IconThemeData(
     color: AppColors.dark50,
     size: 24,
+  );
+
+  static final _timePickerTheme = TimePickerThemeData(
+    backgroundColor: AppColors.dark10,
+    helpTextStyle: _textTheme.headline6,
+    dialTextColor: AppColors.dark80,
+    hourMinuteTextColor: AppColors.dark65,
+    dayPeriodTextColor: AppColors.dark65,
   );
 }

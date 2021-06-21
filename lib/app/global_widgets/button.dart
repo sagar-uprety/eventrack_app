@@ -22,7 +22,7 @@ class RoundedRectangularButton extends StatelessWidget {
         backgroundColor: MaterialStateProperty.all(color ?? AppColors.blue),
         elevation: MaterialStateProperty.all(3),
         minimumSize: MaterialStateProperty.all(
-          Size(Get.width * 0.40, 45),
+          Size(Get.width * 0.40, 50),
         ),
       ),
       child: Text(

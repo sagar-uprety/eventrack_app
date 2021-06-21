@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -24,57 +25,177 @@ class CreateEventView extends GetView<CreateEventController> {
       body: Form(
         key: controller.key,
         autovalidateMode: AutovalidateMode.disabled,
-        child: Column(
-          children: [
-            FormInputField(
-              key: ValueKey('eventName'),
-              controller: controller.eventName,
-              label: 'Event Name',
-              validator: controller.eventNameValidator,
-            ),
-            FormInputField(
-              key: ValueKey('description'),
-              controller: controller.description,
-              label: 'Description',
-              maxLines: 3,
-              maxLength: 100,
-              validator: controller.descriptionValidator,
-            ),
-            FormInputField(
-              key: key,
-              label: 'Categories',
-              controller: controller.categoriesText,
-              readOnly: true,
-              suffixIcon: Icons.category,
-              validator: controller.categoriesValidator,
-            ).changeToButton(
-              onPressed: () => showModalBottomSheet(
-                context: context,
-                builder: (_) => ETBottomSheet(
-                  child: Wrap(
-                    children: [
-                      for (var i = 0; i < controller.categoriesList.length; i++)
-                        Category(
-                          controller.categoriesList[i],
-                          onChanged: controller.changeCategoriesList,
-                        ),
-                    ],
-                  ),
+        child: Obx(
+          () => Stepper(
+            type: StepperType.horizontal,
+            currentStep: controller.stepIndex.value,
+            onStepCancel: () =>
+                controller.stepFunction(StepFunctionType.cancel),
+            onStepContinue: () =>
+                controller.stepFunction(StepFunctionType.next),
+            controlsBuilder: (BuildContext context,
+                {VoidCallback? onStepCancel, VoidCallback? onStepContinue}) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  if (controller.stepIndex.value == 0)
+                    RoundedRectangularButton(
+                      childText: 'Next',
+                      onPressed: () {
+                        if (controller.validateForm1()) onStepContinue!();
+                      },
+                    ),
+                  if (controller.stepIndex.value == 1)
+                    RoundedRectangularButton(
+                      childText: 'Submit',
+                      color: AppColors.dark50,
+                      onPressed: controller.validateForm1,
+                    ),
+                  TextButton(
+                    onPressed: onStepCancel!,
+                    child: Text(
+                      'Back',
+                      style: Get.textTheme.button!.copyWith(
+                          color: AppColors.dark65, fontWeight: FontWeight.w600),
+                    ),
+                  )
+                ],
+              ).paddingSymmetric(horizontal: 10, vertical: 12);
+            },
+            steps: [
+              _step1(context),
+              _step2(context),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Step _step1(context) {
+    return Step(
+      title: Icon(Icons.event_note),
+      content: Column(
+        children: [
+          FormInputField(
+            key: ValueKey('eventName'),
+            controller: controller.eventName,
+            label: 'Event Name',
+            validator: controller.eventNameValidator,
+          ),
+          FormInputField(
+            key: ValueKey('description'),
+            controller: controller.description,
+            label: 'Description',
+            maxLines: 3,
+            maxLength: 100,
+            validator: controller.descriptionValidator,
+          ),
+          FormInputField(
+            key: key,
+            label: 'Categories',
+            controller: controller.categoriesText,
+            readOnly: true,
+            suffixIcon: Icons.category,
+            validator: controller.categoriesValidator,
+          ).changeToButton(
+            onPressed: () => showModalBottomSheet(
+              context: context,
+              builder: (_) => ETBottomSheet(
+                child: Wrap(
+                  children: [
+                    for (var i = 0; i < controller.categoriesList.length; i++)
+                      Category(
+                        controller.categoriesList[i],
+                        controller.selectedCategories,
+                        onChanged: controller.changeCategoriesList,
+                      ),
+                  ],
                 ),
               ),
             ),
-            ListTile(
+          ),
+          SwitchListTile(
+            value: controller.isOneDayEvent.value,
+            onChanged: controller.toggleOneDayMode,
+            title: Text(
+              'It is a one-day event.',
+              style: Get.textTheme.overline,
+            ),
+            inactiveThumbColor: AppColors.dark65,
+            activeColor: AppColors.blue,
+            inactiveTrackColor: AppColors.dark50,
+          ),
+          Obx(
+            () => ListTile(
               leading: RoundedRectangularButton(
                 childText: 'Pick a Date',
-                onPressed: () => print('Pick a Date'),
+                color: AppColors.dark50,
+                onPressed: () {
+                  controller.pickDate(context);
+                },
               ),
-            ).paddingSymmetric(horizontal: 10, vertical: 8),
-            RoundedRectangularButton(
-              childText: 'Submit',
-              onPressed: controller.submit,
-            ),
-          ],
-        ),
+              title: Text(
+                controller.formattedDate.length != 0
+                    ? controller.formattedDate.length == 1
+                        ? controller.formattedDate[0]
+                        : 'From: ' +
+                            controller.formattedDate[0] +
+                            '\nTo: ' +
+                            controller.formattedDate[1]
+                    : '',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2!
+                    .copyWith(color: AppColors.dark80),
+              ),
+            ).paddingSymmetric(vertical: 8),
+          ),
+          Obx(
+            () => ListTile(
+              leading: RoundedRectangularButton(
+                childText: 'Pick Time',
+                color: AppColors.dark50,
+                onPressed: () {
+                  controller.pickTime(context);
+                },
+              ),
+              title: controller.formattedTime.length != 0
+                  ? Text(
+                      'From: ' +
+                          controller.formattedTime[0] +
+                          '\nTo: ' +
+                          controller.formattedTime[1],
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(color: AppColors.dark80),
+                    )
+                  : Center(),
+            ).paddingSymmetric(vertical: 8),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Step _step2(context) {
+    return Step(
+      title: Icon(Icons.location_on),
+      content: Column(
+        children: [
+          FormInputField(
+            key: ValueKey('locationText'),
+            label: 'Location',
+            controller: controller.location,
+            validator: (String? value) {
+              if (value!.isEmpty) return 'Event location is empty.';
+              if (GetUtils.isLengthBetween(value, 10, 52))
+                return 'Event location must be between 10 to 52 characters.';
+              return '';
+            },
+          ),
+        ],
       ),
     );
   }
