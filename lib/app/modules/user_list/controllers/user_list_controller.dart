@@ -8,26 +8,73 @@ class UserListController extends GetxController {
     User(
       "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg",
       "Rose Watson", 
-      "Some@example.com", 
+      "rosewatson@example.com", 
       "shreya2057", 
       "+977 9863556656", 
-      "Kathmandu", 
+      "New York", 
       "Female"
     ),
     User(
-      "https://lh3.googleusercontent.com/proxy/IIaXhCth3TPWn2G3CD42cDOFO7SzQLdQJDX2OMpO_79OWMH8H4KnIy_VH5p0mxQr4L_nNIHrMO72RoSfmbgM-USRv9yUr5qjcHPKNr9R_oDfa8_GUb-DbPMAlJB9",
+      "https://platforms.tqnee.com/ta3ref/wp-content/uploads/2019/05/74sByqd.jpg",
       "John Peterson", 
-      "Some@example.com", 
+      "johnpeter57@example.com", 
       "shreya2057", 
       "+977 9867849634", 
-      "Banepa", 
+      "Washington Dc", 
       "Male"
-    )
+    ),
+    User(
+      "http://www.venmond.com/demo/vendroid/img/avatar/big.jpg",
+      "Brooke White", 
+      "whitebrroke5677@example.com", 
+      "shreya2057", 
+      "+977 9867849634", 
+      "London", 
+      "Female"
+    ),
+     User(
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN3mnIihmTBel8INtuKaWBE2k1tqoQnlgRWOVUhvQGpacS65DbM0VTLBw0-m20vkcxmYw&usqp=CAU",
+      "Roman Brown", 
+      "brown45@example.com", 
+      "shreya2057", 
+      "+977 9867849634", 
+      "Paris", 
+      "Male"
+    ),
+     User(
+      "http://www.venmond.com/demo/vendroid/img/avatar/big.jpg",
+      "Annie Rock", 
+      "rockannie@example.com", 
+      "shreya2057", 
+      "+977 9867849634", 
+      "Los Angeles", 
+      "Female"
+    ),
+     User(
+      "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg",
+      "Christina Bruss", 
+      "chrisbruss15@example.com", 
+      "shreya2057", 
+      "+977 9867849634", 
+      "Chicago", 
+      "Female"
+    ),
+     User(
+      "https://i.imgur.com/G4Eph8s.jpg",
+      "Richard Danis", 
+      "richarddanis@example.com", 
+      "shreya2057", 
+      "+977 9867849634", 
+      "San Diago", 
+      "Male"
+    ),
   ];
 
   final count = 0.obs;
+  bool? showSearchBar;
   @override
   void onInit() {
+    showSearchBar = true;
     super.onInit();
   }
 
