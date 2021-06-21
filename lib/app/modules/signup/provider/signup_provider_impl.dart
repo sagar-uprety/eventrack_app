@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
-import '../../../services/http_service_impl.dart';
-import '../../../services/http_service.dart';
 
 import '../../../models/user.dart';
-
+import '../../../services/http_service.dart';
+import '../../../services/http_service_impl.dart';
 import './signup_provider.dart';
 
 class SignUpProviderImpl implements SignUpProvider {

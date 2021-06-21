@@ -11,6 +11,8 @@ abstract class AppTheme {
     fontFamily: 'Sarabun',
     textTheme: _textTheme,
     applyElevationOverlayColor: true,
+
+    // Colors
     scaffoldBackgroundColor: AppColors.background,
     primarySwatch: Colors.cyan,
     primaryColor: AppColors.dark25,
@@ -20,6 +22,8 @@ abstract class AppTheme {
     hintColor: AppColors.dark25,
     errorColor: AppColors.red,
     dividerColor: AppColors.dark50,
+
+    // Icon Theme
     primaryIconTheme: _primaryIconTheme,
     accentIconTheme: _accentIconTheme,
   );
@@ -98,10 +102,10 @@ abstract class AppTheme {
       fontWeight: FontWeight.w400,
     ),
     button: TextStyle(
-      color: AppColors.dark80,
+      color: AppColors.dark10,
       letterSpacing: 1.5,
-      fontSize: 20,
-      fontWeight: FontWeight.w600,
+      fontSize: 18,
+      fontWeight: FontWeight.w500,
     ),
   );
 

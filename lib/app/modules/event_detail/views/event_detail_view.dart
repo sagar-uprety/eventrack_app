@@ -1,8 +1,8 @@
-import 'package:eventrack_app/app/models/event.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../models/event.dart';
 import '../controllers/event_detail_controller.dart';
 
 class EventDetailView extends GetView<EventDetailController> {

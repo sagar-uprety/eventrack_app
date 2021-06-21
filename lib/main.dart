@@ -12,7 +12,6 @@ Future main() async {
     GetMaterialApp(
       title: "Eventrack",
       debugShowCheckedModeBanner: false,
-      // theme: AppTheme.darkTheme,
       theme: AppTheme.lightTheme,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
