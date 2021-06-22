@@ -1,7 +1,9 @@
-import 'package:eventrack_app/app/modules/signup/provider/signup_provider.dart';
-import 'package:eventrack_app/app/modules/signup/provider/signup_provider_impl.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
+import '../provider/signup_provider.dart';
+import '../provider/signup_provider_impl.dart';
 
 class SignupController extends GetxController {
   //this key uniquely identifies a form

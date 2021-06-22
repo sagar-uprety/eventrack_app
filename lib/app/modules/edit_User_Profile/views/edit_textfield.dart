@@ -21,35 +21,32 @@ class EditUserTextField extends StatelessWidget {
     double hrwidth = queryData.size.width;
     double hrheight =  queryData.size.height;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: hrheight*0.008, horizontal: hrwidth*0.042),
+      margin: EdgeInsets.only(top: hrheight*0.002, right: hrwidth*0.042, left: hrwidth*0.042),
        padding: EdgeInsets.all(10),
        width: hrwidth,
-       height: 80,
+       height: 95,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
+            flex: 1,
             child: Container(
-              margin: EdgeInsets.only(bottom: 3),
               child: Text(
                title,
-                style: (editable) ? Theme.of(context).textTheme.bodyText2!.copyWith(
+                style:Theme.of(context).textTheme.bodyText2!.copyWith(
                               fontSize: 16, 
                               fontWeight: FontWeight.bold
-                ):Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: 16, 
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff818181)
-                ),
+                )
               ),
             ),
           ),
           Expanded(
+            flex: 2,
             child: Container(
-              height: 40,
+              height: 60,
               padding: EdgeInsets.all(0),
               child: TextField(
-                textAlignVertical: TextAlignVertical.top,
+                textAlignVertical: TextAlignVertical.center,
                 controller: TextEditingController.fromValue(TextEditingValue(text: value, selection: TextSelection.collapsed(offset: value.length))),
                 textAlign: TextAlign.start,
                 enabled: editable,
@@ -58,30 +55,31 @@ class EditUserTextField extends StatelessWidget {
                 decoration: InputDecoration(
                   suffixIcon: icon,
                   labelStyle: TextStyle(color: Colors.white),
-                    contentPadding: EdgeInsets.only(bottom: 20),
-                    fillColor: Color(0xff1a1a1a).withOpacity(0),
-                    border: UnderlineInputBorder(
+                    // contentPadding: EdgeInsets.only(bottom: 20),
+                    // filled: true,
+                    fillColor: Colors.red,
+                    border: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 0.5,
-                        color: Colors.white
+                        color: Colors.grey
                       )
                     ),
-                    disabledBorder: UnderlineInputBorder(
+                    disabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 0.5,
-                        color: Colors.white,
+                        color: Colors.grey,
                       )
                     ),
-                    enabledBorder: UnderlineInputBorder(
+                    enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 0.5,
-                        color: Colors.white,
+                        color: Colors.grey,
                       )
                     ),
-                    focusedBorder: UnderlineInputBorder(
+                    focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 0.5,
-                        color: Colors.white,
+                        color: Colors.grey,
                       )
                     ),
                   ),
@@ -89,7 +87,7 @@ class EditUserTextField extends StatelessWidget {
                     fontSize: 16
                   ): Theme.of(context).textTheme.bodyText2!.copyWith(
                     fontSize: 16,
-                    color: Color(0xff818181)
+                    color: Color(0xff919191)
                   ),
                   onChanged: (text){
                     print(text);

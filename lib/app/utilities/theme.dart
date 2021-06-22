@@ -11,17 +11,22 @@ abstract class AppTheme {
     fontFamily: 'Sarabun',
     textTheme: _textTheme,
     applyElevationOverlayColor: true,
+
+    // Colors
     scaffoldBackgroundColor: AppColors.background,
-    primarySwatch: Colors.cyan,
-    primaryColor: AppColors.dark25,
+    primarySwatch: Colors.blueGrey,
+    primaryColor: AppColors.dark50,
     accentColor: AppColors.dark50,
     shadowColor: AppColors.dark80,
     disabledColor: AppColors.dark50,
     hintColor: AppColors.dark25,
     errorColor: AppColors.red,
     dividerColor: AppColors.dark50,
+
+    // Widget Theme
     primaryIconTheme: _primaryIconTheme,
     accentIconTheme: _accentIconTheme,
+    timePickerTheme: _timePickerTheme,
   );
 
   static final TextTheme _textTheme = TextTheme(
@@ -98,10 +103,10 @@ abstract class AppTheme {
       fontWeight: FontWeight.w400,
     ),
     button: TextStyle(
-      color: AppColors.dark80,
+      color: AppColors.dark10,
       letterSpacing: 1.5,
-      fontSize: 20,
-      fontWeight: FontWeight.w600,
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
     ),
   );
 
@@ -113,5 +118,13 @@ abstract class AppTheme {
   static final _accentIconTheme = IconThemeData(
     color: AppColors.dark50,
     size: 24,
+  );
+
+  static final _timePickerTheme = TimePickerThemeData(
+    backgroundColor: AppColors.dark10,
+    helpTextStyle: _textTheme.headline6,
+    dialTextColor: AppColors.dark80,
+    hourMinuteTextColor: AppColors.dark65,
+    dayPeriodTextColor: AppColors.dark65,
   );
 }

@@ -1,8 +1,9 @@
-import 'package:eventrack_app/app/global_widgets/app_drawer.dart';
-import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+
+import '../../../global_widgets/app_drawer.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/browse_events_controller.dart';
 
 class BrowseEventsView extends GetView<BrowseEventsController> {
