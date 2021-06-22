@@ -12,6 +12,8 @@ import '../modules/locationPicker/bindings/location_picker_binding.dart';
 import '../modules/locationPicker/views/location_picker_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/organizationProfile/bindings/organization_profile_binding.dart';
+import '../modules/organizationProfile/views/organization_profile_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
 
@@ -20,7 +22,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.CREATE_EVENT;
+  static const INITIAL = Routes.ORGANIZATION_PROFILE;
 
   static final routes = [
     GetPage(
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.LOCATION_PICKER,
       page: () => LocationPickerView(),
       binding: LocationPickerBinding(),
+    ),
+    GetPage(
+      name: _Paths.ORGANIZATION_PROFILE,
+      page: () => OrganizationProfileView(),
+      binding: OrganizationProfileBinding(),
     ),
   ];
 }

@@ -1,9 +1,9 @@
-import 'package:eventrack_app/app/global_widgets/message.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../../global_widgets/message.dart';
 import '../../../pickers/datetimepicker.dart';
 
 ///Use `StepFunctionType.next` for `continue`.

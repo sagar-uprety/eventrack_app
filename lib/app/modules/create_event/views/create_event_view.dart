@@ -20,7 +20,7 @@ class CreateEventView extends GetView<CreateEventController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ETAppBar(
-        'Create Your Event',
+        title: 'Create Your Event',
         hasBackButton: true,
       ),
       drawer: buildAppDrawer(),

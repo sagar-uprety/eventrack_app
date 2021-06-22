@@ -1,13 +1,14 @@
-import 'package:eventrack_app/app/global_widgets/button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-// ignore: import_of_legacy_library_into_null_safe
-// import 'package:mapbox_search_flutter/mapbox_search_flutter.dart';
 
+import '../../../global_widgets/button.dart';
 import '../../../services/location.dart';
 import '../controllers/location_picker_controller.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
+// import 'package:mapbox_search_flutter/mapbox_search_flutter.dart';
 
 class LocationPickerView extends GetView<LocationPickerController> {
   final controller = Get.find<LocationPickerController>();
