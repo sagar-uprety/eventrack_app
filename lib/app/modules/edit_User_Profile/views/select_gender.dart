@@ -23,7 +23,7 @@ class SelectGender extends GetView<EditUserProfileController> {
         children: [
           Container(
             width: hrwidth,
-            margin: EdgeInsets.symmetric(vertical: hrheight*0.008, horizontal: hrwidth*0.042),
+            margin: EdgeInsets.only(bottom: hrheight*0.008, top:hrheight*0.001 , right: hrwidth*0.042, left: hrwidth*0.042),
             padding: EdgeInsets.only(bottom: 5),
             child: Text(
               "Gender",
@@ -37,7 +37,7 @@ class SelectGender extends GetView<EditUserProfileController> {
             child: Container(
               margin: EdgeInsets.symmetric( horizontal:hrwidth*0.042),
               width: hrwidth,
-              height: 30,
+              height: 60,
               child: DropdownButtonFormField(
                 icon: Icon(Icons.arrow_drop_down),
                 style: Theme.of(context).textTheme.bodyText2!.copyWith(
@@ -45,30 +45,30 @@ class SelectGender extends GetView<EditUserProfileController> {
                       ),
                 decoration: InputDecoration(
                     labelStyle: TextStyle(color: Colors.white),
-                    contentPadding: EdgeInsets.only(bottom: 12, right: 10),
+                    contentPadding: EdgeInsets.only(right: 10, left: 10),
                     fillColor: Color(0xff1a1a1a).withOpacity(0),
-                    border: UnderlineInputBorder(
+                    border: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 0.5,
-                        color: Colors.white
+                        color: Colors.grey
                       )
                     ),
-                    disabledBorder: UnderlineInputBorder(
+                    disabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 0.5,
-                        color: Colors.white,
+                        color: Colors.grey,
                       )
                     ),
-                    enabledBorder: UnderlineInputBorder(
+                    enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 0.5,
-                        color: Colors.white,
+                        color: Colors.grey,
                       )
                     ),
-                    focusedBorder: UnderlineInputBorder(
+                    focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 0.5,
-                        color: Colors.white,
+                        color: Colors.grey,
                       )
                     ),
                 ),
