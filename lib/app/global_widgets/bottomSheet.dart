@@ -1,6 +1,8 @@
-import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/utils.dart';
+
+import '../utilities/colors.dart';
 
 class ETBottomSheet extends StatelessWidget {
   const ETBottomSheet({Key? key, required this.child}) : super(key: key);

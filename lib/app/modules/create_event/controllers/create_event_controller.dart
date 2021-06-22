@@ -1,7 +1,10 @@
-import 'package:eventrack_app/app/pickers/datetimepicker.dart';
+import 'package:eventrack_app/app/global_widgets/message.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../../pickers/datetimepicker.dart';
 
 ///Use `StepFunctionType.next` for `continue`.
 ///Use `StepFunctionType.cancel` for `cancel`.
@@ -9,15 +12,16 @@ enum StepFunctionType { next, cancel }
 
 class CreateEventController extends GetxController {
   get key => _key;
+  final origin = LatLng(0, 0);
 
-  RxInt stepIndex = 1.obs;
+  RxInt stepIndex = 0.obs;
 
   late GlobalKey<FormState> _key = GlobalKey();
   late TextEditingController eventName;
   late TextEditingController description;
   late TextEditingController categoriesText;
   late TextEditingController location;
-  // late LatLng coordinates;
+  final Rx<LatLng> coordinates = LatLng(0, 0).obs;
   late List<String> selectedCategories = [];
   final dates = Rx<List<String>>([]);
   final times = Rx<List<TimeOfDay>>([]);
@@ -126,20 +130,60 @@ class CreateEventController extends GetxController {
     times.value = await DateTimePicker.timePicker(context);
   }
 
-  bool validateForm1() {
-    if (key.currentState.validate()) {
-      assert((isOneDayEvent.value && dates.value.length == 1) ||
-          (!isOneDayEvent.value && dates.value.length == 2));
-      assert(times.value.length == 2);
+  void setCoordinates(LatLng? value) {
+    coordinates.value = value!;
+    update();
+    print(coordinates.toJson());
+  }
 
-      print(
-          "Data: {name: ${eventName.text}, description:${description.text}, categories: ${categoriesText.text}, date: ${dates.value},}");
+  bool dateAndTimeValidator() {
+    if (dates.value.length == 0 || times.value.length == 0)
+      FlashMessage.errorFlash('Date or Time not picked.');
+    else if (isOneDayEvent.value && dates.value.length != 1)
+      FlashMessage.errorFlash('One Day Event but more than 1 dates found.');
+    else if (!isOneDayEvent.value && dates.value.length != 2)
+      FlashMessage.errorFlash('Multiple Day Event but only 1 date found.');
+    else if (times.value.length != 2)
+      FlashMessage.errorFlash('Start and end time error.');
+    else
+      return true;
+    return false;
+  }
+
+  String? locationValidator(String? value) {
+    if (value!.isEmpty) return 'Event location is empty.';
+    if (!GetUtils.isLengthBetween(value, 10, 52))
+      return 'Event location must be between 10 to 52 characters.';
+    return null;
+  }
+
+  coordinatesValidator() {
+    if (coordinates.value == origin) {
+      FlashMessage.errorFlash('Location coordinates not picked.');
+      return false;
+    }
+    return true;
+  }
+
+  bool validateForm1() {
+    if (key.currentState.validate() && dateAndTimeValidator()) {
+      return true;
+    }
+    return false;
+  }
+
+  bool validateForm2() {
+    if (key.currentState.validate()) {
       return true;
     }
     return false;
   }
 
   void submit() {
-    print('Submit');
+    if (validateForm2() && coordinatesValidator()) {
+      FlashMessage.successFlash('Submitted');
+      print(
+          "Data: {name: ${eventName.text}, description:${description.text}, categories: ${categoriesText.text}, date: ${dates.value},location: ${location.text}, coordinates: ${coordinates.value}}");
+    }
   }
 }

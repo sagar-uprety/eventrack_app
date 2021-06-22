@@ -10,6 +10,7 @@ abstract class Routes {
   static const BROWSE_EVENTS = _Paths.BROWSE_EVENTS;
   static const EVENT_DETAIL = _Paths.EVENT_DETAIL;
   static const CREATE_EVENT = _Paths.CREATE_EVENT;
+  static const LOCATION_PICKER = _Paths.LOCATION_PICKER;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const BROWSE_EVENTS = '/browse-events';
   static const EVENT_DETAIL = '/event-detail';
   static const CREATE_EVENT = '/create-event';
+  static const LOCATION_PICKER = '/location-picker';
 }

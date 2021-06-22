@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'user.g.dart';
 
 //?run flutter pub run build_runner build in terminal to generate corresponding model.g.dart file

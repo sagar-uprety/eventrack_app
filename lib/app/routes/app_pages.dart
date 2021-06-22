@@ -1,14 +1,15 @@
 import 'package:get/get.dart';
 
-import 'package:eventrack_app/app/modules/create_event/bindings/create_event_binding.dart';
-import 'package:eventrack_app/app/modules/create_event/views/create_event_view.dart';
-import 'package:eventrack_app/app/modules/event_detail/bindings/event_detail_binding.dart';
-import 'package:eventrack_app/app/modules/event_detail/views/event_detail_view.dart';
-
 import '../modules/browse_events/bindings/browse_events_binding.dart';
 import '../modules/browse_events/views/browse_events_view.dart';
+import '../modules/create_event/bindings/create_event_binding.dart';
+import '../modules/create_event/views/create_event_view.dart';
+import '../modules/event_detail/bindings/event_detail_binding.dart';
+import '../modules/event_detail/views/event_detail_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/locationPicker/bindings/location_picker_binding.dart';
+import '../modules/locationPicker/views/location_picker_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
@@ -51,6 +52,11 @@ class AppPages {
       name: _Paths.CREATE_EVENT,
       page: () => CreateEventView(),
       binding: CreateEventBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOCATION_PICKER,
+      page: () => LocationPickerView(),
+      binding: LocationPickerBinding(),
     ),
   ];
 }

@@ -1,13 +1,15 @@
-import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../global_widgets/appBar.dart';
 import '../../../global_widgets/app_drawer.dart';
 import '../../../global_widgets/bottomSheet.dart';
 import '../../../global_widgets/button.dart';
 import '../../../global_widgets/formField.dart';
+import '../../../routes/app_pages.dart';
+import '../../../utilities/colors.dart';
 import '../../../utilities/extensions.dart';
 import '../controllers/create_event_controller.dart';
 import 'categoryBar.dart';
@@ -48,8 +50,7 @@ class CreateEventView extends GetView<CreateEventController> {
                   if (controller.stepIndex.value == 1)
                     RoundedRectangularButton(
                       childText: 'Submit',
-                      color: AppColors.dark50,
-                      onPressed: controller.validateForm1,
+                      onPressed: controller.submit,
                     ),
                   TextButton(
                     onPressed: onStepCancel!,
@@ -188,12 +189,28 @@ class CreateEventView extends GetView<CreateEventController> {
             key: ValueKey('locationText'),
             label: 'Location',
             controller: controller.location,
-            validator: (String? value) {
-              if (value!.isEmpty) return 'Event location is empty.';
-              if (GetUtils.isLengthBetween(value, 10, 52))
-                return 'Event location must be between 10 to 52 characters.';
-              return '';
+            validator: controller.locationValidator,
+          ),
+          RoundedRectangularButton(
+            color: AppColors.dark50,
+            childText: 'Pick a Location',
+            onPressed: () async {
+              LatLng location = await Get.toNamed(Routes.LOCATION_PICKER);
+
+              controller.setCoordinates(location);
             },
+          ).paddingSymmetric(vertical: 10),
+          Obx(
+            () => Text(
+              controller.coordinates.value != controller.origin
+                  ? 'Latitude: ${controller.coordinates.value.latitude}\nLongitude: ${controller.coordinates.value.longitude}'
+                  : '',
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: AppColors.dark65),
+            ).paddingSymmetric(vertical: 20),
           ),
         ],
       ),

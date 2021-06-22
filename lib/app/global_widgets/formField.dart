@@ -1,6 +1,8 @@
-import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get_utils/get_utils.dart';
+
+import '../utilities/colors.dart';
 
 class FormInputField extends StatelessWidget {
   const FormInputField(
