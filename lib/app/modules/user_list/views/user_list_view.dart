@@ -60,7 +60,7 @@ class UserListView extends GetView<UserListController> {
                   return showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return DeleteDialog();
+                      return MoreMenu();
                     }
                   );
                 },
@@ -68,7 +68,7 @@ class UserListView extends GetView<UserListController> {
               IconSlideAction(
                 color: AppColors.background,
                 iconWidget: Icon(
-                  Icons.cancel_outlined,
+                  Icons.close_rounded,
                   size: 26,
                 ),
                 caption: "Cancel",

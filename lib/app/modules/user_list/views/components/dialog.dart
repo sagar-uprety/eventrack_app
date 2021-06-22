@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DeleteDialog extends StatelessWidget {
-  const DeleteDialog({
+class MoreMenu extends StatelessWidget {
+  const MoreMenu({
     Key? key,
   }) : super(key: key);
 
