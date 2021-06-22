@@ -4,6 +4,8 @@ import 'package:eventrack_app/app/modules/edit_User_Profile/bindings/edit_user_p
 import 'package:eventrack_app/app/modules/edit_User_Profile/views/edit_user_profile_view.dart';
 import 'package:eventrack_app/app/modules/event_detail/bindings/event_detail_binding.dart';
 import 'package:eventrack_app/app/modules/event_detail/views/event_detail_view.dart';
+import 'package:eventrack_app/app/modules/user_list/bindings/user_list_binding.dart';
+import 'package:eventrack_app/app/modules/user_list/views/user_list_view.dart';
 import 'package:eventrack_app/app/modules/participants_list/bindings/participants_list_binding.dart';
 import 'package:eventrack_app/app/modules/participants_list/views/participants_list_view.dart';
 import 'package:eventrack_app/app/modules/user_profile/bindings/user_profile_binding.dart';
@@ -29,8 +31,8 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.PARTICIPANTS_LIST;
-
+  static const INITIAL = Routes.SIGNUP;
+  
   static final routes = [
     GetPage(
       name: _Paths.HOME,
@@ -76,6 +78,11 @@ class AppPages {
       name: _Paths.EDIT_USER_PROFILE,
       page: () => EditUserProfileView(),
       binding: EditUserProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.USER_LIST,
+      page: () => UserListView(),
+      binding: UserListBinding(),
     ),
     GetPage(
       name: _Paths.PARTICIPANTS_LIST,

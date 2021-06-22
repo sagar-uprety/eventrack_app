@@ -13,6 +13,7 @@ abstract class Routes {
   static const LOCATION_PICKER = _Paths.LOCATION_PICKER;
   static const USER_PROFILE = _Paths.USER_PROFILE;
   static const EDIT_USER_PROFILE = _Paths.EDIT_USER_PROFILE;
+  static const USER_LIST = _Paths.USER_LIST;
   static const PARTICIPANTS_LIST = _Paths.PARTICIPANTS_LIST;
 }
 
@@ -26,5 +27,6 @@ abstract class _Paths {
   static const LOCATION_PICKER = '/location-picker';
   static const USER_PROFILE = '/user-profile';
   static const EDIT_USER_PROFILE = '/edit-user-profile';
+  static const USER_LIST = '/user-list';
   static const PARTICIPANTS_LIST = '/participants-list';
 }
