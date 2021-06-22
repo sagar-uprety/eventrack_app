@@ -1,5 +1,12 @@
 import 'package:get/get.dart';
 
+import 'package:eventrack_app/app/modules/edit_User_Profile/bindings/edit_user_profile_binding.dart';
+import 'package:eventrack_app/app/modules/edit_User_Profile/views/edit_user_profile_view.dart';
+import 'package:eventrack_app/app/modules/event_detail/bindings/event_detail_binding.dart';
+import 'package:eventrack_app/app/modules/event_detail/views/event_detail_view.dart';
+import 'package:eventrack_app/app/modules/user_profile/bindings/user_profile_binding.dart';
+import 'package:eventrack_app/app/modules/user_profile/views/user_profile_view.dart';
+
 import '../modules/browse_events/bindings/browse_events_binding.dart';
 import '../modules/browse_events/views/browse_events_view.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
@@ -20,7 +27,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.CREATE_EVENT;
+  static const INITIAL = Routes.USER_PROFILE;
 
   static final routes = [
     GetPage(
@@ -57,6 +64,16 @@ class AppPages {
       name: _Paths.LOCATION_PICKER,
       page: () => LocationPickerView(),
       binding: LocationPickerBinding(),
+     ),
+     GetPage(
+      name: _Paths.USER_PROFILE,
+      page: () => UserProfileView(),
+      binding: UserProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_USER_PROFILE,
+      page: () => EditUserProfileView(),
+      binding: EditUserProfileBinding(),
     ),
   ];
 }
