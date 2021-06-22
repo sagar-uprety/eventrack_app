@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
-import '../../../services/http_service_impl.dart';
-import '../../../services/http_service.dart';
 
 import '../../../models/event.dart';
 import '../../../models/event_list.dart';
-
+import '../../../services/http_service.dart';
+import '../../../services/http_service_impl.dart';
 import 'events_provider.dart';
 
 class EventsProviderImpl implements EventsProvider {

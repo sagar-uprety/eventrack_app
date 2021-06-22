@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
 
+import '../../../models/event.dart';
 import '../provider/events_pro_impl.dart';
 import '../provider/events_provider.dart';
-
-import '../../../models/event.dart';
 
 class BrowseEventsController extends GetxController {
   late EventsProvider _eventsProvider;
