@@ -23,7 +23,7 @@ class UserProfileCard extends StatelessWidget {
         border: Border(
           bottom: BorderSide(
             width: 0.5,
-            color: Colors.white
+            color: Colors.grey
           ),
         ),
       ),

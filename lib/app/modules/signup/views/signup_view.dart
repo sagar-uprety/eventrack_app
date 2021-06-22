@@ -1,7 +1,8 @@
-import 'package:eventrack_app/app/global_widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
+import '../../../global_widgets/app_drawer.dart';
 import '../controllers/signup_controller.dart';
 
 class SignupView extends GetView<SignupController> {
