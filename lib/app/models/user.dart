@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'user.g.dart';
 
 //?run flutter pub run build_runner build in terminal to generate corresponding model.g.dart file
@@ -8,7 +9,11 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class User {
-  User(this.username, this.email, this.password);
+  User(this.profileImage, this.username, this.email, this.password,
+      this.phoneNo, this.address, this.gender);
+
+  @JsonKey(name: "profileImage")
+  final String profileImage;
 
   @JsonKey(name: "username")
   final String username;
@@ -18,6 +23,15 @@ class User {
 
   @JsonKey(name: "password")
   final String password;
+
+  @JsonKey(name: "phoneNo")
+  final String phoneNo;
+
+  @JsonKey(name: "address")
+  final String address;
+
+  @JsonKey(name: "gender")
+  final String gender;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);

@@ -1,7 +1,7 @@
-import 'package:eventrack_app/app/modules/signup/provider/signup_provider_impl.dart';
 import 'package:get/get.dart';
 
 import '../controllers/signup_controller.dart';
+import '../provider/signup_provider_impl.dart';
 
 class SignupBinding extends Bindings {
   @override
