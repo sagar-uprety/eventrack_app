@@ -51,14 +51,14 @@ class LoginController extends GetxController {
       // registerUser(emailController.text, passwordController.text);
 
     } */
-    try {
-      await _loginProvider.registerUser(data: {
-        "name": 'Test Test',
-        "email": "test12@gmail.com",
-        "password": "nepal123"
-      });
-    } catch (e) {
-      print(e);
-    }
+    // try {
+    //   await _loginProvider.registerUser(data: {
+    //     "name": 'Test Test',
+    //     "email": "test12@gmail.com",
+    //     "password": "nepal123"
+    //   });
+    // } catch (e) {
+    //   print(e);
+    // }
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Models/Event_listmodel.dart';
 
-class EventDetailView extends StatelessWidget {
-  const EventDetailView({Key? key}) : super(key: key);
+class EventListView extends StatelessWidget {
+  const EventListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +47,7 @@ class EventDetailView extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class PopularEventTile extends StatelessWidget {
   String name;
   String date;
