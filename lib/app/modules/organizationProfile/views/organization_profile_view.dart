@@ -66,7 +66,7 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
                     color: AppColors.background,
                   ),
                   child: new DefaultTabController(
-                    length: 3,
+                    length: _tabs.length,
                     initialIndex: 0,
                     child: new Column(
                       children: <Widget>[
@@ -77,7 +77,6 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
                               .copyWith(fontWeight: FontWeight.w600),
                           labelPadding:
                               EdgeInsets.symmetric(vertical: 6, horizontal: 20),
-                          isScrollable: true,
                           labelColor: AppColors.dark80,
                           unselectedLabelColor: AppColors.dark50,
                           onTap: controller.changeTab,

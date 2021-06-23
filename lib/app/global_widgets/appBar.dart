@@ -33,7 +33,6 @@ class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
               icon: Icon(
                 Icons.keyboard_arrow_left,
                 color: AppColors.dark10,
-                size: 32,
               ),
             )
           : IconButton(
@@ -41,7 +40,6 @@ class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
               icon: Icon(
                 Icons.menu_sharp,
                 color: AppColors.dark10,
-                size: 32,
               ),
             ),
       title: title != null

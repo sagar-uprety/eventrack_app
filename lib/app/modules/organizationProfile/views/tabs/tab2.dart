@@ -7,7 +7,7 @@ class OrganizationProfileTab2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 200,
-      child: Text('Tab 1'),
+      child: Text('Tab 2'),
     );
   }
 }
