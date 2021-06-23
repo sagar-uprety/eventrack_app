@@ -1,7 +1,9 @@
-import 'package:eventrack_app/app/modules/organizationProfile/controllers/organization_profile_controller.dart';
-import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
+import '../../../../utilities/colors.dart';
+import '../../controllers/organization_profile_controller.dart';
 
 class OrganizationProfileTab1 extends StatelessWidget {
   OrganizationProfileTab1({Key? key}) : super(key: key);
