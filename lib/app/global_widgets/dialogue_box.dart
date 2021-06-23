@@ -8,19 +8,20 @@ AlertDialog deleteDialog(BuildContext context) {
     actionsPadding: EdgeInsets.only(right: 10),
     contentPadding: EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 10.0),
     title: Center(
-        child: Column(
-      children: [
-        Icon(
-          Icons.info_outline_rounded,
-          color: Colors.red,
-          size: 30,
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text("Delete User?"),
-      ],
-    )),
+      child: Column(
+        children: [
+          Icon(
+            Icons.info_outline_rounded,
+            color: Colors.red,
+            size: 30,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text("Delete User?"),
+        ],
+      ),
+    ),
     content: Text(
       "Please confirm to delete user",
       style: TextStyle(fontSize: 14),
