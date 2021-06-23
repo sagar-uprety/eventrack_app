@@ -12,6 +12,8 @@ abstract class Routes {
   static const USER_PROFILE = _Paths.USER_PROFILE;
   static const EDIT_USER_PROFILE = _Paths.EDIT_USER_PROFILE;
   static const PASSWORD_RESET = _Paths.PASSWORD_RESET;
+  static const TOKEN_VERIFCATION = _Paths.TOKEN_VERIFCATION;
+  static const ENTER_EMAIL = _Paths.ENTER_EMAIL;
 }
 
 abstract class _Paths {
@@ -23,4 +25,6 @@ abstract class _Paths {
   static const USER_PROFILE = '/user-profile';
   static const EDIT_USER_PROFILE = '/edit-user-profile';
   static const PASSWORD_RESET = '/password-reset';
+  static const TOKEN_VERIFCATION = '/token-verifcation';
+  static const ENTER_EMAIL = '/enter-email';
 }
