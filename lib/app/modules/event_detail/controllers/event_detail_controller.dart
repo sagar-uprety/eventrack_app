@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 
 class EventDetailController extends GetxController {
-  //TODO: Implement EventDetailController
-
   final count = 0.obs;
   @override
   void onInit() {

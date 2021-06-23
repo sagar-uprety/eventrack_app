@@ -1,22 +1,21 @@
-import 'package:eventrack_app/app/modules/user_profile/views/user_profile_card.dart';
-import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/user_profile_controller.dart';
+import 'user_profile_card.dart';
 
 class UserProfileView extends GetView<UserProfileController> {
   @override
   Widget build(BuildContext context) {
     final userController = Get.find<UserProfileController>();
     MediaQueryData queryData = MediaQuery.of(context);
-    double hrwidth = queryData.size.width;
-    double hrheight =  queryData.size.height;
+    double hrheight = queryData.size.height;
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
-          onPressed: (){
+          onPressed: () {
             print("Back");
           },
         ),
@@ -31,7 +30,7 @@ class UserProfileView extends GetView<UserProfileController> {
               Center(
                 child: Column(
                   children: [
-                     SizedBox(
+                    SizedBox(
                       height: 95,
                       width: 95,
                       child: Stack(
@@ -40,9 +39,8 @@ class UserProfileView extends GetView<UserProfileController> {
                         children: [
                           CircleAvatar(
                             radius: 50,
-                            backgroundImage: NetworkImage(
-                              userController.user.profileImage
-                            ),
+                            backgroundImage:
+                                NetworkImage(userController.user.profileImage),
                           ),
                           Positioned(
                             bottom: 5,
@@ -58,32 +56,43 @@ class UserProfileView extends GetView<UserProfileController> {
                                   color: Colors.blue,
                                   size: 20,
                                 ),
-                                onPressed: (){
+                                onPressed: () {
                                   Get.toNamed(Routes.EDIT_USER_PROFILE);
                                 },
                                 shape: CircleBorder(
-                                  side: BorderSide(
-                                    width: 3,
-                                    color: Colors.white
-                                  ),
+                                  side:
+                                      BorderSide(width: 3, color: Colors.white),
                                 ),
                               ),
                             ),
                           ),
                         ],
                       ),
-                     ),  
+                    ),
                   ],
                 ),
               ),
-              UserProfileCard(title: "Name", value: userController.user.username,),
-              UserProfileCard(title: "Email", value: userController.user.email,),
-              UserProfileCard(title: "Phone number", value: userController.user.phoneNo),
-              UserProfileCard(title: "Address", value: userController.user.address,),
-              UserProfileCard(title: "Gender", value: userController.user.gender,),
+              UserProfileCard(
+                title: "Name",
+                value: userController.user.username,
+              ),
+              UserProfileCard(
+                title: "Email",
+                value: userController.user.email,
+              ),
+              UserProfileCard(
+                  title: "Phone number", value: userController.user.phoneNo),
+              UserProfileCard(
+                title: "Address",
+                value: userController.user.address,
+              ),
+              UserProfileCard(
+                title: "Gender",
+                value: userController.user.gender,
+              ),
               SizedBox(
-                  height: hrheight*0.05,
-                )
+                height: hrheight * 0.05,
+              )
             ],
           ),
         ),

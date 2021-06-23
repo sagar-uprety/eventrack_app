@@ -1,8 +1,8 @@
-import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../utilities/colors.dart';
 import '../controllers/login_controller.dart';
 import 'components/buttons.dart';
 

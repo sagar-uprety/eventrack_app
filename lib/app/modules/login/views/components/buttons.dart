@@ -1,5 +1,6 @@
-import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../utilities/colors.dart';
 
 class Button extends StatelessWidget {
   const Button({Key? key, required this.text, required this.press})

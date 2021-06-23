@@ -1,4 +1,4 @@
-List places = [
+List? places = [
   {
     "name": "Hotel Dolah Amet & Suites",
     "img": "assets/images/1.jpeg",

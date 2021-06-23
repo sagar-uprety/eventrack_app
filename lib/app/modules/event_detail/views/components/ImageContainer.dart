@@ -1,6 +1,8 @@
-import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
+
 import 'package:fluttericon/font_awesome5_icons.dart';
+
+import '../../../../utilities/colors.dart';
 
 class ImageContainer extends StatelessWidget {
   const ImageContainer({

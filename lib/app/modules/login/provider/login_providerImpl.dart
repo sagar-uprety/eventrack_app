@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
-import '../../../services/http_service_impl.dart';
-import '../../../services/http_service.dart';
 
 import '../../../models/user.dart';
-
+import '../../../services/http_service.dart';
+import '../../../services/http_service_impl.dart';
 import 'login_provider.dart';
 
 class LoginProviderImpl implements LoginProvider {

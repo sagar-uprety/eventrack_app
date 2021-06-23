@@ -12,4 +12,5 @@ class AppColors {
   static Color get dark80 => Color(0xff333333);
   static Color get red => Colors.redAccent.withOpacity(0.7);
   static Color get blue => Color(0xff0099ff);
+  static Color get purple => Colors.purple[500]!;
 }

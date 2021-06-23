@@ -1,7 +1,9 @@
-import 'package:eventrack_app/app/modules/login/provider/login_provider.dart';
-import 'package:eventrack_app/app/modules/login/provider/login_providerImpl.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
+import '../provider/login_provider.dart';
+import '../provider/login_providerImpl.dart';
 
 class LoginController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();

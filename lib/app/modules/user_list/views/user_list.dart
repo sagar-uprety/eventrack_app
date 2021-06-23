@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class UserListCard extends StatelessWidget {
-  const UserListCard({ 
-    Key? key, 
+  const UserListCard({
+    Key? key,
     @required this.username,
     @required this.email,
     @required this.profileImage,
@@ -29,19 +29,17 @@ class UserListCard extends StatelessWidget {
           ),
         ],
       ),
-      margin: EdgeInsets.only(top:5, right: 10, left: 10),
+      margin: EdgeInsets.only(top: 5, right: 10, left: 10),
       padding: EdgeInsets.all(10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundImage: NetworkImage(
-                profileImage!
-              ),
+            backgroundImage: NetworkImage(profileImage!),
           ),
           SizedBox(
-            width: hrwidth*0.0416,
+            width: hrwidth * 0.0416,
           ),
           FittedBox(
             child: Container(
@@ -50,21 +48,23 @@ class UserListCard extends StatelessWidget {
                 children: [
                   Text(
                     username!,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                      fontSize: 17
-                    ),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .copyWith(fontSize: 17),
                   ),
                   SizedBox(
-                    height:5,
+                    height: 5,
                   ),
                   FittedBox(
                     child: Container(
-                      width: hrwidth*0.680,
+                      width: hrwidth * 0.680,
                       child: Text(
                         email!,
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                          fontSize: 14
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontSize: 14),
                       ),
                     ),
                   )
@@ -72,7 +72,6 @@ class UserListCard extends StatelessWidget {
               ),
             ),
           ),
-          
         ],
       ),
     );

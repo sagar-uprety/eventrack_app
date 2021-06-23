@@ -9,7 +9,8 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class User {
-  User(this.profileImage, this.username, this.email, this.password, this.phoneNo, this.address, this.gender);
+  User(this.profileImage, this.username, this.email, this.password,
+      this.phoneNo, this.address, this.gender);
 
   @JsonKey(name: "profileImage")
   final String profileImage;

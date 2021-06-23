@@ -1,12 +1,14 @@
-import 'package:eventrack_app/app/modules/userdashboard/views/widgets/horizontal_place_item.dart';
-import 'package:eventrack_app/app/modules/userdashboard/views/widgets/icon_badge.dart';
-import './widgets/icon_badge.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import './util/places.dart';
-import './components/overview_detail.dart';
+
 import '../controllers/userdashboard_controller.dart';
+import './components/overview_detail.dart';
+import './util/places.dart';
+import './widgets/icon_badge.dart';
 import 'components/vertical_place_item.dart';
+import 'widgets/horizontal_place_item.dart';
+import 'widgets/icon_badge.dart';
 
 class UserdashboardView extends GetView<UserdashboardController> {
   @override
@@ -98,9 +100,9 @@ class UserdashboardView extends GetView<UserdashboardController> {
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         primary: false,
-        itemCount: places.length,
+        itemCount: places!.length,
         itemBuilder: (BuildContext context, int index) {
-          Map place = places.reversed.toList()[index];
+          Map place = places!.reversed.toList()[index];
           return HorizontalPlaceItem(place: place);
         },
       ),
@@ -115,10 +117,9 @@ buildVerticalList() {
       primary: false,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      // ignore: unnecessary_null_comparison
-      itemCount: places == null ? 0 : places.length,
+      itemCount: places == null ? 0 : places!.length,
       itemBuilder: (BuildContext context, int index) {
-        Map place = places[index];
+        Map place = places![index];
         return VerticalPlaceItem(place: place);
       },
     ),

@@ -13,7 +13,6 @@ class ParticipantsListCard extends StatelessWidget {
   final String? email;
   final String? address;
   final String? profileImage;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -31,51 +30,47 @@ class ParticipantsListCard extends StatelessWidget {
             ),
             radius: 30,
           ),
-           SizedBox(
-            width: hrwidth*0.0416,
-          ), 
+          SizedBox(
+            width: hrwidth * 0.0416,
+          ),
           Container(
             alignment: Alignment.centerLeft,
-            width: hrwidth*0.68,
+            width: hrwidth * 0.68,
             child: FittedBox(
               child: Container(
-                width: hrwidth*0.68,
+                width: hrwidth * 0.68,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       '$username',
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w900
-                      ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(fontSize: 17, fontWeight: FontWeight.w900),
                     ),
                     FittedBox(
                       child: Container(
-                        width: hrwidth*0.68,
-                        child: Text(
-                          '$email',
-                          style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                            fontSize: 14,
-                            color: Colors.grey
-                          )
-                        ),
+                        width: hrwidth * 0.68,
+                        child: Text('$email',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2!
+                                .copyWith(fontSize: 14, color: Colors.grey)),
                       ),
                     ),
-                    Text(
-                      '$address',
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        fontSize: 14,
-                        color: Colors.grey
-                      )
-                    ),
+                    Text('$address',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontSize: 14, color: Colors.grey)),
                   ],
                 ),
               ),
             ),
           ),
           SizedBox(
-            width: hrwidth*0.005,
+            width: hrwidth * 0.005,
           ),
           Icon(
             Icons.check_circle_rounded,

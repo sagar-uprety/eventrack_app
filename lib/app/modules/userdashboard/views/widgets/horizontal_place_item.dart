@@ -21,7 +21,6 @@ class HorizontalPlaceItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
                   "${place["img"]}",
-
                   height: 178.0,
                   width: 140.0,
                   fit: BoxFit.cover,

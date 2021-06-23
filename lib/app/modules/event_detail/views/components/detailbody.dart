@@ -1,8 +1,7 @@
-import 'dart:ui';
-import 'package:eventrack_app/app/utilities/colors.dart';
-
-import 'ImageContainer.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../utilities/colors.dart';
+import 'ImageContainer.dart';
 
 class DetailBody extends StatelessWidget {
   const DetailBody({Key? key}) : super(key: key);
