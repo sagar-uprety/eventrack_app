@@ -16,6 +16,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/participants_list/bindings/participants_list_binding.dart';
 import '../modules/participants_list/views/participants_list_view.dart';
+import '../modules/organizationProfile/bindings/organization_profile_binding.dart';
+import '../modules/organizationProfile/views/organization_profile_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
 import '../modules/user_list/bindings/user_list_binding.dart';
@@ -92,6 +94,11 @@ class AppPages {
       name: _Paths.USERDASHBOARD,
       page: () => UserdashboardView(),
       binding: UserdashboardBinding(),
+    ),
+    GetPage(
+      name: _Paths.ORGANIZATION_PROFILE,
+      page: () => OrganizationProfileView(),
+      binding: OrganizationProfileBinding(),
     ),
   ];
 }

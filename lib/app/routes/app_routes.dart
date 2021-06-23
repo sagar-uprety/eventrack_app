@@ -17,6 +17,7 @@ abstract class Routes {
   static const PARTICIPANTS_LIST = _Paths.PARTICIPANTS_LIST;
   static const EVENT_LIST = _Paths.EVENT_LIST;
   static const USERDASHBOARD = _Paths.USERDASHBOARD;
+  static const ORGANIZATION_PROFILE = _Paths.ORGANIZATION_PROFILE;
 }
 
 abstract class _Paths {
@@ -33,4 +34,5 @@ abstract class _Paths {
   static const PARTICIPANTS_LIST = '/participants-list';
   static const EVENT_LIST = '/event-list';
   static const USERDASHBOARD = '/userdashboard';
+  static const ORGANIZATION_PROFILE = '/organization-profile';
 }
