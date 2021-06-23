@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/appBar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -14,23 +15,15 @@ class ParticipantsListView extends GetView<ParticipantsListController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: BackButton(
-            onPressed: () {
-              print('Back');
-            },
-          ),
+        appBar: ETAppBar(
+          addBackButton: true,
+          title: 'Participants',
           actions: [
             IconButton(
-                onPressed: () {
-                  print('Search');
-                },
-                icon: Icon(
-                  Icons.search,
-                ))
+              icon: Icon(Icons.search),
+              onPressed: () => print('Search Icon Pressed'),
+            ),
           ],
-          title: Text('Participants List'),
-          centerTitle: true,
         ),
         body: ListView.builder(
             padding: EdgeInsets.all(0),

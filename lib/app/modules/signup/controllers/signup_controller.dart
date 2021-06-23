@@ -8,19 +8,18 @@ import '../provider/signup_provider_impl.dart';
 class SignupController extends GetxController {
   //this key uniquely identifies a form
   final signupFormKey = GlobalKey<FormState>();
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
+  late TextEditingController name;
+  late TextEditingController email;
+  late TextEditingController password;
 
   late SignUpProvider _signupProvider;
-
-  var email = '';
-  var password = '';
 
   //initialize
   @override
   void onInit() {
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    name = TextEditingController();
+    email = TextEditingController();
+    password = TextEditingController();
     _signupProvider = Get.find<SignUpProviderImpl>();
 
     super.onInit();
@@ -28,31 +27,38 @@ class SignupController extends GetxController {
 
   @override
   void onClose() {
-    emailController.dispose();
-    passwordController.dispose();
+    email.dispose();
+    password.dispose();
     super.onClose();
   }
 
+  String? nameValidator(String? value) {
+    if (value!.isEmpty) return 'This field cannot be empty.';
+    return null;
+  }
+
   String? emailValidator(String? value) {
-    if (!GetUtils.isEmail(value!)) {
+    if (value!.isEmpty) return 'This field cannot be empty.';
+    if (!GetUtils.isEmail(value)) {
       return 'Please enter a valid email';
     }
     return null;
   }
 
   String? passwordValidator(String? value) {
+    if (value!.isEmpty) return 'This field cannot be empty.';
     if (!GetUtils.isLengthLessThan(6, 25)) {
       return 'Your password should be at least 6 characters';
     }
     return null;
   }
 
-  Future onPressedsignUp() async {
+  Future signup() async {
     print("Hello World");
 
     /*   if (signupFormKey.currentState!.validate()) {
       //do API Call for signUp
-      // registerUser(emailController.text, passwordController.text);
+      // registerUser(email.text, password.text);
 
     } */
     try {

@@ -63,6 +63,8 @@ class CreateEventController extends GetxController {
   void onClose() {
     eventName.dispose();
     description.dispose();
+    categoriesText.dispose();
+    location.dispose();
   }
 
   void toggleOneDayMode(bool? value) {

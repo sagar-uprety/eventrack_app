@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/appBar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,14 +14,9 @@ class UserProfileView extends GetView<UserProfileController> {
     MediaQueryData queryData = MediaQuery.of(context);
     double hrheight = queryData.size.height;
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(
-          onPressed: () {
-            print("Back");
-          },
-        ),
-        title: Text('User Profile'),
-        centerTitle: true,
+      appBar: ETAppBar(
+        title: 'Profile',
+        addBackButton: true,
       ),
       body: Center(
         child: SingleChildScrollView(

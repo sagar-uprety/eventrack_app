@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -61,10 +62,9 @@ class OrganizationProfileTab1 extends StatelessWidget {
             ),
           ),
           Obx(
-            () => TextButton(
+            () => ETTextButton(
+              !controller.showMore.value ? 'Show Less' : 'Show More',
               onPressed: controller.toggleDescriptionDisplay,
-              child:
-                  Text(!controller.showMore.value ? 'Show Less' : 'Show More'),
             ),
           ),
         ],

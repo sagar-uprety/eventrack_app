@@ -7,45 +7,45 @@ import '../provider/login_providerImpl.dart';
 
 class LoginController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
+  late TextEditingController email;
+  late TextEditingController password;
 
-  late LoginProvider _loginProvider;
-
-  var email = '';
-  var password = '';
+  // late LoginProvider _loginProvider;
 
   @override
   void onInit() {
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-    _loginProvider = Get.find<LoginProviderImpl>();
+    email = TextEditingController();
+    password = TextEditingController();
+    // _loginProvider = Get.find<LoginProviderImpl>();
 
     super.onInit();
   }
 
   @override
   void onClose() {
-    emailController.dispose();
-    passwordController.dispose();
+    email.dispose();
+    password.dispose();
     super.onClose();
   }
 
   String? emailValidator(String? value) {
-    if (!GetUtils.isEmail(value!)) {
+    if (value!.isEmpty) return 'This field cannot be empty.';
+    if (!GetUtils.isEmail(value)) {
       return 'Please enter a valid email';
     }
     return null;
   }
 
   String? passwordValidator(String? value) {
+    if (value!.isEmpty) return 'This field cannot be empty.';
+
     if (!GetUtils.isLengthLessThan(6, 25)) {
       return 'Your password should be at least 6 characters';
     }
     return null;
   }
 
-  Future onPressedlogin() async {
+  Future login() async {
     print("Hello World");
 
     /*   if (signupFormKey.currentState!.validate()) {

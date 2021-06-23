@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/appBar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -14,27 +15,19 @@ class UserListView extends GetView<UserListController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: BackButton(
-            onPressed: () {
-              print("Back");
-            },
-          ),
-          title: Text('Users'),
-          centerTitle: true,
-          actions: <Widget>[
+        appBar: ETAppBar(
+          addBackButton: true,
+          title: 'Users',
+          actions: [
             IconButton(
-              onPressed: () {
-                print('search');
-              },
               icon: Icon(Icons.search),
+              onPressed: () => print('Search Icon Pressed'),
             ),
           ],
         ),
         body: ListView.builder(
           itemCount: userListController.users.length,
           itemBuilder: (context, index) {
-            final item = userListController.users[index].toString();
             return Slidable(
               actionPane: SlidableScrollActionPane(),
               child: ListTile(
@@ -46,7 +39,7 @@ class UserListView extends GetView<UserListController> {
                       '${userListController.users[index].profileImage}',
                 ),
               ),
-              key: Key(item),
+              key: Key(userListController.users[index].email),
               actionExtentRatio: 0.25,
               secondaryActions: <Widget>[
                 IconSlideAction(
@@ -58,10 +51,11 @@ class UserListView extends GetView<UserListController> {
                   onTap: () async {
                     print('archive');
                     return showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return MoreMenu();
-                        });
+                      context: context,
+                      builder: (BuildContext context) {
+                        return MoreMenu();
+                      },
+                    );
                   },
                 ),
                 IconSlideAction(

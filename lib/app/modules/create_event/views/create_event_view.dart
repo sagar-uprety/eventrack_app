@@ -21,7 +21,7 @@ class CreateEventView extends GetView<CreateEventController> {
     return Scaffold(
       appBar: ETAppBar(
         title: 'Create Your Event',
-        hasBackButton: true,
+        addBackButton: true,
       ),
       drawer: buildAppDrawer(),
       body: Form(

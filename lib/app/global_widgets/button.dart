@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 
@@ -35,6 +36,37 @@ class RoundedRectangularButton extends StatelessWidget {
       child: Text(
         childText,
         style: Theme.of(context).textTheme.button,
+      ),
+    );
+  }
+}
+
+class ETTextButton extends StatelessWidget {
+  const ETTextButton(this.text,
+      {Key? key,
+      required this.onPressed,
+      this.underline = true,
+      this.fontSize = 14.0})
+      : super(key: key);
+
+  final String text;
+  final bool underline;
+  final Function() onPressed;
+  final double fontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: onPressed,
+      child: Text(
+        '$text',
+        style: Get.textTheme.button!.copyWith(
+          color: AppColors.blue,
+          fontSize: fontSize,
+          decoration:
+              underline ? TextDecoration.underline : TextDecoration.none,
+          textBaseline: TextBaseline.alphabetic,
+        ),
       ),
     );
   }

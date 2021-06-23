@@ -59,11 +59,13 @@ class ParticipantsListCard extends StatelessWidget {
                                 .copyWith(fontSize: 14, color: Colors.grey)),
                       ),
                     ),
-                    Text('$address',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(fontSize: 14, color: Colors.grey)),
+                    Text(
+                      '$address',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(fontSize: 14, color: Colors.grey),
+                    ),
                   ],
                 ),
               ),

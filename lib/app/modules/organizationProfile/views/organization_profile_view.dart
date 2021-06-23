@@ -29,7 +29,7 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: ETAppBar(
-        hasBackButton: true,
+        addBackButton: true,
       ),
       body: Stack(
         clipBehavior: Clip.none,
