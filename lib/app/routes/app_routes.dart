@@ -15,6 +15,8 @@ abstract class Routes {
   static const EDIT_USER_PROFILE = _Paths.EDIT_USER_PROFILE;
   static const USER_LIST = _Paths.USER_LIST;
   static const PARTICIPANTS_LIST = _Paths.PARTICIPANTS_LIST;
+  static const EVENT_LIST = _Paths.EVENT_LIST;
+  static const USERDASHBOARD = _Paths.USERDASHBOARD;
 }
 
 abstract class _Paths {
@@ -29,4 +31,6 @@ abstract class _Paths {
   static const EDIT_USER_PROFILE = '/edit-user-profile';
   static const USER_LIST = '/user-list';
   static const PARTICIPANTS_LIST = '/participants-list';
+  static const EVENT_LIST = '/event-list';
+  static const USERDASHBOARD = '/userdashboard';
 }
