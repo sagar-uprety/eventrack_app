@@ -5,8 +5,9 @@ class OrganizationProfileTab2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Tab 2'),
+    return Container(
+      height: 200,
+      child: Text('Tab 1'),
     );
   }
 }

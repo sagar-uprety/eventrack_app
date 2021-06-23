@@ -1,4 +1,3 @@
-import 'package:eventrack_app/app/modules/organizationProfile/views/organization_profile2.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -6,12 +5,24 @@ import 'package:get/get.dart';
 import '../../../global_widgets/appBar.dart';
 import '../../../utilities/colors.dart';
 import '../controllers/organization_profile_controller.dart';
+import 'tabs/tab1.dart';
+import 'tabs/tab2.dart';
+import 'tabs/tab3.dart';
 
 class OrganizationProfileView extends GetView<OrganizationProfileController> {
+  //TODO: Remove `hasImage` and `image`
   static get hasImage => true;
   final String? image = hasImage
       ? 'https://assets.teenvogue.com/photos/5f2c1960c2eecf5e1652a0f6/3:2/w_2532,h_1688,c_limit/00-story-euphoria.jpg'
       : null;
+
+  final controller = Get.find<OrganizationProfileController>();
+
+  final List<Widget> _tabs = [
+    OrganizationProfileTab1(),
+    OrganizationProfileTab2(),
+    OrganizationProfileTab3(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +56,44 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
             builder: (context, scrollController) {
               return SingleChildScrollView(
                 controller: scrollController,
-                child: OrganizationProfile2(),
+                child: Container(
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(24),
+                      topRight: Radius.circular(24),
+                    ),
+                    color: AppColors.background,
+                  ),
+                  child: new DefaultTabController(
+                    length: 3,
+                    initialIndex: 0,
+                    child: new Column(
+                      children: <Widget>[
+                        new TabBar(
+                          indicatorColor: AppColors.dark25,
+                          indicatorWeight: 3.0,
+                          labelStyle: Get.textTheme.bodyText1!
+                              .copyWith(fontWeight: FontWeight.w600),
+                          labelPadding:
+                              EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+                          isScrollable: true,
+                          labelColor: AppColors.dark80,
+                          unselectedLabelColor: AppColors.dark50,
+                          onTap: controller.changeTab,
+                          tabs: <Widget>[
+                            Tab(text: 'ABOUT'),
+                            Tab(text: 'TAB2'),
+                            Tab(text: 'TAB3'),
+                          ],
+                        ),
+                        Obx(
+                          () => _tabs[controller.selectedTab.value],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               );
             },
           ),
