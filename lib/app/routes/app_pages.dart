@@ -1,3 +1,7 @@
+import 'package:eventrack_app/app/modules/password_reset/bindings/password_reset_binding.dart';
+import 'package:eventrack_app/app/modules/password_reset/views/password_reset_view.dart';
+import 'package:eventrack_app/app/modules/token_verifcation/bindings/token_verifcation_binding.dart';
+import 'package:eventrack_app/app/modules/token_verifcation/views/token_verifcation_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/browse_events/bindings/browse_events_binding.dart';
@@ -32,7 +36,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.USER_LIST;
+  static const INITIAL = Routes.SIGNUP;
 
   static final routes = [
     GetPage(
@@ -99,6 +103,21 @@ class AppPages {
       name: _Paths.ORGANIZATION_PROFILE,
       page: () => OrganizationProfileView(),
       binding: OrganizationProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.PASSWORD_RESET,
+      page: () => PasswordResetView(),
+      binding: PasswordResetBinding(),
+    ),
+    GetPage(
+      name: _Paths.TOKEN_VERIFCATION,
+      page: () => TokenVerifcationView(),
+      binding: TokenVerifcationBinding(),
+    ),
+    GetPage(
+      name: _Paths.ENTER_EMAIL,
+      page: () => EnterEmailView(),
+      binding: EnterEmailBinding(),
     ),
   ];
 }
