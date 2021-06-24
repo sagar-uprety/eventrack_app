@@ -4,9 +4,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
 import '../../../global_widgets/appBar.dart';
+import '../../../global_widgets/dialogue_box.dart';
 import '../../../utilities/colors.dart';
 import '../controllers/user_list_controller.dart';
-import 'components/dialog.dart';
 import 'user_list.dart';
 
 class UserListView extends GetView<UserListController> {
@@ -52,9 +52,11 @@ class UserListView extends GetView<UserListController> {
                     print('archive');
                     return showDialog(
                       context: context,
-                      builder: (BuildContext context) {
-                        return MoreMenu();
-                      },
+                      builder: (_) => ETDialog(
+                        'Do you want delete this user?',
+                        type: AlertType.Warning,
+                        onProceed: () => print('Proceed'),
+                      ),
                     );
                   },
                 ),

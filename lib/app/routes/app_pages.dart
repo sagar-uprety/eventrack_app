@@ -6,6 +6,8 @@ import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
 import '../modules/edit_User_Profile/bindings/edit_user_profile_binding.dart';
 import '../modules/edit_User_Profile/views/edit_user_profile_view.dart';
+import '../modules/eventList/bindings/event_list_binding.dart';
+import '../modules/eventList/views/event_list_view.dart';
 import '../modules/event_detail/bindings/event_detail_binding.dart';
 import '../modules/event_detail/views/event_detail_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -36,7 +38,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.SIGNUP;
 
   static final routes = [
     GetPage(
@@ -113,6 +115,11 @@ class AppPages {
       name: _Paths.TOKEN_VERIFCATION,
       page: () => TokenVerifcationView(),
       binding: TokenVerifcationBinding(),
+    ),
+    GetPage(
+      name: _Paths.EVENT_LIST,
+      page: () => EventListView(),
+      binding: EventListBinding(),
     ),
   ];
 }

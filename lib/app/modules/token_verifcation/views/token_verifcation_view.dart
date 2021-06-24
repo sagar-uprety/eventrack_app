@@ -6,7 +6,6 @@ import '../../../global_widgets/appBar.dart';
 import '../../../global_widgets/button.dart';
 import '../../../global_widgets/formField.dart';
 import '../../../routes/app_pages.dart';
-import '../../../utilities/colors.dart';
 import '../controllers/token_verifcation_controller.dart';
 
 class TokenVerifcationView extends GetView<TokenVerifcationController> {

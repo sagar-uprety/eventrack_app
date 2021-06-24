@@ -15,12 +15,12 @@ abstract class Routes {
   static const EDIT_USER_PROFILE = _Paths.EDIT_USER_PROFILE;
   static const USER_LIST = _Paths.USER_LIST;
   static const PARTICIPANTS_LIST = _Paths.PARTICIPANTS_LIST;
-  static const EVENT_LIST = _Paths.EVENT_LIST;
   static const USERDASHBOARD = _Paths.USERDASHBOARD;
   static const ORGANIZATION_PROFILE = _Paths.ORGANIZATION_PROFILE;
   static const PASSWORD_RESET = _Paths.PASSWORD_RESET;
   static const TOKEN_VERIFCATION = _Paths.TOKEN_VERIFCATION;
   static const ENTER_EMAIL = _Paths.ENTER_EMAIL;
+  static const EVENT_LIST = _Paths.EVENT_LIST;
 }
 
 abstract class _Paths {
@@ -35,10 +35,10 @@ abstract class _Paths {
   static const EDIT_USER_PROFILE = '/edit-user-profile';
   static const USER_LIST = '/user-list';
   static const PARTICIPANTS_LIST = '/participants-list';
-  static const EVENT_LIST = '/event-list';
   static const USERDASHBOARD = '/userdashboard';
   static const ORGANIZATION_PROFILE = '/organization-profile';
   static const PASSWORD_RESET = '/password-reset';
   static const TOKEN_VERIFCATION = '/token-verifcation';
   static const ENTER_EMAIL = '/enter-email';
+  static const EVENT_LIST = '/event-list';
 }

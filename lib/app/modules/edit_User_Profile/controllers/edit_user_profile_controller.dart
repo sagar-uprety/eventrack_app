@@ -2,8 +2,6 @@ import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 
-import '../../../models/user.dart';
-
 class EditUserProfileController extends GetxController {
   final profileImage =
       "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg";

@@ -5,18 +5,30 @@ import 'package:get/get.dart';
 
 import '../utilities/colors.dart';
 
+///A Rectangular `ElevatedButton` with default radius
 class RoundedRectangularButton extends StatelessWidget {
   const RoundedRectangularButton({
     Key? key,
     required this.childText,
     required this.onPressed,
+    this.fontSize = 18,
     this.size,
     this.color,
   }) : super(key: key);
 
+  ///Text to display on the button
   final String childText;
+
+  ///Defines the `fontSize` property of the text on the button - defaults to `fontSize: 18.0`.
+  final double fontSize;
+
+  ///`Color` of the button - defaults to `color: AppColors.blue`
   final Color? color;
+
+  ///`fixedSize` of the button - defaults to `width: 40%` and `height: 50`
   final Size? size;
+
+  ///Sets `ElevatedButton.onPressed` property
   final void Function() onPressed;
 
   @override
@@ -26,16 +38,13 @@ class RoundedRectangularButton extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(color ?? AppColors.blue),
         elevation: MaterialStateProperty.all(3),
-        minimumSize: MaterialStateProperty.all(
-          Size(Get.width * 0.40, 50),
-        ),
         fixedSize: MaterialStateProperty.all(
-          size ?? null,
+          size ?? Size(Get.width * 0.40, 50),
         ),
       ),
       child: Text(
         childText,
-        style: Theme.of(context).textTheme.button,
+        style: Theme.of(context).textTheme.button!.copyWith(fontSize: fontSize),
       ),
     );
   }
@@ -49,9 +58,16 @@ class ETTextButton extends StatelessWidget {
       this.fontSize = 14.0})
       : super(key: key);
 
+  ///Text to display on the button
   final String text;
+
+  ///Underlines the button text on `underline: true` - defaults to true
   final bool underline;
+
+  ///Sets `TextButton.onPressed` property
   final Function() onPressed;
+
+  ///Defines the `fontSize` property of the text on the button - defaults to `fontSize: 14.0`.
   final double fontSize;
 
   @override

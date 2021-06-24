@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/mfg_labs_icons.dart';
 import 'package:get/get.dart';
 
-import '../../../models/event.dart';
+import '../../eventList/Models/Event_listmodel.dart';
 import '../controllers/event_detail_controller.dart';
 import 'components/detailbody.dart';
 
 class EventDetailView extends GetView<EventDetailController> {
-  final Event event = Get.arguments;
+  final EventsModel event = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -45,7 +45,7 @@ class LoginView extends GetView<LoginController> {
                 ).paddingOnly(top: 12),
               ],
             ),
-          ).paddingOnly(top: 24, bottom: 10, right: 12, left: 12),
+          ).paddingOnly(top: 24, bottom: 10),
           Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
