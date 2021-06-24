@@ -9,13 +9,16 @@ class LoginController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();
   late TextEditingController email;
   late TextEditingController password;
+  final formKey = GlobalKey<FormState>();
+  final bottomSheetFormKey = GlobalKey<FormState>();
 
   // late LoginProvider _loginProvider;
-
+  late TextEditingController bottomSheetEmail;
   @override
   void onInit() {
     email = TextEditingController();
     password = TextEditingController();
+    bottomSheetEmail = TextEditingController();
     // _loginProvider = Get.find<LoginProviderImpl>();
 
     super.onInit();
@@ -25,6 +28,7 @@ class LoginController extends GetxController {
   void onClose() {
     email.dispose();
     password.dispose();
+    bottomSheetEmail.dispose();
     super.onClose();
   }
 
@@ -62,5 +66,9 @@ class LoginController extends GetxController {
     // } catch (e) {
     //   print(e);
     // }
+  }
+
+  void getToken() {
+    if (bottomSheetFormKey.currentState!.validate()) print('Sending Token...');
   }
 }

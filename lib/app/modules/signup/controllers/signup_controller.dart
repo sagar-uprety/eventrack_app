@@ -47,9 +47,8 @@ class SignupController extends GetxController {
 
   String? passwordValidator(String? value) {
     if (value!.isEmpty) return 'This field cannot be empty.';
-    if (!GetUtils.isLengthLessThan(6, 25)) {
-      return 'Your password should be at least 6 characters';
-    }
+    if (GetUtils.isLengthLessThan(value, 8))
+      return 'The password must be at least 8 characters.';
     return null;
   }
 

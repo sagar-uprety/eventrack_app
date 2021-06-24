@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import '../utilities/colors.dart';
 
+///Set the `addBackButton` to true
 class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
+  ///Text to display at the center of the `AppBar`
   final String? title;
+
+  ///Add a TabBar (if any)
   final TabBar? bottom;
-  final bool hasButton;
+
+  ///Set `hasLeading` to `false`, if the appBar doesnot have any leading `IconButton` - default value of `hasLeading` is `true`
+  final bool hasLeading;
+
+  ///Set `addBackButton` to `truee`, if the appBar has a BackButton as a leading `IconButton` - default value of `addBackButton` is `false`
+  ///
+  ///if `hasLeading` is `false`, but `addBackButton` is `true`, the `AppBar` has no leading giving priority to the `hasLeading` value.
   final bool addBackButton;
+
   final Size preferredSize;
+
+  ///List of actions to display at the trailing end of the `AppBar`
   final List<Widget>? actions;
 
   ETAppBar({
@@ -16,14 +30,14 @@ class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
     Key? key,
     this.bottom,
     this.actions,
-    this.hasButton = true,
+    this.hasLeading = true,
     this.addBackButton = false,
   })  : preferredSize =
             Size.fromHeight(56 + (bottom?.preferredSize.height ?? 0.0)),
         super(key: key);
 
   Widget? prefixIcon() {
-    if (!hasButton) return null;
+    if (!hasLeading) return null;
     if (addBackButton)
       return IconButton(
         onPressed: () => print('Go back.'),
@@ -46,8 +60,7 @@ class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       centerTitle: true,
       backgroundColor: AppColors.transparent,
-      elevation: 0.6,
-      shadowColor: AppColors.dark80.withOpacity(0.1),
+      elevation: 0.0,
       leading: prefixIcon(),
       title: title != null
           ? Text(
@@ -56,7 +69,7 @@ class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
             )
           : Center(),
       actions: [
-        ...actions!,
+        if (actions != null) ...actions!,
         SizedBox(
           width: 12,
         )

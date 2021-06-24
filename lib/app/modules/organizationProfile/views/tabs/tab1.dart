@@ -1,8 +1,8 @@
-import 'package:eventrack_app/app/global_widgets/button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../global_widgets/button.dart';
 import '../../../../utilities/colors.dart';
 import '../../controllers/organization_profile_controller.dart';
 

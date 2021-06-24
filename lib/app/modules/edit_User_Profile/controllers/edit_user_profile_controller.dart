@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+
 import 'package:get/get.dart';
 
 import '../../../models/user.dart';

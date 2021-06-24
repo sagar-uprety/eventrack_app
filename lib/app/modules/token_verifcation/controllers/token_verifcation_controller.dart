@@ -1,11 +1,14 @@
+import 'package:flutter/cupertino.dart';
+
 import 'package:get/get.dart';
 
 class TokenVerifcationController extends GetxController {
-  //TODO: Implement TokenVerifcationController
+  late TextEditingController token;
+  final formKey = GlobalKey<FormState>();
 
-  final count = 0.obs;
   @override
   void onInit() {
+    token = TextEditingController();
     super.onInit();
   }
 
@@ -15,6 +18,18 @@ class TokenVerifcationController extends GetxController {
   }
 
   @override
-  void onClose() {}
-  void increment() => count.value++;
+  void onClose() {
+    token.dispose();
+  }
+
+  String? tokenValidator(String? value) {
+    if (value!.isEmpty) return 'This field cannot be empty.';
+    if (!GetUtils.isLengthEqualTo(value, 6)) return 'Invalid token.';
+    return null;
+  }
+
+  void submit() {
+    if (formKey.currentState!.validate())
+      print('Token Submitted for verification');
+  }
 }

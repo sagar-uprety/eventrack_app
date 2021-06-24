@@ -11,12 +11,14 @@ class ETBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomSheet(
-      backgroundColor: AppColors.background,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
       ),
-      elevation: 3,
+      backgroundColor: AppColors.background,
+      elevation: 0,
       onClosing: () => print('Closing'),
       builder: (_) => child.paddingSymmetric(vertical: 10),
     );

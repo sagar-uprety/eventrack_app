@@ -1,9 +1,9 @@
-import 'package:eventrack_app/app/global_widgets/appBar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
+import '../../../global_widgets/appBar.dart';
 import '../../../utilities/colors.dart';
 import '../controllers/user_list_controller.dart';
 import 'components/dialog.dart';

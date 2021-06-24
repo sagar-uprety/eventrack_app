@@ -1,17 +1,17 @@
-import 'package:eventrack_app/app/global_widgets/appBar.dart';
-import 'package:eventrack_app/app/global_widgets/button.dart';
-import 'package:eventrack_app/app/global_widgets/formField.dart';
-import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../global_widgets/appBar.dart';
+import '../../../global_widgets/bottomSheet.dart';
+import '../../../global_widgets/button.dart';
+import '../../../global_widgets/formField.dart';
+import '../../../routes/app_pages.dart';
 import '../../../utilities/colors.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   final loginController = Get.find<LoginController>();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +19,12 @@ class LoginView extends GetView<LoginController> {
       resizeToAvoidBottomInset: false,
       appBar: ETAppBar(
         title: 'Login',
+        hasLeading: false,
       ),
       body: Column(
         children: [
           Form(
-            key: _formKey,
+            key: controller.formKey,
             child: Column(
               children: [
                 FormInputField(
@@ -44,7 +45,7 @@ class LoginView extends GetView<LoginController> {
                 ).paddingOnly(top: 12),
               ],
             ),
-          ).paddingOnly(top: 24, bottom: 10),
+          ).paddingOnly(top: 24, bottom: 10, right: 12, left: 12),
           Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
@@ -56,8 +57,34 @@ class LoginView extends GetView<LoginController> {
               ETTextButton(
                 'Reset Password',
                 onPressed: () {
-                  print('reset password');
-                  // Get.toNamed(Routes.SIGNUP);
+                  showModalBottomSheet(
+                    context: context,
+                    backgroundColor: AppColors.transparent,
+                    builder: (_) => ETBottomSheet(
+                      child: Form(
+                        key: controller.bottomSheetFormKey,
+                        child: Column(
+                          children: [
+                            Text(
+                              'Enter your Account Email',
+                              style: Get.textTheme.headline5!
+                                  .copyWith(color: AppColors.dark80),
+                            ),
+                            FormInputField(
+                              key: ValueKey('email'),
+                              label: 'Enter Your Email',
+                              controller: controller.bottomSheetEmail,
+                              validator: controller.emailValidator,
+                            ).paddingSymmetric(vertical: 14),
+                            RoundedRectangularButton(
+                              childText: 'Get Token',
+                              onPressed: controller.getToken,
+                            )
+                          ],
+                        ),
+                      ).paddingOnly(top: 30),
+                    ),
+                  );
                 },
               ),
             ],

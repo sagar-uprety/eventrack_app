@@ -1,7 +1,3 @@
-import 'package:eventrack_app/app/modules/password_reset/bindings/password_reset_binding.dart';
-import 'package:eventrack_app/app/modules/password_reset/views/password_reset_view.dart';
-import 'package:eventrack_app/app/modules/token_verifcation/bindings/token_verifcation_binding.dart';
-import 'package:eventrack_app/app/modules/token_verifcation/views/token_verifcation_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/browse_events/bindings/browse_events_binding.dart';
@@ -22,8 +18,12 @@ import '../modules/organizationProfile/bindings/organization_profile_binding.dar
 import '../modules/organizationProfile/views/organization_profile_view.dart';
 import '../modules/participants_list/bindings/participants_list_binding.dart';
 import '../modules/participants_list/views/participants_list_view.dart';
+import '../modules/password_reset/bindings/password_reset_binding.dart';
+import '../modules/password_reset/views/password_reset_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
+import '../modules/token_verifcation/bindings/token_verifcation_binding.dart';
+import '../modules/token_verifcation/views/token_verifcation_view.dart';
 import '../modules/user_list/bindings/user_list_binding.dart';
 import '../modules/user_list/views/user_list_view.dart';
 import '../modules/user_profile/bindings/user_profile_binding.dart';
@@ -36,7 +36,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SIGNUP;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -113,11 +113,6 @@ class AppPages {
       name: _Paths.TOKEN_VERIFCATION,
       page: () => TokenVerifcationView(),
       binding: TokenVerifcationBinding(),
-    ),
-    GetPage(
-      name: _Paths.ENTER_EMAIL,
-      page: () => EnterEmailView(),
-      binding: EnterEmailBinding(),
     ),
   ];
 }
