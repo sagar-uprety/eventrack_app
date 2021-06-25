@@ -1,37 +1,87 @@
 import 'package:flutter/material.dart';
 
-import 'package:fluttericon/mfg_labs_icons.dart';
 import 'package:get/get.dart';
 
-import '../../eventList/Models/Event_listmodel.dart';
+import '../../../global_widgets/appBar.dart';
+import '../../../global_widgets/draggableSheet.dart';
+import '../../../utilities/colors.dart';
 import '../controllers/event_detail_controller.dart';
-import 'components/detailbody.dart';
+import 'tabs/tab1.dart';
+import 'tabs/tab2.dart';
+import 'tabs/tab3.dart';
 
 class EventDetailView extends GetView<EventDetailController> {
-  final EventsModel event = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: buildAppBar(),
-      body: DetailBody(),
+      appBar: ETAppBar(
+        addBackButton: true,
+      ),
+      body: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            width: Get.width,
+            height: Get.height * 0.42,
+            decoration: BoxDecoration(
+              image: controller.event.eventCover != null
+                  ? DecorationImage(
+                      image: NetworkImage(controller.event.eventCover!),
+                      fit: BoxFit.cover,
+                    )
+                  : null,
+              gradient: RadialGradient(
+                center: Alignment.topRight,
+                radius: 2.0,
+                colors: <Color>[
+                  AppColors.dark65,
+                  AppColors.dark10,
+                ],
+              ),
+            ),
+            child: !(controller.event.eventCover != null)
+                ? Center(
+                    child: Text(
+                      controller.event.title!.toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: Get.textTheme.headline1!
+                          .copyWith(color: AppColors.dark80),
+                    ).paddingAll(20),
+                  )
+                : Center(),
+          ),
+          DraggableSheet(
+            tabIcons: [
+              Icons.description,
+              Icons.circle,
+              Icons.location_on,
+            ],
+            tabs: [
+              EventDetailTab1(),
+              EventDetailTab2(),
+              EventDetailTab3(),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
-  AppBar buildAppBar() {
-    return AppBar(
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back),
-        onPressed: () {},
-      ),
-      actions: [
-        IconButton(
-          icon: Icon(
-            MfgLabs.heart,
-          ),
-          onPressed: () {},
-        ),
-      ],
-    );
-  }
+  // AppBar buildAppBar() {
+  //   return AppBar(
+  //     leading: IconButton(
+  //       icon: Icon(Icons.arrow_back),
+  //       onPressed: () {},
+  //     ),
+  //     actions: [
+  //       IconButton(
+  //         icon: Icon(
+  //           MfgLabs.heart,
+  //         ),
+  //         onPressed: () {},
+  //       ),
+  //     ],
+  //   );
+  // }
 }

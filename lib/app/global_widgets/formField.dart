@@ -20,12 +20,10 @@ class FormInputField extends StatelessWidget {
       this.width,
       this.suffixIcon,
       this.onClickedSuffix,
-      required this.validator})
+      this.validator})
       : assert(initialValue == null || controller == null),
         assert(maxLines == null || maxLines > 0),
         assert(maxLength == null || maxLength > 0),
-        assert(
-            validator != null, 'Validator is necessary to ensure proper data.'),
         assert(!obscureText || maxLines == 1,
             'Obscured fields cannot be multiline.'),
         super(key: key);

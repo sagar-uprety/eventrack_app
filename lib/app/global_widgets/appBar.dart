@@ -43,7 +43,7 @@ class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () => print('Go back.'),
         icon: Icon(
           Icons.keyboard_arrow_left,
-          color: AppColors.dark65,
+          color: AppColors.dark80,
         ),
       );
     return IconButton(

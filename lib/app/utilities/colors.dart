@@ -6,6 +6,7 @@ class AppColors {
   static Color get background => dark10;
   static Color get transparent => Colors.transparent;
   static Color get dark10 => Color(0xffededed);
+  static Color get cardColor => Color(0xffd9d9d9);
   static Color get dark25 => Color(0xffbfbfbf);
   static Color get dark50 => Color(0xff808080);
   static Color get dark65 => Color(0xff595959);

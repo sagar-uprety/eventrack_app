@@ -60,8 +60,6 @@ extension DateFormat on List<String> {
       this.parseDate[1].difference(this.parseDate[0]).inDays + 1;
 }
 
-extension Difference on DateTime {}
-
 extension TimeFormat on List<TimeOfDay> {
   List<String> get formatTime {
     List<String> times = [];
