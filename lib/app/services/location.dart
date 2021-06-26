@@ -24,7 +24,7 @@ class GoogleLocation extends GetxController {
   @override
   void onClose() {}
 
-  requestLocationPermission() async {
+  Future requestLocationPermission() async {
     bool serviceEnabled = false;
 
     LocationPermission permission;
@@ -56,7 +56,7 @@ class GoogleLocation extends GetxController {
     );
   }
 
-  setCurrentLocation() async {
+  Future setCurrentLocation() async {
     try {
       await requestLocationPermission();
       currentLocation = await getCurrentLocation();

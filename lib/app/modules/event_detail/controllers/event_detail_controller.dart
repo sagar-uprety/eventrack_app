@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:dart_date/dart_date.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../pickers/datetimepicker.dart';
 import '../../eventList/models/Event_listmodel.dart';
 
 class EventDetailController extends GetxController {
   final RxBool showMore = false.obs;
+  late GoogleMapController? mapController;
 
   final EventsModel event = EventsModel(
     title: 'Publishing and Graphic Design',
@@ -24,8 +26,8 @@ class EventDetailController extends GetxController {
       TimeOfDay(hour: 18, minute: 0),
     ].formatTime,
     location: LocationModel(
-      latitude: 34.2334,
-      longitude: 43.4542,
+      latitude: 27.6195,
+      longitude: 85.5386,
       location: 'New York, USA',
     ),
     author: Author(
@@ -49,4 +51,9 @@ class EventDetailController extends GetxController {
   void onClose() {}
 
   void toggleDescriptionDisplay() => showMore.value = !showMore.value;
+
+  void createMap(GoogleMapController newMapController) {
+    mapController = newMapController;
+    update();
+  }
 }

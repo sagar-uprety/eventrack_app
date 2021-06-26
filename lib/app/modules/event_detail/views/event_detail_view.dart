@@ -67,21 +67,4 @@ class EventDetailView extends GetView<EventDetailController> {
       ),
     );
   }
-
-  // AppBar buildAppBar() {
-  //   return AppBar(
-  //     leading: IconButton(
-  //       icon: Icon(Icons.arrow_back),
-  //       onPressed: () {},
-  //     ),
-  //     actions: [
-  //       IconButton(
-  //         icon: Icon(
-  //           MfgLabs.heart,
-  //         ),
-  //         onPressed: () {},
-  //       ),
-  //     ],
-  //   );
-  // }
 }
