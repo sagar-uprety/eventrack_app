@@ -41,14 +41,14 @@ class CreateEventView extends GetView<CreateEventController> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   if (controller.stepIndex.value == 0)
-                    RoundedRectangularButton(
+                    ETElevatedButton(
                       childText: 'Next',
                       onPressed: () {
                         if (controller.validateForm1()) onStepContinue!();
                       },
                     ),
                   if (controller.stepIndex.value == 1)
-                    RoundedRectangularButton(
+                    ETElevatedButton(
                       childText: 'Submit',
                       onPressed: controller.submit,
                     ),
@@ -129,7 +129,7 @@ class CreateEventView extends GetView<CreateEventController> {
           ),
           Obx(
             () => ListTile(
-              leading: RoundedRectangularButton(
+              leading: ETElevatedButton(
                 childText: 'Pick a Date',
                 color: AppColors.dark50,
                 onPressed: () {
@@ -154,7 +154,7 @@ class CreateEventView extends GetView<CreateEventController> {
           ),
           Obx(
             () => ListTile(
-              leading: RoundedRectangularButton(
+              leading: ETElevatedButton(
                 childText: 'Pick Time',
                 color: AppColors.dark50,
                 onPressed: () {
@@ -191,7 +191,7 @@ class CreateEventView extends GetView<CreateEventController> {
             controller: controller.location,
             validator: controller.locationValidator,
           ),
-          RoundedRectangularButton(
+          ETElevatedButton(
             color: AppColors.dark50,
             childText: 'Pick a Location',
             onPressed: () async {

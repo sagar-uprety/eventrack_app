@@ -40,7 +40,7 @@ class TokenVerifcationView extends GetView<TokenVerifcationController> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  RoundedRectangularButton(
+                  ETElevatedButton(
                     childText: 'Save',
                     onPressed: controller.submit,
                   ),

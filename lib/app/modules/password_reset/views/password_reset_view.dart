@@ -62,7 +62,7 @@ class PasswordResetView extends GetView<PasswordResetController> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  RoundedRectangularButton(
+                  ETElevatedButton(
                     childText: 'Save',
                     onPressed: controller.submit,
                   ),

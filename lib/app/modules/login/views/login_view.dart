@@ -1,3 +1,6 @@
+import 'package:eventrack_app/app/global_widgets/button.dart';
+import 'package:eventrack_app/app/routes/app_pages.dart';
+import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -39,7 +42,7 @@ class LoginView extends GetView<LoginController> {
                   label: 'Pasword',
                   validator: controller.passwordValidator,
                 ),
-                RoundedRectangularButton(
+                ETElevatedButton(
                   childText: 'Login',
                   onPressed: loginController.login,
                 ).paddingOnly(top: 12),
@@ -76,7 +79,7 @@ class LoginView extends GetView<LoginController> {
                               controller: controller.bottomSheetEmail,
                               validator: controller.emailValidator,
                             ).paddingSymmetric(vertical: 14),
-                            RoundedRectangularButton(
+                            ETElevatedButton(
                               childText: 'Get Token',
                               onPressed: controller.getToken,
                             )

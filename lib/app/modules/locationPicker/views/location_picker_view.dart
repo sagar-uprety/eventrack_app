@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/googleMap.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -37,7 +38,7 @@ class LocationPickerView extends GetView<LocationPickerController> {
             // ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: RoundedRectangularButton(
+              child: ETElevatedButton(
                 childText: 'Done',
                 size: Size(Get.width * 0.40, 50),
                 onPressed: () {

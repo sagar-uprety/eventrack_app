@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-
 import '../utilities/colors.dart';
 
 ///Set the `addBackButton` to true
@@ -34,6 +33,8 @@ class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.addBackButton = false,
   })  : preferredSize =
             Size.fromHeight(56 + (bottom?.preferredSize.height ?? 0.0)),
+        assert(!(!hasLeading && addBackButton),
+            "'hasButton' is false but BackButton has been added."),
         super(key: key);
 
   Widget? prefixIcon() {

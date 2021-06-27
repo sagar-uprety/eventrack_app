@@ -106,7 +106,7 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
                 onPressed: () => print('Change Password'),
                 underline: false,
               ),
-              RoundedRectangularButton(
+              ETElevatedButton(
                 childText: 'Save',
                 onPressed: () {
                   print('Saved');

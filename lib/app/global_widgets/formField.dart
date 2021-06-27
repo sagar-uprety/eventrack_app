@@ -17,9 +17,11 @@ class FormInputField extends StatelessWidget {
       this.maxLines = 1,
       this.textAlign = TextAlign.start,
       this.icon,
-      this.width,
-      this.suffixIcon,
       this.onClickedSuffix,
+      this.width,
+      this.helperText,
+      this.keyboardType = TextInputType.text,
+      this.suffixIcon,
       this.validator})
       : assert(initialValue == null || controller == null),
         assert(maxLines == null || maxLines > 0),
@@ -33,6 +35,8 @@ class FormInputField extends StatelessWidget {
   final String label;
   final String? initialValue;
   final bool autofocus, obscureText, readOnly;
+  final String? helperText;
+  final TextInputType keyboardType;
   final int? maxLines;
   final TextAlign textAlign;
   final int? maxLength;
@@ -48,10 +52,16 @@ class FormInputField extends StatelessWidget {
         key: key,
         controller: controller,
         initialValue: initialValue,
+        keyboardType: keyboardType,
         textAlign: textAlign,
         decoration: InputDecoration(
           counterText: '',
           labelText: label,
+          helperText: helperText != null ? "**$helperText" : null,
+          helperStyle: Theme.of(context)
+              .textTheme
+              .overline!
+              .copyWith(fontSize: 14, color: AppColors.dark50),
           alignLabelWithHint: true,
           floatingLabelBehavior: FloatingLabelBehavior.auto,
           icon: icon != null ? Icon(icon) : null,

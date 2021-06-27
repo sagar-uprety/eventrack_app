@@ -45,7 +45,7 @@ class SignUpView extends GetView<SignupController> {
                   label: 'Pasword',
                   validator: controller.passwordValidator,
                 ),
-                RoundedRectangularButton(
+                ETElevatedButton(
                   childText: 'Sign Up',
                   onPressed: signupController.signup,
                 ).paddingOnly(top: 12),
