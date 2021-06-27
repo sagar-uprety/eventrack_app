@@ -49,6 +49,13 @@ class SignupView extends GetView<SignupController> {
                   onPressed: signupController.onPressedsignUp,
                   child: Text("Register"),
                 ),
+<<<<<<< Updated upstream
+=======
+                ETElevatedButton(
+                  childText: 'Sign Up',
+                  onPressed: signupController.signup,
+                ).paddingOnly(top: 12),
+>>>>>>> Stashed changes
               ],
             ),
           ),

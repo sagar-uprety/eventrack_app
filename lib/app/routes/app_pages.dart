@@ -4,6 +4,15 @@ import '../modules/browse_events/bindings/browse_events_binding.dart';
 import '../modules/browse_events/views/browse_events_view.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
+<<<<<<< Updated upstream
+=======
+import '../modules/create_organization/bindings/create_organization_binding.dart';
+import '../modules/create_organization/views/create_organization_view.dart';
+import '../modules/edit_User_Profile/bindings/edit_user_profile_binding.dart';
+import '../modules/edit_User_Profile/views/edit_user_profile_view.dart';
+import '../modules/eventList/bindings/event_list_binding.dart';
+import '../modules/eventList/views/event_list_view.dart';
+>>>>>>> Stashed changes
 import '../modules/event_detail/bindings/event_detail_binding.dart';
 import '../modules/event_detail/views/event_detail_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -22,7 +31,11 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
+<<<<<<< Updated upstream
   static const INITIAL = Routes.ORGANIZATION_PROFILE;
+=======
+  static const INITIAL = Routes.CREATE_ORGANIZATION;
+>>>>>>> Stashed changes
 
   static final routes = [
     GetPage(
@@ -65,5 +78,28 @@ class AppPages {
       page: () => OrganizationProfileView(),
       binding: OrganizationProfileBinding(),
     ),
+<<<<<<< Updated upstream
+=======
+    GetPage(
+      name: _Paths.PASSWORD_RESET,
+      page: () => PasswordResetView(),
+      binding: PasswordResetBinding(),
+    ),
+    GetPage(
+      name: _Paths.TOKEN_VERIFCATION,
+      page: () => TokenVerifcationView(),
+      binding: TokenVerifcationBinding(),
+    ),
+    GetPage(
+      name: _Paths.EVENT_LIST,
+      page: () => EventListView(),
+      binding: EventListBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE_ORGANIZATION,
+      page: () => CreateOrganizationView(),
+      binding: CreateOrganizationBinding(),
+    ),
+>>>>>>> Stashed changes
   ];
 }

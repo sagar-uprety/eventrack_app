@@ -16,6 +16,10 @@ class FormInputField extends StatelessWidget {
       this.maxLength,
       this.maxLines = 1,
       this.icon,
+      this.onClickedSuffix,
+      this.width,
+      this.helperText,
+      this.keyboardType = TextInputType.text,
       this.suffixIcon,
       this.validator})
       : assert(initialValue == null || controller == null),
@@ -32,50 +36,71 @@ class FormInputField extends StatelessWidget {
   final String label;
   final String? initialValue;
   final bool autofocus, obscureText, readOnly;
+  final String? helperText;
+  final TextInputType keyboardType;
   final int? maxLines;
+  final TextAlign textAlign;
   final int? maxLength;
+  final double? width;
   final String? Function(String?)? validator;
+  final void Function()? onClickedSuffix;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      key: key,
-      controller: controller,
-      initialValue: initialValue,
-      decoration: InputDecoration(
-        counterText: '',
-        labelText: label,
-        floatingLabelBehavior: FloatingLabelBehavior.auto,
-        icon: icon != null ? Icon(icon) : null,
-        suffixIcon: suffixIcon != null ? Icon(suffixIcon) : null,
-        labelStyle: Theme.of(context)
-            .textTheme
-            .bodyText1!
-            .copyWith(color: AppColors.dark50),
-        filled: true,
-        fillColor: AppColors.dark25,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+    return Container(
+      width: width,
+      child: TextFormField(
+        key: key,
+        controller: controller,
+        initialValue: initialValue,
+        keyboardType: keyboardType,
+        textAlign: textAlign,
+        decoration: InputDecoration(
+          counterText: '',
+          labelText: label,
+          helperText: helperText != null ? "**$helperText" : null,
+          helperStyle: Theme.of(context)
+              .textTheme
+              .overline!
+              .copyWith(fontSize: 14, color: AppColors.dark50),
+          alignLabelWithHint: true,
+          floatingLabelBehavior: FloatingLabelBehavior.auto,
+          icon: icon != null ? Icon(icon) : null,
+          suffixIcon: suffixIcon != null
+              ? IconButton(
+                  icon: Icon(suffixIcon),
+                  onPressed: onClickedSuffix,
+                )
+              : null,
+          labelStyle: Theme.of(context)
+              .textTheme
+              .bodyText1!
+              .copyWith(color: AppColors.dark50),
+          filled: true,
+          fillColor: AppColors.dark25,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.dark50, width: 2),
+          ),
+          errorBorder: UnderlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: AppColors.red, width: 4),
+          ),
+          errorStyle: Theme.of(context)
+              .textTheme
+              .overline!
+              .copyWith(fontSize: 14, color: AppColors.red),
+          errorMaxLines: 2,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.dark50, width: 2),
-        ),
-        errorBorder: UnderlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppColors.red, width: 4),
-        ),
-        errorStyle: Theme.of(context)
-            .textTheme
-            .overline!
-            .copyWith(fontSize: 14, color: AppColors.red),
-        errorMaxLines: 2,
+        autofocus: autofocus,
+        obscureText: obscureText,
+        readOnly: readOnly,
+        maxLines: maxLines,
+        maxLength: maxLength,
+        validator: validator,
       ),
-      autofocus: autofocus,
-      obscureText: obscureText,
-      readOnly: readOnly,
-      maxLines: maxLines,
-      maxLength: maxLength,
-      validator: validator,
-    ).paddingSymmetric(horizontal: 15, vertical: 8);
+    ).paddingSymmetric(horizontal: 24, vertical: 8);
   }
 }

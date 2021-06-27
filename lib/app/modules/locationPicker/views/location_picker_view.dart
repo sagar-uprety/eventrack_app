@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/googleMap.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -18,51 +19,35 @@ class LocationPickerView extends GetView<LocationPickerController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: GetBuilder<GoogleLocation>(
-          init: GoogleLocation(),
-          builder: (location) => location.currentLocation == null
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Obx(
-                  () => Stack(
-                    children: [
-                      GoogleMap(
-                        mapType: MapType.normal,
-                        myLocationEnabled: true,
-                        onMapCreated: controller.createMap,
-                        markers: {controller.marker.value},
-                        initialCameraPosition: CameraPosition(
-                          target: LatLng(
-                            location.currentLocation!.latitude,
-                            location.currentLocation!.longitude,
-                          ),
-                          zoom: 15,
-                        ),
-                        onTap: controller.goToPlace,
-                      ),
-                      // FormInputField(
-                      //   label: 'Search Places',
-                      //   readOnly: true,
-                      //   suffixIcon: Icons.search_rounded,
-                      // ).changeToButton(
-                      //   onPressed: () => Get.to(() =>) _search()),
-                      // ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: RoundedRectangularButton(
-                          childText: 'Done',
-                          size: Size(Get.width * 0.40, 50),
-                          onPressed: () {
-                            print(controller.selectedCoordinates);
-                            Get.back(result: controller.selectedCoordinates);
-                            // return pickedLocation;
-                          },
-                        ),
-                      ).paddingOnly(bottom: 20)
-                    ],
-                  ),
-                ),
+        body: Stack(
+          children: [
+            Obx(
+              () => ETGoogleMap(
+                onMapCreated: controller.createMap,
+                myLocationEnabled: true,
+                onTap: controller.goToPlace,
+                markedCoordinates: controller.markedLocation.value,
+              ),
+            ),
+            // FormInputField(
+            //   label: 'Search Places',
+            //   readOnly: true,
+            //   suffixIcon: Icons.search_rounded,
+            // ).changeToButton(
+            //   onPressed: () => Get.to(() =>) _search()),
+            // ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: ETElevatedButton(
+                childText: 'Done',
+                size: Size(Get.width * 0.40, 50),
+                onPressed: () {
+                  print(controller.selectedCoordinates);
+                  Get.back(result: controller.selectedCoordinates);
+                },
+              ),
+            ).paddingOnly(bottom: 20)
+          ],
         ),
       ),
     );
