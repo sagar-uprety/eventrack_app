@@ -4,7 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
 import '../../../global_widgets/appBar.dart';
-import '../../../global_widgets/dialogue_box.dart';
+import '../../../global_widgets/dialog_box.dart';
 import '../../../utilities/colors.dart';
 import '../controllers/participants_list_controller.dart';
 import 'participants_list_cards.dart';
@@ -47,10 +47,13 @@ class ParticipantsListView extends GetView<ParticipantsListController> {
                       onTap: () async {
                         print('archive');
                         return showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return deleteDialog(context);
-                            });
+                          context: context,
+                          builder: (_) => ETDialog(
+                            'Do you want delete this user?',
+                            type: AlertType.Warning,
+                            onProceed: () => print('Proceed'),
+                          ),
+                        );
                       },
                     ),
                     IconSlideAction(

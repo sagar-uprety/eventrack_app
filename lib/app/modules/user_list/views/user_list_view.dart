@@ -4,7 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
 import '../../../global_widgets/appBar.dart';
-import '../../../global_widgets/dialogue_box.dart';
+import '../../../global_widgets/dialog_box.dart';
 import '../../../utilities/colors.dart';
 import '../controllers/user_list_controller.dart';
 import 'user_list.dart';
