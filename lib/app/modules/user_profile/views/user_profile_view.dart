@@ -36,7 +36,7 @@ class UserProfileView extends GetView<UserProfileController> {
                           CircleAvatar(
                             radius: 50,
                             backgroundImage:
-                                NetworkImage(userController.user.profileImage),
+                                NetworkImage(userController.user.profileImage!),
                           ),
                           Positioned(
                             bottom: 5,
@@ -70,21 +70,21 @@ class UserProfileView extends GetView<UserProfileController> {
               ),
               UserProfileCard(
                 title: "Name",
-                value: userController.user.username,
+                value: userController.user.name!,
               ),
               UserProfileCard(
                 title: "Email",
-                value: userController.user.email,
+                value: userController.user.email!,
               ),
               UserProfileCard(
-                  title: "Phone number", value: userController.user.phoneNo),
+                  title: "Phone number", value: userController.user.phone!),
               UserProfileCard(
                 title: "Address",
-                value: userController.user.address,
+                value: userController.user.address!,
               ),
               UserProfileCard(
                 title: "Gender",
-                value: userController.user.gender,
+                value: userController.user.gender!,
               ),
               SizedBox(
                 height: hrheight * 0.05,

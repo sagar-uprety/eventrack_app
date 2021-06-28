@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../global_widgets/card.dart';
-import '../../../pickers/datetimepicker.dart';
-import '../../../routes/app_pages.dart';
-import '../models/Event_listmodel.dart';
+import '../card.dart';
+import '../../pickers/datetimepicker.dart';
+import '../../routes/app_pages.dart';
+import '../../modules/eventList/models/Event_listmodel.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard(this.event);

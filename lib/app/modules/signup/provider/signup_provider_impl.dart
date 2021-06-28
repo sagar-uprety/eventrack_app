@@ -1,6 +1,6 @@
+import 'package:eventrack_app/app/models/user/user.dart';
 import 'package:get/get.dart';
 
-import '../../../models/user.dart';
 import '../../../services/http_service.dart';
 import '../../../services/http_service_impl.dart';
 import './signup_provider.dart';

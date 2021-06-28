@@ -40,7 +40,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.CREATE_ORGANIZATION;
+  static const INITIAL = Routes.USERDASHBOARD;
 
   static final routes = [
     GetPage(

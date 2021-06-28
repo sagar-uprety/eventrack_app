@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../global_widgets/appBar.dart';
 import '../../../global_widgets/formField.dart';
 import '../controllers/event_list_controller.dart';
-import 'eventCard.dart';
+import '../../../global_widgets/tiles/eventCard.dart';
 
 class EventListView extends GetView<EventListController> {
   @override

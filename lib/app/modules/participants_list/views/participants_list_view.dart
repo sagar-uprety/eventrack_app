@@ -71,7 +71,7 @@ class ParticipantsListView extends GetView<ParticipantsListController> {
                   child: ListTile(
                     contentPadding: EdgeInsets.all(0),
                     title: ParticipantsListCard(
-                      username: listcontroller.users[index].username,
+                      username: listcontroller.users[index].name,
                       profileImage: listcontroller.users[index].profileImage,
                       address: listcontroller.users[index].address,
                       email: listcontroller.users[index].email,

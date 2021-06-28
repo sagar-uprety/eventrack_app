@@ -37,13 +37,13 @@ class BrowseEventsView extends GetView<BrowseEventsController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${eventController.eventList![index].eventTitle}',
+                        '${eventController.eventList![index].title}',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w600),
                       ),
                       Divider(),
                       Text(
-                        '${eventController.eventList![index].eventDescription}',
+                        '${eventController.eventList![index].description}',
                         maxLines: 2,
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.w300),

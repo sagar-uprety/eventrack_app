@@ -33,13 +33,13 @@ class UserListView extends GetView<UserListController> {
               child: ListTile(
                 contentPadding: EdgeInsets.all(0),
                 title: UserListCard(
-                  username: '${userListController.users[index].username}',
+                  username: '${userListController.users[index].name}',
                   email: '${userListController.users[index].email}',
                   profileImage:
                       '${userListController.users[index].profileImage}',
                 ),
               ),
-              key: Key(userListController.users[index].email),
+              key: Key(userListController.users[index].email!),
               actionExtentRatio: 0.25,
               secondaryActions: <Widget>[
                 IconSlideAction(
