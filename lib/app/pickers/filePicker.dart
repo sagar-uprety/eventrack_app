@@ -35,7 +35,6 @@ abstract class ETFilePicker {
       FlashMessage.errorFlash(err.message!);
     } catch (err) {
       print(err);
-      FlashMessage.errorFlash(err.toString());
     }
   }
 
