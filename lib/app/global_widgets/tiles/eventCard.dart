@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../card.dart';
+import '../../models/event/event.dart';
 import '../../pickers/datetimepicker.dart';
 import '../../routes/app_pages.dart';
-import '../../modules/eventList/models/Event_listmodel.dart';
+import '../card.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard(this.event);
-  final EventsModel event;
+  final Event event;
   @override
   Widget build(BuildContext context) {
     return ETCard(
@@ -27,7 +27,7 @@ class EventCard extends StatelessWidget {
               ),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(event.eventCover!),
+                image: NetworkImage(event.eventProfile!),
               ),
             ),
           ),
@@ -42,7 +42,7 @@ class EventCard extends StatelessWidget {
                 "${event.categories!.join(", ")}",
                 style: Get.textTheme.subtitle2,
               ),
-              Text("${event.dates!.formatDate[0]}"),
+              Text("${event.dateTime!.dates.formatDate[0]}"),
               Text("${event.location!.location}"),
             ],
           ).paddingSymmetric(horizontal: 10, vertical: 4),

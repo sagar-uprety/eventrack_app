@@ -1,4 +1,4 @@
-import 'package:eventrack_app/app/models/user/user.dart';
+import '../../../models/user/user.dart';
 
 //TODO: searchEvents and FilterEvents
 abstract class SignUpProvider {

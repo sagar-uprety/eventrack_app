@@ -1,5 +1,6 @@
-import 'package:eventrack_app/app/models/organization/organization.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../organization/organization.dart';
 
 part 'user.g.dart';
 
@@ -11,6 +12,7 @@ part 'user.g.dart';
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class User {
   User({
+    this.id,
     this.profileImage,
     this.name,
     this.email,
@@ -18,10 +20,14 @@ class User {
     this.phone,
     this.address,
     this.gender,
+    this.isVerified,
     this.blockStatus,
     this.registeredEvents,
     this.favourites,
   });
+
+  @JsonKey(name: '_id')
+  final String? id;
 
   final String? profileImage;
 
@@ -37,6 +43,9 @@ class User {
 
   final String? gender;
 
+  @JsonKey(name: 'hasVerifiedEmail')
+  final bool? isVerified;
+
   // final Organization? organization;
 
   final List<String>? registeredEvents;
@@ -46,5 +55,6 @@ class User {
   final BlockStatus? blockStatus;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }

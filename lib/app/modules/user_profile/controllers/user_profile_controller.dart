@@ -1,5 +1,6 @@
-import 'package:eventrack_app/app/models/user/user.dart';
 import 'package:get/get.dart';
+
+import '../../../models/user/user.dart';
 
 class UserProfileController extends GetxController {
   final user = User(

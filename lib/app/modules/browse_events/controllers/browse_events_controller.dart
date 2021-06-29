@@ -1,6 +1,6 @@
-import 'package:eventrack_app/app/models/event/event.dart';
 import 'package:get/get.dart';
 
+import '../../../models/event/event.dart';
 import '../provider/events_pro_impl.dart';
 import '../provider/events_provider.dart';
 

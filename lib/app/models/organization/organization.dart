@@ -1,9 +1,13 @@
-import 'package:eventrack_app/app/models/user/user.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../user/user.dart';
+
 part 'organization.g.dart';
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class Organization {
+  @JsonKey(name: '_id')
+  final String? id;
   final String? name;
   final String? email;
   final String? description;
@@ -15,7 +19,8 @@ class Organization {
   final BlockStatus? blockStatus;
 
   Organization(
-      {this.name,
+      {this.id,
+      this.name,
       this.email,
       this.description,
       this.profile,

@@ -1,7 +1,9 @@
-import 'package:dart_date/dart_date.dart';
-import 'package:eventrack_app/app/models/event/event.dart';
 import 'package:flutter/material.dart';
+
+import 'package:dart_date/dart_date.dart';
 import 'package:get/get.dart';
+
+import '../../../models/event/event.dart';
 import '../../../pickers/datetimepicker.dart';
 
 class UserdashboardController extends GetxController {

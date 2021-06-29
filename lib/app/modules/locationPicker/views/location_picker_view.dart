@@ -1,4 +1,3 @@
-import 'package:eventrack_app/app/global_widgets/googleMap.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

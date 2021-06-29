@@ -1,5 +1,6 @@
-import 'package:eventrack_app/app/models/organization/organization.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../organization/organization.dart';
 
 part 'event.g.dart';
 
@@ -8,6 +9,9 @@ part 'event.g.dart';
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class Event {
+  @JsonKey(name: '_id')
+  final String? id;
+
   final String? title;
 
   final String? description;
@@ -27,6 +31,7 @@ class Event {
   final List<String>? registeredUsers;
 
   Event({
+    this.id,
     this.title,
     this.description,
     this.eventProfile,

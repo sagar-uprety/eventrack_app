@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../global_widgets/button.dart';
 import '../../../../pickers/datetimepicker.dart';
+import '../../../../temp_data.dart';
 import '../../../../utilities/colors.dart';
 import '../../controllers/event_detail_controller.dart';
 
@@ -22,17 +23,17 @@ class EventDetailTab1 extends GetView<EventDetailController> {
             style: Get.textTheme.headline5!
                 .copyWith(fontWeight: FontWeight.w700, color: AppColors.dark80),
           ),
+          //TODO: Change this after you add a method to get author's data.
           subtitle: ListTile(
             contentPadding: EdgeInsets.all(0),
             leading: CircleAvatar(
               radius: 18,
               backgroundImage: NetworkImage(
-                controller
-                    .event.author!.profile, //? Event author profile picture
+                TempData.user.profileImage!, //? Event author profile picture
               ),
             ),
             title: Text(
-              controller.event.author!.name, //? Event author name
+              TempData.user.name!, //? Event author name
               style: Get.textTheme.subtitle1!
                   .copyWith(fontWeight: FontWeight.w500),
             ),
@@ -65,9 +66,9 @@ class EventDetailTab1 extends GetView<EventDetailController> {
                 leading: Icon(Icons.calendar_today_outlined),
                 horizontalTitleGap: 0,
                 title: Text(
-                  controller.event.dates!.length == 1
-                      ? '${controller.event.dates!.formatDate[0]}'
-                      : '${controller.event.dates!.formatDate[0]}\n${controller.event.dates!.formatDate[1]}',
+                  controller.event.dateTime!.dates.length == 1
+                      ? '${controller.event.dateTime!.dates.formatDate[0]}'
+                      : '${controller.event.dateTime!.dates.formatDate[0]}\n${controller.event.dateTime!.dates.formatDate[1]}',
                   style: Get.textTheme.overline,
                 ),
               ),
@@ -79,7 +80,7 @@ class EventDetailTab1 extends GetView<EventDetailController> {
                 horizontalTitleGap: 0,
                 leading: Icon(Icons.timer),
                 title: Text(
-                  '${controller.event.times![0]}\n${controller.event.times![1]}',
+                  '${controller.event.dateTime!.times[1]}\n${controller.event.dateTime!.times[1]}',
                   style: Get.textTheme.overline,
                 ),
               ),

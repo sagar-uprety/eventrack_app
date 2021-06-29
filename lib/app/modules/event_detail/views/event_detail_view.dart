@@ -25,9 +25,9 @@ class EventDetailView extends GetView<EventDetailController> {
             width: Get.width,
             height: Get.height * 0.42,
             decoration: BoxDecoration(
-              image: controller.event.eventCover != null
+              image: controller.event.eventProfile != null
                   ? DecorationImage(
-                      image: NetworkImage(controller.event.eventCover!),
+                      image: NetworkImage(controller.event.eventProfile!),
                       fit: BoxFit.cover,
                     )
                   : null,
@@ -40,7 +40,7 @@ class EventDetailView extends GetView<EventDetailController> {
                 ],
               ),
             ),
-            child: !(controller.event.eventCover != null)
+            child: !(controller.event.eventProfile != null)
                 ? Center(
                     child: Text(
                       controller.event.title!.toUpperCase(),

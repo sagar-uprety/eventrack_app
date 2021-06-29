@@ -13,7 +13,6 @@ import 'widgets/icon_badge.dart';
 class UserdashboardView extends GetView<UserdashboardController> {
   @override
   Widget build(BuildContext context) {
-    print(controller.event.toJson());
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,

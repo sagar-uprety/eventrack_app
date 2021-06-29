@@ -1,6 +1,3 @@
-import 'package:eventrack_app/app/global_widgets/button.dart';
-import 'package:eventrack_app/app/routes/app_pages.dart';
-import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
