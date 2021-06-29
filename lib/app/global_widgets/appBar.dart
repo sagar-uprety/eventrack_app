@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../utilities/colors.dart';
 
-///Set the `addBackButton` to true
 class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
   ///Text to display at the center of the `AppBar`
   final String? title;
@@ -25,6 +24,7 @@ class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
   ///List of actions to display at the trailing end of the `AppBar`
   final List<Widget>? actions;
 
+  ///Set the `addBackButton` to true
   ETAppBar({
     this.title,
     Key? key,

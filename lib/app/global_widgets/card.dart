@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 import '../utilities/colors.dart';
 
-///Adds a padded `Card` with `radius: 12` in each corner.
 class ETCard extends StatelessWidget {
+  ///Adds a padded `Card` with `radius: 12` in each corner.
   const ETCard(
       {Key? key,
       //TODO: Make this required.

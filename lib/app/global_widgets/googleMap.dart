@@ -5,10 +5,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../services/location.dart';
 
-///Create a `Widget` of `GoogleMap`.
-///
-///Enclose this widget with a `SizedBox` for a fixed size.
 class ETGoogleMap extends GetView<GoogleLocation> {
+  ///Create a `Widget` of `GoogleMap`.
+  ///
+  ///Enclose this widget with a `SizedBox` for a fixed size.
   const ETGoogleMap(
       {Key? key,
       required this.onMapCreated,

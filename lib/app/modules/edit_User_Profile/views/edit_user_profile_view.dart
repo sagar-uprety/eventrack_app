@@ -156,6 +156,6 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
             ),
           )
           .toList(),
-    ).paddingSymmetric(horizontal: 15, vertical: 8);
+    ).paddingSymmetric(horizontal: 24, vertical: 8);
   }
 }

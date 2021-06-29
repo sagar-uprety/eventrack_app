@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 
 import '../utilities/colors.dart';
 
-///A Rectangular `ElevatedButton` with default radius
 class ETElevatedButton extends StatelessWidget {
+  ///A Rectangular `ElevatedButton` with default radius
   const ETElevatedButton({
     Key? key,
     required this.childText,
