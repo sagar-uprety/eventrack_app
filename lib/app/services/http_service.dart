@@ -1,4 +1,4 @@
-import 'package:eventrack_app/app/models/response.dart';
+import '../models/response.dart';
 
 abstract class HttpService {
   void init();

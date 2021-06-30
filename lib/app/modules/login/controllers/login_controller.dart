@@ -1,11 +1,12 @@
-import 'package:eventrack_app/app/global_widgets/message.dart';
-import 'package:eventrack_app/app/models/response.dart';
-import 'package:eventrack_app/app/models/user/user.dart';
-import 'package:eventrack_app/app/modules/login/provider/login_provider.dart';
-import 'package:eventrack_app/app/modules/login/provider/login_providerImpl.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+
+import '../../../global_widgets/message.dart';
+import '../../../models/response.dart';
+import '../../../models/user/user.dart';
+import '../provider/login_provider.dart';
+import '../provider/login_providerImpl.dart';
 
 class LoginController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();

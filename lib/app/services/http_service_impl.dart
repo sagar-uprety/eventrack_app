@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:eventrack_app/app/models/response.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import '../models/response.dart';
 import 'http_service.dart';
 
 //TODO: Add PUT, PATCH, DELETE Requests
