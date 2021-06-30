@@ -8,6 +8,7 @@ part of 'organization.dart';
 
 Organization _$OrganizationFromJson(Map<String, dynamic> json) {
   return Organization(
+    id: json['_id'] as String?,
     name: json['name'] as String?,
     email: json['email'] as String?,
     description: json['description'] as String?,
@@ -36,6 +37,7 @@ Map<String, dynamic> _$OrganizationToJson(Organization instance) {
     }
   }
 
+  writeNotNull('_id', instance.id);
   writeNotNull('name', instance.name);
   writeNotNull('email', instance.email);
   writeNotNull('description', instance.description);

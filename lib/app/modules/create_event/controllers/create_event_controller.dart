@@ -139,17 +139,21 @@ class CreateEventController extends GetxController {
   }
 
   bool dateAndTimeValidator() {
+    String? message;
+    bool state = false;
     if (dates.value.length == 0 || times.value.length == 0)
-      FlashMessage.errorFlash('Date or Time not picked.');
+      message = 'Date or Time not picked.';
     else if (isOneDayEvent.value && dates.value.length != 1)
-      FlashMessage.errorFlash('One Day Event but more than 1 dates found.');
+      message = 'One Day Event but more than 1 dates found.';
     else if (!isOneDayEvent.value && dates.value.length != 2)
-      FlashMessage.errorFlash('Multiple Day Event but only 1 date found.');
+      message = 'Multiple Day Event but only 1 date found.';
     else if (times.value.length != 2)
-      FlashMessage.errorFlash('Start and end time error.');
+      message = 'Start and end time error.';
     else
-      return true;
-    return false;
+      state = true;
+
+    FlashMessage(state, message: message);
+    return state;
   }
 
   String? locationValidator(String? value) {
@@ -161,7 +165,7 @@ class CreateEventController extends GetxController {
 
   coordinatesValidator() {
     if (coordinates.value == origin) {
-      FlashMessage.errorFlash('Location coordinates not picked.');
+      FlashMessage(false, message: 'Location coordinates not picked.');
       return false;
     }
     return true;
@@ -183,7 +187,6 @@ class CreateEventController extends GetxController {
 
   void submit() {
     if (validateForm2() && coordinatesValidator()) {
-      FlashMessage.successFlash('Submitted');
       print(
           "Data: {name: ${eventName.text}, description:${description.text}, categories: ${categoriesText.text}, date: ${dates.value},location: ${location.text}, coordinates: ${coordinates.value}}");
     }

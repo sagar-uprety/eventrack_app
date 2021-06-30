@@ -1,3 +1,8 @@
+import 'package:eventrack_app/app/global_widgets/message.dart';
+import 'package:eventrack_app/app/models/response.dart';
+import 'package:eventrack_app/app/models/user/user.dart';
+import 'package:eventrack_app/app/modules/login/provider/login_provider.dart';
+import 'package:eventrack_app/app/modules/login/provider/login_providerImpl.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,15 +13,16 @@ class LoginController extends GetxController {
   late TextEditingController password;
   final formKey = GlobalKey<FormState>();
   final bottomSheetFormKey = GlobalKey<FormState>();
+  final RxBool obscurePassword = true.obs;
 
-  // late LoginProvider _loginProvider;
+  late LoginProvider _loginProvider;
   late TextEditingController bottomSheetEmail;
   @override
   void onInit() {
     email = TextEditingController();
     password = TextEditingController();
     bottomSheetEmail = TextEditingController();
-    // _loginProvider = Get.find<LoginProviderImpl>();
+    _loginProvider = Get.find<LoginProviderImpl>();
 
     super.onInit();
   }
@@ -27,6 +33,11 @@ class LoginController extends GetxController {
     password.dispose();
     bottomSheetEmail.dispose();
     super.onClose();
+  }
+
+  void changePasswordObscurity() {
+    obscurePassword.value = !obscurePassword.value;
+    update();
   }
 
   String? emailValidator(String? value) {
@@ -47,22 +58,19 @@ class LoginController extends GetxController {
   }
 
   Future login() async {
-    print("Hello World");
-
-    /*   if (signupFormKey.currentState!.validate()) {
-      //do API Call for signUp
-      // registerUser(emailController.text, passwordController.text);
-
-    } */
-    // try {
-    //   await _loginProvider.registerUser(data: {
-    //     "name": 'Test Test',
-    //     "email": "test12@gmail.com",
-    //     "password": "nepal123"
-    //   });
-    // } catch (e) {
-    //   print(e);
-    // }
+    try {
+      if (formKey.currentState!.validate()) {
+        ResponseModel? response = await _loginProvider.loginUser(
+          data: User(
+            email: email.text.trim(),
+            password: password.text,
+          ).toJson(),
+        );
+        FlashMessage(response!.state, message: response.message);
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   void getToken() {

@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/models/response.dart';
 import 'package:get/get.dart';
 
 import '../../../models/user/user.dart';
@@ -15,21 +16,16 @@ class LoginProviderImpl implements LoginProvider {
   }
 
   @override
-  Future<User?> registerUser({Map<String, dynamic>? data}) async {
+  Future<ResponseModel?> loginUser({Map<String, dynamic>? data}) async {
     try {
       //*This is where it uses our HttpService class to make dio requests and call API (backend)
-      print(data);
-      final response =
-          await _httpService.postRequest('/auth/signup', data: data);
 
-      //*Now converting JSON Response to Dart Object. See Models to see how it's done
-      final parsedResponse = User.fromJson(response!.data);
-
-      // return parsedResponse.eventList; //dart List<Evemt>object
+      final ResponseModel? response =
+          await _httpService.postRequest('/auth/login', data: data!);
+      return response;
     } on Exception catch (e) {
       print(e);
       return null;
     }
-    throw UnimplementedError();
   }
 }

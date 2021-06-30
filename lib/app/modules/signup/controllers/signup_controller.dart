@@ -1,3 +1,6 @@
+import 'package:eventrack_app/app/global_widgets/message.dart';
+import 'package:eventrack_app/app/models/response.dart';
+import 'package:eventrack_app/app/models/user/user.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -11,6 +14,8 @@ class SignupController extends GetxController {
   late TextEditingController name;
   late TextEditingController email;
   late TextEditingController password;
+
+  final RxBool obscurePassword = true.obs;
 
   late SignUpProvider _signupProvider;
 
@@ -30,6 +35,11 @@ class SignupController extends GetxController {
     email.dispose();
     password.dispose();
     super.onClose();
+  }
+
+  void changePasswordObscurity() {
+    obscurePassword.value = !obscurePassword.value;
+    update();
   }
 
   String? nameValidator(String? value) {
@@ -53,19 +63,17 @@ class SignupController extends GetxController {
   }
 
   Future signup() async {
-    print("Hello World");
-
-    /*   if (signupFormKey.currentState!.validate()) {
-      //do API Call for signUp
-      // registerUser(email.text, password.text);
-
-    } */
     try {
-      await _signupProvider.registerUser(data: {
-        "name": 'Test Test',
-        "email": "test12@gmail.com",
-        "password": "nepal123"
-      });
+      if (signupFormKey.currentState!.validate()) {
+        ResponseModel? response = await _signupProvider.registerUser(
+          data: User(
+            name: name.text.trim(),
+            email: email.text.trim(),
+            password: password.text,
+          ).toJson(),
+        );
+        FlashMessage(response!.state, message: response.message);
+      }
     } catch (e) {
       print(e);
     }

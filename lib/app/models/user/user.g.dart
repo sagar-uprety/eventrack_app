@@ -8,6 +8,7 @@ part of 'user.dart';
 
 User _$UserFromJson(Map<String, dynamic> json) {
   return User(
+    id: json['_id'] as String?,
     profileImage: json['profileImage'] as String?,
     name: json['name'] as String?,
     email: json['email'] as String?,
@@ -15,6 +16,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
     phone: json['phone'] as String?,
     address: json['address'] as String?,
     gender: json['gender'] as String?,
+    isVerified: json['hasVerifiedEmail'] as bool?,
     blockStatus: json['blockStatus'] == null
         ? null
         : BlockStatus.fromJson(json['blockStatus'] as Map<String, dynamic>),
@@ -36,6 +38,7 @@ Map<String, dynamic> _$UserToJson(User instance) {
     }
   }
 
+  writeNotNull('_id', instance.id);
   writeNotNull('profileImage', instance.profileImage);
   writeNotNull('name', instance.name);
   writeNotNull('email', instance.email);
@@ -43,6 +46,7 @@ Map<String, dynamic> _$UserToJson(User instance) {
   writeNotNull('phone', instance.phone);
   writeNotNull('address', instance.address);
   writeNotNull('gender', instance.gender);
+  writeNotNull('hasVerifiedEmail', instance.isVerified);
   writeNotNull('registeredEvents', instance.registeredEvents);
   writeNotNull('favourites', instance.favourites);
   writeNotNull('blockStatus', instance.blockStatus?.toJson());

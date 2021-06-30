@@ -22,9 +22,9 @@ class EventsProviderImpl implements EventsProvider {
       final response = await _httpService.getRequest('/events');
 
       //*Now converting JSON Response to Dart Object. See Models to see how it's done
-      final parsedResponse = EventList.fromJson(response!.data);
+      // final parsedResponse = EventList.fromJson(response!.data);
 
-      return parsedResponse.eventList; //dart List<Evemt>object
+      // return parsedResponse.eventList; //dart List<Evemt>object
     } on Exception catch (e) {
       print(e);
       return null;

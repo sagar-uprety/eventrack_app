@@ -1,9 +1,9 @@
-import 'package:dio/dio.dart';
+import 'package:eventrack_app/app/models/response.dart';
 
 abstract class HttpService {
   void init();
-  Future<Response?> getRequest(String url,
-      {Map<String, dynamic> parameters, String? authToken});
-  Future<Response?> postRequest(String url,
+  Future<ResponseModel> getRequest(String url,
+      {Map<String, dynamic> data, String? authToken});
+  Future<ResponseModel> postRequest(String url,
       {Map<String, dynamic>? data, String? authToken});
 }

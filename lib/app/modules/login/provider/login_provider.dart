@@ -1,7 +1,7 @@
-import '../../../models/user/user.dart';
+import 'package:eventrack_app/app/models/response.dart';
 
 //TODO: searchEvents and FilterEvents
 
 abstract class LoginProvider {
-  Future<User?> registerUser({Map<String, dynamic> data});
+  Future<ResponseModel?> loginUser({Map<String, dynamic> data});
 }

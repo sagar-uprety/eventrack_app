@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:eventrack_app/app/models/response.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'http_service.dart';
@@ -22,12 +23,8 @@ class HttpImplementation implements HttpService {
 
   //GET Request
   @override
-  Future<Response?> getRequest(
-    String url, {
-    Map<String, dynamic>? parameters,
-    String? authToken =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGI0YjFmNjU1ODZjYTJkYWMwNzA1MWQiLCJpYXQiOjE2MjI1NTc2NzQsImV4cCI6MTYyNTE0OTY3NH0.P94VS_bTVR_HbgJ0utRBobs2Dw_wjaTmfkx9DfmnGvo',
-  }) async {
+  Future<ResponseModel> getRequest(String url,
+      {Map<String, dynamic>? data, String? authToken}) async {
     late Response response;
     // _dio.options.headers = {
     //   'auth-token':
@@ -45,14 +42,13 @@ class HttpImplementation implements HttpService {
     //   print("Response: $response");
     // }
     if (authToken != null) _dio.options.headers = {'auth-token': authToken};
-    response = await _dio.get(url, queryParameters: parameters);
-    print(response.data['event_list']);
-    return response;
+    response = await _dio.get(url, queryParameters: data);
+    return ResponseModel.fromJson(response.data);
   }
 
   //POST REQUEST
   @override
-  Future<Response> postRequest(String url,
+  Future<ResponseModel> postRequest(String url,
       {Map<String, dynamic>? data, String? authToken}) async {
     late Response response;
 
@@ -64,8 +60,7 @@ class HttpImplementation implements HttpService {
     // }
     if (authToken != null) _dio.options.headers = {'auth-token': authToken};
     response = await _dio.post(url, data: data);
-
-    return response;
+    return ResponseModel.fromJson(response.data);
   }
 
   //These intercepts intercepts all of our requests, responses and error

@@ -11,7 +11,6 @@ import '../controllers/signup_controller.dart';
 
 class SignUpView extends GetView<SignupController> {
   final signupController = Get.find<SignupController>();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class SignUpView extends GetView<SignupController> {
       body: Column(
         children: [
           Form(
-            key: _formKey,
+            key: controller.signupFormKey,
             child: Column(
               children: [
                 FormInputField(
@@ -39,11 +38,18 @@ class SignUpView extends GetView<SignupController> {
                   label: 'Email',
                   validator: controller.emailValidator,
                 ),
-                FormInputField(
-                  key: ValueKey('password'),
-                  controller: controller.password,
-                  label: 'Pasword',
-                  validator: controller.passwordValidator,
+                Obx(
+                  () => FormInputField(
+                    key: ValueKey('password'),
+                    controller: controller.password,
+                    obscureText: controller.obscurePassword.value,
+                    suffixIcon: !controller.obscurePassword.value
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                    onClickedSuffix: controller.changePasswordObscurity,
+                    label: 'Pasword',
+                    validator: controller.passwordValidator,
+                  ),
                 ),
                 ETElevatedButton(
                   childText: 'Sign Up',

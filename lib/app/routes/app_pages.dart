@@ -40,7 +40,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.EVENT_DETAIL;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
