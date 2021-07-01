@@ -22,28 +22,51 @@ class HttpImplementation implements HttpService {
   }
 
   //GET Request
-  @override
+  // @override
+  // Future<ResponseModel> getRequest(String url,
+  //     {Map<String, dynamic>? data, String? authToken}) async {
+  //   late Response response;
+  //   // _dio.options.headers = {
+  //   //   'auth-token':
+  //   //       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGI0YjFmNjU1ODZjYTJkYWMwNzA1MWQiLCJpYXQiOjE2MjI1NTc2NzQsImV4cCI6MTYyNTE0OTY3NH0.P94VS_bTVR_HbgJ0utRBobs2Dw_wjaTmfkx9DfmnGvo'
+  //   // };
+  //   // if (parameters != null && authToken != null) {
+  //   //   Options options = Options(headers: {'auth-token': authToken});
+  //   //   response = await _dio.get(
+  //   //     url,
+  //   //     queryParameters: parameters,
+  //   //     options: options,
+  //   //   );
+  //   // } else {
+  //   //   response = await _dio.get(url);
+  //   //   print("Response: $response");
+  //   // }
+  //   if (authToken != null) _dio.options.headers = {'auth-token': authToken};
+  //   response = await _dio.get(url, queryParameters: data);
+  //   return ResponseModel.fromJson(response.data);
+  // }
+
   Future<ResponseModel> getRequest(String url,
-      {Map<String, dynamic>? data, String? authToken}) async {
-    late Response response;
-    // _dio.options.headers = {
-    //   'auth-token':
-    //       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGI0YjFmNjU1ODZjYTJkYWMwNzA1MWQiLCJpYXQiOjE2MjI1NTc2NzQsImV4cCI6MTYyNTE0OTY3NH0.P94VS_bTVR_HbgJ0utRBobs2Dw_wjaTmfkx9DfmnGvo'
-    // };
-    // if (parameters != null && authToken != null) {
-    //   Options options = Options(headers: {'auth-token': authToken});
-    //   response = await _dio.get(
-    //     url,
-    //     queryParameters: parameters,
-    //     options: options,
-    //   );
-    // } else {
-    //   response = await _dio.get(url);
-    //   print("Response: $response");
-    // }
-    if (authToken != null) _dio.options.headers = {'auth-token': authToken};
-    response = await _dio.get(url, queryParameters: data);
-    return ResponseModel.fromJson(response.data);
+      {Map<String, dynamic>? data}) async {
+    try {
+      return await _dio
+          .get(
+        url,
+      )
+          .then((Response value) {
+        ResponseModel res = ResponseModel.fromJson(value.data);
+        // print('Object: $res');
+        // Map<String, dynamic> resMap = res.toJson();
+        // print('Map: $resMap');
+        return res;
+      }).timeout(const Duration(seconds: 30));
+    } catch (err) {
+      print(err);
+      return ResponseModel.fromJson({
+        'message': "Unstable Network Connection",
+        'status': false,
+      });
+    }
   }
 
   //POST REQUEST
@@ -69,7 +92,7 @@ class HttpImplementation implements HttpService {
       InterceptorsWrapper(
         onRequest: (req, handler) {
           print(
-              "${req.method} | ${req.baseUrl} | ${req.path} | ${req.data}| {req.headers}");
+              "${req.method} | ${req.baseUrl} | ${req.path} | ${req.data}| ${req.headers}");
           return handler.next(req); //continue
         },
         onResponse: (res, handler) {

@@ -67,7 +67,8 @@ class LoginController extends GetxController {
             password: password.text,
           ).toJson(),
         );
-        FlashMessage(response!.state, message: response.message);
+        print(response!.message);
+        FlashMessage(response.state, message: response.message);
       }
     } catch (e) {
       print(e);

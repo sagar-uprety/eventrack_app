@@ -1,7 +1,7 @@
+import 'package:eventrack_app/app/modules/browse_events/bindings/browse_events_binding.dart';
+import 'package:eventrack_app/app/modules/browse_events/views/browse_events_view.dart';
 import 'package:get/get.dart';
 
-import '../modules/browse_events/bindings/browse_events_binding.dart';
-import '../modules/browse_events/views/browse_events_view.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
 import '../modules/create_organization/bindings/create_organization_binding.dart';
@@ -59,11 +59,6 @@ class AppPages {
       binding: SignupBinding(),
     ),
     GetPage(
-      name: _Paths.BROWSE_EVENTS,
-      page: () => BrowseEventsView(),
-      binding: BrowseEventsBinding(),
-    ),
-    GetPage(
       name: _Paths.EVENT_DETAIL,
       page: () => EventDetailView(),
       binding: EventDetailBinding(),
@@ -77,6 +72,11 @@ class AppPages {
       name: _Paths.LOCATION_PICKER,
       page: () => LocationPickerView(),
       binding: LocationPickerBinding(),
+    ),
+    GetPage(
+      name: _Paths.BROWSE_EVENTS,
+      page: () => BrowseEventsView(),
+      binding: BrowseEventsBinding(),
     ),
     GetPage(
       name: _Paths.USER_PROFILE,

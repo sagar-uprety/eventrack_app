@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -26,7 +27,6 @@ class SignupController extends GetxController {
     email = TextEditingController();
     password = TextEditingController();
     _signupProvider = Get.find<SignUpProviderImpl>();
-
     super.onInit();
   }
 
@@ -48,8 +48,8 @@ class SignupController extends GetxController {
   }
 
   String? emailValidator(String? value) {
-    if (value!.isEmpty) return 'This field cannot be empty.';
-    if (!GetUtils.isEmail(value)) {
+    if (value!.trim().isEmpty) return 'This field cannot be empty.';
+    if (!GetUtils.isEmail(value.trim())) {
       return 'Please enter a valid email';
     }
     return null;
@@ -73,6 +73,10 @@ class SignupController extends GetxController {
           ).toJson(),
         );
         FlashMessage(response!.state, message: response.message);
+        Get.toNamed(
+          Routes.TOKEN_VERIFCATION,
+          arguments: email.text.trim(),
+        );
       }
     } catch (e) {
       print(e);

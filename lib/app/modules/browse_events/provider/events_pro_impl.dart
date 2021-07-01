@@ -1,3 +1,5 @@
+import 'package:eventrack_app/app/models/event/event_list.dart';
+import 'package:eventrack_app/app/models/response.dart';
 import 'package:get/get.dart';
 
 import '../../../models/event/event.dart';
@@ -24,6 +26,10 @@ class EventsProviderImpl implements EventsProvider {
       // final parsedResponse = EventList.fromJson(response!.data);
 
       // return parsedResponse.eventList; //dart List<Evemt>object
+      final ResponseModel response = await _httpService.getRequest('/events/');
+      print('1');
+      print(response.toJson());
+      return response.eventList!.eventList;
     } on Exception catch (e) {
       print(e);
       return null;

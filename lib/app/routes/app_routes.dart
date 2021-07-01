@@ -7,7 +7,6 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const LOGIN = _Paths.LOGIN;
   static const SIGNUP = _Paths.SIGNUP;
-  static const BROWSE_EVENTS = _Paths.BROWSE_EVENTS;
   static const EVENT_DETAIL = _Paths.EVENT_DETAIL;
   static const CREATE_EVENT = _Paths.CREATE_EVENT;
   static const LOCATION_PICKER = _Paths.LOCATION_PICKER;
@@ -21,13 +20,13 @@ abstract class Routes {
   static const TOKEN_VERIFCATION = _Paths.TOKEN_VERIFCATION;
   static const EVENT_LIST = _Paths.EVENT_LIST;
   static const CREATE_ORGANIZATION = _Paths.CREATE_ORGANIZATION;
+  static const BROWSE_EVENTS = _Paths.BROWSE_EVENTS;
 }
 
 abstract class _Paths {
   static const HOME = '/home';
   static const LOGIN = '/login';
   static const SIGNUP = '/signup';
-  static const BROWSE_EVENTS = '/browse-events';
   static const EVENT_DETAIL = '/event-detail';
   static const CREATE_EVENT = '/create-event';
   static const LOCATION_PICKER = '/location-picker';
@@ -41,4 +40,5 @@ abstract class _Paths {
   static const TOKEN_VERIFCATION = '/token-verifcation';
   static const EVENT_LIST = '/event-list';
   static const CREATE_ORGANIZATION = '/create-organization';
+  static const BROWSE_EVENTS = '/browse-events';
 }
