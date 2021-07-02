@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../global_widgets/appBar.dart';
+import '../../../global_widgets/button.dart';
+import '../../../global_widgets/formField.dart';
+import '../../../utilities/colors.dart';
 import '../controllers/edit_user_profile_controller.dart';
-import 'edit_textfield.dart';
-import 'select_gender.dart';
 
 class EditUserProfileView extends GetView<EditUserProfileController> {
   final EditUserProfileController editController =
@@ -13,9 +15,6 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    MediaQueryData queryData = MediaQuery.of(context);
-    double hrwidth = queryData.size.width;
-    double hrheight = queryData.size.height;
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -24,132 +23,139 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          leading: BackButton(
-            onPressed: () {
-              print("Back");
-              Get.back();
-            },
-          ),
-          title: Text('Edit User Data'),
-          centerTitle: true,
+        appBar: ETAppBar(
+          title: 'Edit Your Profile',
+          addBackButton: true,
         ),
-        body: Padding(
-          padding: EdgeInsets.only(top: hrwidth * 0.03),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 95,
-                        width: 95,
-                        child: Stack(
-                          clipBehavior: Clip.none,
-                          fit: StackFit.expand,
-                          children: [
-                            CircleAvatar(
-                              radius: 50,
-                              backgroundImage: NetworkImage(
-                                  editController.user.profileImage),
-                            ),
-                            Positioned(
-                              bottom: -5,
-                              right: -10,
-                              child: SizedBox(
-                                height: 35,
-                                width: 35,
-                                child: FloatingActionButton(
-                                  elevation: 0.0,
-                                  backgroundColor: Color(0xFFC4D5EE),
-                                  child: Icon(
-                                    Icons.camera_alt_outlined,
-                                    color: Colors.blue,
-                                    size: 20,
-                                  ),
-                                  onPressed: () {
-                                    print("Change picture");
-                                  },
-                                  shape: CircleBorder(
-                                    side: BorderSide(
-                                        width: 3, color: Colors.white),
-                                  ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 95,
+                      width: 95,
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        fit: StackFit.expand,
+                        children: [
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage:
+                                NetworkImage(controller.profileImage),
+                          ),
+                          Positioned(
+                            bottom: -5,
+                            right: -10,
+                            child: SizedBox(
+                              height: 35,
+                              width: 35,
+                              child: FloatingActionButton(
+                                elevation: 0.0,
+                                backgroundColor: Color(0xFFC4D5EE),
+                                child: Icon(
+                                  Icons.camera_alt_outlined,
+                                  color: Colors.blue,
+                                  size: 20,
+                                ),
+                                onPressed: () {
+                                  print("Change picture");
+                                },
+                                shape: CircleBorder(
+                                  side:
+                                      BorderSide(width: 3, color: Colors.white),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                EditUserTextField(
-                  title: "Name",
-                  value: editController.user.username,
-                  icon: Icon(Icons.person),
-                  editable: true,
-                ),
-                EditUserTextField(
-                    title: "Email",
-                    value: editController.user.email,
-                    icon: Icon(Icons.email),
-                    editable: false),
-                EditUserTextField(
-                    title: "Phone number",
-                    value: editController.user.phoneNo,
-                    icon: Icon(Icons.phone),
-                    editable: true),
-                EditUserTextField(
-                    title: "Address",
-                    value: editController.user.address,
-                    icon: Icon(Icons.location_on),
-                    editable: true),
-                Center(child: SelectGender()),
-                SizedBox(
-                  height: hrheight * 0.0005,
-                ),
-                Center(
-                  child: TextButton(
-                    child: Text(
-                      "Change Password",
-                      style: Theme.of(context).textTheme.button!.copyWith(
-                          color: Colors.blueAccent,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18),
                     ),
-                    onPressed: () {
-                      print('PasswordChanged');
-                    },
-                  ),
+                  ],
                 ),
-                SizedBox(
-                  height: hrheight * 0.01,
-                ),
-                Center(
-                  child: Container(
-                    width: 150,
-                    height: 50,
-                    child: MaterialButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                        padding: EdgeInsets.all(10),
-                        color: Color(0xFFD0D0D0),
-                        onPressed: () {
-                          print("Saved");
-                        },
-                        child: Text("Save")),
-                  ),
-                ),
-                SizedBox(
-                  height: hrheight * 0.01,
-                )
-              ],
-            ),
+              ),
+              FormInputField(
+                key: ValueKey('name'),
+                controller: controller.name,
+                label: 'Name',
+                validator: controller.nameValidator,
+              ),
+              FormInputField(
+                key: ValueKey('email'),
+                controller: controller.email,
+                label: 'Email',
+                readOnly: true,
+                validator: controller.emailValidator,
+              ),
+              FormInputField(
+                key: ValueKey('phone'),
+                controller: controller.phone,
+                label: 'Phone',
+                validator: controller.phoneValidator,
+              ),
+              FormInputField(
+                key: ValueKey('address'),
+                controller: controller.address,
+                label: 'Address',
+                validator: controller.addressValidator,
+              ),
+              _dropdown(),
+              ETTextButton(
+                'Change Password',
+                onPressed: () => print('Change Password'),
+                underline: false,
+              ),
+              ETElevatedButton(
+                childText: 'Save',
+                onPressed: () {
+                  print('Saved');
+                  Get.back();
+                },
+              ).paddingOnly(top: 24),
+            ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _dropdown() {
+    return DropdownButtonFormField<String>(
+      key: ValueKey('gender'),
+      value: controller.gender.text,
+      onChanged: controller.changeGender,
+      icon: Icon(Icons.arrow_drop_down_outlined),
+      validator: controller.genderValidator,
+      decoration: InputDecoration(
+        counterText: '',
+        labelText: 'Gender',
+        floatingLabelBehavior: FloatingLabelBehavior.auto,
+        labelStyle: Get.textTheme.bodyText1!.copyWith(color: AppColors.dark50),
+        filled: true,
+        fillColor: AppColors.dark25,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.dark50, width: 2),
+        ),
+        errorBorder: UnderlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: AppColors.red, width: 4),
+        ),
+        errorStyle: Get.textTheme.overline!
+            .copyWith(fontSize: 14, color: AppColors.red),
+        errorMaxLines: 2,
+      ),
+      items: controller.gendersList
+          .map(
+            (String gender) => DropdownMenuItem<String>(
+              child: Text(gender.toString()),
+              value: gender,
+            ),
+          )
+          .toList(),
+    ).paddingSymmetric(horizontal: 15, vertical: 8);
   }
 }

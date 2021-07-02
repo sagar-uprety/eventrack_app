@@ -63,6 +63,8 @@ class CreateEventController extends GetxController {
   void onClose() {
     eventName.dispose();
     description.dispose();
+    categoriesText.dispose();
+    location.dispose();
   }
 
   void toggleOneDayMode(bool? value) {
@@ -166,14 +168,14 @@ class CreateEventController extends GetxController {
   }
 
   bool validateForm1() {
-    if (key.currentState.validate() && dateAndTimeValidator()) {
+    if (_key.currentState!.validate() && dateAndTimeValidator()) {
       return true;
     }
     return false;
   }
 
   bool validateForm2() {
-    if (key.currentState.validate()) {
+    if (_key.currentState!.validate()) {
       return true;
     }
     return false;

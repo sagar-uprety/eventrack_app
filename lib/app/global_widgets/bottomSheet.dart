@@ -4,19 +4,23 @@ import 'package:get/utils.dart';
 
 import '../utilities/colors.dart';
 
+///Add a `BottomSheet` to the context.
 class ETBottomSheet extends StatelessWidget {
   const ETBottomSheet({Key? key, required this.child}) : super(key: key);
 
+  ///Required a `Widget child` to display in the sheet.
   final Widget child;
   @override
   Widget build(BuildContext context) {
     return BottomSheet(
-      backgroundColor: AppColors.background,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
       ),
-      elevation: 3,
+      backgroundColor: AppColors.background,
+      elevation: 0,
       onClosing: () => print('Closing'),
       builder: (_) => child.paddingSymmetric(vertical: 10),
     );

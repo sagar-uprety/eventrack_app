@@ -1,4 +1,4 @@
-import '../../../models/event.dart';
+import '../../../models/event/event.dart';
 
 //TODO: searchEvents and FilterEvents
 abstract class EventsProvider {

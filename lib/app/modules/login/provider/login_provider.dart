@@ -1,4 +1,4 @@
-import '../../../models/user.dart';
+import '../../../models/user/user.dart';
 
 //TODO: searchEvents and FilterEvents
 

@@ -4,7 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class LocationPickerController extends GetxController {
   late GoogleMapController? mapController;
 
-  late Rx<Marker> marker = Marker(markerId: MarkerId('marker')).obs;
+  final markedLocation = Rx<LatLng>(LatLng(0, 0));
   late LatLng? selectedCoordinates;
 
   @override
@@ -26,12 +26,7 @@ class LocationPickerController extends GetxController {
   }
 
   void createMarker(LatLng coordinates) {
-    Marker newMarker = Marker(
-      markerId: MarkerId('marker'),
-      alpha: 0.7,
-      position: coordinates,
-    );
-    marker.value = newMarker;
+    markedLocation.value = coordinates;
   }
 
   animateCamera(LatLng coordinates) async {

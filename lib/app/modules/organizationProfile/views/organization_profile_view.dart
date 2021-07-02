@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../global_widgets/appBar.dart';
+import '../../../global_widgets/draggableSheet.dart';
 import '../../../utilities/colors.dart';
 import '../controllers/organization_profile_controller.dart';
 import 'tabs/tab1.dart';
@@ -18,18 +19,12 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
 
   final controller = Get.find<OrganizationProfileController>();
 
-  final List<Widget> _tabs = [
-    OrganizationProfileTab1(),
-    OrganizationProfileTab2(),
-    OrganizationProfileTab3(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: ETAppBar(
-        hasBackButton: true,
+        addBackButton: true,
       ),
       body: Stack(
         clipBehavior: Clip.none,
@@ -44,58 +39,38 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
                       fit: BoxFit.cover,
                     )
                   : null,
-              color: AppColors.dark25,
+              gradient: RadialGradient(
+                center: Alignment.topRight,
+                radius: 2.0,
+                colors: <Color>[
+                  AppColors.dark65,
+                  AppColors.dark10,
+                ],
+              ),
             ),
-            child:
-                !(image != null || image != '') ? Text('EventTrack') : Center(),
+            child: !(image != null)
+                ? Center(
+                    child: Text(
+                      'EventTrack'.toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: Get.textTheme.headline1!
+                          .copyWith(color: AppColors.dark80),
+                    ).paddingAll(20),
+                  )
+                : Center(),
           ),
-          DraggableScrollableSheet(
-            initialChildSize: 0.6,
-            minChildSize: 0.6,
-            maxChildSize: 0.85,
-            builder: (context, scrollController) {
-              return SingleChildScrollView(
-                controller: scrollController,
-                child: Container(
-                  width: Get.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(24),
-                      topRight: Radius.circular(24),
-                    ),
-                    color: AppColors.background,
-                  ),
-                  child: new DefaultTabController(
-                    length: _tabs.length,
-                    initialIndex: 0,
-                    child: new Column(
-                      children: <Widget>[
-                        new TabBar(
-                          indicatorColor: AppColors.dark25,
-                          indicatorWeight: 3.0,
-                          labelStyle: Get.textTheme.bodyText1!
-                              .copyWith(fontWeight: FontWeight.w600),
-                          labelPadding:
-                              EdgeInsets.symmetric(vertical: 6, horizontal: 20),
-                          labelColor: AppColors.dark80,
-                          unselectedLabelColor: AppColors.dark50,
-                          onTap: controller.changeTab,
-                          tabs: <Widget>[
-                            Tab(text: 'ABOUT'),
-                            Tab(text: 'TAB2'),
-                            Tab(text: 'TAB3'),
-                          ],
-                        ),
-                        Obx(
-                          () => _tabs[controller.selectedTab.value],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
+          DraggableSheet(
+            tabIcons: [
+              Icons.event_note,
+              Icons.circle,
+              Icons.circle,
+            ],
+            tabs: [
+              OrganizationProfileTab1(),
+              OrganizationProfileTab2(),
+              OrganizationProfileTab3(),
+            ],
+          )
         ],
       ),
     );

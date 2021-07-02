@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../global_widgets/appBar.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/user_profile_controller.dart';
 import 'user_profile_card.dart';
@@ -13,14 +14,9 @@ class UserProfileView extends GetView<UserProfileController> {
     MediaQueryData queryData = MediaQuery.of(context);
     double hrheight = queryData.size.height;
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(
-          onPressed: () {
-            print("Back");
-          },
-        ),
-        title: Text('User Profile'),
-        centerTitle: true,
+      appBar: ETAppBar(
+        title: 'Profile',
+        addBackButton: true,
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -40,7 +36,7 @@ class UserProfileView extends GetView<UserProfileController> {
                           CircleAvatar(
                             radius: 50,
                             backgroundImage:
-                                NetworkImage(userController.user.profileImage),
+                                NetworkImage(userController.user.profileImage!),
                           ),
                           Positioned(
                             bottom: 5,
@@ -74,21 +70,21 @@ class UserProfileView extends GetView<UserProfileController> {
               ),
               UserProfileCard(
                 title: "Name",
-                value: userController.user.username,
+                value: userController.user.name!,
               ),
               UserProfileCard(
                 title: "Email",
-                value: userController.user.email,
+                value: userController.user.email!,
               ),
               UserProfileCard(
-                  title: "Phone number", value: userController.user.phoneNo),
+                  title: "Phone number", value: userController.user.phone!),
               UserProfileCard(
                 title: "Address",
-                value: userController.user.address,
+                value: userController.user.address!,
               ),
               UserProfileCard(
                 title: "Gender",
-                value: userController.user.gender,
+                value: userController.user.gender!,
               ),
               SizedBox(
                 height: hrheight * 0.05,

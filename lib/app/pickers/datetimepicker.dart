@@ -4,6 +4,9 @@ import 'package:dart_date/dart_date.dart';
 import 'package:get/get.dart';
 
 class DateTimePicker {
+  ///Displays a single DatePicker
+  ///
+  ///Returns a `list of Iso8601String (A String type for DateTime) of length 1` if a date is picked.
   static Future<List<String>> datePicker(BuildContext context) async {
     return await showDatePicker(
       context: context,
@@ -14,6 +17,9 @@ class DateTimePicker {
     ).then((value) => value != null ? [value.toIso8601String()] : []);
   }
 
+  ///Displays a DateRangePicker
+  ///
+  ///Returns a `list of Iso8601String (A String type for DateTime) of length 2(Start Date and End Date)` if the both dates are picked.
   static Future<List<String>> dateRangePicker(BuildContext context) async {
     return await showDateRangePicker(
       context: context,
@@ -24,6 +30,10 @@ class DateTimePicker {
         ? [value.start.toIso8601String(), value.end.toIso8601String()]
         : []);
   }
+
+  ///Displays 2 TimePickers (one after the other).
+  ///
+  ///Returns a `list of TimeOfDay of length 2(Start Time and End Time)` if both the times are picked.
 
   static Future<List<TimeOfDay>> timePicker(BuildContext context) async {
     List<TimeOfDay> times = [];
@@ -49,6 +59,7 @@ class DateTimePicker {
 }
 
 extension DateFormat on List<String> {
+  ///returns a list of formatted Dates - Example: [Monday, Jul 28, 2021]
   List<String> get formatDate {
     List<String> dates = [];
     this.forEach((element) =>
@@ -56,13 +67,13 @@ extension DateFormat on List<String> {
     return dates;
   }
 
+  ///return the difference of days between 2 dates.
   int get difference =>
       this.parseDate[1].difference(this.parseDate[0]).inDays + 1;
 }
 
-extension Difference on DateTime {}
-
 extension TimeFormat on List<TimeOfDay> {
+  ///returns a list of formatted times - Example: [11:00, 16:30]
   List<String> get formatTime {
     List<String> times = [];
     this.forEach((element) => times.add(element.format(Get.context!)));
@@ -71,6 +82,8 @@ extension TimeFormat on List<TimeOfDay> {
 }
 
 extension ParseDateTime on List<String> {
+  ///returns a list of `TimeOfDay` by parsing the given Times - Example: [TimeOfDay(hour: 11,minute:00)]
+
   List<TimeOfDay> get parseTime {
     List<TimeOfDay> times = [];
     this.forEach((element) {
@@ -82,6 +95,7 @@ extension ParseDateTime on List<String> {
   }
 
   List<DateTime> get parseDate {
+    ///returns a list of `DateTime` by parsing the given Dates
     List<DateTime> dates = [];
     this.forEach((element) {
       dates.add(DateTime.parse(element));
