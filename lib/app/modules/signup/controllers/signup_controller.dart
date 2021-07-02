@@ -10,7 +10,6 @@ import '../provider/signup_provider.dart';
 import '../provider/signup_provider_impl.dart';
 
 class SignupController extends GetxController {
-  //this key uniquely identifies a form
   final signupFormKey = GlobalKey<FormState>();
   late TextEditingController name;
   late TextEditingController email;
@@ -20,7 +19,8 @@ class SignupController extends GetxController {
 
   late SignUpProvider _signupProvider;
 
-  //initialize
+  final RxBool signing = false.obs;
+
   @override
   void onInit() {
     name = TextEditingController();
@@ -36,6 +36,8 @@ class SignupController extends GetxController {
     password.dispose();
     super.onClose();
   }
+
+  void _changeSigningState() => signing.value = !signing.value;
 
   void changePasswordObscurity() {
     obscurePassword.value = !obscurePassword.value;
@@ -63,6 +65,7 @@ class SignupController extends GetxController {
   }
 
   Future signup() async {
+    _changeSigningState();
     try {
       if (signupFormKey.currentState!.validate()) {
         ResponseModel? response = await _signupProvider.registerUser(
@@ -81,5 +84,6 @@ class SignupController extends GetxController {
     } catch (e) {
       print(e);
     }
+    _changeSigningState();
   }
 }

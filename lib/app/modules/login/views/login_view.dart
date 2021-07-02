@@ -44,10 +44,14 @@ class LoginView extends GetView<LoginController> {
                     validator: controller.passwordValidator,
                   ),
                 ),
-                ETElevatedButton(
-                  childText: 'Login',
-                  onPressed: controller.login,
-                ).paddingOnly(top: 12),
+                Obx(
+                  () => !controller.logging.value
+                      ? ETElevatedButton(
+                          childText: 'Login',
+                          onPressed: controller.login,
+                        ).paddingOnly(top: 12)
+                      : CircularProgressIndicator(),
+                ),
               ],
             ),
           ).paddingOnly(top: 24, bottom: 10),

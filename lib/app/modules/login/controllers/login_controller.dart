@@ -18,6 +18,9 @@ class LoginController extends GetxController {
 
   late LoginProvider _loginProvider;
   late TextEditingController bottomSheetEmail;
+
+  final Rx<bool> logging = false.obs;
+
   @override
   void onInit() {
     email = TextEditingController();
@@ -35,6 +38,8 @@ class LoginController extends GetxController {
     bottomSheetEmail.dispose();
     super.onClose();
   }
+
+  void _changeLoggingState() => logging.value = !logging.value;
 
   void changePasswordObscurity() {
     obscurePassword.value = !obscurePassword.value;
@@ -59,6 +64,7 @@ class LoginController extends GetxController {
   }
 
   Future login() async {
+    _changeLoggingState();
     try {
       if (formKey.currentState!.validate()) {
         ResponseModel? response = await _loginProvider.loginUser(
@@ -73,6 +79,7 @@ class LoginController extends GetxController {
     } catch (e) {
       print(e);
     }
+    _changeLoggingState();
   }
 
   void getToken() {

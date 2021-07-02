@@ -1,3 +1,9 @@
+import 'package:eventrack_app/app/models/event/event.dart';
+import 'package:eventrack_app/app/models/response.dart';
+import 'package:eventrack_app/app/models/user/user.dart';
+import 'package:eventrack_app/app/modules/create_event/providers/create_event_provider.dart';
+import 'package:eventrack_app/app/modules/create_event/providers/create_event_providerImpl.dart';
+import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -16,6 +22,8 @@ class CreateEventController extends GetxController {
 
   RxInt stepIndex = 0.obs;
 
+  late CreateEventProvider _createEventProvider;
+
   late GlobalKey<FormState> _key = GlobalKey();
   late TextEditingController eventName;
   late TextEditingController description;
@@ -24,8 +32,10 @@ class CreateEventController extends GetxController {
   final Rx<LatLng> coordinates = LatLng(0, 0).obs;
   late List<String> selectedCategories = [];
   final dates = Rx<List<String>>([]);
-  final times = Rx<List<TimeOfDay>>([]);
+  final times = Rx<List<String>>([]);
   final RxBool isOneDayEvent = true.obs;
+
+  final RxBool saving = false.obs;
 
   late List<String> categoriesList = [
     'Award',
@@ -43,7 +53,6 @@ class CreateEventController extends GetxController {
   ];
 
   get formattedDate => dates.value.length != 0 ? dates.value.formatDate : [];
-  get formattedTime => times.value.length == 2 ? times.value.formatTime : [];
 
   @override
   void onInit() {
@@ -51,6 +60,7 @@ class CreateEventController extends GetxController {
     description = TextEditingController();
     categoriesText = TextEditingController();
     location = TextEditingController();
+    _createEventProvider = Get.find<CreateEventProviderImpl>();
     super.onInit();
   }
 
@@ -70,6 +80,8 @@ class CreateEventController extends GetxController {
   void toggleOneDayMode(bool? value) {
     isOneDayEvent.value = value!;
   }
+
+  void _toggleSavingState() => saving.value = !saving.value;
 
   void stepChange(int index) {
     stepIndex.value = index;
@@ -151,8 +163,7 @@ class CreateEventController extends GetxController {
       message = 'Start and end time error.';
     else
       state = true;
-
-    FlashMessage(state, message: message);
+    if (state == false) FlashMessage(false, message: message);
     return state;
   }
 
@@ -185,10 +196,34 @@ class CreateEventController extends GetxController {
     return false;
   }
 
-  void submit() {
-    if (validateForm2() && coordinatesValidator()) {
-      print(
-          "Data: {name: ${eventName.text}, description:${description.text}, categories: ${categoriesText.text}, date: ${dates.value},location: ${location.text}, coordinates: ${coordinates.value}}");
+  Future submit() async {
+    _toggleSavingState();
+    try {
+      if (validateForm2() && coordinatesValidator()) {
+        Map<String, dynamic> event = Event(
+          title: eventName.text.trim(),
+          description: description.text.trim(),
+          categories: selectedCategories,
+          dateTime: TimeDate(
+            dates: dates.value,
+            times: times.value,
+          ),
+          location: Location(
+            latitude: coordinates.value.latitude,
+            longitude: coordinates.value.longitude,
+            location: location.text.trim(),
+          ),
+        ).toJson();
+
+        ResponseModel? response = await _createEventProvider.createEvent(event);
+
+        FlashMessage(response!.state, message: response.message);
+
+        Get.toNamed(Routes.EVENT_DETAIL);
+      }
+    } on Exception catch (e) {
+      print(e);
     }
+    _toggleSavingState();
   }
 }

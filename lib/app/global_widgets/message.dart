@@ -12,67 +12,67 @@ class FlashMessage {
   ///
   ///If you do not want to display the `Snackbar`, do not pass `message`.
   FlashMessage(bool state, {String? message}) {
-    if (state)
-      _successFlash(message!);
-    else
-      _errorFlash(message!);
+    if (message != null || message != '') {
+      if (state)
+        _successFlash(message);
+      else
+        _errorFlash(message);
+    }
   }
 
   static _successFlash(String? message) {
-    if (message != null || message != '')
-      return Get.snackbar(
-        '',
-        '',
-        titleText: Text(
-          'Success',
-          textAlign: TextAlign.center,
-          style: Get.textTheme.bodyText1!.copyWith(
-            color: AppColors.dark10,
-          ),
+    return Get.snackbar(
+      '',
+      '',
+      titleText: Text(
+        'Success',
+        textAlign: TextAlign.center,
+        style: Get.textTheme.bodyText1!.copyWith(
+          color: AppColors.dark10,
         ),
-        messageText: Text(
-          message!,
-          textAlign: TextAlign.center,
-          style: Get.textTheme.bodyText1!.copyWith(
-            color: AppColors.dark10,
-          ),
+      ),
+      messageText: Text(
+        message!,
+        textAlign: TextAlign.center,
+        style: Get.textTheme.bodyText1!.copyWith(
+          color: AppColors.dark10,
         ),
-        isDismissible: false,
-        duration: Duration(seconds: 3),
-        backgroundColor: Colors.greenAccent,
-        colorText: Colors.white,
-        snackPosition: SnackPosition.BOTTOM,
-        snackStyle: SnackStyle.GROUNDED,
-        margin: EdgeInsets.all(0),
-      );
+      ),
+      isDismissible: false,
+      duration: Duration(seconds: 3),
+      backgroundColor: Colors.greenAccent,
+      colorText: Colors.white,
+      snackPosition: SnackPosition.BOTTOM,
+      snackStyle: SnackStyle.GROUNDED,
+      margin: EdgeInsets.all(0),
+    );
   }
 
   static _errorFlash(String? message) {
-    if (message != null || message != '')
-      return Get.snackbar(
-        '',
-        '',
-        titleText: Text(
-          'Error',
-          textAlign: TextAlign.center,
-          style: Get.textTheme.bodyText1!.copyWith(
-            color: AppColors.dark10,
-          ),
+    return Get.snackbar(
+      '',
+      '',
+      titleText: Text(
+        'Error',
+        textAlign: TextAlign.center,
+        style: Get.textTheme.bodyText1!.copyWith(
+          color: AppColors.dark10,
         ),
-        messageText: Text(
-          message!,
-          textAlign: TextAlign.center,
-          style: Get.textTheme.bodyText1!.copyWith(
-            color: AppColors.dark10,
-          ),
+      ),
+      messageText: Text(
+        message!,
+        textAlign: TextAlign.center,
+        style: Get.textTheme.bodyText1!.copyWith(
+          color: AppColors.dark10,
         ),
-        isDismissible: false,
-        duration: Duration(seconds: 3),
-        backgroundColor: Colors.redAccent,
-        colorText: Colors.white,
-        snackPosition: SnackPosition.BOTTOM,
-        snackStyle: SnackStyle.GROUNDED,
-        margin: EdgeInsets.all(0),
-      );
+      ),
+      isDismissible: false,
+      duration: Duration(seconds: 3),
+      backgroundColor: Colors.redAccent,
+      colorText: Colors.white,
+      snackPosition: SnackPosition.BOTTOM,
+      snackStyle: SnackStyle.GROUNDED,
+      margin: EdgeInsets.all(0),
+    );
   }
 }

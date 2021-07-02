@@ -51,10 +51,14 @@ class SignUpView extends GetView<SignupController> {
                     validator: controller.passwordValidator,
                   ),
                 ),
-                ETElevatedButton(
-                  childText: 'Sign Up',
-                  onPressed: signupController.signup,
-                ).paddingOnly(top: 12),
+                Obx(
+                  () => !controller.signing.value
+                      ? ETElevatedButton(
+                          childText: 'Sign Up',
+                          onPressed: signupController.signup,
+                        ).paddingOnly(top: 12)
+                      : CircularProgressIndicator(),
+                ),
               ],
             ),
           ).paddingOnly(top: 24, bottom: 10),
