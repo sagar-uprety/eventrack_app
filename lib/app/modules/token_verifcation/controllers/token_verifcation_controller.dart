@@ -1,10 +1,11 @@
-import 'package:eventrack_app/app/global_widgets/message.dart';
-import 'package:eventrack_app/app/models/response.dart';
-import 'package:eventrack_app/app/modules/token_verifcation/providers/token_verification_provider.dart';
-import 'package:eventrack_app/app/modules/token_verifcation/providers/token_verification_provider_impl.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
+
+import '../../../global_widgets/message.dart';
+import '../../../models/response.dart';
+import '../providers/token_verification_provider.dart';
+import '../providers/token_verification_provider_impl.dart';
 
 class TokenVerifcationController extends GetxController {
   // final String _email = Get.arguments;
@@ -46,7 +47,8 @@ class TokenVerifcationController extends GetxController {
     try {
       print('Sending Token...');
       ResponseModel? response = await _provider.sendToken({'email': _email});
-      FlashMessage(response!.state, message: response.message);
+      FlashMessage(response!.state,
+          message: response.message, displayOnSuccess: true);
     } on Exception catch (e) {
       print(e);
       return null;

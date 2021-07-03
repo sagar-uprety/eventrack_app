@@ -1,16 +1,15 @@
-import 'package:eventrack_app/app/models/event/event.dart';
-import 'package:eventrack_app/app/models/response.dart';
-import 'package:eventrack_app/app/models/user/user.dart';
-import 'package:eventrack_app/app/modules/create_event/providers/create_event_provider.dart';
-import 'package:eventrack_app/app/modules/create_event/providers/create_event_providerImpl.dart';
-import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../global_widgets/message.dart';
+import '../../../models/event/event.dart';
+import '../../../models/response.dart';
 import '../../../pickers/datetimepicker.dart';
+import '../../../routes/app_pages.dart';
+import '../providers/create_event_provider.dart';
+import '../providers/create_event_providerImpl.dart';
 
 ///Use `StepFunctionType.next` for `continue`.
 ///Use `StepFunctionType.cancel` for `cancel`.

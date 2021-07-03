@@ -32,9 +32,10 @@ class HttpImplementation implements HttpService {
   }
 
   //POST REQUEST
+  ///`data` can be either `Map` or a `Dio.FormData`.
   @override
   Future<ResponseModel> postRequest(String url,
-      {Map<String, dynamic>? data, String? authToken}) async {
+      {data, String? authToken}) async {
     late Response response;
 
     // if (authToken != null && data != null) {

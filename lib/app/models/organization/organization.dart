@@ -4,6 +4,9 @@ import '../user/user.dart';
 
 part 'organization.g.dart';
 
+//?run flutter pub run build_runner build in terminal to generate corresponding model.g.dart file
+//!run above command everytime model is changed
+
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class Organization {
   @JsonKey(name: '_id')
@@ -18,17 +21,27 @@ class Organization {
   final VerificationState? verificationState;
   final BlockStatus? blockStatus;
 
-  Organization(
-      {this.id,
-      this.name,
-      this.email,
-      this.description,
-      this.profile,
-      this.contact,
-      this.website,
-      this.events,
-      this.verificationState,
-      this.blockStatus});
+  ///This is a `URL`
+  final String? documentUrl;
+
+  ///This is a `File`
+  // @JsonConverter()
+  // final File? documentFile;
+
+  Organization({
+    this.id,
+    this.name,
+    this.email,
+    this.description,
+    this.profile,
+    this.contact,
+    this.website,
+    this.events,
+    this.verificationState,
+    this.blockStatus,
+    this.documentUrl,
+    // this.documentFile,
+  });
 
   factory Organization.fromJson(Map<String, dynamic> json) =>
       _$OrganizationFromJson(json);

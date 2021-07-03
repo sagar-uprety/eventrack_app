@@ -1,7 +1,7 @@
-import 'package:eventrack_app/app/modules/browse_events/bindings/browse_events_binding.dart';
-import 'package:eventrack_app/app/modules/browse_events/views/browse_events_view.dart';
 import 'package:get/get.dart';
 
+import '../modules/browse_events/bindings/browse_events_binding.dart';
+import '../modules/browse_events/views/browse_events_view.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
 import '../modules/create_organization/bindings/create_organization_binding.dart';
@@ -40,7 +40,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.CREATE_EVENT;
+  static const INITIAL = Routes.CREATE_ORGANIZATION;
 
   static final routes = [
     GetPage(

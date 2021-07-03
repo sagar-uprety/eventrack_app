@@ -11,9 +11,9 @@ class FlashMessage {
   ///On `state: true`, the background of the `Snackbar` is green.
   ///
   ///If you do not want to display the `Snackbar`, do not pass `message`.
-  FlashMessage(bool state, {String? message}) {
+  FlashMessage(bool state, {String? message, bool displayOnSuccess = false}) {
     if (message != null || message != '') {
-      if (state)
+      if (state) if (displayOnSuccess)
         _successFlash(message);
       else
         _errorFlash(message);

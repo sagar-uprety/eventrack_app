@@ -25,6 +25,7 @@ Organization _$OrganizationFromJson(Map<String, dynamic> json) {
     blockStatus: json['blockStatus'] == null
         ? null
         : BlockStatus.fromJson(json['blockStatus'] as Map<String, dynamic>),
+    documentUrl: json['documentUrl'] as String?,
   );
 }
 
@@ -47,6 +48,7 @@ Map<String, dynamic> _$OrganizationToJson(Organization instance) {
   writeNotNull('events', instance.events);
   writeNotNull('verificationState', instance.verificationState?.toJson());
   writeNotNull('blockStatus', instance.blockStatus?.toJson());
+  writeNotNull('documentUrl', instance.documentUrl);
   return val;
 }
 

@@ -1,8 +1,8 @@
-import 'package:eventrack_app/app/models/response.dart';
-import 'package:eventrack_app/app/services/http_service.dart';
-import 'package:eventrack_app/app/services/http_service_impl.dart';
 import 'package:get/get.dart';
 
+import '../../../models/response.dart';
+import '../../../services/http_service.dart';
+import '../../../services/http_service_impl.dart';
 import 'token_verification_provider.dart';
 
 class TokenVerificationProviderImpl implements TokenVerificationProvider {

@@ -2,9 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 
+import 'package:dio/dio.dart' as Dio;
 import 'package:get/get.dart';
 
+import '../../../global_widgets/message.dart';
+import '../../../models/organization/organization.dart';
+import '../../../models/response.dart';
 import '../../../pickers/filePicker.dart';
+import '../providers/create_organization_provider.dart';
+import '../providers/create_organization_providerImpl.dart';
 
 class CreateOrganizationController extends GetxController {
   late GlobalKey<FormState> formKey;
@@ -14,8 +20,11 @@ class CreateOrganizationController extends GetxController {
   late TextEditingController phone;
   late TextEditingController website;
   late TextEditingController docPath;
-
   File? _document;
+
+  late CreateOrganizationProvider _provider;
+
+  final RxBool saving = false.obs;
 
   @override
   void onInit() {
@@ -26,6 +35,8 @@ class CreateOrganizationController extends GetxController {
     phone = TextEditingController();
     website = TextEditingController();
     docPath = TextEditingController();
+
+    _provider = Get.find<CreateOrganizationProviderImpl>();
     super.onInit();
   }
 
@@ -43,6 +54,8 @@ class CreateOrganizationController extends GetxController {
     website.dispose();
     docPath.dispose();
   }
+
+  void _toggleSavingState() => saving.value = !saving.value;
 
   void changeDocument(File doc) {
     docPath.text = doc.path.split('/').last;
@@ -93,6 +106,30 @@ class CreateOrganizationController extends GetxController {
   }
 
   Future submit() async {
-    if (formKey.currentState!.validate()) print('Data Validated.');
+    _toggleSavingState();
+    print(saving.value);
+    try {
+      if (formKey.currentState!.validate()) {
+        Map<String, dynamic> newOrganization = Organization(
+          name: name.text.trim(),
+          email: email.text.trim().toLowerCase(),
+          description: description.text.trim(),
+          contact: [phone.text.trim()],
+          website: website.text.trim().toLowerCase(),
+        ).toJson();
+        ResponseModel? res = await _provider.createOrganization(
+          Dio.FormData.fromMap({
+            ...newOrganization,
+            'documentFile': await Dio.MultipartFile.fromFile(_document!.path,
+                filename: _document!.path.split('/').last)
+          }),
+        );
+        FlashMessage(res!.state, message: res.message);
+      }
+    } on Exception catch (e) {
+      print(e);
+    }
+    _toggleSavingState();
+    print(saving.value);
   }
 }

@@ -66,18 +66,22 @@ class CreateOrganizationView extends GetView<CreateOrganizationController> {
               ).changeToButton(
                 onPressed: () async => await controller.pickFile(),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ETElevatedButton(
-                    childText: 'Create',
-                    onPressed: controller.submit,
-                  ),
-                  ETTextButton(
-                    'Cancel',
-                    onPressed: () => Get.back(),
-                  ),
-                ],
+              Obx(
+                () => !controller.saving.value
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ETElevatedButton(
+                            childText: 'Create',
+                            onPressed: controller.submit,
+                          ),
+                          ETTextButton(
+                            'Cancel',
+                            onPressed: () => Get.back(),
+                          ),
+                        ],
+                      )
+                    : Center(child: CircularProgressIndicator()),
               ).paddingOnly(top: 20),
             ],
           ).paddingOnly(top: 20),
