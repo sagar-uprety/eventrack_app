@@ -50,7 +50,7 @@ class ParticipantCard extends StatelessWidget {
             ),
           ],
         ).paddingSymmetric(horizontal: 10, vertical: 4),
-      ),
+      ).paddingSymmetric(horizontal: 24, vertical: 8),
       actions: [
         ETPopUpMenu(
           [

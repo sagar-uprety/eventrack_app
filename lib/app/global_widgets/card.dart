@@ -12,6 +12,7 @@ class ETCard extends StatelessWidget {
       this.route,
       required this.argument,
       required this.child,
+      this.width = double.infinity,
       this.height = 100})
       : super(key: key);
 
@@ -26,19 +27,19 @@ class ETCard extends StatelessWidget {
   ///Requires a child to display inside the card.
   final Widget child;
 
-  ///`height` of the card.
-  final double height;
+  ///`height` and `width` of the card.
+  final double height, width;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => Get.toNamed(
-      //   route!,
-      //   arguments: argument,
-      // ),
-      onTap: () => print(argument.toString()),
+      onTap: () => Get.toNamed(
+        route!,
+        arguments: argument,
+      ),
+      // onTap: () => print(argument.toString()),
       child: Container(
-        width: double.infinity,
+        width: width,
         height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -54,6 +55,6 @@ class ETCard extends StatelessWidget {
         ),
         child: child,
       ),
-    ).paddingSymmetric(horizontal: 24, vertical: 8);
+    );
   }
 }

@@ -84,6 +84,11 @@ class ETTextButton extends StatelessWidget {
           textBaseline: TextBaseline.alphabetic,
         ),
       ),
+      style: ButtonStyle(
+        minimumSize: MaterialStateProperty.all(
+          Size(double.minPositive, 20),
+        ),
+      ),
     );
   }
 }
