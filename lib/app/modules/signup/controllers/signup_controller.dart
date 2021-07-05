@@ -27,6 +27,7 @@ class SignupController extends GetxController {
 
   @override
   void onClose() {
+    name.dispose();
     email.dispose();
     password.dispose();
     super.onClose();
@@ -54,6 +55,8 @@ class SignupController extends GetxController {
 
   Future signup() async {
     print("Hello World");
+
+    
 
     /*   if (signupFormKey.currentState!.validate()) {
       //do API Call for signUp

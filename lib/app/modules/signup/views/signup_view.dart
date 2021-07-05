@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/services/shared_prefs.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -62,8 +63,11 @@ class SignUpView extends GetView<SignupController> {
               ).paddingOnly(right: 10),
               ETTextButton(
                 'Login',
-                onPressed: () {
-                  Get.toNamed(Routes.SIGNUP);
+                onPressed: () async{
+                  // await SharedPreference.saveAuthState();
+                  // await SharedPreference.getAuthState();
+                  // Get.toNamed(Routes.HOME);
+                  Get.toNamed(Routes.LOGIN);
                 },
               ),
             ],
