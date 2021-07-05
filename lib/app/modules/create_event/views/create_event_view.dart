@@ -37,30 +37,36 @@ class CreateEventView extends GetView<CreateEventController> {
                 controller.stepFunction(StepFunctionType.next),
             controlsBuilder: (BuildContext context,
                 {VoidCallback? onStepCancel, VoidCallback? onStepContinue}) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  if (controller.stepIndex.value == 0)
-                    ETElevatedButton(
-                      childText: 'Next',
-                      onPressed: () {
-                        if (controller.validateForm1()) onStepContinue!();
-                      },
-                    ),
-                  if (controller.stepIndex.value == 1)
-                    ETElevatedButton(
-                      childText: 'Submit',
-                      onPressed: controller.submit,
-                    ),
-                  TextButton(
-                    onPressed: onStepCancel!,
-                    child: Text(
-                      'Back',
-                      style: Get.textTheme.button!.copyWith(
-                          color: AppColors.dark65, fontWeight: FontWeight.w600),
-                    ),
-                  )
-                ],
+              return Obx(
+                () => !controller.saving.value
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          if (controller.stepIndex.value == 0)
+                            ETElevatedButton(
+                              childText: 'Next',
+                              onPressed: () {
+                                if (controller.validateForm1())
+                                  onStepContinue!();
+                              },
+                            ),
+                          if (controller.stepIndex.value == 1)
+                            ETElevatedButton(
+                              childText: 'Submit',
+                              onPressed: controller.submit,
+                            ),
+                          TextButton(
+                            onPressed: onStepCancel!,
+                            child: Text(
+                              'Back',
+                              style: Get.textTheme.button!.copyWith(
+                                  color: AppColors.dark65,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          )
+                        ],
+                      )
+                    : Center(child: CircularProgressIndicator()),
               ).paddingSymmetric(horizontal: 10, vertical: 12);
             },
             steps: [
@@ -161,12 +167,12 @@ class CreateEventView extends GetView<CreateEventController> {
                   controller.pickTime(context);
                 },
               ),
-              title: controller.formattedTime.length != 0
+              title: controller.times.value.length != 0
                   ? Text(
                       'From: ' +
-                          controller.formattedTime[0] +
+                          controller.times.value[0] +
                           '\nTo: ' +
-                          controller.formattedTime[1],
+                          controller.times.value[1],
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2!

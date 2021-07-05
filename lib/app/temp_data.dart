@@ -135,7 +135,7 @@ class TempData {
             TimeOfDay(hour: 18, minute: 0),
           ].formatTime),
       location: Location(
-        latitude: 34.2334,
+        latitude: 27.2334,
         longitude: 43.4542,
         location: 'New York, USA',
       ),

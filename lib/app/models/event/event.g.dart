@@ -8,6 +8,7 @@ part of 'event.dart';
 
 Event _$EventFromJson(Map<String, dynamic> json) {
   return Event(
+    id: json['_id'] as String?,
     title: json['title'] as String?,
     description: json['description'] as String?,
     eventProfile: json['eventProfile'] as String?,
@@ -40,6 +41,7 @@ Map<String, dynamic> _$EventToJson(Event instance) {
     }
   }
 
+  writeNotNull('_id', instance.id);
   writeNotNull('title', instance.title);
   writeNotNull('description', instance.description);
   writeNotNull('eventProfile', instance.eventProfile);

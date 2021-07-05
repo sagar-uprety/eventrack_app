@@ -35,8 +35,8 @@ class DateTimePicker {
   ///
   ///Returns a `list of TimeOfDay of length 2(Start Time and End Time)` if both the times are picked.
 
-  static Future<List<TimeOfDay>> timePicker(BuildContext context) async {
-    List<TimeOfDay> times = [];
+  static Future<List<String>> timePicker(BuildContext context) async {
+    List<String> times = [];
     TimeOfDay? start = await showTimePicker(
       context: context,
       initialTime: TimeOfDay(hour: 10, minute: 00),
@@ -48,7 +48,7 @@ class DateTimePicker {
         initialTime: TimeOfDay(hour: start.hour + 2, minute: start.minute),
         helpText: 'Select End Time',
       );
-      if (end != null) times = [start, end];
+      if (end != null) times = [start, end].formatTime;
     }
     return times;
   }

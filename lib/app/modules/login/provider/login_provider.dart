@@ -1,7 +1,5 @@
-import '../../../models/user/user.dart';
-
-//TODO: searchEvents and FilterEvents
+import '../../../models/response.dart';
 
 abstract class LoginProvider {
-  Future<User?> registerUser({Map<String, dynamic> data});
+  Future<ResponseModel?> loginUser({Map<String, dynamic> data});
 }

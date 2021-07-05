@@ -8,6 +8,7 @@ part of 'organization.dart';
 
 Organization _$OrganizationFromJson(Map<String, dynamic> json) {
   return Organization(
+    id: json['_id'] as String?,
     name: json['name'] as String?,
     email: json['email'] as String?,
     description: json['description'] as String?,
@@ -24,6 +25,7 @@ Organization _$OrganizationFromJson(Map<String, dynamic> json) {
     blockStatus: json['blockStatus'] == null
         ? null
         : BlockStatus.fromJson(json['blockStatus'] as Map<String, dynamic>),
+    documentUrl: json['documentUrl'] as String?,
   );
 }
 
@@ -36,6 +38,7 @@ Map<String, dynamic> _$OrganizationToJson(Organization instance) {
     }
   }
 
+  writeNotNull('_id', instance.id);
   writeNotNull('name', instance.name);
   writeNotNull('email', instance.email);
   writeNotNull('description', instance.description);
@@ -45,6 +48,7 @@ Map<String, dynamic> _$OrganizationToJson(Organization instance) {
   writeNotNull('events', instance.events);
   writeNotNull('verificationState', instance.verificationState?.toJson());
   writeNotNull('blockStatus', instance.blockStatus?.toJson());
+  writeNotNull('documentUrl', instance.documentUrl);
   return val;
 }
 

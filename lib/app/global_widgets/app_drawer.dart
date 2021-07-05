@@ -15,7 +15,7 @@ Drawer buildAppDrawer() {
         ),
         ListTile(
           title: Text("Latest Events"),
-          onTap: () => Get.toNamed(Routes.BROWSE_EVENTS),
+          onTap: () => Get.toNamed(Routes.EVENT_LIST),
           leading: Icon(Icons.pages_outlined),
         ),
         ListTile(

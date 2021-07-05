@@ -4,8 +4,8 @@ import 'package:get/utils.dart';
 
 import '../utilities/colors.dart';
 
-///Add a `BottomSheet` to the context.
 class ETBottomSheet extends StatelessWidget {
+  ///Add a `BottomSheet` to the context.
   const ETBottomSheet({Key? key, required this.child}) : super(key: key);
 
   ///Required a `Widget child` to display in the sheet.

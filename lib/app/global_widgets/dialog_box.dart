@@ -8,8 +8,8 @@ import 'button.dart';
 ///Includes `Success`, `Warning` and `Error`
 enum AlertType { Success, Warning, Error }
 
-///Alert Dialog
 class ETDialog extends StatelessWidget {
+  ///Alert Dialog
   const ETDialog(
     this.contentText, {
     Key? key,

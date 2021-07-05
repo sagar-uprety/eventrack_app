@@ -5,9 +5,22 @@ import 'package:get/get.dart';
 import '../utilities/colors.dart';
 
 class FlashMessage {
-  FlashMessage._();
+  ///Displays a `Snackbar`
+  ///
+  ///On `state: false`, the background of the `Snackbar` is red.
+  ///On `state: true`, the background of the `Snackbar` is green.
+  ///
+  ///If you do not want to display the `Snackbar`, do not pass `message`.
+  FlashMessage(bool state, {String? message, bool displayOnSuccess = false}) {
+    if (message != null || message != '') {
+      if (state) if (displayOnSuccess)
+        _successFlash(message);
+      else
+        _errorFlash(message);
+    }
+  }
 
-  static successFlash(String message) {
+  static _successFlash(String? message) {
     return Get.snackbar(
       '',
       '',
@@ -19,7 +32,7 @@ class FlashMessage {
         ),
       ),
       messageText: Text(
-        message,
+        message!,
         textAlign: TextAlign.center,
         style: Get.textTheme.bodyText1!.copyWith(
           color: AppColors.dark10,
@@ -35,7 +48,7 @@ class FlashMessage {
     );
   }
 
-  static errorFlash(String message) {
+  static _errorFlash(String? message) {
     return Get.snackbar(
       '',
       '',
@@ -47,7 +60,7 @@ class FlashMessage {
         ),
       ),
       messageText: Text(
-        message,
+        message!,
         textAlign: TextAlign.center,
         style: Get.textTheme.bodyText1!.copyWith(
           color: AppColors.dark10,

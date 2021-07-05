@@ -2,126 +2,89 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../global_widgets/appBar.dart';
+import '../../../global_widgets/button.dart';
+import '../../../global_widgets/tiles/eventCard.dart';
+import '../../../global_widgets/tiles/horizontalEventCard.dart';
+import '../../../models/event/event.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/userdashboard_controller.dart';
-import './components/overview_detail.dart';
-import './util/places.dart';
-import './widgets/icon_badge.dart';
-import 'components/vertical_place_item.dart';
-import 'widgets/horizontal_place_item.dart';
-import 'widgets/icon_badge.dart';
 
 class UserdashboardView extends GetView<UserdashboardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.white12,
-        leading: Icon(
-          Icons.arrow_back,
-          size: 25,
-          color: Colors.black,
+      appBar: ETAppBar(
+        addBackButton: true,
+        title: 'Home',
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            _buildEventList(
+              'New Events',
+              controller.events,
+              vertical: false,
+            ),
+            _buildEventList(
+              'My Events',
+              controller.events,
+            ),
+            _buildEventList(
+              'My Favourites',
+              controller.events,
+            ),
+          ],
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: IconBadge(
-                icon: Icons.notifications_none,
-                color: Colors.black12,
-                size: 20),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: ListView(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(top: 5.0, left: 15.0),
-            child: Text(
-              "Hello Nista",
-              style: TextStyle(
-                fontSize: 25.0,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-                left: 17.0, top: 20.0, right: 20.0, bottom: 20.0),
-            child: Container(
-              height: 100.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                color: Colors.grey[300],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0)),
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/4.jpeg'),
-                      radius: 42,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 120.0, top: 12),
-                    child: OverviewDetail(
-                      info: 'Nista Simkhada',
-                      eventsattended: 'attended events: 2',
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          buildHorizontalList(context),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 20.0,
-            ),
-            child: Text(
-              "My Events",
-              style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-            ),
-          ),
-          buildVerticalList(),
-        ],
       ),
     );
   }
 
-  buildHorizontalList(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 10.0, left: 20.0),
-      height: 274.0,
-      width: 300,
+  Widget _buildEventList(String title, List<Event> list,
+      {bool vertical = true}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: Get.textTheme.headline6,
+            ),
+            ETTextButton(
+              'See All',
+              onPressed: () => Get.toNamed(Routes.EVENT_LIST),
+            )
+          ],
+        ).paddingSymmetric(horizontal: 20),
+        vertical ? _verticalList(list) : _horizontalList(list),
+      ],
+    );
+  }
+
+  Widget _horizontalList(List<Event> list) {
+    return SizedBox(
+      height: 174,
       child: ListView.builder(
-        shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        primary: false,
-        itemCount: places!.length,
-        itemBuilder: (BuildContext context, int index) {
-          Map place = places!.reversed.toList()[index];
-          return HorizontalPlaceItem(place: place);
-        },
+        shrinkWrap: true,
+        padding: EdgeInsets.symmetric(horizontal: 12),
+        itemCount: !(list.length >= 8) ? list.length : 8,
+        itemBuilder: (_, i) => HorizontalEventCard(list[i]),
       ),
     );
   }
-}
 
-buildVerticalList() {
-  return Padding(
-    padding: EdgeInsets.all(20.0),
-    child: ListView.builder(
-      primary: false,
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: places == null ? 0 : places!.length,
-      itemBuilder: (BuildContext context, int index) {
-        Map place = places![index];
-        return VerticalPlaceItem(place: place);
-      },
-    ),
-  );
+  Widget _verticalList(List<Event> list) {
+    return SizedBox(
+      height: 350,
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: false,
+        itemCount: !(list.length >= 3) ? list.length : 3,
+        itemBuilder: (_, i) => EventCard(list[i]),
+      ),
+    );
+  }
 }

@@ -1,6 +1,5 @@
-import '../../../models/user/user.dart';
+import '../../../models/response.dart';
 
-//TODO: searchEvents and FilterEvents
 abstract class SignUpProvider {
-  Future<User?> registerUser({Map<String, dynamic> data});
+  Future<ResponseModel?> registerUser({Map<String, dynamic> data});
 }

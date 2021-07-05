@@ -4,7 +4,12 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../global_widgets/message.dart';
+import '../../../models/event/event.dart';
+import '../../../models/response.dart';
 import '../../../pickers/datetimepicker.dart';
+import '../../../routes/app_pages.dart';
+import '../providers/create_event_provider.dart';
+import '../providers/create_event_providerImpl.dart';
 
 ///Use `StepFunctionType.next` for `continue`.
 ///Use `StepFunctionType.cancel` for `cancel`.
@@ -16,6 +21,8 @@ class CreateEventController extends GetxController {
 
   RxInt stepIndex = 0.obs;
 
+  late CreateEventProvider _createEventProvider;
+
   late GlobalKey<FormState> _key = GlobalKey();
   late TextEditingController eventName;
   late TextEditingController description;
@@ -24,8 +31,10 @@ class CreateEventController extends GetxController {
   final Rx<LatLng> coordinates = LatLng(0, 0).obs;
   late List<String> selectedCategories = [];
   final dates = Rx<List<String>>([]);
-  final times = Rx<List<TimeOfDay>>([]);
+  final times = Rx<List<String>>([]);
   final RxBool isOneDayEvent = true.obs;
+
+  final RxBool saving = false.obs;
 
   late List<String> categoriesList = [
     'Award',
@@ -43,7 +52,6 @@ class CreateEventController extends GetxController {
   ];
 
   get formattedDate => dates.value.length != 0 ? dates.value.formatDate : [];
-  get formattedTime => times.value.length == 2 ? times.value.formatTime : [];
 
   @override
   void onInit() {
@@ -51,6 +59,7 @@ class CreateEventController extends GetxController {
     description = TextEditingController();
     categoriesText = TextEditingController();
     location = TextEditingController();
+    _createEventProvider = Get.find<CreateEventProviderImpl>();
     super.onInit();
   }
 
@@ -70,6 +79,8 @@ class CreateEventController extends GetxController {
   void toggleOneDayMode(bool? value) {
     isOneDayEvent.value = value!;
   }
+
+  void _toggleSavingState() => saving.value = !saving.value;
 
   void stepChange(int index) {
     stepIndex.value = index;
@@ -139,17 +150,20 @@ class CreateEventController extends GetxController {
   }
 
   bool dateAndTimeValidator() {
+    String? message;
+    bool state = false;
     if (dates.value.length == 0 || times.value.length == 0)
-      FlashMessage.errorFlash('Date or Time not picked.');
+      message = 'Date or Time not picked.';
     else if (isOneDayEvent.value && dates.value.length != 1)
-      FlashMessage.errorFlash('One Day Event but more than 1 dates found.');
+      message = 'One Day Event but more than 1 dates found.';
     else if (!isOneDayEvent.value && dates.value.length != 2)
-      FlashMessage.errorFlash('Multiple Day Event but only 1 date found.');
+      message = 'Multiple Day Event but only 1 date found.';
     else if (times.value.length != 2)
-      FlashMessage.errorFlash('Start and end time error.');
+      message = 'Start and end time error.';
     else
-      return true;
-    return false;
+      state = true;
+    if (state == false) FlashMessage(false, message: message);
+    return state;
   }
 
   String? locationValidator(String? value) {
@@ -161,7 +175,7 @@ class CreateEventController extends GetxController {
 
   coordinatesValidator() {
     if (coordinates.value == origin) {
-      FlashMessage.errorFlash('Location coordinates not picked.');
+      FlashMessage(false, message: 'Location coordinates not picked.');
       return false;
     }
     return true;
@@ -181,11 +195,34 @@ class CreateEventController extends GetxController {
     return false;
   }
 
-  void submit() {
-    if (validateForm2() && coordinatesValidator()) {
-      FlashMessage.successFlash('Submitted');
-      print(
-          "Data: {name: ${eventName.text}, description:${description.text}, categories: ${categoriesText.text}, date: ${dates.value},location: ${location.text}, coordinates: ${coordinates.value}}");
+  Future submit() async {
+    _toggleSavingState();
+    try {
+      if (validateForm2() && coordinatesValidator()) {
+        Map<String, dynamic> event = Event(
+          title: eventName.text.trim(),
+          description: description.text.trim(),
+          categories: selectedCategories,
+          dateTime: TimeDate(
+            dates: dates.value,
+            times: times.value,
+          ),
+          location: Location(
+            latitude: coordinates.value.latitude,
+            longitude: coordinates.value.longitude,
+            location: location.text.trim(),
+          ),
+        ).toJson();
+
+        ResponseModel? response = await _createEventProvider.createEvent(event);
+
+        FlashMessage(response!.state, message: response.message);
+
+        Get.toNamed(Routes.EVENT_DETAIL);
+      }
+    } on Exception catch (e) {
+      print(e);
     }
+    _toggleSavingState();
   }
 }

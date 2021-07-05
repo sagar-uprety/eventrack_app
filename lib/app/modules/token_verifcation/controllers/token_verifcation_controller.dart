@@ -2,13 +2,23 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
 
+import '../../../global_widgets/message.dart';
+import '../../../models/response.dart';
+import '../providers/token_verification_provider.dart';
+import '../providers/token_verification_provider_impl.dart';
+
 class TokenVerifcationController extends GetxController {
+  // final String _email = Get.arguments;
+  final String _email = 'ds.ed347@gmail.com';
   late TextEditingController token;
   final formKey = GlobalKey<FormState>();
+  late TokenVerificationProvider _provider;
 
   @override
-  void onInit() {
+  void onInit() async {
     token = TextEditingController();
+    _provider = Get.find<TokenVerificationProviderImpl>();
+    await sendToken();
     super.onInit();
   }
 
@@ -31,5 +41,17 @@ class TokenVerifcationController extends GetxController {
   void submit() {
     if (formKey.currentState!.validate())
       print('Token Submitted for verification');
+  }
+
+  Future sendToken() async {
+    try {
+      print('Sending Token...');
+      ResponseModel? response = await _provider.sendToken({'email': _email});
+      FlashMessage(response!.state,
+          message: response.message, displayOnSuccess: true);
+    } on Exception catch (e) {
+      print(e);
+      return null;
+    }
   }
 }

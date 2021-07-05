@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 
 import '../utilities/colors.dart';
 
-///Adds a `DraggableScrollableSheet` to lower 60% and can be dragged upto 85%.
-///
-///This widget also add a functional `TabBar`.
 class DraggableSheet extends StatelessWidget {
+  ///Adds a `DraggableScrollableSheet` to lower 60% and can be dragged upto 85%.
+  ///
+  ///This widget also add a functional `TabBar`.
   DraggableSheet({Key? key, required this.tabIcons, required this.tabs})
       : assert(tabIcons.length >= 2, "Length of tabs must be at least 2"),
         assert(tabs.length == tabIcons.length,

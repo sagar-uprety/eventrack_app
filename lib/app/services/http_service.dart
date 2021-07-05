@@ -1,9 +1,8 @@
-import 'package:dio/dio.dart';
+import '../models/response.dart';
 
 abstract class HttpService {
   void init();
-  Future<Response?> getRequest(String url,
-      {Map<String, dynamic> parameters, String? authToken});
-  Future<Response?> postRequest(String url,
-      {Map<String, dynamic>? data, String? authToken});
+  Future<ResponseModel> getRequest(String url,
+      {Map<String, dynamic> data, String? authToken});
+  Future<ResponseModel> postRequest(String url, {data, String? authToken});
 }

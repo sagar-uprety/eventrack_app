@@ -11,8 +11,6 @@ import '../../../utilities/colors.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  final loginController = Get.find<LoginController>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,16 +31,27 @@ class LoginView extends GetView<LoginController> {
                   label: 'Email',
                   validator: controller.emailValidator,
                 ),
-                FormInputField(
-                  key: ValueKey('password'),
-                  controller: controller.password,
-                  label: 'Pasword',
-                  validator: controller.passwordValidator,
+                Obx(
+                  () => FormInputField(
+                    key: ValueKey('password'),
+                    controller: controller.password,
+                    label: 'Pasword',
+                    obscureText: controller.obscurePassword.value,
+                    suffixIcon: !controller.obscurePassword.value
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                    onClickedSuffix: controller.changePasswordObscurity,
+                    validator: controller.passwordValidator,
+                  ),
                 ),
-                ETElevatedButton(
-                  childText: 'Login',
-                  onPressed: loginController.login,
-                ).paddingOnly(top: 12),
+                Obx(
+                  () => !controller.logging.value
+                      ? ETElevatedButton(
+                          childText: 'Login',
+                          onPressed: controller.login,
+                        ).paddingOnly(top: 12)
+                      : CircularProgressIndicator(),
+                ),
               ],
             ),
           ).paddingOnly(top: 24, bottom: 10),

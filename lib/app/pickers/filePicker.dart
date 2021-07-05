@@ -32,9 +32,10 @@ abstract class ETFilePicker {
 
       if (_checkSize(file)) return file;
     } on UnsupportedError catch (err) {
-      FlashMessage.errorFlash(err.message!);
+      FlashMessage(false, message: err.message);
     } catch (err) {
       print(err);
+      FlashMessage(false, message: err.toString());
     }
   }
 
