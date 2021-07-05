@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../global_widgets/appBar.dart';
+import '../../../global_widgets/app_drawer.dart';
 import '../controllers/admin_dashboard_controller.dart';
 import 'overviewContainer.dart';
 
@@ -13,6 +14,7 @@ class AdminDashboardView extends GetView<AdminDashboardController> {
       appBar: ETAppBar(
         title: 'Home',
       ),
+      drawer: buildAppDrawer(),
       body: ListView(
         children: [
           OverviewContainer(

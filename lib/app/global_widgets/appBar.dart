@@ -38,8 +38,8 @@ class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
             "'hasButton' is false but BackButton has been added."),
         super(key: key);
 
-  Widget? prefixIcon() {
-    if (!hasLeading) return null;
+  Widget prefixIcon(BuildContext context) {
+    if (!hasLeading) return Center();
     if (addBackButton)
       return IconButton(
         onPressed: () => Get.back(),
@@ -49,10 +49,10 @@ class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       );
     return IconButton(
-      onPressed: () => Scaffold.of(Get.context!).openDrawer(),
+      onPressed: () => Scaffold.of(context).openDrawer(),
       icon: Icon(
         Icons.menu_sharp,
-        color: AppColors.dark10,
+        color: AppColors.dark80,
       ),
     );
   }
@@ -63,7 +63,9 @@ class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       backgroundColor: AppColors.transparent,
       elevation: 0.0,
-      leading: prefixIcon(),
+      leading: Builder(
+        builder: (_) => prefixIcon(context),
+      ),
       title: title != null
           ? Text(
               '$title',

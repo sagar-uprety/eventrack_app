@@ -6,17 +6,26 @@ import '../../../utilities/colors.dart';
 import '../models/overviewItemModel.dart';
 
 class OverviewTile extends StatelessWidget {
+  ///A colored tile to display an information in the `OverviewContainer`.
   const OverviewTile(this.item, {this.width, required this.onClicked});
 
+  ///Infomation to display in the tile.
   final OverviewItemModel item;
+
+  ///Width of the tile.
+  ///
+  ///Defaults to 39% of Viewport.
   final double? width;
+
+  ///Add a Navigator to pass on to `EVENT_LIST` with filter.
   final void Function()? onClicked;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onClicked,
       child: Container(
-        width: width ?? Get.width * 0.385,
+        width: width ?? Get.width * 0.39,
         decoration: BoxDecoration(
           color: item.color.withOpacity(0.5),
           borderRadius: BorderRadius.circular(5.0),
