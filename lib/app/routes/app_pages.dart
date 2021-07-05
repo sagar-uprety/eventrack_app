@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/admin_dashboard/bindings/admin_dashboard_binding.dart';
+import '../modules/admin_dashboard/views/admin_dashboard_view.dart';
 import '../modules/browse_events/bindings/browse_events_binding.dart';
 import '../modules/browse_events/views/browse_events_view.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
@@ -40,7 +42,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.USERDASHBOARD;
+  static const INITIAL = Routes.ADMIN_DASHBOARD;
 
   static final routes = [
     GetPage(
@@ -127,6 +129,11 @@ class AppPages {
       name: _Paths.CREATE_ORGANIZATION,
       page: () => CreateOrganizationView(),
       binding: CreateOrganizationBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADMIN_DASHBOARD,
+      page: () => AdminDashboardView(),
+      binding: AdminDashboardBinding(),
     ),
   ];
 }

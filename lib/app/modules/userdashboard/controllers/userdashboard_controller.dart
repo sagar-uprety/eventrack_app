@@ -1,5 +1,6 @@
-import 'package:eventrack_app/app/temp_data.dart';
 import 'package:get/get.dart';
+
+import '../../../temp_data.dart';
 
 class UserdashboardController extends GetxController {
   get events => TempData.events;

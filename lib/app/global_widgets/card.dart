@@ -6,15 +6,17 @@ import '../utilities/colors.dart';
 
 class ETCard extends StatelessWidget {
   ///Adds a padded `Card` with `radius: 12` in each corner.
-  const ETCard(
-      {Key? key,
-      //TODO: Make this required.
-      this.route,
-      required this.argument,
-      required this.child,
-      this.width = double.infinity,
-      this.height = 100})
-      : super(key: key);
+  const ETCard({
+    Key? key,
+    //TODO: Make this required.
+    this.route,
+    required this.argument,
+    required this.child,
+    this.color,
+    this.width = double.infinity,
+    this.height = 100,
+    this.addShadow = true,
+  }) : super(key: key);
 
   ///Requires a route of a detail screen to navigate on tappping the card.
   ///
@@ -23,6 +25,12 @@ class ETCard extends StatelessWidget {
 
   ///Requires a model value as an argument to pass on to the next `route`.
   final Object argument;
+
+  ///`BackgroundColor` of the card. Defaults to `AppColors.cardColor`.
+  final Color? color;
+
+  ///If `false`, removes the shadow added on default.
+  final bool addShadow;
 
   ///Requires a child to display inside the card.
   final Widget child;
@@ -43,14 +51,15 @@ class ETCard extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: AppColors.cardColor,
+          color: color ?? AppColors.cardColor,
           boxShadow: [
-            BoxShadow(
-              color: AppColors.dark25,
-              offset: Offset(0, 4),
-              blurRadius: 4,
-              spreadRadius: 0.4,
-            ),
+            if (addShadow != false)
+              BoxShadow(
+                color: AppColors.dark25,
+                offset: Offset(0, 4),
+                blurRadius: 4,
+                spreadRadius: 0.4,
+              ),
           ],
         ),
         child: child,
