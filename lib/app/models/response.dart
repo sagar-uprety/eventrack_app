@@ -25,11 +25,11 @@ class ResponseModel {
   @JsonKey(name: 'event')
   final Event? event;
   @JsonKey(name: 'user_list')
-  final UserList? userList;
+  final List<User>? userList;
   @JsonKey(name: 'event_list')
-  final EventList? eventList;
+  final List<Event>? eventList;
   @JsonKey(name: 'organization_list')
-  final OrganizationList? organizationList;
+  final List<Organization>? organizationList;
 
   ResponseModel(
       {this.message,
