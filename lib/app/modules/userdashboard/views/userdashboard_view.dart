@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -15,9 +16,9 @@ class UserdashboardView extends GetView<UserdashboardController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ETAppBar(
-        addBackButton: true,
         title: 'Home',
       ),
+      drawer: buildAppDrawer(createdOrg: false),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
