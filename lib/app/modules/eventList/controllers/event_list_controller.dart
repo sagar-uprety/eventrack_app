@@ -8,9 +8,12 @@ import '../../../models/event/event.dart';
 
 class EventListController extends GetxController {
   late EventListProvider _eventsProvider;
+  final searchFormKey = GlobalKey<FormState>();
+  late TextEditingController searchText;
 
   EventListController() {
-    final _eventsProvider = Get.find<EventListProviderImpl>();
+    searchText = TextEditingController();
+    _eventsProvider = Get.find<EventListProviderImpl>();
     loadEventList();
   }
 
@@ -35,8 +38,6 @@ class EventListController extends GetxController {
   hideLoading() => isLoading.toggle();
 
   // get events => TempData.events;
-  final searchFormKey = GlobalKey<FormState>();
-  late TextEditingController searchText;
 
   void search() {
     if (searchFormKey.currentState!.validate())

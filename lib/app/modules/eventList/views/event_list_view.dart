@@ -21,28 +21,26 @@ class EventListView extends GetView<EventListController> {
           } else if (controller.events == null) {
             return Center(child: Text("Cound Not Fetch Data"));
           } else {
-            return Column(children: [
-              Stack(
-                children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: controller.events!.length,
-                    itemBuilder: (_, index) {
-                      return EventCard(controller.events![index]);
-                    },
-                  ).paddingOnly(top: 70, bottom: 15),
-                  Form(
-                    key: controller.searchFormKey,
-                    child: FormInputField(
-                      label: 'Search',
-                      controller: controller.searchText,
-                      suffixIcon: Icons.search,
-                      onClickedSuffix: controller.search,
-                    ),
+            return SingleChildScrollView(
+              child: Column(children: [
+                Form(
+                  key: controller.searchFormKey,
+                  child: FormInputField(
+                    label: 'Search',
+                    controller: controller.searchText,
+                    suffixIcon: Icons.search,
+                    onClickedSuffix: controller.search,
                   ),
-                ],
-              )
-            ]);
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.events!.length,
+                  itemBuilder: (_, index) {
+                    return EventCard(controller.events![index]);
+                  },
+                ).paddingOnly(top: 70, bottom: 15),
+              ]),
+            );
           }
         }));
   }
