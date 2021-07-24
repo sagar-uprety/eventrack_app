@@ -42,7 +42,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.ADMIN_DASHBOARD;
+  static const INITIAL = Routes.SIGNUP;
 
   static final routes = [
     GetPage(
