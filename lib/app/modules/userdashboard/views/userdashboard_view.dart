@@ -18,7 +18,7 @@ class UserdashboardView extends GetView<UserdashboardController> {
       appBar: ETAppBar(
         title: 'Home',
       ),
-      drawer: buildAppDrawer(createdOrg: false),
+      drawer: buildAppDrawer(createdOrg: true),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
