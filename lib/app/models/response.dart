@@ -1,11 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'event/event.dart';
-import 'event/event_list.dart';
 import 'organization/organization.dart';
-import 'organization/organization_list.dart';
 import 'user/user.dart';
-import 'user/user_list.dart';
 
 part 'response.g.dart';
 
