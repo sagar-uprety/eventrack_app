@@ -1,28 +1,42 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../../temp_data.dart';
+import '../provider/event_list_provider.dart';
+import '../provider/event_list_provider_impl.dart';
+import '../../../models/event/event.dart';
 
 class EventListController extends GetxController {
-  get events => TempData.events;
+  late EventListProvider _eventsProvider;
+
+  EventListController() {
+    final _eventsProvider = Get.find<EventListProviderImpl>();
+    loadEventList();
+  }
+
+  RxBool isLoading = false.obs;
+  RxList<Event>? events;
+
+  loadEventList() async {
+    showLoading();
+    //call to Provider Method which in turn call to our API
+    final result = await _eventsProvider.getEventList();
+    //this result is already parsed and is converted to List<Events>
+    if (result != null) {
+      events = result.obs;
+      hideLoading();
+    } else {
+      print("Data Not Found");
+      hideLoading();
+    }
+  }
+
+  showLoading() => isLoading.toggle();
+  hideLoading() => isLoading.toggle();
+
+  // get events => TempData.events;
   final searchFormKey = GlobalKey<FormState>();
   late TextEditingController searchText;
-  @override
-  void onInit() {
-    searchText = TextEditingController();
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    searchText.dispose();
-  }
 
   void search() {
     if (searchFormKey.currentState!.validate())
