@@ -62,7 +62,6 @@ Drawer buildAppDrawer({bool? createdOrg}) {
           onTap: () => Get.toNamed(Routes.USER_PROFILE),
           leading: Icon(Icons.person),
         ),
-        //TODO: created org null 
         (createdOrg == null) ? Center() :
         !createdOrg
             ? ListTile(
