@@ -76,7 +76,7 @@ class SignUpView extends GetView<SignupController> {
                   // await SharedPreference.saveAuthState();
                   // await SharedPreference.getAuthState();
                   // Get.toNamed(Routes.HOME);
-                  Get.toNamed(Routes.LOGIN);
+                  Get.offNamed(Routes.LOGIN);
                 },
               ),
             ],
