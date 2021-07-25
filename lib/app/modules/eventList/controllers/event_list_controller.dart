@@ -1,11 +1,11 @@
-import 'package:eventrack_app/app/pickers/datetimepicker.dart';
-import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
+import '../../../models/event/event.dart';
+import '../../../pickers/datetimepicker.dart';
 import '../provider/event_list_provider.dart';
 import '../provider/event_list_provider_impl.dart';
-import '../../../models/event/event.dart';
 
 class EventListController extends GetxController {
   late EventListProvider _eventsProvider;

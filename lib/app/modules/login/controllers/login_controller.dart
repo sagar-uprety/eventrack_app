@@ -1,5 +1,3 @@
-import 'package:eventrack_app/app/routes/app_pages.dart';
-import 'package:eventrack_app/app/services/shared_prefs.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,6 +5,8 @@ import 'package:get/get.dart';
 import '../../../global_widgets/message.dart';
 import '../../../models/response.dart';
 import '../../../models/user/user.dart';
+import '../../../routes/app_pages.dart';
+import '../../../services/shared_prefs.dart';
 import '../provider/login_provider.dart';
 import '../provider/login_providerImpl.dart';
 

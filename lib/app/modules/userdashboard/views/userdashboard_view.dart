@@ -1,9 +1,9 @@
-import 'package:eventrack_app/app/global_widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../../../global_widgets/appBar.dart';
+import '../../../global_widgets/app_drawer.dart';
 import '../../../global_widgets/button.dart';
 import '../../../global_widgets/tiles/eventCard.dart';
 import '../../../global_widgets/tiles/horizontalEventCard.dart';

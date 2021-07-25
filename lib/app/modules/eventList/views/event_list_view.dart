@@ -1,12 +1,13 @@
-import 'package:eventrack_app/app/global_widgets/button.dart';
-import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
+
 import 'package:expandable/expandable.dart';
 import 'package:get/get.dart';
 
 import '../../../global_widgets/appBar.dart';
+import '../../../global_widgets/button.dart';
 import '../../../global_widgets/formField.dart';
 import '../../../global_widgets/tiles/eventCard.dart';
+import '../../../utilities/colors.dart';
 import '../controllers/event_list_controller.dart';
 
 class EventListView extends GetView<EventListController> {
