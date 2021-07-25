@@ -6,7 +6,7 @@ import '../utilities/colors.dart';
 
 class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
   ///Text to display at the center of the `AppBar`
-  final String? title;
+  final title;
 
   ///Add a TabBar (if any)
   final TabBar? bottom;
@@ -69,7 +69,10 @@ class ETAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: title != null
           ? Text(
               '$title',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(fontSize: 24.0),
             )
           : Center(),
       actions: [

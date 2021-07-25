@@ -9,6 +9,7 @@ import '../controllers/organization_profile_controller.dart';
 import 'tabs/tab1.dart';
 import 'tabs/tab2.dart';
 import 'tabs/tab3.dart';
+import '../../../global_widgets/button.dart';
 
 class OrganizationProfileView extends GetView<OrganizationProfileController> {
   //TODO: Remove `hasImage` and `image`
@@ -70,7 +71,7 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
               OrganizationProfileTab2(),
               OrganizationProfileTab3(),
             ],
-          )
+          ),
         ],
       ),
     );

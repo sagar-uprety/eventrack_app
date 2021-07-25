@@ -56,11 +56,10 @@ class EventDetailTab1 extends GetView<EventDetailController> {
               ),
           ],
         ),
-        Row(
-          mainAxisSize: MainAxisSize.max,
+        Column(
           children: [
-            Flexible(
-              flex: 3,
+            SizedBox(
+              height: 40.0,
               child: ListTile(
                 contentPadding: EdgeInsets.all(0),
                 leading: Icon(Icons.calendar_today_outlined),
@@ -73,19 +72,22 @@ class EventDetailTab1 extends GetView<EventDetailController> {
                 ),
               ),
             ),
-            Flexible(
-              flex: 2,
+            SizedBox(
+              height: 40.0,
               child: ListTile(
                 contentPadding: EdgeInsets.all(0),
                 horizontalTitleGap: 0,
                 leading: Icon(Icons.timer),
                 title: Text(
-                  '${controller.event.dateTime!.times[1]}\n${controller.event.dateTime!.times[1]}',
+                  '${controller.event.dateTime!.times[1]} - ${controller.event.dateTime!.times[1]}',
                   style: Get.textTheme.overline,
                 ),
               ),
             ),
           ],
+        ),
+        SizedBox(
+          height: 20.0,
         ),
         Text(
           'Description',
