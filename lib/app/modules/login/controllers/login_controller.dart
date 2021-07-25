@@ -1,3 +1,5 @@
+import 'package:eventrack_app/app/routes/app_pages.dart';
+import 'package:eventrack_app/app/services/shared_prefs.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -73,8 +75,10 @@ class LoginController extends GetxController {
             password: password.text,
           ).toJson(),
         );
-        print(response!.message);
-        FlashMessage(response.state, message: response.message);
+        FlashMessage(response!.state, message: response.message);
+        if (response.state)
+          await SharedPreference.saveAuthState(response.authToken!);
+        Get.toNamed(Routes.USERDASHBOARD);
       }
     } catch (e) {
       print(e);

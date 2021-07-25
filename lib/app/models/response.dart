@@ -15,6 +15,8 @@ class ResponseModel {
   final String? message;
   @JsonKey(name: 'state')
   final bool state;
+  @JsonKey(name: 'authToken')
+  final String? authToken;
   @JsonKey(name: 'user')
   final User? user;
   @JsonKey(name: 'organization')
@@ -31,6 +33,7 @@ class ResponseModel {
   ResponseModel(
       {this.message,
       this.state = false,
+      this.authToken,
       this.user,
       this.organization,
       this.event,

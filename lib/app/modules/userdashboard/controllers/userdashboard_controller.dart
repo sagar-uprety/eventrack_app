@@ -6,7 +6,7 @@ class UserdashboardController extends GetxController {
   get events => TempData.events;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
   }
 

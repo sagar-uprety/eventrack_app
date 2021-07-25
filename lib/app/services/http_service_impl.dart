@@ -37,13 +37,6 @@ class HttpImplementation implements HttpService {
   Future<ResponseModel> postRequest(String url,
       {data, String? authToken}) async {
     late Response response;
-
-    // if (authToken != null && data != null) {
-    //   Options options = Options(headers: {'auth-token': authToken});
-    //   response = await _dio.post(url, data: data, options: options);
-    // } else {
-    //   response = await _dio.post(url, data: data);
-    // }
     if (authToken != null) _dio.options.headers = {'auth-token': authToken};
     response = await _dio.post(url, data: data);
     return ResponseModel.fromJson(response.data);
