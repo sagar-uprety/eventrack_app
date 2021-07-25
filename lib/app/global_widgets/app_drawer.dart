@@ -63,7 +63,8 @@ Drawer buildAppDrawer({bool? createdOrg}) {
           leading: Icon(Icons.person),
         ),
         //TODO: created org null 
-        !createdOrg!
+        (createdOrg == null) ? Center() :
+        !createdOrg
             ? ListTile(
                 title: Text("Create Organization"),
                 onTap: () => Get.toNamed(Routes.CREATE_ORGANIZATION),
