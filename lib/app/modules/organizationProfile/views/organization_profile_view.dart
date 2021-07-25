@@ -18,7 +18,7 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
       : null;
 
   final controller = Get.find<OrganizationProfileController>();
-
+  //TODO: create event button
   @override
   Widget build(BuildContext context) {
     return Scaffold(
