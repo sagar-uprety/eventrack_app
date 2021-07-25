@@ -19,7 +19,6 @@ class EventListProviderImpl implements EventListProvider {
   Future<List<Event>?> getEventList() async {
     try {
       final ResponseModel response = await _httpService.getRequest('/events/');
-      print(response.eventList);
 
       return response.eventList;
     } on Exception catch (e) {

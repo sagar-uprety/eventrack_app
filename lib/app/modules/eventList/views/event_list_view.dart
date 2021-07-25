@@ -1,4 +1,5 @@
-import 'package:eventrack_app/app/pickers/datetimepicker.dart';
+import 'package:eventrack_app/app/global_widgets/button.dart';
+import 'package:eventrack_app/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:expandable/expandable.dart';
 import 'package:get/get.dart';
@@ -7,36 +8,6 @@ import '../../../global_widgets/appBar.dart';
 import '../../../global_widgets/formField.dart';
 import '../../../global_widgets/tiles/eventCard.dart';
 import '../controllers/event_list_controller.dart';
-
-List<String> categoriesList = [
-  'Award',
-  'Competition',
-  'Educational',
-  'Festival',
-  'Networking',
-  'Science & Technology',
-  'Seminar',
-  'Social',
-  'Sports',
-  'Trade',
-  'Workshop',
-  'Others'
-];
-
-List<Color> colors = [
-  Colors.red[200]!,
-  Colors.green[200]!,
-  Colors.blue[200]!,
-  Colors.brown[200]!,
-  Colors.purple[200]!,
-  Colors.lightGreen[400]!,
-  Colors.lightBlueAccent[200]!,
-  Colors.orange[200]!,
-  Colors.red[300]!,
-  Colors.blue[300]!,
-  Colors.brown[300]!,
-  Colors.blueGrey[200]!,
-];
 
 class EventListView extends GetView<EventListController> {
   @override
@@ -69,125 +40,114 @@ class EventListView extends GetView<EventListController> {
                     ExpandablePanel(
                       theme: const ExpandableThemeData(
                         headerAlignment: ExpandablePanelHeaderAlignment.center,
-                        tapBodyToExpand: true,
-                        tapBodyToCollapse: true,
+                        tapHeaderToExpand: false,
                         hasIcon: false,
                       ),
-                      header: Container(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "Filter",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .copyWith(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                  ),
-                                  Icon(
-                                    Icons.filter_alt,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      collapsed: Container(),
-                      expanded: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      header: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'Catergories',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .copyWith(
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black,
-                                        ),
-                                  ),
-                                ],
+                          Container(
+                            width: 125,
+                            child: ListTile(
+                              minLeadingWidth: 1,
+                              leading: Icon(
+                                Icons.filter_alt,
+                                color: AppColors.dark50,
                               ),
-                              SizedBox(
-                                height: 50,
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  padding: EdgeInsets.symmetric(horizontal: 0),
-                                  itemCount: categoriesList.length,
-                                  itemBuilder: (_, i) => MaterialButton(
-                                    color: colors[i],
-                                    child: Text(
-                                      categoriesList[i],
-                                    ),
-                                    onPressed: () => {
-                                      print("HI"),
-                                    },
-                                  ).paddingOnly(right: 10, bottom: 5),
-                                ),
-                              ).paddingSymmetric(vertical: 10),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            children: [
-                              Icon(Icons.filter_list),
-                              Text(
-                                'Sort by Date',
+                              title: Text(
+                                "Filter:",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
-                                    ),
+                                        color: AppColors.dark50,
+                                        fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(
-                                height: 25,
-                                child: MaterialButton(
-                                  child: Text(
-                                    'Select Date',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .copyWith(
-                                          color: Colors.blue[800],
-                                        ),
-                                  ),
-                                  onPressed: () =>
-                                      {DateTimePicker.dateRangePicker(context)},
-                                ),
-                              )
-                            ],
+                            ),
+                          ),
+                          ExpandableButton(
+                            child: Text(
+                              "Categories",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                      color: AppColors.blue,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          ETTextButton(
+                            'Date',
+                            underline: false,
+                            onPressed: controller.pickFilterDate,
+                          ),
+                          IconButton(
+                            onPressed: controller.clearFilter,
+                            icon: Icon(
+                              Icons.clear,
+                            ),
                           ),
                         ],
-                      ).paddingSymmetric(vertical: 10),
-                    ).paddingSymmetric(vertical: 10, horizontal: 20),
+                      ),
+                      collapsed: Container(),
+                      expanded: SizedBox(
+                        height: 38,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          itemCount: controller.categoriesList.length,
+                          itemBuilder: (_, i) =>
+                              _buildCategoryChip(controller.categoriesList[i]),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: controller.events!.length,
-                itemBuilder: (_, index) {
-                  return EventCard(controller.events![index]);
+              Obx(
+                () {
+                  if (controller.isLoading.isTrue) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (controller.filteredEvents.length == 0) {
+                    return Center(child: Text("Data Not Found"));
+                  } else {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.filteredEvents.length,
+                      itemBuilder: (_, index) {
+                        return EventCard(controller.filteredEvents[index]);
+                      },
+                    ).paddingOnly(top: 10, bottom: 15);
+                  }
                 },
-              ).paddingOnly(top: 10, bottom: 15),
+              )
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildCategoryChip(String category) {
+    return GestureDetector(
+        onTap: () => controller.pickCategory(category),
+        child: Obx(
+          () => Chip(
+            backgroundColor: controller.checkSelectedCategory(category)
+                ? AppColors.dark50
+                : AppColors.dark25,
+            label: Text(
+              category,
+              style: TextStyle(
+                  color: controller.checkSelectedCategory(category)
+                      ? AppColors.dark10
+                      : AppColors.dark80),
+            ),
+            labelPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            elevation: 1,
+          ).paddingOnly(right: 8),
+        ));
   }
 }

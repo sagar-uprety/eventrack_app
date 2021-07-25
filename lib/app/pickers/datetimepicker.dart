@@ -20,12 +20,19 @@ class DateTimePicker {
   ///Displays a DateRangePicker
   ///
   ///Returns a `list of Iso8601String (A String type for DateTime) of length 2(Start Date and End Date)` if the both dates are picked.
-  static Future<List<String>> dateRangePicker(BuildContext context, {DateTime? firstDate, DateTime? lastDate}) async {
+  static Future<List<String>> dateRangePicker(BuildContext context,
+      {List<String>? selectedDateRange = const []}) async {
     return await showDateRangePicker(
       context: context,
-      firstDate: firstDate ?? Date.today,
-      lastDate: lastDate ?? (Date.today + Duration(days: 365)),
+      firstDate: Date.today,
+      lastDate: (Date.today + Duration(days: 365)),
       initialEntryMode: DatePickerEntryMode.calendar,
+      initialDateRange: selectedDateRange!.length != 0
+          ? DateTimeRange(
+              start: selectedDateRange.parseDate[0],
+              end: selectedDateRange.parseDate[1],
+            )
+          : null,
     ).then((value) => value != null
         ? [value.start.toIso8601String(), value.end.toIso8601String()]
         : []);
