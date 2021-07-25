@@ -1,11 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'event/event.dart';
-import 'event/event_list.dart';
 import 'organization/organization.dart';
-import 'organization/organization_list.dart';
 import 'user/user.dart';
-import 'user/user_list.dart';
 
 part 'response.g.dart';
 
@@ -18,6 +15,8 @@ class ResponseModel {
   final String? message;
   @JsonKey(name: 'state')
   final bool state;
+  @JsonKey(name: 'authToken')
+  final String? authToken;
   @JsonKey(name: 'user')
   final User? user;
   @JsonKey(name: 'organization')
@@ -34,6 +33,7 @@ class ResponseModel {
   ResponseModel(
       {this.message,
       this.state = false,
+      this.authToken,
       this.user,
       this.organization,
       this.event,

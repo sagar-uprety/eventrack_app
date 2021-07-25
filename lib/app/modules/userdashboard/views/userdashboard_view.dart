@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../global_widgets/appBar.dart';
+import '../../../global_widgets/app_drawer.dart';
 import '../../../global_widgets/button.dart';
 import '../../../global_widgets/tiles/eventCard.dart';
 import '../../../global_widgets/tiles/horizontalEventCard.dart';
@@ -15,9 +16,9 @@ class UserdashboardView extends GetView<UserdashboardController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ETAppBar(
-        addBackButton: true,
         title: 'Home',
       ),
+      drawer: buildAppDrawer(createdOrg: true),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[

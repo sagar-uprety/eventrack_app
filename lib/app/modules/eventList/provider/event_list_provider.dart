@@ -1,5 +1,5 @@
 import '../../../models/event/event.dart';
 
-abstract class EventsProvider {
+abstract class EventListProvider {
   Future<List<Event>?> getEventList();
 }

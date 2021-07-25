@@ -52,9 +52,7 @@ class UserProfileView extends GetView<UserProfileController> {
                                   color: Colors.blue,
                                   size: 20,
                                 ),
-                                onPressed: () {
-                                  Get.toNamed(Routes.EDIT_USER_PROFILE);
-                                },
+                                onPressed: controller.pickProfile,
                                 shape: CircleBorder(
                                   side:
                                       BorderSide(width: 3, color: Colors.white),
