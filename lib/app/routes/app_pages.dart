@@ -12,6 +12,8 @@ import '../modules/eventList/bindings/event_list_binding.dart';
 import '../modules/eventList/views/event_list_view.dart';
 import '../modules/event_detail/bindings/event_detail_binding.dart';
 import '../modules/event_detail/views/event_detail_view.dart';
+import '../modules/initLoad/bindings/init_load_binding.dart';
+import '../modules/initLoad/views/init_load_view.dart';
 import '../modules/locationPicker/bindings/location_picker_binding.dart';
 import '../modules/locationPicker/views/location_picker_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -38,7 +40,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.INIT_LOAD;
 
   static final routes = [
     GetPage(
@@ -120,6 +122,11 @@ class AppPages {
       name: _Paths.ADMIN_DASHBOARD,
       page: () => AdminDashboardView(),
       binding: AdminDashboardBinding(),
+    ),
+    GetPage(
+      name: _Paths.INIT_LOAD,
+      page: () => InitLoadView(),
+      binding: InitLoadBinding(),
     ),
   ];
 }
