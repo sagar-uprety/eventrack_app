@@ -56,15 +56,6 @@ class CreateEventView extends GetView<CreateEventController> {
                               childText: 'Submit',
                               onPressed: controller.submit,
                             ),
-                          // TextButton(
-                          //   onPressed: onStepCancel!,
-                          //   child: Text(
-                          //     'Back',
-                          //     style: Get.textTheme.button!.copyWith(
-                          //         color: AppColors.dark65,
-                          //         fontWeight: FontWeight.w600),
-                          //   ),
-                          // )
                            ETElevatedButton(
                              size: Size(120, 50),
                               childText: 'Back',
