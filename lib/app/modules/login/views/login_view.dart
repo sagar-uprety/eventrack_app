@@ -113,7 +113,7 @@ class LoginView extends GetView<LoginController> {
               ETTextButton(
                 'Sign Up',
                 onPressed: () {
-                  Get.toNamed(Routes.SIGNUP);
+                  Get.offNamed(Routes.SIGNUP);
                 },
               ),
             ],

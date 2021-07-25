@@ -22,6 +22,7 @@ abstract class Routes {
   static const CREATE_ORGANIZATION = _Paths.CREATE_ORGANIZATION;
   static const BROWSE_EVENTS = _Paths.BROWSE_EVENTS;
   static const ADMIN_DASHBOARD = _Paths.ADMIN_DASHBOARD;
+  static const INIT_LOAD = _Paths.INIT_LOAD;
 }
 
 abstract class _Paths {
@@ -43,4 +44,5 @@ abstract class _Paths {
   static const CREATE_ORGANIZATION = '/create-organization';
   static const BROWSE_EVENTS = '/browse-events';
   static const ADMIN_DASHBOARD = '/admin-dashboard';
+  static const INIT_LOAD = '/init-load';
 }
