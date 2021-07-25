@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../models/event/event.dart';
 import '../../pickers/datetimepicker.dart';
 import '../../routes/app_pages.dart';
+import '../../utilities/colors.dart';
 import '../card.dart';
 
 class EventCard extends StatelessWidget {
@@ -25,11 +26,37 @@ class EventCard extends StatelessWidget {
                 topLeft: Radius.circular(12),
                 bottomLeft: Radius.circular(12),
               ),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(event.eventProfile!),
+              // image: DecorationImage(
+              //   fit: BoxFit.cover,
+              //   image: NetworkImage(event.eventProfile!),
+              // ),
+              image: event.eventProfile != null
+                  ? DecorationImage(
+                      image: NetworkImage(event.eventProfile!),
+                      fit: BoxFit.cover,
+                    )
+                  : null,
+              gradient: RadialGradient(
+                center: Alignment.topRight,
+                radius: 2.0,
+                colors: <Color>[
+                  AppColors.dark65,
+                  AppColors.dark10,
+                ],
               ),
             ),
+            child: !(event.eventProfile != null)
+                ? FittedBox(
+                    child: Center(
+                      child: Text(
+                        'No Cover'.toUpperCase(),
+                        textAlign: TextAlign.center,
+                        style: Get.textTheme.headline1!
+                            .copyWith(color: AppColors.dark80),
+                      ).paddingAll(20),
+                    ),
+                  )
+                : Center(),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
