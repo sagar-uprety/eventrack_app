@@ -101,9 +101,12 @@ class EventDetailTab1 extends GetView<EventDetailController> {
           ),
         ),
         Obx(
-          () => ETTextButton(
-            !controller.showMore.value ? 'Show More' : 'Show Less',
-            onPressed: controller.toggleDescriptionDisplay,
+          () => Padding(
+            padding: const EdgeInsets.only(bottom: 20.0),
+            child: ETTextButton(
+              !controller.showMore.value ? 'Show More' : 'Show Less',
+              onPressed: controller.toggleDescriptionDisplay,
+            ),
           ),
         ),
       ],

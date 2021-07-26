@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../controllers/controllers/global_controller.dart';
 import '../../../global_widgets/message.dart';
 import '../../../models/response.dart';
 import '../../../models/user/user.dart';
@@ -14,7 +15,6 @@ class LoginController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();
   late TextEditingController email;
   late TextEditingController password;
-  final formKey = GlobalKey<FormState>();
   final bottomSheetFormKey = GlobalKey<FormState>();
   final RxBool obscurePassword = true.obs;
 
@@ -23,13 +23,15 @@ class LoginController extends GetxController {
 
   final Rx<bool> logging = false.obs;
 
+  late GlobalController _global;
   @override
   void onInit() {
     email = TextEditingController();
     password = TextEditingController();
     bottomSheetEmail = TextEditingController();
     _loginProvider = Get.find<LoginProviderImpl>();
-
+    _global = Get.find<GlobalController>();
+    _global.removeCurrentData();
     super.onInit();
   }
 
@@ -68,7 +70,7 @@ class LoginController extends GetxController {
   Future login() async {
     _changeLoggingState();
     try {
-      if (formKey.currentState!.validate()) {
+      if (loginFormKey.currentState!.validate()) {
         ResponseModel? response = await _loginProvider.loginUser(
           data: User(
             email: email.text.trim(),
@@ -76,9 +78,10 @@ class LoginController extends GetxController {
           ).toJson(),
         );
         FlashMessage(response!.state, message: response.message);
-        if (response.state)
+        if (response.state) {
           await SharedPreference.saveAuthState(response.authToken!);
-        Get.toNamed(Routes.USERDASHBOARD);
+          Get.offAllNamed(Routes.INIT_LOAD);
+        }
       }
     } catch (e) {
       print(e);

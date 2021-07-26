@@ -1,7 +1,9 @@
+import 'package:eventrack_app/app/models/organization/organization.dart';
 import 'package:get/get.dart';
 
 class OrganizationProfileController extends GetxController {
   final RxBool showMore = false.obs;
+  final Organization orgData = Get.arguments;
 
   @override
   void onInit() {

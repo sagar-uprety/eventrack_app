@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../global_widgets/appBar.dart';
-import '../../../global_widgets/app_drawer.dart';
 import '../../../global_widgets/bottomSheet.dart';
 import '../../../global_widgets/button.dart';
 import '../../../global_widgets/formField.dart';
@@ -23,7 +22,6 @@ class CreateEventView extends GetView<CreateEventController> {
         title: 'Create Your Event',
         addBackButton: true,
       ),
-      drawer: buildAppDrawer(),
       body: Form(
         key: controller.key,
         autovalidateMode: AutovalidateMode.disabled,
@@ -40,10 +38,11 @@ class CreateEventView extends GetView<CreateEventController> {
               return Obx(
                 () => !controller.saving.value
                     ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           if (controller.stepIndex.value == 0)
                             ETElevatedButton(
+                              size: Size(120, 50),
                               childText: 'Next',
                               onPressed: () {
                                 if (controller.validateForm1())
@@ -52,18 +51,16 @@ class CreateEventView extends GetView<CreateEventController> {
                             ),
                           if (controller.stepIndex.value == 1)
                             ETElevatedButton(
+                              size: Size(120, 50),
                               childText: 'Submit',
                               onPressed: controller.submit,
                             ),
-                          TextButton(
+                          ETElevatedButton(
+                            size: Size(120, 50),
+                            childText: 'Back',
                             onPressed: onStepCancel!,
-                            child: Text(
-                              'Back',
-                              style: Get.textTheme.button!.copyWith(
-                                  color: AppColors.dark65,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          )
+                            color: AppColors.dark65,
+                          ),
                         ],
                       )
                     : Center(child: CircularProgressIndicator()),
@@ -134,52 +131,61 @@ class CreateEventView extends GetView<CreateEventController> {
             inactiveTrackColor: AppColors.dark50,
           ),
           Obx(
-            () => ListTile(
-              leading: ETElevatedButton(
-                childText: 'Pick a Date',
-                color: AppColors.dark50,
-                onPressed: () {
-                  controller.pickDate(context);
-                },
-              ),
-              title: Text(
-                controller.formattedDate.length != 0
-                    ? controller.formattedDate.length == 1
-                        ? controller.formattedDate[0]
-                        : 'From: ' +
-                            controller.formattedDate[0] +
-                            '\nTo: ' +
-                            controller.formattedDate[1]
-                    : '',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText2!
-                    .copyWith(color: AppColors.dark80),
-              ),
-            ).paddingSymmetric(vertical: 8),
+            () => SizedBox(
+              width: 190,
+              child: ListTile(
+                subtitle: ETElevatedButton(
+                  childText: 'Pick a Date',
+                  color: AppColors.dark50,
+                  onPressed: () {
+                    controller.pickDate(context);
+                  },
+                ),
+                title: Center(
+                  child: controller.formattedDate.length != 0
+                      ? Text(
+                          controller.formattedDate.length == 1
+                              ? controller.formattedDate[0]
+                              : 'From: ' +
+                                  controller.formattedDate[0] +
+                                  '\nTo: ' +
+                                  controller.formattedDate[1],
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: AppColors.dark80),
+                        ).paddingOnly(bottom: 10)
+                      : Center(),
+                ),
+              ).paddingOnly(bottom: 8),
+            ),
           ),
           Obx(
-            () => ListTile(
-              leading: ETElevatedButton(
-                childText: 'Pick Time',
-                color: AppColors.dark50,
-                onPressed: () {
-                  controller.pickTime(context);
-                },
-              ),
-              title: controller.times.value.length != 0
-                  ? Text(
-                      'From: ' +
+            () => SizedBox(
+              width: 190,
+              child: ListTile(
+                title: controller.times.value.length != 0
+                    ? Center(
+                        child: Text(
                           controller.times.value[0] +
-                          '\nTo: ' +
-                          controller.times.value[1],
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2!
-                          .copyWith(color: AppColors.dark80),
-                    )
-                  : Center(),
-            ).paddingSymmetric(vertical: 8),
+                              '-' +
+                              controller.times.value[1],
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: AppColors.dark80),
+                        ).paddingOnly(bottom: 10),
+                      )
+                    : Center(),
+                subtitle: ETElevatedButton(
+                  childText: 'Pick Time',
+                  color: AppColors.dark50,
+                  onPressed: () {
+                    controller.pickTime(context);
+                  },
+                ),
+              ).paddingSymmetric(vertical: 8),
+            ),
           ),
         ],
       ),

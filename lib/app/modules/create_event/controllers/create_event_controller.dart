@@ -168,8 +168,8 @@ class CreateEventController extends GetxController {
 
   String? locationValidator(String? value) {
     if (value!.isEmpty) return 'Event location is empty.';
-    if (!GetUtils.isLengthBetween(value, 10, 52))
-      return 'Event location must be between 10 to 52 characters.';
+    if (!GetUtils.isLengthBetween(value, 3, 52))
+      return 'Event location must be between 3 to 52 characters.';
     return null;
   }
 
@@ -218,7 +218,7 @@ class CreateEventController extends GetxController {
 
         FlashMessage(response!.state, message: response.message);
 
-        Get.toNamed(Routes.EVENT_DETAIL);
+        Get.toNamed(Routes.EVENT_LIST);
       }
     } on Exception catch (e) {
       print(e);

@@ -5,8 +5,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/controllers/global_controller.dart';
-import '../../../global_widgets/message.dart';
-import '../../../models/response.dart';
 import '../../../models/user/user.dart';
 import '../../../pickers/filePicker.dart';
 import '../provider/userProfile_provider.dart';

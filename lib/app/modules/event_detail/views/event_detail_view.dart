@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/modules/event_detail/views/Button/RoundedButton.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -62,6 +63,13 @@ class EventDetailView extends GetView<EventDetailController> {
               EventDetailTab2(),
               EventDetailTab3(),
             ],
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 750.0, left: 50.0),
+            child: RoundButton(
+              text: 'Register',
+              onPress: () {},
+            ),
           ),
         ],
       ),

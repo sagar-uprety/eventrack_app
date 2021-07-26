@@ -19,7 +19,7 @@ class ResponseModel {
   final String? authToken;
   @JsonKey(name: 'user')
   final User? user;
-  @JsonKey(name: 'organization')
+  @JsonKey(name: 'organization', disallowNullValue: true)
   final Organization? organization;
   @JsonKey(name: 'event')
   final Event? event;
