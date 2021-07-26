@@ -55,21 +55,12 @@ class CreateEventView extends GetView<CreateEventController> {
                               childText: 'Submit',
                               onPressed: controller.submit,
                             ),
-<<<<<<< HEAD
-                           ETElevatedButton(
-                             size: Size(120, 50),
-                              childText: 'Back',
-                              onPressed: onStepCancel!,
-                              color: AppColors.dark65,
-                            ),
-=======
                           ETElevatedButton(
                             size: Size(120, 50),
                             childText: 'Back',
                             onPressed: onStepCancel!,
                             color: AppColors.dark65,
                           ),
->>>>>>> main
                         ],
                       )
                     : Center(child: CircularProgressIndicator()),
