@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -17,7 +18,7 @@ class CreateEventView extends GetView<CreateEventController> {
   final controller = Get.find<CreateEventController>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ETScaffold(
       appBar: ETAppBar(
         title: 'Create Your Event',
         addBackButton: true,

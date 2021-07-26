@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,7 +14,7 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ETScaffold(
       resizeToAvoidBottomInset: false,
       appBar: ETAppBar(
         title: 'Login',

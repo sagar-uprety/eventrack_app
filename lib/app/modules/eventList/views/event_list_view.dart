@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 import 'package:expandable/expandable.dart';
@@ -13,7 +14,7 @@ import '../controllers/event_list_controller.dart';
 class EventListView extends GetView<EventListController> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ETScaffold(
       appBar: ETAppBar(
         title: 'Explore Events',
         addBackButton: true,

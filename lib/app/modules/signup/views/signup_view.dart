@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -14,7 +15,7 @@ class SignUpView extends GetView<SignupController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ETScaffold(
       resizeToAvoidBottomInset: false,
       appBar: ETAppBar(
         title: 'Sign Up',

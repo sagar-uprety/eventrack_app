@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ import '../controllers/create_organization_controller.dart';
 class CreateOrganizationView extends GetView<CreateOrganizationController> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ETScaffold(
       appBar: ETAppBar(
         addBackButton: true,
         title: "Create Your Organization",
