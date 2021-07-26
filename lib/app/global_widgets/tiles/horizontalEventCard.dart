@@ -46,11 +46,13 @@ class HorizontalEventCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Chip(
-                  label: Text(
-                    event.dateTime!.dates.formatDate[0],
-                    style: Get.textTheme.bodyText2!.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.dark50,
+                  label: FittedBox(
+                    child: Text(
+                      event.dateTime!.dates.formatDate[0],
+                      style: Get.textTheme.bodyText2!.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.dark50,
+                      ),
                     ),
                   ),
                   labelPadding:
@@ -80,6 +82,7 @@ class HorizontalEventCard extends StatelessWidget {
               children: [
                 Text(
                   event.title!,
+                  overflow: TextOverflow.ellipsis,
                   style: Get.textTheme.bodyText1!.copyWith(
                     color: AppColors.dark65,
                     fontWeight: FontWeight.w700,
@@ -87,6 +90,7 @@ class HorizontalEventCard extends StatelessWidget {
                 ),
                 Text(
                   event.location!.location,
+                  overflow: TextOverflow.ellipsis,
                   style: Get.textTheme.bodyText2,
                 )
               ],

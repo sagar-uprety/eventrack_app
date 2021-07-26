@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../controllers/controllers/global_controller.dart';
 import '../../../models/event/event.dart';
 import '../../../pickers/datetimepicker.dart';
 import '../provider/event_list_provider.dart';
@@ -11,8 +12,8 @@ class EventListController extends GetxController {
   late EventListProvider _eventsProvider;
   final searchFormKey = GlobalKey<FormState>();
   late TextEditingController searchText;
-
-  late List<Event> events;
+  late GlobalController _global;
+  late List<Event> _events;
   final RxList<Event> filteredEvents = <Event>[].obs;
 
   late List<String> filterDate = [];
@@ -34,11 +35,14 @@ class EventListController extends GetxController {
   ];
 
   EventListController() {
-    events = []; // assign all events
-    filteredEvents.value = events;
     searchText = TextEditingController();
     _eventsProvider = Get.find<EventListProviderImpl>();
-    loadEventList();
+    _global = Get.find<GlobalController>();
+    _events = _global.events;
+    filteredEvents.value = _events;
+    update();
+    print(_global.currentUser.toJson());
+    // loadEventList();
   }
 
   RxBool isLoading = false.obs;
@@ -49,7 +53,7 @@ class EventListController extends GetxController {
     final result = await _eventsProvider.getEventList();
     //this result is already parsed and is converted to List<Events>
     if (result != null) {
-      events = result.obs;
+      _events = result.obs;
       hideLoading();
     } else {
       print("Data Not Found");
@@ -81,7 +85,7 @@ class EventListController extends GetxController {
   }
 
   void clearFilter() {
-    filteredEvents.value = events;
+    filteredEvents.value = _events;
     searchText.text = '';
     filterCategories.value = [];
     filterDate = [];
