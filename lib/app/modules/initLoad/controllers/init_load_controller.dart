@@ -41,6 +41,7 @@ class InitLoadController extends GetxController {
 
   Future getCurrentUser() async {
     final ResponseModel? response = await _provider.getCurrentUser();
+<<<<<<< HEAD
     print('Making reques');
     FlashMessage(response!.state,
         message: response.message, displayOnSuccess: false);
@@ -54,6 +55,17 @@ class InitLoadController extends GetxController {
         Get.offAllNamed(Routes.USERDASHBOARD);
       } else
         Get.offAllNamed(Routes.TOKEN_VERIFCATION);
+=======
+    FlashMessage(response!.state,
+        message: response.message, displayOnSuccess: false);
+    if (response.state) {
+      await _controller.getuser(
+        user: response.user!,
+        events: response.eventList!,
+        organization: response.organization,
+      );
+      Get.offAllNamed(Routes.USERDASHBOARD);
+>>>>>>> main
     } else
       await SharedPreference.requestLogout();
   }
