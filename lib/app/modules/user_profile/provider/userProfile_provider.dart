@@ -4,4 +4,5 @@ import '../../../models/response.dart';
 
 abstract class UserProfileProvider {
   Future<ResponseModel> uploadCover(Dio.FormData data);
+  Future<ResponseModel?> userData();
 }

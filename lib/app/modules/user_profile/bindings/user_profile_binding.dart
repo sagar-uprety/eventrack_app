@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/controllers/controllers/global_controller.dart';
 import 'package:get/get.dart';
 
 import '../controllers/user_profile_controller.dart';
@@ -10,5 +11,6 @@ class UserProfileBinding extends Bindings {
     Get.lazyPut<UserProfileController>(
       () => UserProfileController(),
     );
+    Get.put(GlobalController());
   }
 }

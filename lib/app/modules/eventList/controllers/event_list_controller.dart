@@ -98,8 +98,8 @@ class EventListController extends GetxController {
       if (searchFormKey.currentState!.validate()) {
       //assign the received `response.eventList` to `filteredEvents
     final ResponseModel? result = await _eventsProvider.getSearchList(data: { "title": searchText.text, "category": filterCategories, "date": filterDate } );
-    print(result);
-    if (result!.state) {
+    print(result!.toJson());
+    if (result.state) {
       filteredEvents.value  = result.eventList!;
       hideLoading();
     } else {
