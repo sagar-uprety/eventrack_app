@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../controllers/controllers/global_controller.dart';
 import '../routes/app_pages.dart';
+import '../services/shared_prefs.dart';
 
-Drawer buildAppDrawer({bool? createdOrg}) {
+Drawer buildAppDrawer() {
+  final _controller = Get.find<GlobalController>();
   return Drawer(
     child: ListView(
       children: [
@@ -62,7 +65,7 @@ Drawer buildAppDrawer({bool? createdOrg}) {
           onTap: () => Get.toNamed(Routes.USER_PROFILE),
           leading: Icon(Icons.person),
         ),
-        !createdOrg!
+        _controller.currentUser.organization == null
             ? ListTile(
                 title: Text("Create Organization"),
                 onTap: () => Get.toNamed(Routes.CREATE_ORGANIZATION),
@@ -78,7 +81,7 @@ Drawer buildAppDrawer({bool? createdOrg}) {
         ),
         ListTile(
           title: Text("Logout"),
-          onTap: () => Get.toNamed(Routes.LOGIN),
+          onTap: () async => await SharedPreference.requestLogout(),
           leading: Icon(Icons.logout),
         )
       ],

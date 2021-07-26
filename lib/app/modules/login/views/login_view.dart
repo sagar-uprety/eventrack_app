@@ -22,7 +22,7 @@ class LoginView extends GetView<LoginController> {
       body: Column(
         children: [
           Form(
-            key: controller.formKey,
+            key: controller.loginFormKey,
             child: Column(
               children: [
                 FormInputField(
