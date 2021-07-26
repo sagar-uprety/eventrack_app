@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/models/organization/organization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -18,6 +19,7 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
       : null;
 
   final controller = Get.find<OrganizationProfileController>();
+
   //TODO: create event button
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
             child: !(image != null)
                 ? Center(
                     child: Text(
-                      'EventTrack'.toUpperCase(),
+                      controller.orgData.name!,
                       textAlign: TextAlign.center,
                       style: Get.textTheme.headline1!
                           .copyWith(color: AppColors.dark80),
@@ -56,12 +58,10 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
             tabIcons: [
               Icons.event_note,
               Icons.circle,
-              Icons.circle,
             ],
             tabs: [
               OrganizationProfileTab1(),
               OrganizationProfileTab2(),
-              OrganizationProfileTab3(),
             ],
           )
         ],
