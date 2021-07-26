@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 import '../../../controllers/controllers/global_controller.dart';
 import '../../../models/event/event.dart';
-import '../../../temp_data.dart';
 
 class UserdashboardController extends GetxController {
   late List<Event> events;

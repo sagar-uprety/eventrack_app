@@ -1,9 +1,11 @@
+import 'package:eventrack_app/app/global_widgets/message.dart';
+import 'package:eventrack_app/app/models/user/user.dart';
+import 'package:eventrack_app/app/modules/event_detail/provider/event_detail_provider_impl.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../controllers/controllers/global_controller.dart';
 import '../../../models/event/event.dart';
 import '../../../models/response.dart';
 import '../../../temp_data.dart';
