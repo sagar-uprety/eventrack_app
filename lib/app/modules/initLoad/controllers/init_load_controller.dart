@@ -40,13 +40,12 @@ class InitLoadController extends GetxController {
 
   Future getCurrentUser() async {
     final ResponseModel? response = await _provider.getCurrentUser();
-    print('Making reques');
     FlashMessage(response!.state,
         message: response.message, displayOnSuccess: false);
     if (response.state) {
       await _controller.getuser(
         user: response.user!,
-        // events: response.eventList!,
+        events: response.eventList!,
         organization: response.organization,
       );
       Get.offAllNamed(Routes.USERDASHBOARD);
