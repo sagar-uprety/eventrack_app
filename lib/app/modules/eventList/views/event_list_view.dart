@@ -118,6 +118,7 @@ class EventListView extends GetView<EventListController> {
                       shrinkWrap: true,
                       itemCount: controller.filteredEvents.length,
                       itemBuilder: (_, index) {
+                        print(controller.filteredEvents[index]);
                         return EventCard(controller.filteredEvents[index]);
                       },
                     ).paddingOnly(top: 10, bottom: 15);

@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/models/response.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -18,6 +19,7 @@ class EventListController extends GetxController {
   late List<String> filterDate = [];
   late RxList<String> filterCategories = <String>[].obs;
 
+
   List<String> categoriesList = [
     'Award',
     'Competition',
@@ -33,12 +35,16 @@ class EventListController extends GetxController {
     'Others'
   ];
 
-  EventListController() {
+ 
+  @override
+  void onInit()async{
     events = []; // assign all events
     filteredEvents.value = events;
     searchText = TextEditingController();
     _eventsProvider = Get.find<EventListProviderImpl>();
-    loadEventList();
+    await loadEventList();
+    searchText = TextEditingController();
+    super.onInit();
   }
 
   RxBool isLoading = false.obs;
@@ -87,11 +93,28 @@ class EventListController extends GetxController {
     filterDate = [];
   }
 
-  void search() {
-    if (searchFormKey.currentState!.validate()) {
-      //assign the received `response.eventList` to `filteredEvents`
+  Future search() async{
+    try{
+      if (searchFormKey.currentState!.validate()) {
+      //assign the received `response.eventList` to `filteredEvents
+    final ResponseModel? result = await _eventsProvider.getSearchList(data: { "title": searchText.text, "category": filterCategories, "date": filterDate } );
+    print(result);
+    if (result!.state) {
+      filteredEvents.value  = result.eventList!;
+      hideLoading();
+    } else {
+      print("Data Not Found");
+      hideLoading();
+    }
+      
+      }
+    
+    }
+     catch (e) {
+      print(e);
+    }
       print(
           'Text: ${searchText.text}\nCategories: ${filterCategories.join(", ")}\nDate: ${filterDate.join("-")}');
     }
   }
-}
+
