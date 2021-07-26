@@ -16,6 +16,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
     phone: json['phone'] as String?,
     address: json['address'] as String?,
     gender: json['gender'] as String?,
+    organization: json['organization'] as String?,
     isVerified: json['hasVerifiedEmail'] as bool?,
     blockStatus: json['blockStatus'] == null
         ? null
@@ -43,6 +44,7 @@ Map<String, dynamic> _$UserToJson(User instance) {
   writeNotNull('name', instance.name);
   writeNotNull('email', instance.email);
   writeNotNull('password', instance.password);
+  writeNotNull('organization', instance.organization);
   writeNotNull('phone', instance.phone);
   writeNotNull('address', instance.address);
   writeNotNull('gender', instance.gender);

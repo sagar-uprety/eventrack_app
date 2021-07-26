@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../global_widgets/appBar.dart';
-import '../../../routes/app_pages.dart';
+import '../../../utilities/colors.dart';
 import '../controllers/user_profile_controller.dart';
 import 'user_profile_card.dart';
 
@@ -33,10 +33,15 @@ class UserProfileView extends GetView<UserProfileController> {
                         clipBehavior: Clip.none,
                         fit: StackFit.expand,
                         children: [
-                          CircleAvatar(
-                            radius: 50,
-                            backgroundImage:
-                                NetworkImage(userController.user.profileImage!),
+                          Container(
+                            decoration: BoxDecoration(
+                              gradient: AppColors.imageGradient(),
+                              borderRadius: BorderRadius.circular(50),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    userController.user.profileImage!),
+                              ),
+                            ),
                           ),
                           Positioned(
                             bottom: 5,

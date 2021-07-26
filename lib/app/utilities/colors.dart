@@ -16,4 +16,13 @@ class AppColors {
   static Color get red => Colors.redAccent.withOpacity(0.9);
   static Color get blue => Color(0xff0099ff);
   static Color get purple => Colors.purple[500]!;
+
+  static RadialGradient imageGradient() => RadialGradient(
+        center: Alignment.topRight,
+        radius: 2.0,
+        colors: <Color>[
+          AppColors.dark65,
+          AppColors.dark10,
+        ],
+      );
 }

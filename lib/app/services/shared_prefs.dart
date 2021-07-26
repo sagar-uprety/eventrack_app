@@ -29,8 +29,9 @@ class SharedPreference {
 
   static requestLogout() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
+
     if (_prefs.containsKey('auth-token')) await _deleteAuthState();
-    Get.toNamed(Routes.LOGIN);
+    Get.offNamedUntil(Routes.LOGIN, (route) => true);
     return;
   }
 }
