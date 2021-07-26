@@ -13,9 +13,9 @@ class FlashMessage {
   ///If you do not want to display the `Snackbar`, do not pass `message`.
   FlashMessage(bool state, {String? message, bool displayOnSuccess = false}) {
     if (message != null || message != '') {
-      if (state) if (displayOnSuccess)
-        _successFlash(message);
-      else
+      if (state) {
+        if (displayOnSuccess) _successFlash(message);
+      } else
         _errorFlash(message);
     }
   }

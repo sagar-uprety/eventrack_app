@@ -1,30 +1,36 @@
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPreference{
+import '../routes/app_pages.dart';
 
-  static saveAuthState() async{
+class SharedPreference {
+  static saveAuthState(String token) async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    _prefs.setString('auth-token', 'jadhsgdgashhs');
+    _prefs.setString('auth-token', token);
+
     return;
   }
 
-  static getAuthState() async{
+  static getAuthState() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    String? stringValue = _prefs.getString('auth-token');
-    if(stringValue!= null){
-      print(stringValue);
-      return stringValue;
+    String? authToken;
+    if (_prefs.containsKey('auth-token')) {
+      authToken = _prefs.getString('auth-token');
+      return authToken;
     }
-    else{
-      print('You have been logged out');
-    }
+    return;
   }
 
-  static deleteAuthState() async{
+  static _deleteAuthState() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     _prefs.remove('auth-token');
-    print(_prefs);
     return;
   }
 
+  static requestLogout() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    if (_prefs.containsKey('auth-token')) await _deleteAuthState();
+    Get.toNamed(Routes.LOGIN);
+    return;
+  }
 }

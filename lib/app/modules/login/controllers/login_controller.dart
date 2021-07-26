@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import '../../../global_widgets/message.dart';
 import '../../../models/response.dart';
 import '../../../models/user/user.dart';
+import '../../../routes/app_pages.dart';
+import '../../../services/shared_prefs.dart';
 import '../provider/login_provider.dart';
 import '../provider/login_providerImpl.dart';
 
@@ -73,8 +75,10 @@ class LoginController extends GetxController {
             password: password.text,
           ).toJson(),
         );
-        print(response!.message);
-        FlashMessage(response.state, message: response.message);
+        FlashMessage(response!.state, message: response.message);
+        if (response.state)
+          await SharedPreference.saveAuthState(response.authToken!);
+        Get.toNamed(Routes.USERDASHBOARD);
       }
     } catch (e) {
       print(e);

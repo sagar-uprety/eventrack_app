@@ -10,6 +10,7 @@ ResponseModel _$ResponseModelFromJson(Map<String, dynamic> json) {
   return ResponseModel(
     message: json['message'] as String?,
     state: json['state'] as bool,
+    authToken: json['authToken'] as String?,
     user: json['user'] == null
         ? null
         : User.fromJson(json['user'] as Map<String, dynamic>),
@@ -42,6 +43,7 @@ Map<String, dynamic> _$ResponseModelToJson(ResponseModel instance) {
 
   writeNotNull('message', instance.message);
   val['state'] = instance.state;
+  writeNotNull('authToken', instance.authToken);
   writeNotNull('user', instance.user?.toJson());
   writeNotNull('organization', instance.organization?.toJson());
   writeNotNull('event', instance.event?.toJson());

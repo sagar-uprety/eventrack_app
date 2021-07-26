@@ -29,7 +29,6 @@ abstract class ETFilePicker {
               .pickFiles(type: type, allowedExtensions: extensions))!
           .files
           .first;
-
       if (_checkSize(file)) return file;
     } on UnsupportedError catch (err) {
       FlashMessage(false, message: err.message);
@@ -42,6 +41,6 @@ abstract class ETFilePicker {
   ///Checks if the size(bytes) of the file is within 10MB.
   static bool _checkSize(PlatformFile file) {
     if (file.size.isLowerThan(10485760)) return true;
-    throw UnsupportedError('File size must be less than 10.');
+    throw UnsupportedError('File size must be less than 10MB.');
   }
 }

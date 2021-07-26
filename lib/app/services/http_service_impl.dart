@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart' as Get;
 
 import '../models/response.dart';
+import '../routes/app_pages.dart';
 import 'http_service.dart';
+import 'shared_prefs.dart';
 
 //TODO: Add PUT, PATCH, DELETE Requests
 //TODO: Handle Errors Very Very Nicely. Still Exception are not catched properly.
@@ -12,19 +15,26 @@ final baseUrl = dotenv.env['SERVER_ADDRESS']! + dotenv.env['PORT']!;
 class HttpImplementation implements HttpService {
   late Dio _dio;
 
+  String? authToken;
+
   @override
-  void init() {
+  void init() async {
     _dio = Dio(BaseOptions(
       baseUrl: baseUrl,
       contentType: 'application/json',
     ));
+    getToken();
     initializeInterceptors();
+  }
+
+  getToken() async {
+    authToken = await SharedPreference.getAuthState();
   }
 
   //GET Request
   @override
   Future<ResponseModel> getRequest(String url,
-      {Map<String, dynamic>? data, String? authToken}) async {
+      {Map<String, dynamic>? data}) async {
     late Response response;
     if (authToken != null) _dio.options.headers = {'auth-token': authToken};
     response = await _dio.get(url, queryParameters: data);
@@ -34,16 +44,8 @@ class HttpImplementation implements HttpService {
   //POST REQUEST
   ///`data` can be either `Map` or a `Dio.FormData`.
   @override
-  Future<ResponseModel> postRequest(String url,
-      {data, String? authToken}) async {
+  Future<ResponseModel> postRequest(String url, {data}) async {
     late Response response;
-
-    // if (authToken != null && data != null) {
-    //   Options options = Options(headers: {'auth-token': authToken});
-    //   response = await _dio.post(url, data: data, options: options);
-    // } else {
-    //   response = await _dio.post(url, data: data);
-    // }
     if (authToken != null) _dio.options.headers = {'auth-token': authToken};
     response = await _dio.post(url, data: data);
     return ResponseModel.fromJson(response.data);
