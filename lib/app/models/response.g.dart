@@ -7,6 +7,7 @@ part of 'response.dart';
 // **************************************************************************
 
 ResponseModel _$ResponseModelFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, disallowNullValues: const ['organization']);
   return ResponseModel(
     message: json['message'] as String?,
     state: json['state'] as bool,

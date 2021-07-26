@@ -39,14 +39,7 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
                       fit: BoxFit.cover,
                     )
                   : null,
-              gradient: RadialGradient(
-                center: Alignment.topRight,
-                radius: 2.0,
-                colors: <Color>[
-                  AppColors.dark65,
-                  AppColors.dark10,
-                ],
-              ),
+              gradient: AppColors.imageGradient(),
             ),
             child: !(image != null)
                 ? Center(

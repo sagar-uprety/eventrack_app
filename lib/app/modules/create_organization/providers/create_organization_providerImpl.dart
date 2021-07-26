@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart' as Dio;
 import 'package:get/get.dart';
 
 import '../../../models/response.dart';
@@ -16,10 +15,10 @@ class CreateOrganizationProviderImpl implements CreateOrganizationProvider {
   }
 
   @override
-  Future<ResponseModel?> createOrganization(Dio.FormData? data) async {
+  Future<ResponseModel?> createOrganization(Map<String, dynamic> data) async {
     try {
       final ResponseModel? response =
-          await _httpService.postRequest('/org/', data: data!);
+          await _httpService.postRequest('/org/', data: data);
       return response;
     } on Exception catch (e) {
       print(e);

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../global_widgets/appBar.dart';
 import '../../../global_widgets/button.dart';
 import '../../../global_widgets/formField.dart';
-import '../../../utilities/extensions.dart';
 import '../controllers/create_organization_controller.dart';
 
 class CreateOrganizationView extends GetView<CreateOrganizationController> {
@@ -55,17 +54,17 @@ class CreateOrganizationView extends GetView<CreateOrganizationController> {
                 label: 'Website URl',
                 validator: controller.websiteValidator,
               ),
-              FormInputField(
-                key: ValueKey('document'),
-                controller: controller.docPath,
-                label: 'Verification Document',
-                helperText:
-                    'Upload a PDF file that can verify your organization.',
-                suffixIcon: Icons.upload,
-                validator: controller.documentValidator,
-              ).changeToButton(
-                onPressed: () async => await controller.pickFile(),
-              ),
+              // FormInputField(
+              //   key: ValueKey('document'),
+              //   controller: controller.docPath,
+              //   label: 'Verification Document',
+              //   helperText:
+              //       'Upload a PDF file that can verify your organization.',
+              //   suffixIcon: Icons.upload,
+              //   validator: controller.documentValidator,
+              // ).changeToButton(
+              //   onPressed: () async => await controller.pickFile(),
+              // ),
               Obx(
                 () => !controller.saving.value
                     ? Row(

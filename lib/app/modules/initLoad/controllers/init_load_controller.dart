@@ -10,13 +10,13 @@ import '../provider/home_provider.dart';
 
 class InitLoadController extends GetxController {
   late HomeProvider _provider;
-  late GlobalController _userController;
+  late GlobalController _controller;
 
   late String? authToken;
   @override
   void onInit() async {
     _provider = Get.find<HomeProviderImpl>();
-    _userController = Get.find<GlobalController>();
+    _controller = Get.find<GlobalController>();
     await getAuthToken();
     super.onInit();
   }
@@ -40,15 +40,14 @@ class InitLoadController extends GetxController {
 
   Future getCurrentUser() async {
     final ResponseModel? response = await _provider.getCurrentUser();
-
+    print('Making reques');
     FlashMessage(response!.state,
         message: response.message, displayOnSuccess: false);
-
     if (response.state) {
-      await _userController.getuser(
+      await _controller.getuser(
         user: response.user!,
         // events: response.eventList!,
-        // organization: response.organization!
+        organization: response.organization,
       );
       Get.offAllNamed(Routes.USERDASHBOARD);
     } else
