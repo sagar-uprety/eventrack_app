@@ -77,6 +77,13 @@ Drawer buildAppDrawer() {
                     arguments: _controller.organization),
                 leading: Icon(Icons.business),
               ),
+        _controller.currentUser.organization == null
+          ?Center()
+          : ListTile(
+            title: Text("Create Events"),
+            onTap: () => Get.toNamed(Routes.CREATE_EVENT),
+            leading: Icon(Icons.create),
+          ),
         Divider(
           color: Colors.black,
         ),
@@ -84,7 +91,8 @@ Drawer buildAppDrawer() {
           title: Text("Logout"),
           onTap: () async => await SharedPreference.requestLogout(),
           leading: Icon(Icons.logout),
-        )
+        ),
+        
       ],
     ),
   );

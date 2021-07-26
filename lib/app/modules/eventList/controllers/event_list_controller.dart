@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/models/response.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -33,8 +34,8 @@ class EventListController extends GetxController {
     'Workshop',
     'Others'
   ];
-
-  EventListController() {
+  @override
+  void onInit() async {
     searchText = TextEditingController();
     _eventsProvider = Get.find<EventListProviderImpl>();
     _global = Get.find<GlobalController>();
@@ -42,7 +43,7 @@ class EventListController extends GetxController {
     filteredEvents.value = _events;
     update();
     print(_global.currentUser.toJson());
-    // loadEventList();
+    super.onInit();
   }
 
   RxBool isLoading = false.obs;
@@ -91,11 +92,29 @@ class EventListController extends GetxController {
     filterDate = [];
   }
 
-  void search() {
-    if (searchFormKey.currentState!.validate()) {
-      //assign the received `response.eventList` to `filteredEvents`
-      print(
-          'Text: ${searchText.text}\nCategories: ${filterCategories.join(", ")}\nDate: ${filterDate.join("-")}');
+  Future search() async {
+    try {
+      if (searchFormKey.currentState!.validate()) {
+        //assign the received `response.eventList` to `filteredEvents
+        final ResponseModel? result = await _eventsProvider.getSearchList(
+            data: {
+              "title": searchText.text,
+              "category": filterCategories,
+              "date": filterDate
+            });
+        print(result);
+        if (result!.state) {
+          filteredEvents.value = result.eventList!;
+          hideLoading();
+        } else {
+          print("Data Not Found");
+          hideLoading();
+        }
+      }
+    } catch (e) {
+      print(e);
     }
+    print(
+        'Text: ${searchText.text}\nCategories: ${filterCategories.join(", ")}\nDate: ${filterDate.join("-")}');
   }
 }
