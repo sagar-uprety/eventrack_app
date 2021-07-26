@@ -1,6 +1,7 @@
 import 'package:eventrack_app/app/controllers/controllers/global_controller.dart';
 import 'package:eventrack_app/app/global_widgets/message.dart';
 import 'package:eventrack_app/app/models/response.dart';
+import 'package:eventrack_app/app/models/user/user.dart';
 import 'package:eventrack_app/app/modules/event_detail/provider/event_detail_provider.dart';
 import 'package:eventrack_app/app/modules/event_detail/provider/event_detail_provider_impl.dart';
 import 'package:flutter/material.dart';
@@ -20,14 +21,16 @@ class EventDetailController extends GetxController {
   Event get event => TempData.event;
   //TODO: get.arguments garne
 
-  get users => TempData.users;
+  // get users => TempData.users;
   late TextEditingController searchText;
+  late RxList<User> partcipantList;
 
   @override
   void onInit() {
     searchText = TextEditingController();
     // globalController = Get.find<GlobalController>();
     _eventDetailProvider = Get.find<EventDetailProviderImpl>();
+    partcipantList = <User>[].obs;
     super.onInit();
   }
 
@@ -42,6 +45,22 @@ class EventDetailController extends GetxController {
             message: register.message, displayOnSuccess: true);
       } else {
         print("Data Not Found");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  getParticipantsData() async {
+    try {
+      ResponseModel? participants =
+          await _eventDetailProvider.getParticipants(event.id!);
+      //this result is already parsed and is converted to List<Events>
+      if (participants!.state) {
+        print("Users data found");
+        partcipantList.value = participants.userList!;
+      } else {
+        print("Users Data Not Found");
       }
     } catch (e) {
       print(e);
