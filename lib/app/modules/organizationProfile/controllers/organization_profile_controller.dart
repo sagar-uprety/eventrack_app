@@ -1,5 +1,6 @@
-import 'package:eventrack_app/app/models/organization/organization.dart';
 import 'package:get/get.dart';
+
+import '../../../models/organization/organization.dart';
 
 class OrganizationProfileController extends GetxController {
   final RxBool showMore = false.obs;

@@ -1,4 +1,3 @@
-import 'package:eventrack_app/app/modules/event_detail/views/Button/RoundedButton.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,6 +6,7 @@ import '../../../global_widgets/appBar.dart';
 import '../../../global_widgets/draggableSheet.dart';
 import '../../../utilities/colors.dart';
 import '../controllers/event_detail_controller.dart';
+import 'Button/RoundedButton.dart';
 import 'tabs/tab1.dart';
 import 'tabs/tab2.dart';
 import 'tabs/tab3.dart';

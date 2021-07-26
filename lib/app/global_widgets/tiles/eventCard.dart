@@ -58,21 +58,31 @@ class EventCard extends StatelessWidget {
                   )
                 : Center(),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                event.title!,
-                style: Get.textTheme.headline6,
-              ),
-              Text(
-                "${event.categories!.join(", ")}",
-                style: Get.textTheme.subtitle2,
-              ),
-              Text("${event.dateTime!.dates.formatDate[0]}"),
-              Text("${event.location!.location}"),
-            ],
-          ).paddingSymmetric(horizontal: 10, vertical: 4),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  event.title!,
+                  overflow: TextOverflow.ellipsis,
+                  style: Get.textTheme.headline6,
+                ),
+                Text(
+                  "${event.categories!.join(", ")}",
+                  overflow: TextOverflow.ellipsis,
+                  style: Get.textTheme.subtitle2,
+                ),
+                Text(
+                  "${event.dateTime!.dates.formatDate[0]}",
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  "${event.location!.location}",
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ).paddingSymmetric(horizontal: 10, vertical: 4),
+          ),
         ],
       ),
     ).paddingSymmetric(horizontal: 24, vertical: 8);
