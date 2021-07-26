@@ -12,9 +12,11 @@ class GlobalController extends GetxController {
   User get currentUser => _currentUser;
   List<Event?> get events => _events;
   Organization get organization => _organization;
-
   @override
   void onInit() {
+    _currentUser = User();
+    _organization = Organization();
+    _events = [];
     super.onInit();
   }
 
@@ -34,12 +36,22 @@ class GlobalController extends GetxController {
 
   Future getuser({
     required User user,
-    // Organization? organization,
+    Organization? organization,
     // required List<Event?> events,
   }) async {
     updateUser(user);
+    print(currentUser.toJson());
     // updateEvents(events);
-    // if (organization != null) updateOrganization(organization);
+    if (user.organization != null) {
+      updateOrganization(organization!);
+      print(organization.toJson());
+    }
     update();
+  }
+
+  removeCurrentData() {
+    _currentUser = User();
+    _organization = Organization();
+    _events = [];
   }
 }

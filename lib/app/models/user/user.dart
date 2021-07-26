@@ -20,6 +20,7 @@ class User {
     this.phone,
     this.address,
     this.gender,
+    this.organization,
     this.isVerified,
     this.blockStatus,
     this.registeredEvents,
@@ -36,6 +37,9 @@ class User {
   final String? email;
 
   final String? password;
+
+  @JsonKey(name: 'organization')
+  final String? organization;
 
   final String? phone;
 
