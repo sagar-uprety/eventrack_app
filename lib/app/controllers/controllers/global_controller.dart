@@ -37,11 +37,11 @@ class GlobalController extends GetxController {
   Future getuser({
     required User user,
     Organization? organization,
-    // required List<Event?> events,
+    List<Event?> events = const [],
   }) async {
     updateUser(user);
     print(currentUser.toJson());
-    // updateEvents(events);
+    updateEvents(events);
     if (user.organization != null) {
       updateOrganization(organization!);
       print(organization.toJson());

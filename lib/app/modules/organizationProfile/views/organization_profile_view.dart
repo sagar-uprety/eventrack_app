@@ -1,4 +1,3 @@
-import 'package:eventrack_app/app/models/organization/organization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
