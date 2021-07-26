@@ -52,8 +52,9 @@ class InitLoadController extends GetxController {
           organization: response.organization,
         );
         Get.offAllNamed(Routes.USERDASHBOARD);
-      }
+      } else
+        Get.offAllNamed(Routes.TOKEN_VERIFCATION);
     } else
-      await Get.offAllNamed(Routes.TOKEN_VERIFCATION);
+      await SharedPreference.requestLogout();
   }
 }
