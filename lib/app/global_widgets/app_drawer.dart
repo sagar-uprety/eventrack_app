@@ -73,7 +73,8 @@ Drawer buildAppDrawer() {
               )
             : ListTile(
                 title: Text("Your Organization"),
-                onTap: () => Get.toNamed(Routes.ORGANIZATION_PROFILE),
+                onTap: () => Get.toNamed(Routes.ORGANIZATION_PROFILE,
+                    arguments: _controller.organization),
                 leading: Icon(Icons.business),
               ),
         _controller.currentUser.organization == null

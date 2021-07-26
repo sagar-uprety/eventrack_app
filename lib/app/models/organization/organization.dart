@@ -15,6 +15,7 @@ class Organization {
   final String? email;
   final String? description;
   final String? profile;
+  final String? address;
   final List<String>? contact;
   final String? website;
   final List<String>? events;
@@ -35,6 +36,7 @@ class Organization {
     this.description,
     this.profile,
     this.contact,
+    this.address,
     this.website,
     this.events,
     this.verificationState,

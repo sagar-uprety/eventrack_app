@@ -15,6 +15,7 @@ Organization _$OrganizationFromJson(Map<String, dynamic> json) {
     profile: json['profile'] as String?,
     contact:
         (json['contact'] as List<dynamic>?)?.map((e) => e as String).toList(),
+    address: json['address'] as String?,
     website: json['website'] as String?,
     events:
         (json['events'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -43,6 +44,7 @@ Map<String, dynamic> _$OrganizationToJson(Organization instance) {
   writeNotNull('email', instance.email);
   writeNotNull('description', instance.description);
   writeNotNull('profile', instance.profile);
+  writeNotNull('address', instance.address);
   writeNotNull('contact', instance.contact);
   writeNotNull('website', instance.website);
   writeNotNull('events', instance.events);

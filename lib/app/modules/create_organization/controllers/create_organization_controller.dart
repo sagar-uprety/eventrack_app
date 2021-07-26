@@ -131,7 +131,8 @@ class CreateOrganizationController extends GetxController {
             ..._global.currentUser.toJson(),
             'organization': res.organization!.id
           }));
-          Get.offNamed(Routes.ORGANIZATION_PROFILE, arguments: newOrganization);
+          Get.offNamed(Routes.ORGANIZATION_PROFILE,
+              arguments: res.organization);
         }
       }
     } on Exception catch (e) {
