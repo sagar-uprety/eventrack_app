@@ -49,6 +49,13 @@ class CreateOrganizationView extends GetView<CreateOrganizationController> {
                 validator: controller.phoneValidator,
               ),
               FormInputField(
+                key: ValueKey('address'),
+                controller: controller.address,
+                label: 'Address',
+                keyboardType: TextInputType.streetAddress,
+                validator: controller.addressValidator,
+              ),
+              FormInputField(
                 key: ValueKey('website'),
                 controller: controller.website,
                 label: 'Website URl',
