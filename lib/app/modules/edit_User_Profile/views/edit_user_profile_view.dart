@@ -24,62 +24,11 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Center(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 95,
-                    width: 95,
-                    child: Stack(
-                      clipBehavior: Clip.none,
-                      fit: StackFit.expand,
-                      children: [
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage:
-                              NetworkImage(controller.profileImage),
-                        ),
-                        Positioned(
-                          bottom: -5,
-                          right: -10,
-                          child: SizedBox(
-                            height: 35,
-                            width: 35,
-                            child: FloatingActionButton(
-                              elevation: 0.0,
-                              backgroundColor: Color(0xFFC4D5EE),
-                              child: Icon(
-                                Icons.camera_alt_outlined,
-                                color: Colors.blue,
-                                size: 20,
-                              ),
-                              onPressed: () {
-                                print("Change picture");
-                              },
-                              shape: CircleBorder(
-                                side: BorderSide(width: 3, color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
             FormInputField(
               key: ValueKey('name'),
               controller: controller.name,
               label: 'Name',
               validator: controller.nameValidator,
-            ),
-            FormInputField(
-              key: ValueKey('email'),
-              controller: controller.email,
-              label: 'Email',
-              readOnly: true,
-              validator: controller.emailValidator,
             ),
             FormInputField(
               key: ValueKey('phone'),
@@ -93,7 +42,7 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
               label: 'Address',
               validator: controller.addressValidator,
             ),
-            _dropdown(),
+            // _dropdown(),
             ETTextButton(
               'Change Password',
               onPressed: () => print('Change Password'),
@@ -101,9 +50,8 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
             ),
             ETElevatedButton(
               childText: 'Save',
-              onPressed: () {
-                print('Saved');
-                Get.back();
+              onPressed: () async {
+                await controller.editUserProfile();
               },
             ).paddingOnly(top: 24),
           ],
@@ -118,7 +66,7 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
       value: controller.gender.text,
       onChanged: controller.changeGender,
       icon: Icon(Icons.arrow_drop_down_outlined),
-      validator: controller.genderValidator,
+      // validator: controller.genderValidator,
       decoration: InputDecoration(
         counterText: '',
         labelText: 'Gender',

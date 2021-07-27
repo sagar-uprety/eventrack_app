@@ -30,8 +30,6 @@ class LoginController extends GetxController {
     password = TextEditingController();
     bottomSheetEmail = TextEditingController();
     _loginProvider = Get.find<LoginProviderImpl>();
-    _global = Get.find<GlobalController>();
-    _global.removeCurrentData();
     super.onInit();
   }
 

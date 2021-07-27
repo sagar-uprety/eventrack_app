@@ -1,3 +1,9 @@
+import 'package:eventrack_app/app/global_widgets/message.dart';
+import 'package:eventrack_app/app/models/response.dart';
+import 'package:eventrack_app/app/models/user/user.dart';
+import 'package:eventrack_app/app/modules/edit_User_Profile/Provider/editprofile_provider.dart';
+import 'package:eventrack_app/app/modules/edit_User_Profile/Provider/editprofile_providerImpl.dart';
+import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
@@ -7,19 +13,22 @@ class EditUserProfileController extends GetxController {
       "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg";
   late TextEditingController name;
   late TextEditingController phone;
-  late TextEditingController email;
   late TextEditingController address;
   late TextEditingController gender;
+  late EditprofileProvider _editprofileProvider;
 
   List<String> gendersList = ["Male", "Female"];
+  final Rx<bool> editProfile = false.obs;
+  final editUserKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
-    name = TextEditingController(text: "Rose Watson");
-    email = TextEditingController(text: "Some@example.com");
-    phone = TextEditingController(text: "+977 9863556656");
-    address = TextEditingController(text: "Kathmandu");
-    gender = TextEditingController(text: "Female");
+    name = TextEditingController();
+    phone = TextEditingController();
+    address = TextEditingController();
+    gender = TextEditingController();
+    _editprofileProvider = Get.find<EditprofileProviderImpl>();
+
     super.onInit();
   }
 
@@ -31,7 +40,6 @@ class EditUserProfileController extends GetxController {
   @override
   void onClose() {
     name.dispose();
-    email.dispose();
     phone.dispose();
     address.dispose();
     gender.dispose();
@@ -41,16 +49,35 @@ class EditUserProfileController extends GetxController {
     gender.text = value!;
   }
 
-  String? nameValidator(String? value) {
-    if (value!.isEmpty) return 'This field cannot be empty.';
-    return null;
+  void _changeEditProfileState() => editProfile.value = !editProfile.value;
+
+  Future editUserProfile() async {
+    _changeEditProfileState();
+    try {
+      if (editUserKey.currentState!.validate()) {
+        final user = User(
+          name: name.text,
+          phone: phone.text,
+          address: address.text,
+          // gender: gender.text,
+        ).toJson();
+        print(user);
+        ResponseModel? response =
+            await _editprofileProvider.userProfile(data: user);
+
+        FlashMessage(response!.state, message: response.message);
+        if (response.state) {
+          Get.offAllNamed(Routes.EDIT_USER_PROFILE);
+        }
+      }
+    } catch (e) {
+      print(e);
+    }
+    _changeEditProfileState();
   }
 
-  String? emailValidator(String? value) {
+  String? nameValidator(String? value) {
     if (value!.isEmpty) return 'This field cannot be empty.';
-    if (!GetUtils.isEmail(value)) {
-      return 'Please enter a valid email';
-    }
     return null;
   }
 
