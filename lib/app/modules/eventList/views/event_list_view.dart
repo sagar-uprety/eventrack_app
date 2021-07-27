@@ -19,9 +19,9 @@ class EventListView extends GetView<EventListController> {
         title: 'Explore Events',
         addBackButton: true,
       ),
-      body: Obx(
-        () => SingleChildScrollView(
-          child: Column(
+      body: SingleChildScrollView(
+        child: Obx(
+          () => Column(
             children: [
               Form(
                 key: controller.searchFormKey,
@@ -110,7 +110,7 @@ class EventListView extends GetView<EventListController> {
                       shrinkWrap: true,
                       itemCount: controller.filteredEvents.length,
                       itemBuilder: (_, index) {
-                        print(controller.filteredEvents[index]);
+                        print(controller.filteredEvents[index].title);
                         return EventCard(controller.filteredEvents[index]);
                       },
                     ).paddingOnly(top: 10, bottom: 15),
