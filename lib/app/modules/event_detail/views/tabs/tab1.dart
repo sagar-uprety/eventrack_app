@@ -96,12 +96,16 @@ class EventDetailTab1 extends GetView<EventDetailController> {
             ),
           ),
         ),
-        // Center(
-        //   child: ETElevatedButton(
-        //     childText: 'Register',
-        //     onPressed: controller.registerforevent,
-        //   ),
-        // )
+        Obx(
+          () => Center(
+            child: !controller.registering.value
+                ? ETElevatedButton(
+                    childText: 'Register',
+                    onPressed: controller.registerforevent,
+                  )
+                : CircularProgressIndicator(),
+          ),
+        ),
       ],
     ).paddingSymmetric(horizontal: 20);
   }

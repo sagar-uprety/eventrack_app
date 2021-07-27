@@ -32,6 +32,15 @@ class InitLoadController extends GetxController {
     super.onInit();
   }
 
+  InitLoadController() {
+    _provider = Get.find<HomeProviderImpl>();
+    _currentUser = User();
+    _organization = Organization();
+    _events = [];
+    getAuthToken().then((value) => print('Received'));
+    super.onInit();
+  }
+
   Future getAuthToken() async {
     authToken = await SharedPreference.getAuthState();
     if (authToken == null) {

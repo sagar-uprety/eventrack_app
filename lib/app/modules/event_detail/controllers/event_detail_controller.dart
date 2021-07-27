@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -12,9 +13,10 @@ import '../provider/event_detail_provider_impl.dart';
 
 class EventDetailController extends GetxController {
   final RxBool registered = false.obs;
+  final RxBool registering = false.obs;
   final RxBool showMore = false.obs;
   late GoogleMapController? mapController;
-  // late GlobalController globalController;
+  late InitLoadController globalController;
   late EventDetailProvider _eventDetailProvider;
 
   Event get event => Get.arguments;
@@ -26,15 +28,24 @@ class EventDetailController extends GetxController {
   @override
   void onInit() {
     searchText = TextEditingController();
-    // globalController = Get.find<GlobalController>();
+    globalController = Get.find<InitLoadController>();
     _eventDetailProvider = Get.find<EventDetailProviderImpl>();
     partcipantList = <User>[].obs;
     getParticipantsData();
+    // registerValue();
     super.onInit();
+  }
+
+  register() {
+    registered.value =
+        globalController.currentUser.registeredEvents!.contains(event.id);
+    print(registered);
+    update();
   }
 
   registerforevent() async {
     try {
+      registering.value = true;
       ResponseModel? register =
           await _eventDetailProvider.registerToEvent(event.id!);
       //this result is already parsed and is converted to List<Events>
@@ -42,13 +53,15 @@ class EventDetailController extends GetxController {
         print("User registered");
         FlashMessage(register.state,
             message: register.message, displayOnSuccess: true);
-            registered.value = true;
+        registered.value = !registered.value;
       } else {
         print("Data Not Found");
       }
     } catch (e) {
       print(e);
     }
+    registering.value = false;
+    update();
   }
 
   getParticipantsData() async {
