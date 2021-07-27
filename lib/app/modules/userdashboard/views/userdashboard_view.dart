@@ -71,7 +71,7 @@ class UserdashboardView extends GetView<UserdashboardController> {
     // if()
 
     return SizedBox(
-      height: 174,
+      height:200, 
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,

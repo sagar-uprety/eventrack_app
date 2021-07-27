@@ -17,11 +17,11 @@ class HorizontalEventCard extends StatelessWidget {
       route: Routes.EVENT_DETAIL,
       argument: event,
       width: 200,
-      height: 150,
+      height: 175,
       child: Column(
         children: [
           Container(
-            height: 100,
+            height: 125,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12),
