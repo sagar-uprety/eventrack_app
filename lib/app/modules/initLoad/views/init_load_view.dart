@@ -8,7 +8,7 @@ class InitLoadView extends GetView<InitLoadController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<InitLoadController>(
-      init: InitLoadController(),
+      // init: InitLoadController(),
       builder: (_) {
         return Scaffold(
           body: Center(

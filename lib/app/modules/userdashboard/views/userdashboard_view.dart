@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../controllers/controllers/global_controller.dart';
 import '../../../global_widgets/appBar.dart';
 import '../../../global_widgets/app_drawer.dart';
 import '../../../global_widgets/button.dart';
@@ -13,7 +12,6 @@ import '../../../routes/app_pages.dart';
 import '../controllers/userdashboard_controller.dart';
 
 class UserdashboardView extends GetView<UserdashboardController> {
-  final GlobalController global = Get.find<GlobalController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

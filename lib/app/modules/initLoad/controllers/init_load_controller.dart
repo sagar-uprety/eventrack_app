@@ -1,6 +1,8 @@
+import 'package:eventrack_app/app/models/event/event.dart';
+import 'package:eventrack_app/app/models/organization/organization.dart';
+import 'package:eventrack_app/app/models/user/user.dart';
 import 'package:get/get.dart';
 
-import '../../../controllers/controllers/global_controller.dart';
 import '../../../global_widgets/message.dart';
 import '../../../models/response.dart';
 import '../../../routes/app_pages.dart';
@@ -10,24 +12,25 @@ import '../provider/home_provider.dart';
 
 class InitLoadController extends GetxController {
   late HomeProvider _provider;
-  late GlobalController _controller;
+
+  late User _currentUser;
+  late List<Event> _events;
+  late Organization _organization;
+
+  User get currentUser => _currentUser;
+  List<Event> get events => _events;
+  Organization get organization => _organization;
 
   late String? authToken;
   @override
   void onInit() async {
     _provider = Get.find<HomeProviderImpl>();
-    _controller = Get.find<GlobalController>();
+    _currentUser = User();
+    _organization = Organization();
+    _events = [];
     await getAuthToken();
     super.onInit();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
 
   Future getAuthToken() async {
     authToken = await SharedPreference.getAuthState();
@@ -43,7 +46,7 @@ class InitLoadController extends GetxController {
     FlashMessage(response!.state,
         message: response.message, displayOnSuccess: false);
     if (response.state) {
-      await _controller.getuser(
+      await getuser(
         user: response.user!,
         events: response.eventList!,
         organization: response.organization,
@@ -51,5 +54,31 @@ class InitLoadController extends GetxController {
       Get.offAllNamed(Routes.USERDASHBOARD);
     } else
       await SharedPreference.requestLogout();
+  }
+
+  updateUser(User user) => _currentUser = user;
+
+  updateEvents(List<Event> events) => _events = events;
+
+  updateOrganization(Organization organization) => _organization = organization;
+
+  Future getuser({
+    required User user,
+    Organization? organization,
+    List<Event> events = const [],
+  }) async {
+    updateUser(user);
+    if (events.length > 0) updateEvents(events);
+    print(events[0].toJson());
+    if (user.organization != null) {
+      updateOrganization(organization!);
+    }
+    update();
+  }
+
+  removeCurrentData() {
+    _currentUser = User();
+    _organization = Organization();
+    _events = [];
   }
 }

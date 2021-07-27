@@ -1,4 +1,5 @@
 import 'package:eventrack_app/app/models/response.dart';
+import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,7 +14,7 @@ class EventListController extends GetxController {
   late EventListProvider _eventsProvider;
   final searchFormKey = GlobalKey<FormState>();
   late TextEditingController searchText;
-  late GlobalController _global;
+  late InitLoadController _global;
   late List<Event> _events;
   final RxList<Event> filteredEvents = <Event>[].obs;
 
@@ -38,7 +39,7 @@ class EventListController extends GetxController {
   void onInit() async {
     searchText = TextEditingController();
     _eventsProvider = Get.find<EventListProviderImpl>();
-    _global = Get.find<GlobalController>();
+    _global = Get.find<InitLoadController>();
     _events = _global.events;
     filteredEvents.value = _events;
     update();
