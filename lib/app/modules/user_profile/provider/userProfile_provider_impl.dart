@@ -29,17 +29,4 @@ class UserProfileProviderImpl implements UserProfileProvider {
     }
   }
 
-  
-  @override
-  Future <ResponseModel?> userData() async{
-     try {
-      final ResponseModel response =
-          await _httpService.getRequest('/user/userData');
-
-      return response;
-    } on Exception catch (e) {
-      print(e);
-      return null;
-    }
-  }
-  }
+}
