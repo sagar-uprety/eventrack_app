@@ -21,16 +21,14 @@ class SharedPreference {
     return;
   }
 
-  static _deleteAuthState() async {
+  static deleteAuthState() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    _prefs.remove('auth-token');
+    if (_prefs.containsKey('auth-token')) _prefs.remove('auth-token');
     return;
   }
 
   static requestLogout() async {
-    SharedPreferences _prefs = await SharedPreferences.getInstance();
-
-    if (_prefs.containsKey('auth-token')) await _deleteAuthState();
+    await deleteAuthState();
     Get.offNamedUntil(Routes.LOGIN, (route) => true);
     return;
   }

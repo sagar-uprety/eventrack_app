@@ -9,28 +9,17 @@ import '../providers/token_verification_provider.dart';
 import '../providers/token_verification_provider_impl.dart';
 
 class TokenVerifcationController extends GetxController {
-  late Map _email;
+  late Map<String, dynamic> _arguments;
   late TextEditingController token = TextEditingController();
   final formKey = GlobalKey<FormState>();
   late TokenVerificationProvider _provider;
 
   @override
   void onInit() async {
-    _email = Get.arguments;
-    print(_email);
+    _arguments = Get.arguments;
     _provider = Get.find<TokenVerificationProviderImpl>();
     await sendToken();
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    token.dispose();
   }
 
   String? tokenValidator(String? value) {
@@ -40,17 +29,35 @@ class TokenVerifcationController extends GetxController {
   }
 
   Future sendToken() async {
-    ResponseModel? response = await _provider.sendToken({'email': _email});
+    ResponseModel? response =
+        await _provider.sendToken({'email': _arguments['email']});
     FlashMessage(response!.state,
         message: response.message, displayOnSuccess: true);
   }
 
   Future verifyToken() async {
+    if (_arguments['type'] == 'email')
+      await verifyEmail();
+    else
+      await passwordReset();
+  }
+
+  Future verifyEmail() async {
     if (formKey.currentState!.validate()) {
-      ResponseModel? response =
-          await _provider.verifyToken({'email': _email, 'token': token.text});
+      ResponseModel? response = await _provider
+          .verifyToken({'email': _arguments['email'], 'token': token.text});
       FlashMessage(response!.state, message: response.message);
-      if (response.state) Get.offNamed(Routes.PASSWORD_RESET);
+      if (response.state) Get.offAllNamed(Routes.INIT_LOAD);
+    }
+  }
+
+  Future passwordReset() async {
+    if (formKey.currentState!.validate()) {
+      ResponseModel? response = await _provider
+          .verifyToken({'email': _arguments['email'], 'token': token.text});
+      FlashMessage(response!.state, message: response.message);
+      if (response.state)
+        Get.offNamed(Routes.PASSWORD_RESET, arguments: _arguments['email']);
     }
   }
 }
