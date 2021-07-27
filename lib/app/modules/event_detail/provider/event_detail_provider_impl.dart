@@ -38,4 +38,15 @@ class EventDetailProviderImpl implements EventDetailProvider {
       return null;
     }
   }
+
+  @override
+  Future<ResponseModel?> addtoFavourites(String id) async {
+    try {
+      final ResponseModel response =
+          await _httpService.postRequest('/user/myfavourites');
+      return response;
+    } catch (e) {
+      print(e);
+    }
+  }
 }

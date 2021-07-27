@@ -67,11 +67,12 @@ class EventDetailController extends GetxController {
   addtoFavorites() async {
     try {
       ResponseModel? added =
-          await _eventDetailProvider.addToFavorites(event.id!);
+          await _eventDetailProvider.addtoFavourites(event.id!);
 
-      if (participants!.state) {
-        print("Users data found");
-        partcipantList.value = participants.userList!;
+      if (added!.state) {
+        print("Added to Favourites");
+        FlashMessage(added.state,
+            message: added.message, displayOnSuccess: true);
       } else {
         print("Users Data Not Found");
       }

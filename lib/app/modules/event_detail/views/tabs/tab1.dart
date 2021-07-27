@@ -41,7 +41,9 @@ class EventDetailTab1 extends GetView<EventDetailController> {
           trailing: IconButton(
             icon: Icon(Icons.bookmark_border),
             iconSize: 34,
-            onPressed: () => print('Bookmark'),
+            onPressed: () async {
+              await controller.addtoFavorites();
+            },
           ),
         ).paddingSymmetric(vertical: 8),
         Wrap(
