@@ -65,7 +65,7 @@ class EventDetailController extends GetxController {
     }
   }
 
-  addtoFavorites() async {
+  addtoFavorites(String id) async {
     try {
       ResponseModel? added =
           await _eventDetailProvider.addtoFavourites(event.id!);

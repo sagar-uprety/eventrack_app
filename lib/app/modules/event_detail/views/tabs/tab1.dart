@@ -42,7 +42,7 @@ class EventDetailTab1 extends GetView<EventDetailController> {
             icon: Icon(Icons.bookmark_border),
             iconSize: 34,
             onPressed: () async {
-              await controller.addtoFavorites();
+              await controller.addtoFavorites(controller.event.id!);
             },
           ),
         ).paddingSymmetric(vertical: 8),
