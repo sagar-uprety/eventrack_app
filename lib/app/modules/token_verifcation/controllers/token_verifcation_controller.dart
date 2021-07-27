@@ -11,7 +11,6 @@ import '../providers/token_verification_provider_impl.dart';
 class TokenVerifcationController extends GetxController {
   late Map<String, dynamic> _arguments;
   late TextEditingController token = TextEditingController();
-  final formKey = GlobalKey<FormState>();
   late TokenVerificationProvider _provider;
 
   @override
@@ -43,21 +42,17 @@ class TokenVerifcationController extends GetxController {
   }
 
   Future verifyEmail() async {
-    if (formKey.currentState!.validate()) {
-      ResponseModel? response = await _provider
-          .verifyToken({'email': _arguments['email'], 'token': token.text});
-      FlashMessage(response!.state, message: response.message);
-      if (response.state) Get.toNamed(Routes.INIT_LOAD);
-    }
+    ResponseModel? response = await _provider
+        .verifyToken({'email': _arguments['email'], 'token': token.text});
+    FlashMessage(response!.state, message: response.message);
+    if (response.state) Get.toNamed(Routes.INIT_LOAD);
   }
 
   Future passwordReset() async {
-    if (formKey.currentState!.validate()) {
-      ResponseModel? response = await _provider
-          .verifyToken({'email': _arguments['email'], 'token': token.text});
-      FlashMessage(response!.state, message: response.message);
-      if (response.state)
-        Get.toNamed(Routes.PASSWORD_RESET, arguments: _arguments['email']);
-    }
+    ResponseModel? response = await _provider
+        .verifyToken({'email': _arguments['email'], 'token': token.text});
+    FlashMessage(response!.state, message: response.message);
+    if (response.state)
+      Get.toNamed(Routes.PASSWORD_RESET, arguments: _arguments['email']);
   }
 }

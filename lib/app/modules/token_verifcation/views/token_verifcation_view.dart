@@ -10,6 +10,7 @@ import '../../../routes/app_pages.dart';
 import '../controllers/token_verifcation_controller.dart';
 
 class TokenVerifcationView extends GetView<TokenVerifcationController> {
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return ETScaffold(
@@ -20,7 +21,7 @@ class TokenVerifcationView extends GetView<TokenVerifcationController> {
       body: SingleChildScrollView(
         child: Center(
           child: Form(
-            key: controller.formKey,
+            key: formKey,
             child: Column(
               children: [
                 Image.asset(
@@ -44,7 +45,10 @@ class TokenVerifcationView extends GetView<TokenVerifcationController> {
                   children: [
                     ETElevatedButton(
                       childText: 'Verify',
-                      onPressed: controller.verifyToken,
+                      onPressed: () async {
+                        if (formKey.currentState!.validate())
+                          await controller.verifyToken();
+                      },
                     ),
                     ETElevatedButton(
                       childText: 'Cancel',

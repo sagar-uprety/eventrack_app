@@ -16,6 +16,7 @@ import 'categoryBar.dart';
 
 class CreateEventView extends GetView<CreateEventController> {
   final controller = Get.find<CreateEventController>();
+  final GlobalKey<FormState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return ETScaffold(
@@ -24,7 +25,7 @@ class CreateEventView extends GetView<CreateEventController> {
         addBackButton: true,
       ),
       body: Form(
-        key: controller.key,
+        key: _key,
         autovalidateMode: AutovalidateMode.disabled,
         child: Obx(
           () => Stepper(
@@ -46,7 +47,7 @@ class CreateEventView extends GetView<CreateEventController> {
                               size: Size(120, 50),
                               childText: 'Next',
                               onPressed: () {
-                                if (controller.validateForm1())
+                                if (_key.currentState!.validate())
                                   onStepContinue!();
                               },
                             ),
@@ -54,7 +55,10 @@ class CreateEventView extends GetView<CreateEventController> {
                             ETElevatedButton(
                               size: Size(120, 50),
                               childText: 'Submit',
-                              onPressed: controller.submit,
+                              onPressed: () async {
+                                if (_key.currentState!.validate())
+                                  await controller.submit();
+                              },
                             ),
                           ETElevatedButton(
                             size: Size(120, 50),

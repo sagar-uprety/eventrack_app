@@ -12,7 +12,6 @@ import '../providers/create_organization_provider.dart';
 import '../providers/create_organization_providerImpl.dart';
 
 class CreateOrganizationController extends GetxController {
-  late GlobalKey<FormState> formKey;
   late TextEditingController name;
   late TextEditingController email;
   late TextEditingController description;
@@ -28,7 +27,6 @@ class CreateOrganizationController extends GetxController {
 
   @override
   void onInit() {
-    formKey = GlobalKey<FormState>();
     name = TextEditingController();
     email = TextEditingController();
     description = TextEditingController();
@@ -120,32 +118,29 @@ class CreateOrganizationController extends GetxController {
     _toggleSavingState();
     print(saving.value);
     try {
-      if (formKey.currentState!.validate()) {
-        Organization newOrganization = Organization(
-          name: name.text.trim(),
-          email: email.text.trim().toLowerCase(),
-          description: description.text.trim(),
-          contact: [phone.text.trim()],
-          address: address.text.trim(),
-          website: website.text.trim().toLowerCase(),
-        );
-        ResponseModel? res = await _provider.createOrganization(
-            // Dio.FormData.fromMap({
-            //   ...newOrganization,
-            //   'documentFile': await Dio.MultipartFile.fromFile(_document!.path,
-            //       filename: _document!.path.split('/').last)
-            // }),
-            newOrganization.toJson());
-        FlashMessage(res!.state, message: res.message);
-        if (res.state) {
-          _global.updateOrganization(res.organization!);
-          _global.updateUser(User.fromJson({
-            ..._global.currentUser.toJson(),
-            'organization': res.organization!.id
-          }));
-          Get.offNamed(Routes.ORGANIZATION_PROFILE,
-              arguments: res.organization);
-        }
+      Organization newOrganization = Organization(
+        name: name.text.trim(),
+        email: email.text.trim().toLowerCase(),
+        description: description.text.trim(),
+        contact: [phone.text.trim()],
+        address: address.text.trim(),
+        website: website.text.trim().toLowerCase(),
+      );
+      ResponseModel? res = await _provider.createOrganization(
+          // Dio.FormData.fromMap({
+          //   ...newOrganization,
+          //   'documentFile': await Dio.MultipartFile.fromFile(_document!.path,
+          //       filename: _document!.path.split('/').last)
+          // }),
+          newOrganization.toJson());
+      FlashMessage(res!.state, message: res.message);
+      if (res.state) {
+        _global.updateOrganization(res.organization!);
+        _global.updateUser(User.fromJson({
+          ..._global.currentUser.toJson(),
+          'organization': res.organization!.id
+        }));
+        Get.offNamed(Routes.ORGANIZATION_PROFILE, arguments: res.organization);
       }
     } on Exception catch (e) {
       print(e);

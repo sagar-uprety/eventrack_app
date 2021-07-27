@@ -18,14 +18,12 @@ import '../providers/create_event_providerImpl.dart';
 enum StepFunctionType { next, cancel }
 
 class CreateEventController extends GetxController {
-  get key => _key;
   final origin = LatLng(0, 0);
 
   RxInt stepIndex = 0.obs;
 
   late CreateEventProvider _createEventProvider;
 
-  late GlobalKey<FormState> _key = GlobalKey();
   late TextEditingController eventName;
   late TextEditingController description;
   late TextEditingController categoriesText;
@@ -184,14 +182,14 @@ class CreateEventController extends GetxController {
   }
 
   bool validateForm1() {
-    if (_key.currentState!.validate() && dateAndTimeValidator()) {
+    if (dateAndTimeValidator()) {
       return true;
     }
     return false;
   }
 
   bool validateForm2() {
-    if (_key.currentState!.validate()) {
+    if (coordinatesValidator()) {
       return true;
     }
     return false;
@@ -200,7 +198,7 @@ class CreateEventController extends GetxController {
   Future submit() async {
     _toggleSavingState();
     try {
-      if (validateForm2() && coordinatesValidator()) {
+      if (validateForm2()) {
         Map<String, dynamic> event = Event(
           title: eventName.text.trim(),
           description: description.text.trim(),

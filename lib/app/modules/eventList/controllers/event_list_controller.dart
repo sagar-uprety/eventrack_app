@@ -11,7 +11,6 @@ import '../provider/event_list_provider_impl.dart';
 
 class EventListController extends GetxController {
   late EventListProvider _eventsProvider;
-  final searchFormKey = GlobalKey<FormState>();
   late TextEditingController searchText;
   late InitLoadController _global;
   late List<Event> _events;
@@ -97,22 +96,19 @@ class EventListController extends GetxController {
 
   Future search() async {
     try {
-      if (searchFormKey.currentState!.validate()) {
-        //assign the received `response.eventList` to `filteredEvents
-        final ResponseModel? result = await _eventsProvider.getSearchList(
-            data: {
-              "title": searchText.text,
-              "category": filterCategories,
-              "date": filterDate
-            });
-        if (result!.state) {
-          filteredEvents.value = result.eventList!;
-          update();
-          hideLoading();
-        } else {
-          print("Data Not Found");
-          hideLoading();
-        }
+      //assign the received `response.eventList` to `filteredEvents
+      final ResponseModel? result = await _eventsProvider.getSearchList(data: {
+        "title": searchText.text,
+        "category": filterCategories,
+        "date": filterDate
+      });
+      if (result!.state) {
+        filteredEvents.value = result.eventList!;
+        update();
+        hideLoading();
+      } else {
+        print("Data Not Found");
+        hideLoading();
       }
     } catch (e) {
       print(e);

@@ -23,7 +23,6 @@ class EventListView extends GetView<EventListController> {
         () => Column(
           children: [
             Form(
-              key: controller.searchFormKey,
               child: Column(
                 children: [
                   FormInputField(

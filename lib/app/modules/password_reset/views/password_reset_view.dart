@@ -11,6 +11,7 @@ import '../controllers/password_reset_controller.dart';
 class PasswordResetView extends GetView<PasswordResetController> {
   final PasswordResetController passwordController =
       Get.find<PasswordResetController>();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class PasswordResetView extends GetView<PasswordResetController> {
       ),
       body: Obx(
         () => Form(
-          key: controller.formKey,
+          key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -64,7 +65,10 @@ class PasswordResetView extends GetView<PasswordResetController> {
                 children: [
                   ETElevatedButton(
                     childText: 'Save',
-                    onPressed: controller.submit,
+                    onPressed: () async {
+                      if (formKey.currentState!.validate())
+                        await controller.submit();
+                    },
                   ),
                   ETTextButton(
                     'Cancel',

@@ -9,6 +9,7 @@ import '../../../global_widgets/scaffold.dart';
 import '../controllers/create_organization_controller.dart';
 
 class CreateOrganizationView extends GetView<CreateOrganizationController> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return ETScaffold(
@@ -18,7 +19,7 @@ class CreateOrganizationView extends GetView<CreateOrganizationController> {
       ),
       body: SingleChildScrollView(
         child: Form(
-          key: controller.formKey,
+          key: formKey,
           child: Column(
             children: [
               FormInputField(
@@ -80,7 +81,10 @@ class CreateOrganizationView extends GetView<CreateOrganizationController> {
                         children: [
                           ETElevatedButton(
                             childText: 'Create',
-                            onPressed: controller.submit,
+                            onPressed: () async {
+                              if (formKey.currentState!.validate())
+                                await controller.submit();
+                            },
                           ),
                           ETTextButton(
                             'Cancel',

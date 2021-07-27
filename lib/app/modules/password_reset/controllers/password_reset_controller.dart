@@ -12,7 +12,6 @@ class PasswordResetController extends GetxController {
   late TextEditingController retypedPassword;
   final RxBool obscureNewPassword = true.obs;
   final RxBool obscureRetyped = true.obs;
-  final formKey = GlobalKey<FormState>();
   late PasswordResetProvider _provider;
   late String _email;
 
@@ -57,12 +56,10 @@ class PasswordResetController extends GetxController {
     obscureRetyped.value = !obscureRetyped.value;
   }
 
-  void submit() async {
-    if (formKey.currentState!.validate()) {
-      ResponseModel res = await _provider
-          .changePassword({'email': _email, 'password': newPassword.text});
-      FlashMessage(res.state, message: res.message!, displayOnSuccess: true);
-      if (res.state) Get.toNamed(Routes.LOGIN);
-    }
+  Future submit() async {
+    ResponseModel res = await _provider
+        .changePassword({'email': _email, 'password': newPassword.text});
+    FlashMessage(res.state, message: res.message!, displayOnSuccess: true);
+    if (res.state) Get.toNamed(Routes.LOGIN);
   }
 }
