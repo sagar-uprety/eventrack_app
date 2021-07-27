@@ -11,6 +11,7 @@ import '../provider/event_detail_provider.dart';
 import '../provider/event_detail_provider_impl.dart';
 
 class EventDetailController extends GetxController {
+  final RxBool registered = false.obs;
   final RxBool showMore = false.obs;
   late GoogleMapController? mapController;
   // late GlobalController globalController;
@@ -41,6 +42,7 @@ class EventDetailController extends GetxController {
         print("User registered");
         FlashMessage(register.state,
             message: register.message, displayOnSuccess: true);
+            registered.value = true;
       } else {
         print("Data Not Found");
       }
