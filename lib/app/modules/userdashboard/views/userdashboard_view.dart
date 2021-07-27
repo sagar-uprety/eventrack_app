@@ -21,7 +21,8 @@ class UserdashboardView extends GetView<UserdashboardController> {
       ),
       drawer: buildAppDrawer(),
       body: SingleChildScrollView(
-        child: Obx(()=> Column(
+        child: Obx(
+          () => Column(
             children: <Widget>[
               _buildEventList(
                 'New Events',
@@ -43,8 +44,6 @@ class UserdashboardView extends GetView<UserdashboardController> {
     );
   }
 
-
-
   Widget _buildEventList(String title, List<Event> list,
       {bool vertical = true}) {
     return Column(
@@ -59,7 +58,8 @@ class UserdashboardView extends GetView<UserdashboardController> {
             ),
             ETTextButton(
               'See All',
-              onPressed: () => Get.toNamed(Routes.EVENT_LIST),
+              onPressed: () => Get.toNamed(Routes.EVENT_LIST,
+                  arguments: controller.favourites),
             )
           ],
         ).paddingSymmetric(horizontal: 20),
@@ -88,10 +88,10 @@ class UserdashboardView extends GetView<UserdashboardController> {
         scrollDirection: Axis.vertical,
         shrinkWrap: false,
         itemCount: !(list.length >= 3) ? list.length : 3,
-        itemBuilder: (_, i){
+        itemBuilder: (_, i) {
           print(i);
-         return EventCard(list[i]);
-        } ,
+          return EventCard(list[i]);
+        },
       ),
     );
   }

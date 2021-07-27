@@ -20,6 +20,8 @@ class EventListController extends GetxController {
   late List<String> filterDate = [];
   late RxList<String> filterCategories = <String>[].obs;
 
+  List<Event> get passedevents => Get.arguments;
+
   List<String> categoriesList = [
     'Award',
     'Competition',
@@ -39,7 +41,8 @@ class EventListController extends GetxController {
     searchText = TextEditingController();
     _eventsProvider = Get.find<EventListProviderImpl>();
     _global = Get.find<InitLoadController>();
-    _events = _global.events;
+
+    // _events = !arguments ?? _global.events;
     filteredEvents.value = _events;
     update();
     print(_global.currentUser.toJson());
