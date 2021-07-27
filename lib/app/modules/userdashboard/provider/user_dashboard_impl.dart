@@ -18,7 +18,18 @@ class UserProviderImpl implements UserDashboardProvider {
   Future<ResponseModel?> getMyFavouriteEvents() async {
     try {
       final ResponseModel response = await _httpService.getRequest('/user/myfavourites');
-      print('Hi');
+      print(response.toJson());
+      return response;
+    } on Exception catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+  @override
+  Future<ResponseModel?> getMyEvents() async {
+    try {
+      final ResponseModel response = await _httpService.getRequest('/user/myEvents');
       print(response.toJson());
       return response;
     } on Exception catch (e) {
