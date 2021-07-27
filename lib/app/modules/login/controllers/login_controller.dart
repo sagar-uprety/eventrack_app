@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../controllers/controllers/global_controller.dart';
 import '../../../global_widgets/message.dart';
 import '../../../models/response.dart';
 import '../../../models/user/user.dart';

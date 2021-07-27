@@ -67,11 +67,7 @@ class EventDetailView extends GetView<EventDetailController> {
           Container(
             padding: EdgeInsets.only(top: 750.0, left: 50.0),
             child: RoundButton(
-              text: 'Register',
-              onPress: () async {
-                await controller.registerforevent();
-              },
-            ),
+                text: 'Register', onPress: controller.registerforevent),
           ),
         ],
       ),

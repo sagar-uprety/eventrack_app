@@ -1,8 +1,8 @@
+import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
 
-import '../../../controllers/controllers/global_controller.dart';
 import '../../../global_widgets/message.dart';
 import '../../../models/organization/organization.dart';
 import '../../../models/response.dart';
@@ -23,7 +23,7 @@ class CreateOrganizationController extends GetxController {
   // File? _document;
 
   late CreateOrganizationProvider _provider;
-  late GlobalController _global;
+  late InitLoadController _global;
   final RxBool saving = false.obs;
 
   @override
@@ -39,7 +39,7 @@ class CreateOrganizationController extends GetxController {
     // docPath = TextEditingController();
 
     _provider = Get.find<CreateOrganizationProviderImpl>();
-    _global = Get.find<GlobalController>();
+    _global = Get.find<InitLoadController>();
     super.onInit();
   }
 

@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 
-import '../../../controllers/controllers/global_controller.dart';
 import '../controllers/event_detail_controller.dart';
 import '../provider/event_detail_provider_impl.dart';
 
@@ -12,6 +11,5 @@ class EventDetailBinding extends Bindings {
     Get.lazyPut<EventDetailController>(
       () => EventDetailController(),
     );
-    Get.put(GlobalController());
   }
 }
