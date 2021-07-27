@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,7 +8,7 @@ import '../routes/app_pages.dart';
 import '../services/shared_prefs.dart';
 
 Drawer buildAppDrawer() {
-  final _controller = Get.find<GlobalController>();
+  InitLoadController _controller = Get.find<InitLoadController>();
   return Drawer(
     child: ListView(
       children: [
@@ -77,13 +78,13 @@ Drawer buildAppDrawer() {
                     arguments: _controller.organization),
                 leading: Icon(Icons.business),
               ),
-        _controller.currentUser.organization == null
-          ?Center()
-          : ListTile(
-            title: Text("Create Events"),
-            onTap: () => Get.toNamed(Routes.CREATE_EVENT),
-            leading: Icon(Icons.create),
-          ),
+        // _controller.currentUser.organization == null
+        //     ? Center()
+        //     : ListTile(
+        //         title: Text("Create Events"),
+        //         onTap: () => Get.toNamed(Routes.CREATE_EVENT),
+        //         leading: Icon(Icons.create),
+        //       ),
         Divider(
           color: Colors.black,
         ),
@@ -92,7 +93,6 @@ Drawer buildAppDrawer() {
           onTap: () async => await SharedPreference.requestLogout(),
           leading: Icon(Icons.logout),
         ),
-        
       ],
     ),
   );
