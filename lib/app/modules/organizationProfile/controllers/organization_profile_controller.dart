@@ -14,7 +14,7 @@ class OrganizationProfileController extends GetxController {
   late RxList<Event> createdEventList;
 
   @override
-  void onInit() {
+  void onInit() async {
     _orgProfileProvider = Get.find<OrgProfileProviderImpl>();
     createdEventList = <Event>[].obs;
     print(orgData.toJson());
@@ -33,7 +33,6 @@ class OrganizationProfileController extends GetxController {
       } else {
         print("Created Events Data Not Found");
       }
-      print('HI');
     } catch (e) {
       print(e);
     }

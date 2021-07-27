@@ -46,10 +46,10 @@ class OrganizationProfileTab1 extends GetView<OrganizationProfileController> {
         ),
         Center(
           child: ETElevatedButton(
-            onPressed: () async{
+            onPressed: () async {
               await Get.toNamed(Routes.CREATE_EVENT);
             },
-            childText: 'Create Events',
+            childText: 'Create Event',
           ),
         ),
       ],
