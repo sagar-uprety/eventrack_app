@@ -8,8 +8,7 @@ import '../controllers/userdashboard_controller.dart';
 class UserdashboardBinding extends Bindings {
   @override
   void dependencies() {
-     Get.put(GlobalController());
-     Get.put<UserProviderImpl>(UserProviderImpl());
+    Get.put<UserProviderImpl>(UserProviderImpl());
     Get.lazyPut<UserdashboardController>(
       () => UserdashboardController(),
     );

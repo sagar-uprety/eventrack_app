@@ -48,8 +48,7 @@ class TokenVerifcationView extends GetView<TokenVerifcationController> {
                     childText: 'Cancel',
                     fontSize: 18,
                     isGrey: true,
-                    onPressed: () =>
-                        Get.offNamedUntil(Routes.LOGIN, (route) => false),
+                    onPressed: () => Get.toNamed(Routes.LOGIN),
                   ),
                 ],
               ).paddingOnly(top: 8),
