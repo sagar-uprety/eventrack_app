@@ -1,6 +1,8 @@
+import 'package:eventrack_app/app/global_widgets/message.dart';
 import 'package:eventrack_app/app/models/response.dart';
 import 'package:eventrack_app/app/modules/password_reset/provider/password_reset_provider.dart';
 import 'package:eventrack_app/app/modules/password_reset/provider/password_reset_provider_impl.dart';
+import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -12,9 +14,11 @@ class PasswordResetController extends GetxController {
   final RxBool obscureRetyped = true.obs;
   final formKey = GlobalKey<FormState>();
   late PasswordResetProvider _provider;
+  late String _email;
 
   @override
   void onInit() {
+    _email = Get.arguments;
     _provider = Get.find<PasswordResetProviderImpl>();
     newPassword = TextEditingController();
     retypedPassword = TextEditingController();
@@ -53,9 +57,12 @@ class PasswordResetController extends GetxController {
     obscureRetyped.value = !obscureRetyped.value;
   }
 
-  void submit() {
+  void submit() async {
     if (formKey.currentState!.validate()) {
-      // ResponseModel model =
+      ResponseModel res = await _provider
+          .changePassword({'email': _email, 'password': newPassword.text});
+      FlashMessage(res.state, message: res.message!, displayOnSuccess: true);
+      if (res.state) Get.toNamed(Routes.LOGIN);
     }
   }
 }

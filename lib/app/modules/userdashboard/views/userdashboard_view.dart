@@ -20,22 +20,24 @@ class UserdashboardView extends GetView<UserdashboardController> {
       ),
       drawer: buildAppDrawer(),
       body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            _buildEventList(
-              'New Events',
-              controller.events,
-              vertical: false,
-            ),
-            _buildEventList(
-              'My Events',
-              controller.events,
-            ),
-            _buildEventList(
-              'My Favourites',
-              controller.events,
-            ),
-          ],
+        child: Obx(
+          () => Column(
+            children: <Widget>[
+              _buildEventList(
+                'New Events',
+                controller.events,
+                vertical: false,
+              ),
+              _buildEventList(
+                'My Favourites',
+                controller.favourites,
+              ),
+              _buildEventList(
+                'My Events',
+                controller.myEvents,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -55,7 +57,7 @@ class UserdashboardView extends GetView<UserdashboardController> {
             ),
             ETTextButton(
               'See All',
-              onPressed: () => Get.toNamed(Routes.EVENT_LIST),
+              onPressed: () => controller.seeAll(title),
             )
           ],
         ).paddingSymmetric(horizontal: 20),
@@ -65,6 +67,9 @@ class UserdashboardView extends GetView<UserdashboardController> {
   }
 
   Widget _horizontalList(List<Event> list) {
+    // double height = ;
+    // if()
+
     return SizedBox(
       height: 174,
       child: ListView.builder(
@@ -79,12 +84,14 @@ class UserdashboardView extends GetView<UserdashboardController> {
 
   Widget _verticalList(List<Event> list) {
     return SizedBox(
-      height: 350,
+      height: 250,
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: false,
         itemCount: !(list.length >= 3) ? list.length : 3,
-        itemBuilder: (_, i) => EventCard(list[i]),
+        itemBuilder: (_, i) {
+          return EventCard(list[i]);
+        },
       ),
     );
   }

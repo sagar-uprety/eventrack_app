@@ -43,26 +43,26 @@ class InitLoadController extends GetxController {
 
   Future getCurrentUser() async {
     final ResponseModel? response = await _provider.getCurrentUser();
-    print('Making reques');
+    print('Making request');
     FlashMessage(response!.state,
         message: response.message, displayOnSuccess: false);
     if (response.state) {
-      await getuser(
-        user: response.user!,
-        events: response.eventList!,
-        organization: response.organization,
-      );
-      Get.toNamed(Routes.USERDASHBOARD);
-      // if (response.user!.isVerified!) {
-      //   await getuser(
-      //     user: response.user!,
-      //     events: response.eventList!,
-      //     organization: response.organization,
-      //   );
-      //   Get.offAllNamed(Routes.USERDASHBOARD);
-      // } else
-      //   Get.offAllNamed(Routes.TOKEN_VERIFCATION,
-      //       arguments: {'email': response.user!.email, 'type': 'email'});
+      // await getuser(
+      //   user: response.user!,
+      //   events: response.eventList!,
+      //   organization: response.organization,
+      // );
+      // Get.toNamed(Routes.USERDASHBOARD);
+      if (response.user!.isVerified!) {
+        await getuser(
+          user: response.user!,
+          events: response.eventList!,
+          organization: response.organization,
+        );
+        Get.toNamed(Routes.USERDASHBOARD);
+      } else
+        Get.toNamed(Routes.TOKEN_VERIFCATION,
+            arguments: {'email': response.user!.email, 'type': 'email'});
     } else
       await SharedPreference.requestLogout();
   }

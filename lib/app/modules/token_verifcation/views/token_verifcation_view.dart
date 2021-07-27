@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ import '../controllers/token_verifcation_controller.dart';
 class TokenVerifcationView extends GetView<TokenVerifcationController> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ETScaffold(
       appBar: ETAppBar(
         title: 'Verify Your Token',
         hasLeading: false,
@@ -48,8 +49,7 @@ class TokenVerifcationView extends GetView<TokenVerifcationController> {
                     childText: 'Cancel',
                     fontSize: 18,
                     isGrey: true,
-                    onPressed: () =>
-                        Get.offNamedUntil(Routes.LOGIN, (route) => false),
+                    onPressed: () => Get.toNamed(Routes.LOGIN),
                   ),
                 ],
               ).paddingOnly(top: 8),

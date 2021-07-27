@@ -22,8 +22,8 @@ class LoginController extends GetxController {
   late TextEditingController bottomSheetEmail;
 
   final Rx<bool> logging = false.obs;
+  final Rx<bool> bottomSheetLoading = false.obs;
 
-  late GlobalController _global;
   @override
   void onInit() {
     email = TextEditingController();
@@ -70,15 +70,15 @@ class LoginController extends GetxController {
     try {
       if (loginFormKey.currentState!.validate()) {
         ResponseModel? response = await _loginProvider.loginUser(
-          data: User(
+          User(
             email: email.text.trim(),
             password: password.text,
           ).toJson(),
         );
-        FlashMessage(response!.state, message: response.message);
+        FlashMessage(response.state, message: response.message);
         if (response.state) {
           await SharedPreference.saveAuthState(response.authToken!);
-          Get.offAllNamed(Routes.INIT_LOAD);
+          Get.toNamed(Routes.INIT_LOAD);
         }
       }
     } catch (e) {
@@ -87,7 +87,16 @@ class LoginController extends GetxController {
     _changeLoggingState();
   }
 
-  void getToken() {
-    if (bottomSheetFormKey.currentState!.validate()) print('Sending Token...');
+  Future getToken() async {
+    if (bottomSheetFormKey.currentState!.validate()) {
+      print(email.text.trim());
+      // ResponseModel response = await _loginProvider.loginUser(
+      //   {'email': email.text.trim()},
+      // );
+      // FlashMessage(response.state, message: response.message!);
+      // if (response.state)
+      Get.toNamed(Routes.TOKEN_VERIFCATION,
+          arguments: {'email': bottomSheetEmail.text, 'type': 'reset'});
+    }
   }
 }
