@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/tiles/participantCard.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -10,11 +11,22 @@ class OrganizationProfileTab2 extends GetView<OrganizationProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: false,
-      itemCount: controller.createdEventList.length,
-      itemBuilder: (_, i) => EventCard(controller.createdEventList[i]),
+    return Obx(
+      () => Stack(
+        children: [
+          controller.createdEventList.length != 0
+              ? ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.createdEventList.length,
+                  itemBuilder: (_, index) {
+                    return EventCard(controller.createdEventList[index]);
+                  },
+                ).paddingOnly(top: 12, bottom: 15)
+              : Center(
+                  child: Text('Data not found'),
+                ),
+        ],
+      ),
     );
   }
 }
