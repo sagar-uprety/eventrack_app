@@ -14,32 +14,36 @@ import '../controllers/userdashboard_controller.dart';
 class UserdashboardView extends GetView<UserdashboardController> {
   @override
   Widget build(BuildContext context) {
+    print(controller.favourites);
     return Scaffold(
       appBar: ETAppBar(
         title: 'Home',
       ),
       drawer: buildAppDrawer(),
       body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            _buildEventList(
-              'New Events',
-              controller.events,
-              vertical: false,
-            ),
-            _buildEventList(
-              'My Events',
-              controller.events,
-            ),
-            _buildEventList(
-              'My Favourites',
-              controller.favourites,
-            ),
-          ],
+        child: Obx(()=> Column(
+            children: <Widget>[
+              _buildEventList(
+                'New Events',
+                controller.events,
+                vertical: false,
+              ),
+              _buildEventList(
+                'My Events',
+                controller.events,
+              ),
+              _buildEventList(
+                'My Favourites',
+                controller.favourites,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+
+
 
   Widget _buildEventList(String title, List<Event> list,
       {bool vertical = true}) {

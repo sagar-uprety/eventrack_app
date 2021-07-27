@@ -17,10 +17,12 @@ class UserdashboardController extends GetxController {
 
   @override
   void onInit() async {
+     
     global = Get.find<InitLoadController>();
     dashboardProvider = Get.find<UserProviderImpl>();
-    _myFavourite = <Event>[].obs;
     getMyFavourite();
+    _myFavourite = <Event>[].obs;
+   
     events = global.events;
     print(
         'User: ${global.currentUser.toJson()}\n\n\n Organizaiton: ${global.organization.toJson()}\n\n\n First Event: ${global.events.length}');
@@ -34,7 +36,9 @@ class UserdashboardController extends GetxController {
       if(events!.state){
         print('MyFavourite Events found');
         print(events.state);
+        print(events.toJson());
         _myFavourite.value = events.eventList!;
+        print(_myFavourite[0].toJson());
       }
       else{
         print('My Favourite Events not found');
