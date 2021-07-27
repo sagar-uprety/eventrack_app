@@ -12,6 +12,7 @@ class ETElevatedButton extends StatelessWidget {
     required this.childText,
     required this.onPressed,
     this.fontSize = 18,
+    this.isGrey = false,
     this.size,
     this.color,
   }) : super(key: key);
@@ -25,6 +26,8 @@ class ETElevatedButton extends StatelessWidget {
   ///`Color` of the button - defaults to `color: AppColors.blue`
   final Color? color;
 
+  final bool isGrey;
+
   ///`fixedSize` of the button - defaults to `width: 40%` and `height: 50`
   final Size? size;
 
@@ -36,7 +39,8 @@ class ETElevatedButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(color ?? AppColors.blue),
+        backgroundColor: MaterialStateProperty.all(
+            !isGrey ? (color ?? AppColors.blue) : AppColors.transparent),
         elevation: MaterialStateProperty.all(3),
         fixedSize: MaterialStateProperty.all(
           size ?? Size(Get.width * 0.40, 50),

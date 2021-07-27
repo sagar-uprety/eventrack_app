@@ -1,3 +1,6 @@
+import 'package:eventrack_app/app/models/response.dart';
+import 'package:eventrack_app/app/modules/password_reset/provider/password_reset_provider.dart';
+import 'package:eventrack_app/app/modules/password_reset/provider/password_reset_provider_impl.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,9 +11,11 @@ class PasswordResetController extends GetxController {
   final RxBool obscureNewPassword = true.obs;
   final RxBool obscureRetyped = true.obs;
   final formKey = GlobalKey<FormState>();
+  late PasswordResetProvider _provider;
 
   @override
   void onInit() {
+    _provider = Get.find<PasswordResetProviderImpl>();
     newPassword = TextEditingController();
     retypedPassword = TextEditingController();
     super.onInit();
@@ -49,6 +54,8 @@ class PasswordResetController extends GetxController {
   }
 
   void submit() {
-    if (formKey.currentState!.validate()) print('Password Changed');
+    if (formKey.currentState!.validate()) {
+      // ResponseModel model =
+    }
   }
 }

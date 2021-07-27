@@ -9,15 +9,15 @@ import '../providers/token_verification_provider.dart';
 import '../providers/token_verification_provider_impl.dart';
 
 class TokenVerifcationController extends GetxController {
-  late String _email;
-  late TextEditingController token;
+  late Map _email;
+  late TextEditingController token = TextEditingController();
   final formKey = GlobalKey<FormState>();
   late TokenVerificationProvider _provider;
 
   @override
   void onInit() async {
     _email = Get.arguments;
-    token = TextEditingController();
+    print(_email);
     _provider = Get.find<TokenVerificationProviderImpl>();
     await sendToken();
     super.onInit();

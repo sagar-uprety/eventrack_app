@@ -54,14 +54,15 @@ class InitLoadController extends GetxController {
       );
       Get.toNamed(Routes.USERDASHBOARD);
       // if (response.user!.isVerified!) {
-      //   await _controller.getuser(
+      //   await getuser(
       //     user: response.user!,
       //     events: response.eventList!,
       //     organization: response.organization,
       //   );
       //   Get.offAllNamed(Routes.USERDASHBOARD);
       // } else
-      //   Get.offAllNamed(Routes.TOKEN_VERIFCATION);
+      //   Get.offAllNamed(Routes.TOKEN_VERIFCATION,
+      //       arguments: {'email': response.user!.email, 'type': 'email'});
     } else
       await SharedPreference.requestLogout();
   }
