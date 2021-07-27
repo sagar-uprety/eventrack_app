@@ -1,3 +1,5 @@
+import 'package:eventrack_app/app/global_widgets/button.dart';
+import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -91,7 +93,13 @@ class UserProfileView extends GetView<UserProfileController> {
               ),
               SizedBox(
                 height: hrheight * 0.05,
-              )
+              ),
+              ETElevatedButton(
+                childText: 'Edit Profile',
+                onPressed: () {
+                  Get.toNamed(Routes.EDIT_USER_PROFILE);
+                },
+              ).paddingOnly(top: 24, left: 220),
             ],
           ),
         ),
