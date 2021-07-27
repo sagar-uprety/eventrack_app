@@ -33,7 +33,6 @@ class GlobalController extends GetxController {
   }) async {
     updateUser(user);
     if (events.length > 0) updateEvents(events);
-    print(events[0].toJson());
     if (user.organization != null) {
       updateOrganization(organization!);
     }

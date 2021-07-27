@@ -10,9 +10,10 @@ class UserdashboardController extends GetxController {
   @override
   void onInit() async {
     global = Get.find<InitLoadController>();
+     events = global.events;
     print(
-        'User: ${global.currentUser.toJson()}\n\n\n Organizaiton: ${global.organization.toJson()}\n\n\n First Event: ${global.events[0].toJson()}');
+        'User: ${global.currentUser.toJson()}\n\n\n Organizaiton: ${global.organization.toJson()}\n\n\n First Event: ${global.events.length}');
     super.onInit();
-    events = global.events;
+   
   }
 }

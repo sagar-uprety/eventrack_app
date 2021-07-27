@@ -17,6 +17,7 @@ class OrganizationProfileController extends GetxController {
   void onInit() {
     _orgProfileProvider = Get.find<OrgProfileProviderImpl>();
     // createdEventList = <Event>[].obs;
+    print(orgData.toJson());
     createdEventList = TempData.events.obs;
     super.onInit();
   }
