@@ -57,7 +57,7 @@ class InitLoadController extends GetxController {
       // if (response.user!.isVerified!) {
       //   await _controller.getuser(
       //     user: response.user!,
-      // events: response.eventList!,
+      //     events: response.eventList!,
       //     organization: response.organization,
       //   );
       //   Get.offAllNamed(Routes.USERDASHBOARD);
