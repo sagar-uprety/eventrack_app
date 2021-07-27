@@ -19,6 +19,7 @@ class OrgProfileProviderImpl implements OrgProfileProvider {
     try {
       final ResponseModel response =
           await _httpService.getRequest('/org/getevents/$id');
+          print(response);
       return response;
     } on Exception catch (e) {
       print(e);
