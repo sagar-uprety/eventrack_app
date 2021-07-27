@@ -44,10 +44,10 @@ class TokenVerifcationView extends GetView<TokenVerifcationController> {
                     childText: 'Verify',
                     onPressed: controller.verifyToken,
                   ),
-                  ETTextButton(
-                    'Cancel',
-                    underline: false,
+                  ETElevatedButton(
+                    childText: 'Cancel',
                     fontSize: 18,
+                    isGrey: true,
                     onPressed: () =>
                         Get.offNamedUntil(Routes.LOGIN, (route) => false),
                   ),
