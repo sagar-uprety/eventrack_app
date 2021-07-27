@@ -143,6 +143,22 @@ class CreateEventView extends GetView<CreateEventController> {
                 ),
                 title: Center(
                   child: controller.formattedDate.length != 0
+<<<<<<< HEAD
+                        ? Text(
+                     controller.formattedDate.length == 1
+                            ? controller.formattedDate[0]
+                            : 'From: ' +
+                                controller.formattedDate[0] +
+                                '\nTo: ' +
+                                controller.formattedDate[1]
+                        ,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2!
+                        .copyWith(color: AppColors.dark80),
+                  ).paddingOnly(bottom: 10)
+                  : Center(),
+=======
                       ? Text(
                           controller.formattedDate.length == 1
                               ? controller.formattedDate[0]
@@ -156,6 +172,7 @@ class CreateEventView extends GetView<CreateEventController> {
                               .copyWith(color: AppColors.dark80),
                         ).paddingOnly(bottom: 10)
                       : Center(),
+>>>>>>> main
                 ),
               ).paddingOnly(bottom: 8),
             ),
@@ -166,8 +183,13 @@ class CreateEventView extends GetView<CreateEventController> {
               child: ListTile(
                 title: controller.times.value.length != 0
                     ? Center(
+<<<<<<< HEAD
+                      child: Text(
+                              controller.times.value[0] +
+=======
                         child: Text(
                           controller.times.value[0] +
+>>>>>>> main
                               '-' +
                               controller.times.value[1],
                           style: Theme.of(context)
@@ -175,7 +197,11 @@ class CreateEventView extends GetView<CreateEventController> {
                               .bodyText2!
                               .copyWith(color: AppColors.dark80),
                         ).paddingOnly(bottom: 10),
+<<<<<<< HEAD
+                    )
+=======
                       )
+>>>>>>> main
                     : Center(),
                 subtitle: ETElevatedButton(
                   childText: 'Pick Time',

@@ -17,11 +17,15 @@ class SignUpView extends GetView<SignupController> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: ETAppBar(
-        title: 'Sign Up',
+        title: 'Signup',
         hasLeading: false,
       ),
       body: Column(
         children: [
+          Image(
+            height: 200.0,
+            image: AssetImage('assets/images/2.png'),
+          ),
           Form(
             key: controller.signupFormKey,
             child: Column(

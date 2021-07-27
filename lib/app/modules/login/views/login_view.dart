@@ -21,6 +21,10 @@ class LoginView extends GetView<LoginController> {
       ),
       body: Column(
         children: [
+          Image(
+            height: 200.0,
+            image: AssetImage('assets/images/2.png'),
+          ),
           Form(
             key: controller.loginFormKey,
             child: Column(
