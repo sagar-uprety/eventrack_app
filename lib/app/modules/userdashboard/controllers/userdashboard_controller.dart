@@ -11,18 +11,21 @@ class UserdashboardController extends GetxController {
   late List<Event> events;
   late UserDashboardProvider dashboardProvider;
   late RxList<Event> _myFavourite;
+  late RxList<Event> _myEvents;
   late InitLoadController global;
   
   List<Event> get favourites => _myFavourite;
+  List<Event> get myEvents => _myEvents;
 
   @override
   void onInit() async {
      
     global = Get.find<InitLoadController>();
     dashboardProvider = Get.find<UserProviderImpl>();
-    getMyFavourite();
     _myFavourite = <Event>[].obs;
-   
+    _myEvents = <Event>[].obs;
+    getMyFavourite();
+    getMyEvents();
     events = global.events;
     print(
         'User: ${global.currentUser.toJson()}\n\n\n Organizaiton: ${global.organization.toJson()}\n\n\n First Event: ${global.events.length}');
@@ -35,13 +38,28 @@ class UserdashboardController extends GetxController {
       ResponseModel? events = await dashboardProvider.getMyFavouriteEvents();
       if(events!.state){
         print('MyFavourite Events found');
-        print(events.state);
-        print(events.toJson());
         _myFavourite.value = events.eventList!;
-        print(_myFavourite[0].toJson());
       }
       else{
         print('My Favourite Events not found');
+      }
+    }catch (e) {
+      print(e);
+    }
+  }
+
+   getMyEvents()async{
+    try{
+      ResponseModel? events = await dashboardProvider.getMyEvents();
+      if(events!.state){
+        print('MyFavourite Events found');
+        print(events.state);
+        print(events.toJson());
+        _myEvents.value = events.eventList!;
+        print(_myFavourite[0].toJson());
+      }
+      else{
+        print('My Events not found');
       }
     }catch (e) {
       print(e);

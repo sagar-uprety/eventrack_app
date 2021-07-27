@@ -14,7 +14,6 @@ import '../controllers/userdashboard_controller.dart';
 class UserdashboardView extends GetView<UserdashboardController> {
   @override
   Widget build(BuildContext context) {
-    print(controller.favourites);
     return Scaffold(
       appBar: ETAppBar(
         title: 'Home',
@@ -29,12 +28,16 @@ class UserdashboardView extends GetView<UserdashboardController> {
                 vertical: false,
               ),
               _buildEventList(
-                'My Events',
+                'All Events',
                 controller.events,
               ),
               _buildEventList(
                 'My Favourites',
                 controller.favourites,
+              ),
+              _buildEventList(
+                'My Events',
+                controller.myEvents,
               ),
             ],
           ),
@@ -89,7 +92,6 @@ class UserdashboardView extends GetView<UserdashboardController> {
         shrinkWrap: false,
         itemCount: !(list.length >= 3) ? list.length : 3,
         itemBuilder: (_, i){
-          print(i);
          return EventCard(list[i]);
         } ,
       ),
