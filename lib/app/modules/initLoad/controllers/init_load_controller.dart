@@ -59,9 +59,9 @@ class InitLoadController extends GetxController {
           events: response.eventList!,
           organization: response.organization,
         );
-        Get.offAllNamed(Routes.USERDASHBOARD);
+        Get.toNamed(Routes.USERDASHBOARD);
       } else
-        Get.offAllNamed(Routes.TOKEN_VERIFCATION,
+        Get.toNamed(Routes.TOKEN_VERIFCATION,
             arguments: {'email': response.user!.email, 'type': 'email'});
     } else
       await SharedPreference.requestLogout();

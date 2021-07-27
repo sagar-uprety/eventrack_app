@@ -29,10 +29,6 @@ class UserdashboardView extends GetView<UserdashboardController> {
                 vertical: false,
               ),
               _buildEventList(
-                'All Events',
-                controller.events,
-              ),
-              _buildEventList(
                 'My Favourites',
                 controller.favourites,
               ),
@@ -61,8 +57,7 @@ class UserdashboardView extends GetView<UserdashboardController> {
             ),
             ETTextButton(
               'See All',
-              onPressed: () => Get.toNamed(Routes.EVENT_LIST,
-                  arguments: controller.favourites),
+              onPressed: () => controller.seeAll(title),
             )
           ],
         ).paddingSymmetric(horizontal: 20),
@@ -72,6 +67,9 @@ class UserdashboardView extends GetView<UserdashboardController> {
   }
 
   Widget _horizontalList(List<Event> list) {
+    // double height = ;
+    // if()
+
     return SizedBox(
       height: 174,
       child: ListView.builder(

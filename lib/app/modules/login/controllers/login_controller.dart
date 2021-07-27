@@ -78,7 +78,7 @@ class LoginController extends GetxController {
         FlashMessage(response.state, message: response.message);
         if (response.state) {
           await SharedPreference.saveAuthState(response.authToken!);
-          Get.offAllNamed(Routes.INIT_LOAD);
+          Get.toNamed(Routes.INIT_LOAD);
         }
       }
     } catch (e) {

@@ -29,7 +29,7 @@ class SharedPreference {
 
   static requestLogout() async {
     await deleteAuthState();
-    Get.offNamedUntil(Routes.LOGIN, (route) => true);
+    Get.toNamed(Routes.LOGIN);
     return;
   }
 }

@@ -47,7 +47,7 @@ class TokenVerifcationController extends GetxController {
       ResponseModel? response = await _provider
           .verifyToken({'email': _arguments['email'], 'token': token.text});
       FlashMessage(response!.state, message: response.message);
-      if (response.state) Get.offAllNamed(Routes.INIT_LOAD);
+      if (response.state) Get.toNamed(Routes.INIT_LOAD);
     }
   }
 
@@ -57,7 +57,7 @@ class TokenVerifcationController extends GetxController {
           .verifyToken({'email': _arguments['email'], 'token': token.text});
       FlashMessage(response!.state, message: response.message);
       if (response.state)
-        Get.offNamed(Routes.PASSWORD_RESET, arguments: _arguments['email']);
+        Get.toNamed(Routes.PASSWORD_RESET, arguments: _arguments['email']);
     }
   }
 }

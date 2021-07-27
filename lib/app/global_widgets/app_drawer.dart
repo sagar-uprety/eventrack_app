@@ -1,3 +1,5 @@
+import 'package:eventrack_app/app/modules/userdashboard/controllers/userdashboard_controller.dart';
+import 'package:eventrack_app/app/modules/userdashboard/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,6 +10,7 @@ import '../services/shared_prefs.dart';
 
 Drawer buildAppDrawer() {
   InitLoadController _controller = Get.find<InitLoadController>();
+  UserdashboardController _dashboard = Get.find<UserdashboardController>();
   return Drawer(
     child: ListView(
       children: [
@@ -44,17 +47,17 @@ Drawer buildAppDrawer() {
         ),
         ListTile(
           title: Text("Search Events"),
-          onTap: () => Get.toNamed(Routes.EVENT_LIST),
+          onTap: () => _dashboard.seeAll('all'),
           leading: Icon(Icons.search),
         ),
         ListTile(
           title: Text("Registered Events"),
-          onTap: () => Get.toNamed(Routes.EVENT_LIST),
+          onTap: () => _dashboard.seeAll(_dashboard.my),
           leading: Icon(Icons.pages_outlined),
         ),
         ListTile(
           title: Text("Favourite Events"),
-          onTap: () => Get.toNamed(Routes.EVENT_LIST),
+          onTap: () => _dashboard.seeAll(_dashboard.fav),
           leading: Icon(Icons.favorite_border),
         ),
         Divider(

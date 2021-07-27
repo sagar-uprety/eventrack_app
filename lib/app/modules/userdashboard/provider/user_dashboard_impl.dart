@@ -17,7 +17,8 @@ class UserProviderImpl implements UserDashboardProvider {
   @override
   Future<ResponseModel?> getMyFavouriteEvents() async {
     try {
-      final ResponseModel response = await _httpService.getRequest('/user/myfavourites');
+      final ResponseModel response =
+          await _httpService.getRequest('/user/myfavourites');
       print(response.toJson());
       return response;
     } on Exception catch (e) {
@@ -29,7 +30,8 @@ class UserProviderImpl implements UserDashboardProvider {
   @override
   Future<ResponseModel?> getMyEvents() async {
     try {
-      final ResponseModel response = await _httpService.getRequest('/user/myEvents');
+      final ResponseModel response =
+          await _httpService.getRequest('/user/myEvents');
       print(response.toJson());
       return response;
     } on Exception catch (e) {
