@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -45,8 +46,10 @@ class OrganizationProfileTab1 extends GetView<OrganizationProfileController> {
         ),
         Center(
           child: ETElevatedButton(
-            onPressed: () {},
-            childText: 'Create Organization',
+            onPressed: () async{
+              await Get.toNamed(Routes.CREATE_EVENT);
+            },
+            childText: 'Create Events',
           ),
         ),
       ],

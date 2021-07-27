@@ -43,7 +43,7 @@ class InitLoadController extends GetxController {
 
   Future getCurrentUser() async {
     final ResponseModel? response = await _provider.getCurrentUser();
-    print('Making reques');
+    print('Making request');
     FlashMessage(response!.state,
         message: response.message, displayOnSuccess: false);
     if (response.state) {
