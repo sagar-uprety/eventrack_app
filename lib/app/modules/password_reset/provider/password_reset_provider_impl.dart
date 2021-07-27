@@ -15,9 +15,9 @@ class PasswordResetProviderImpl implements PasswordResetProvider {
   }
 
   @override
-  Future<ResponseModel?> changePassword(Map<String, dynamic> data) async {
+  Future<ResponseModel> changePassword(Map<String, dynamic> data) async {
     final ResponseModel response =
-        await _httpService.postRequest('/auth/resetPassword');
+        await _httpService.postRequest('/auth/resetPassword', data: data);
     return response;
   }
 }

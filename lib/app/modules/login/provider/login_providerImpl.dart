@@ -15,16 +15,16 @@ class LoginProviderImpl implements LoginProvider {
   }
 
   @override
-  Future<ResponseModel?> loginUser({Map<String, dynamic>? data}) async {
-    try {
-      //*This is where it uses our HttpService class to make dio requests and call API (backend)
+  Future<ResponseModel> loginUser(Map<String, dynamic> data) async {
+    final ResponseModel response =
+        await _httpService.postRequest('/auth/login', data: data);
+    return response;
+  }
 
-      final ResponseModel? response =
-          await _httpService.postRequest('/auth/login', data: data!);
-      return response;
-    } on Exception catch (e) {
-      print(e);
-      return null;
-    }
+  @override
+  Future<ResponseModel> checkEmail(Map<String, dynamic> data) async {
+    final ResponseModel response =
+        await _httpService.postRequest('/auth/checkEmail', data: data);
+    return response;
   }
 }
