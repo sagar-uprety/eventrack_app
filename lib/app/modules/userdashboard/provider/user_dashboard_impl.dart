@@ -19,7 +19,7 @@ class UserProviderImpl implements UserDashboardProvider {
     try {
       final ResponseModel response = await _httpService.getRequest('/user/myfavourites');
       print('Hi');
-      print(response);
+      print(response.toJson());
       return response;
     } on Exception catch (e) {
       print(e);

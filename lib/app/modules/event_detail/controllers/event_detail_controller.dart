@@ -28,6 +28,7 @@ class EventDetailController extends GetxController {
     // globalController = Get.find<GlobalController>();
     _eventDetailProvider = Get.find<EventDetailProviderImpl>();
     partcipantList = <User>[].obs;
+    getParticipantsData();
     super.onInit();
   }
 

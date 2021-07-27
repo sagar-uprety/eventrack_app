@@ -33,7 +33,7 @@ class UserdashboardView extends GetView<UserdashboardController> {
             ),
             _buildEventList(
               'My Favourites',
-              controller.events,
+              controller.favourites,
             ),
           ],
         ),
@@ -79,12 +79,15 @@ class UserdashboardView extends GetView<UserdashboardController> {
 
   Widget _verticalList(List<Event> list) {
     return SizedBox(
-      height: 350,
+      height: 250,
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: false,
         itemCount: !(list.length >= 3) ? list.length : 3,
-        itemBuilder: (_, i) => EventCard(list[i]),
+        itemBuilder: (_, i){
+          print(i);
+         return EventCard(list[i]);
+        } ,
       ),
     );
   }
