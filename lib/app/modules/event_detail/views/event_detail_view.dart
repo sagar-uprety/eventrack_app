@@ -18,6 +18,25 @@ class EventDetailView extends GetView<EventDetailController> {
       extendBodyBehindAppBar: true,
       appBar: ETAppBar(
         addBackButton: true,
+        actions: controller.myEvent
+            ? [
+                IconButton(
+                  onPressed: controller.pickProfile,
+                  iconSize: 30,
+                  icon: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      color: AppColors.dark10,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Icon(
+                      Icons.camera_alt,
+                    ),
+                  ),
+                ),
+              ]
+            : null,
       ),
       body: Obx(
         () => Stack(
@@ -53,36 +72,15 @@ class EventDetailView extends GetView<EventDetailController> {
                     )
                   : Center(),
             ),
-            Positioned(
-              top: 40,
-              right: 20,
-              child: IconButton(
-                onPressed: () async {
-                  print('Hello');
-                  await controller.pickProfile();
-                },
-                iconSize: 30,
-                icon: Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                      color: AppColors.dark10,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Icon(
-                    Icons.camera_alt,
-                  ),
-                ),
-              ),
-            ),
             DraggableSheet(
               tabIcons: [
                 Icons.description,
-                Icons.circle,
+                if (controller.myEvent) Icons.people,
                 Icons.location_on,
               ],
               tabs: [
                 EventDetailTab1(),
-                EventDetailTab2(),
+                if (controller.myEvent) EventDetailTab2(),
                 EventDetailTab3(),
               ],
             ),

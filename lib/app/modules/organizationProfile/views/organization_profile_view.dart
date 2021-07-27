@@ -19,44 +19,63 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
       extendBodyBehindAppBar: true,
       appBar: ETAppBar(
         addBackButton: true,
-      ),
-      body: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            width: Get.width,
-            height: Get.height * 0.42,
-            decoration: BoxDecoration(
-              image: controller.orgData.profile != null
-                  ? DecorationImage(
-                      image: NetworkImage(controller.orgData.profile!),
-                      fit: BoxFit.cover,
-                    )
-                  : null,
-              gradient: AppColors.imageGradient(),
+        actions: [
+          IconButton(
+            onPressed: controller.pickProfile,
+            iconSize: 30,
+            icon: Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                color: AppColors.dark10,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(
+                Icons.camera_alt,
+              ),
             ),
-            child: controller.orgData.profile == null
-                ? Center(
-                    child: Text(
-                      controller.orgData.name!,
-                      textAlign: TextAlign.center,
-                      style: Get.textTheme.headline1!
-                          .copyWith(color: AppColors.dark80),
-                    ).paddingAll(20),
-                  )
-                : Center(),
-          ),
-          DraggableSheet(
-            tabIcons: [
-              Icons.event_note,
-              Icons.view_list,
-            ],
-            tabs: [
-              OrganizationProfileTab1(),
-              OrganizationProfileTab2(),
-            ],
           ),
         ],
+      ),
+      body: Obx(
+        () => Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              width: Get.width,
+              height: Get.height * 0.42,
+              decoration: BoxDecoration(
+                image: controller.orgData.profile != null
+                    ? DecorationImage(
+                        image: NetworkImage(controller.orgData.profile!),
+                        fit: BoxFit.cover,
+                      )
+                    : null,
+                gradient: AppColors.imageGradient(),
+              ),
+              child: controller.orgData.profile == null
+                  ? Center(
+                      child: Text(
+                        controller.orgData.name!,
+                        textAlign: TextAlign.center,
+                        style: Get.textTheme.headline1!
+                            .copyWith(color: AppColors.dark80),
+                      ).paddingAll(20),
+                    )
+                  : Center(),
+            ),
+            DraggableSheet(
+              tabIcons: [
+                Icons.event_note,
+                Icons.view_list,
+              ],
+              tabs: [
+                OrganizationProfileTab1(),
+                OrganizationProfileTab2(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:eventrack_app/app/modules/userdashboard/controllers/userdashboard_controller.dart';
-import 'package:eventrack_app/app/modules/userdashboard/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -45,7 +44,7 @@ Drawer buildAppDrawer() {
         ),
         ListTile(
           title: Text("Home"),
-          onTap: () => Get.toNamed(Routes.HOME),
+          onTap: () => Get.toNamed(Routes.USERDASHBOARD),
           leading: Icon(Icons.home),
         ),
         ListTile(

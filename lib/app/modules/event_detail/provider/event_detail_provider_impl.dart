@@ -52,7 +52,7 @@ class EventDetailProviderImpl implements EventDetailProvider {
   @override
   Future<ResponseModel> uploadProfile(String id, Dio.FormData data) async {
     final ResponseModel response =
-        await _httpService.postRequest('/events/$id/uploadProfile', data: data);
+        await _httpService.postRequest('/events/uploadProfile/$id', data: data);
 
     return response;
   }

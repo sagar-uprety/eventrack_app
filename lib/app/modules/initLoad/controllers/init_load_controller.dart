@@ -37,7 +37,7 @@ class InitLoadController extends GetxController {
     _currentUser = User().obs;
     _organization = Organization().obs;
     _events = <Event>[].obs;
-    getAuthToken().then((value) => print('Received'));
+    getAuthToken().then((value) => print('All Set'));
     super.onInit();
   }
 
@@ -52,16 +52,9 @@ class InitLoadController extends GetxController {
 
   Future getCurrentUser() async {
     final ResponseModel? response = await _provider.getCurrentUser();
-    print('Making request');
     FlashMessage(response!.state,
         message: response.message, displayOnSuccess: false);
     if (response.state) {
-      // await getuser(
-      //   user: response.user!,
-      //   events: response.eventList!,
-      //   organization: response.organization,
-      // );
-      // Get.toNamed(Routes.USERDASHBOARD);
       if (response.user!.isVerified!) {
         await getuser(
           user: response.user!,

@@ -14,15 +14,17 @@ class EventDetailTab2 extends GetView<EventDetailController> {
     return Stack(
       children: [
         Text(
-            "Participants List", 
-            style:
-                Get.textTheme.headline4!.copyWith(fontWeight: FontWeight.w700),).paddingOnly(left: 24, top: 10),
-        ListView.builder(
-          shrinkWrap: true,
-          itemCount: controller.partcipantList.length,
-          itemBuilder: (_, index) {
-            return ParticipantCard(controller.partcipantList[index]);
-          },
+          "Participants List",
+          style: Get.textTheme.headline4!.copyWith(fontWeight: FontWeight.w700),
+        ).paddingOnly(left: 24, top: 10),
+        Flexible(
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: controller.partcipantList.length,
+            itemBuilder: (_, index) {
+              return ParticipantCard(controller.partcipantList[index]);
+            },
+          ),
         ),
         // Form(
         //   child: FormInputField(

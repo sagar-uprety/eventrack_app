@@ -15,17 +15,20 @@ class OrganizationProfileTab2 extends GetView<OrganizationProfileController> {
       () => Stack(
         children: [
           Text(
-            "Organized Events", 
+            "Organized Events",
             style:
-                Get.textTheme.headline4!.copyWith(fontWeight: FontWeight.w700),).paddingOnly(left: 24, top: 10),
+                Get.textTheme.headline4!.copyWith(fontWeight: FontWeight.w700),
+          ).paddingOnly(left: 24, top: 10),
           controller.createdEventList.length != 0
-              ? ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: controller.createdEventList.length,
-                  itemBuilder: (_, index) {
-                    return EventCard(controller.createdEventList[index]);
-                  },
-                ).paddingOnly(top: 12, bottom: 15)
+              ? Flexible(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.createdEventList.length,
+                    itemBuilder: (_, index) {
+                      return EventCard(controller.createdEventList[index]);
+                    },
+                  ).paddingOnly(top: 12, bottom: 15),
+                )
               : Center(
                   child: Text('Data not found'),
                 ),

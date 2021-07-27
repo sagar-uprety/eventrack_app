@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/message.dart';
 import 'package:eventrack_app/app/models/response.dart';
 import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
 import 'package:eventrack_app/app/modules/userdashboard/provider/user_dashboard_impl.dart';
@@ -30,8 +31,6 @@ class UserdashboardController extends GetxController {
     getMyFavourite();
     getMyEvents();
     events = global.events;
-    print(
-        'User: ${global.currentUser.toJson()}\n\n\n Organizaiton: ${global.organization.toJson()}\n\n\n First Event: ${global.events.length}');
     super.onInit();
   }
 
@@ -46,31 +45,25 @@ class UserdashboardController extends GetxController {
     Get.toNamed(Routes.EVENT_LIST, arguments: arguments);
   }
 
+  updateMyFavourite(bool state, Event event) => state
+      ? _myFavourite.removeAt(
+          _myFavourite.indexWhere((element) => element.id == event.id))
+      : _myFavourite.add(event);
+
+  updateMyEvents(bool state, Event event) => state
+      ? _myEvents
+          .removeAt(_myEvents.indexWhere((element) => element.id == event.id))
+      : _myEvents.add(event);
+
   getMyFavourite() async {
-    try {
-      ResponseModel? events = await dashboardProvider.getMyFavouriteEvents();
-      if (events!.state) {
-        print('MyFavourite Events found');
-        _myFavourite.value = events.eventList!;
-      } else {
-        print('My Favourite Events not found');
-      }
-    } catch (e) {
-      print(e);
-    }
+    ResponseModel? events = await dashboardProvider.getMyFavouriteEvents();
+    FlashMessage(events!.state, message: events.message);
+    if (events.state) _myFavourite.value = events.eventList!;
   }
 
   getMyEvents() async {
-    try {
-      ResponseModel? events = await dashboardProvider.getMyEvents();
-      if (events!.state) {
-        print('MyFavourite Events found');
-        _myEvents.value = events.eventList!;
-      } else {
-        print('My Events not found');
-      }
-    } catch (e) {
-      print(e);
-    }
+    ResponseModel? events = await dashboardProvider.getMyEvents();
+    FlashMessage(events!.state, message: events.message);
+    if (events.state) _myEvents.value = events.eventList!;
   }
 }

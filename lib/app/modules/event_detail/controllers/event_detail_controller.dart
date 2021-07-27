@@ -1,4 +1,5 @@
 import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
+import 'package:eventrack_app/app/modules/userdashboard/controllers/userdashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
@@ -22,15 +23,16 @@ class EventDetailController extends GetxController {
   final RxBool registering = false.obs;
   final RxBool showMore = false.obs;
   late GoogleMapController? mapController;
-  late InitLoadController globalController;
+  late InitLoadController globalController = Get.find<InitLoadController>();
   late EventDetailProvider _eventDetailProvider;
-  late InitLoadController global;
+  late UserdashboardController _dashboard;
   late Rx<Event> _event = Event().obs;
+  late User _currentUser;
 
+  RxBool _myEvent = true.obs;
   get event => _event.value;
+  get myEvent => _myEvent.value;
 
-  // get users => TempData.users;
-  late TextEditingController searchText;
   late RxList<User> partcipantList;
 
   List<String> get formattedDates {
@@ -41,81 +43,59 @@ class EventDetailController extends GetxController {
   }
 
   @override
-  void onInit() {
+  void onInit() async {
     _event.value = Get.arguments;
-    print(_event.value.dateTime!.toJson());
-    searchText = TextEditingController();
-    globalController = Get.find<InitLoadController>();
+    _currentUser = globalController.currentUser;
     _eventDetailProvider = Get.find<EventDetailProviderImpl>();
+    _dashboard = Get.find<UserdashboardController>();
+    _myEvent.value = (globalController.organization.id == _event.value.author);
+    registerValue();
     partcipantList = <User>[].obs;
-    getParticipantsData();
-    // registerValue();
+    await getParticipantsData();
     super.onInit();
   }
 
-  register() {
-    registered.value =
-        globalController.currentUser.registeredEvents!.contains(event.id);
-    print(registered);
+  registerValue() {
+    registered.value = _currentUser.registeredEvents!.contains(event.id);
     update();
   }
 
+  changeMyEvents() {
+    bool state = _dashboard.myEvents.any((element) => event.id == element.id);
+    _dashboard.updateMyEvents(state, event.id);
+  }
+
+  changeMyFavourites() {
+    bool state = _dashboard.favourites.any((element) => event.id == element.id);
+    _dashboard.updateMyFavourite(state, event.id);
+  }
+
   registerforevent() async {
-    try {
-      registering.value = true;
-      ResponseModel? register =
-          await _eventDetailProvider.registerToEvent(event.id!);
-      //this result is already parsed and is converted to List<Events>
-      if (register!.state) {
-        print("User registered");
-        FlashMessage(register.state,
-            message: register.message, displayOnSuccess: true);
-        registered.value = !registered.value;
-      } else {
-        print("Data Not Found");
-      }
-    } catch (e) {
-      print(e);
+    registering.value = true;
+    ResponseModel? register =
+        await _eventDetailProvider.registerToEvent(event.id!);
+    FlashMessage(register!.state,
+        message: register.message, displayOnSuccess: true);
+    if (register.state) {
+      registered.value = !registered.value;
+      _currentUser = register.user!;
+      globalController.updateUser(_currentUser);
+      changeMyEvents();
     }
+
     registering.value = false;
     update();
   }
 
   getParticipantsData() async {
-    try {
-      ResponseModel? participants =
-          await _eventDetailProvider.getParticipants(event.id!);
-      //this result is already parsed and is converted to List<Events>
-      if (participants!.state) {
-        print("Users data found");
-        partcipantList.value = participants.userList!;
-      } else {
-        print("Users Data Not Found");
-      }
-    } catch (e) {
-      print(e);
-    }
+    ResponseModel? participants =
+        await _eventDetailProvider.getParticipants(event.id!);
+    if (participants!.state) partcipantList.value = participants.userList!;
   }
 
   addtoFavorites(String id) async {
-    try {
-      ResponseModel added =
-          await _eventDetailProvider.addtoFavourites(event.id!);
-      print(added.toJson());
-      if (added.state) {
-        print("Added to Favourites");
-        FlashMessage(added.state,
-            message: added.message, displayOnSuccess: true);
-      } else {
-        print("Users Data Not Found");
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  void search() {
-    print('Search for ${searchText.text}');
+    ResponseModel added = await _eventDetailProvider.addtoFavourites(event.id!);
+    FlashMessage(added.state, message: added.message, displayOnSuccess: true);
   }
 
   void toggleDescriptionDisplay() => showMore.value = !showMore.value;
@@ -135,10 +115,9 @@ class EventDetailController extends GetxController {
     ResponseModel response =
         await _eventDetailProvider.uploadProfile(event.id, data);
     FlashMessage(response.state,
-        message: response.message, displayOnSuccess: false);
-    print(response.message);
+        message: response.message, displayOnSuccess: true);
     if (response.state) {
-      global.updateEvents(response.eventList!);
+      globalController.updateEvents(response.eventList!);
       _event.value = response.event!;
     }
   }

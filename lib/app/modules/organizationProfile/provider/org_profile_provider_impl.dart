@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart' as Dio;
 import 'package:get/get.dart';
 
 import '../../../models/response.dart';
@@ -19,11 +20,19 @@ class OrgProfileProviderImpl implements OrgProfileProvider {
     try {
       final ResponseModel response =
           await _httpService.getRequest('/org/getevents/$id');
-          print(response);
+      print(response);
       return response;
     } on Exception catch (e) {
       print(e);
       return null;
     }
+  }
+
+  @override
+  Future<ResponseModel> uploadProfile(Dio.FormData data) async {
+    final ResponseModel response =
+        await _httpService.postRequest('/org/uploadProfile', data: data);
+
+    return response;
   }
 }
