@@ -27,5 +27,14 @@ class TokenVerificationProviderImpl implements TokenVerificationProvider {
   }
 
   @override
-  Future<ResponseModel?> verifyToken(Map<String, dynamic> data) async {}
+  Future<ResponseModel?> verifyToken(Map<String, dynamic> data) async {
+    try {
+      ResponseModel? response =
+          await _httpService.postRequest('/auth/verify', data: data);
+      return response;
+    } on Exception catch (err) {
+      print(err);
+      return null;
+    }
+  }
 }

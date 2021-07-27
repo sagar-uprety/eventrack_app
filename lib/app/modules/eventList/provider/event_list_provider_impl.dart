@@ -26,11 +26,12 @@ class EventListProviderImpl implements EventListProvider {
       return null;
     }
   }
-  
+
   @override
-  Future<ResponseModel?> getSearchList({Map<String, dynamic>? data}) async{
+  Future<ResponseModel?> getSearchList({Map<String, dynamic>? data}) async {
     try {
-      final ResponseModel response = await _httpService.getRequest('/events/search', data: data!);
+      final ResponseModel response =
+          await _httpService.getRequest('/events/search', data: data!);
 
       return response;
     } on Exception catch (e) {

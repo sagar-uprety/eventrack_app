@@ -1,5 +1,6 @@
-import 'package:eventrack_app/app/global_widgets/appBar.dart';
 import 'package:flutter/material.dart';
+
+import 'appBar.dart';
 
 class ETScaffold extends StatelessWidget {
   ETScaffold({
@@ -17,18 +18,18 @@ class ETScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
-        },
-        child:Scaffold(
-          appBar: appBar,
-          drawer: drawer,
-          resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-          body:  body,
-          ),
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Scaffold(
+        appBar: appBar,
+        drawer: drawer,
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+        body: body,
+      ),
     );
   }
 }

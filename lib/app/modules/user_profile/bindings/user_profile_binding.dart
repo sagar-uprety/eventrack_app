@@ -1,6 +1,6 @@
-import 'package:eventrack_app/app/controllers/controllers/global_controller.dart';
 import 'package:get/get.dart';
 
+import '../../../controllers/controllers/global_controller.dart';
 import '../controllers/user_profile_controller.dart';
 import '../provider/userProfile_provider_impl.dart';
 

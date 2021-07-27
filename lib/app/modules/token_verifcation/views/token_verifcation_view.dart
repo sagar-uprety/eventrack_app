@@ -41,8 +41,8 @@ class TokenVerifcationView extends GetView<TokenVerifcationController> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ETElevatedButton(
-                    childText: 'Save',
-                    onPressed: controller.submit,
+                    childText: 'Verify',
+                    onPressed: controller.verifyToken,
                   ),
                   ETTextButton(
                     'Cancel',

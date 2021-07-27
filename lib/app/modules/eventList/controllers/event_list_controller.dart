@@ -1,12 +1,11 @@
-import 'package:eventrack_app/app/models/response.dart';
-import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../controllers/controllers/global_controller.dart';
 import '../../../models/event/event.dart';
+import '../../../models/response.dart';
 import '../../../pickers/datetimepicker.dart';
+import '../../initLoad/controllers/init_load_controller.dart';
 import '../provider/event_list_provider.dart';
 import '../provider/event_list_provider_impl.dart';
 
