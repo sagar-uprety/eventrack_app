@@ -52,9 +52,9 @@ class EventDetailTab1 extends GetView<EventDetailController> {
                 leading: Icon(Icons.calendar_today_outlined),
                 horizontalTitleGap: 0,
                 title: Text(
-                  controller.event.dateTime!.dates.length == 1
-                      ? '${controller.event.dateTime!.dates.formatDate[0]}'
-                      : '${controller.event.dateTime!.dates.formatDate[0]}\n${controller.event.dateTime!.dates.formatDate[1]}',
+                  controller.formattedDates.length == 1
+                      ? '${controller.formattedDates[0]}'
+                      : '${controller.formattedDates[0]}\n${controller.formattedDates[1]}',
                   style: Get.textTheme.overline,
                 ),
               ),

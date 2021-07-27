@@ -8,7 +8,6 @@ import '../../../global_widgets/button.dart';
 import '../../../global_widgets/tiles/eventCard.dart';
 import '../../../global_widgets/tiles/horizontalEventCard.dart';
 import '../../../models/event/event.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/userdashboard_controller.dart';
 
 class UserdashboardView extends GetView<UserdashboardController> {
@@ -66,7 +65,7 @@ class UserdashboardView extends GetView<UserdashboardController> {
         ],
       );
     else
-      return Center();
+      return Container();
   }
 
   Widget _horizontalList(List<Event> list) {
