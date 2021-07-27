@@ -105,9 +105,9 @@ class EventListController extends GetxController {
               "category": filterCategories,
               "date": filterDate
             });
-        print(result);
         if (result!.state) {
           filteredEvents.value = result.eventList!;
+          update();
           hideLoading();
         } else {
           print("Data Not Found");
@@ -117,7 +117,5 @@ class EventListController extends GetxController {
     } catch (e) {
       print(e);
     }
-    print(
-        'Text: ${searchText.text}\nCategories: ${filterCategories.join(", ")}\nDate: ${filterDate.join("-")}');
   }
 }

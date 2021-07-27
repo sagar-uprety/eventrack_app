@@ -67,10 +67,10 @@ class EventDetailController extends GetxController {
 
   addtoFavorites(String id) async {
     try {
-      ResponseModel? added =
+      ResponseModel added =
           await _eventDetailProvider.addtoFavourites(event.id!);
-
-      if (added!.state) {
+      print(added.toJson());
+      if (added.state) {
         print("Added to Favourites");
         FlashMessage(added.state,
             message: added.message, displayOnSuccess: true);

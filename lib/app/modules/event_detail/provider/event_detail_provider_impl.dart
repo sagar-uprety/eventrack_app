@@ -1,3 +1,4 @@
+import 'package:eventrack_app/app/global_widgets/message.dart';
 import 'package:get/get.dart';
 
 import '../../../models/response.dart';
@@ -40,13 +41,10 @@ class EventDetailProviderImpl implements EventDetailProvider {
   }
 
   @override
-  Future<ResponseModel?> addtoFavourites(String id) async {
-    try {
-      final ResponseModel response =
-          await _httpService.postRequest('/user/myfavourites');
-      return response;
-    } catch (e) {
-      print(e);
-    }
+  Future<ResponseModel> addtoFavourites(String id) async {
+    final ResponseModel response =
+        await _httpService.postRequest('/user/myfavourites/$id');
+
+    return response;
   }
 }

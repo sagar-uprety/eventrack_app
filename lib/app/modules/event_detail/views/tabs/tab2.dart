@@ -19,15 +19,15 @@ class EventDetailTab2 extends GetView<EventDetailController> {
           itemBuilder: (_, index) {
             return ParticipantCard(controller.partcipantList[index]);
           },
-        ).paddingOnly(top: 12, bottom: 15),
-        Form(
-          child: FormInputField(
-            label: 'Search',
-            controller: controller.searchText,
-            suffixIcon: Icons.search,
-            onClickedSuffix: controller.search,
-          ),
         ),
+        // Form(
+        //   child: FormInputField(
+        //     label: 'Search',
+        //     controller: controller.searchText,
+        //     suffixIcon: Icons.search,
+        //     onClickedSuffix: controller.search,
+        //   ),
+        // ),
       ],
     );
   }
