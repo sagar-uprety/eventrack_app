@@ -11,10 +11,8 @@ import '../provider/login_provider.dart';
 import '../provider/login_providerImpl.dart';
 
 class LoginController extends GetxController {
-  final loginFormKey = GlobalKey<FormState>();
   late TextEditingController email;
   late TextEditingController password;
-  final bottomSheetFormKey = GlobalKey<FormState>();
   final RxBool obscurePassword = true.obs;
 
   late LoginProvider _loginProvider;
@@ -67,18 +65,16 @@ class LoginController extends GetxController {
   Future login() async {
     _changeLoggingState();
     try {
-      if (loginFormKey.currentState!.validate()) {
-        ResponseModel? response = await _loginProvider.loginUser(
-          User(
-            email: email.text.trim(),
-            password: password.text,
-          ).toJson(),
-        );
-        FlashMessage(response.state, message: response.message);
-        if (response.state) {
-          await SharedPreference.saveAuthState(response.authToken!);
-          Get.toNamed(Routes.INIT_LOAD);
-        }
+      ResponseModel? response = await _loginProvider.loginUser(
+        User(
+          email: email.text.trim(),
+          password: password.text,
+        ).toJson(),
+      );
+      FlashMessage(response.state, message: response.message);
+      if (response.state) {
+        await SharedPreference.saveAuthState(response.authToken!);
+        Get.toNamed(Routes.INIT_LOAD);
       }
     } catch (e) {
       print(e);
@@ -87,15 +83,13 @@ class LoginController extends GetxController {
   }
 
   Future getToken() async {
-    if (bottomSheetFormKey.currentState!.validate()) {
-      print(email.text.trim());
-      // ResponseModel response = await _loginProvider.loginUser(
-      //   {'email': email.text.trim()},
-      // );
-      // FlashMessage(response.state, message: response.message!);
-      // if (response.state)
-      Get.toNamed(Routes.TOKEN_VERIFCATION,
-          arguments: {'email': bottomSheetEmail.text, 'type': 'reset'});
-    }
+    print(email.text.trim());
+    // ResponseModel response = await _loginProvider.loginUser(
+    //   {'email': email.text.trim()},
+    // );
+    // FlashMessage(response.state, message: response.message!);
+    // if (response.state)
+    Get.toNamed(Routes.TOKEN_VERIFCATION,
+        arguments: {'email': bottomSheetEmail.text, 'type': 'reset'});
   }
 }

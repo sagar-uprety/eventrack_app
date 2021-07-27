@@ -45,25 +45,28 @@ class UserdashboardView extends GetView<UserdashboardController> {
 
   Widget _buildEventList(String title, List<Event> list,
       {bool vertical = true}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: Get.textTheme.headline6,
-            ),
-            ETTextButton(
-              'See All',
-              onPressed: () => controller.seeAll(title),
-            )
-          ],
-        ).paddingSymmetric(horizontal: 20),
-        vertical ? _verticalList(list) : _horizontalList(list),
-      ],
-    );
+    if (list.length != 0)
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: Get.textTheme.headline6,
+              ),
+              ETTextButton(
+                'See All',
+                onPressed: () => controller.seeAll(title),
+              )
+            ],
+          ).paddingSymmetric(horizontal: 20),
+          vertical ? _verticalList(list) : _horizontalList(list),
+        ],
+      );
+    else
+      return Center();
   }
 
   Widget _horizontalList(List<Event> list) {
@@ -71,7 +74,7 @@ class UserdashboardView extends GetView<UserdashboardController> {
     // if()
 
     return SizedBox(
-      height:200, 
+      height: 200,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,

@@ -12,6 +12,7 @@ import '../controllers/signup_controller.dart';
 
 class SignUpView extends GetView<SignupController> {
   final signupController = Get.find<SignupController>();
+  final signupFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class SignUpView extends GetView<SignupController> {
               image: AssetImage('assets/images/2.png'),
             ),
             Form(
-              key: controller.signupFormKey,
+              key: signupFormKey,
               child: Column(
                 children: [
                   FormInputField(
@@ -62,7 +63,11 @@ class SignUpView extends GetView<SignupController> {
                     () => !controller.signing.value
                         ? ETElevatedButton(
                             childText: 'Sign Up',
-                            onPressed: signupController.signup,
+                            onPressed: () async {
+                              if (signupFormKey.currentState!.validate()) {
+                                await signupController.signup();
+                              }
+                            },
                           ).paddingOnly(top: 12)
                         : CircularProgressIndicator(),
                   ),

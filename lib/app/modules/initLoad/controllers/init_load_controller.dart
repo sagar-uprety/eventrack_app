@@ -13,30 +13,30 @@ import '../provider/home_provider.dart';
 class InitLoadController extends GetxController {
   late HomeProvider _provider;
 
-  late User _currentUser;
-  late List<Event> _events;
-  late Organization _organization;
+  late Rx<User> _currentUser;
+  late RxList<Event> _events;
+  late Rx<Organization> _organization;
 
-  User get currentUser => _currentUser;
+  User get currentUser => _currentUser.value;
   List<Event> get events => _events;
-  Organization get organization => _organization;
+  Organization get organization => _organization.value;
 
   late String? authToken;
   @override
   void onInit() async {
     _provider = Get.find<HomeProviderImpl>();
-    _currentUser = User();
-    _organization = Organization();
-    _events = [];
+    _currentUser = User().obs;
+    _organization = Organization().obs;
+    _events = <Event>[].obs;
     await getAuthToken();
     super.onInit();
   }
 
   InitLoadController() {
     _provider = Get.find<HomeProviderImpl>();
-    _currentUser = User();
-    _organization = Organization();
-    _events = [];
+    _currentUser = User().obs;
+    _organization = Organization().obs;
+    _events = <Event>[].obs;
     getAuthToken().then((value) => print('Received'));
     super.onInit();
   }
@@ -76,11 +76,12 @@ class InitLoadController extends GetxController {
       await SharedPreference.requestLogout();
   }
 
-  updateUser(User user) => _currentUser = user;
+  updateUser(User user) => _currentUser.value = user;
 
-  updateEvents(List<Event> events) => _events = events;
+  updateEvents(List<Event> events) => _events.value = events;
 
-  updateOrganization(Organization organization) => _organization = organization;
+  updateOrganization(Organization organization) =>
+      _organization.value = organization;
 
   Future getuser({
     required User user,
@@ -96,8 +97,8 @@ class InitLoadController extends GetxController {
   }
 
   removeCurrentData() {
-    _currentUser = User();
-    _organization = Organization();
-    _events = [];
+    _currentUser.value = User();
+    _organization.value = Organization();
+    _events.value = [];
   }
 }

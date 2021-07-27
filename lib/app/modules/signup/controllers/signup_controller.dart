@@ -10,7 +10,6 @@ import '../provider/signup_provider.dart';
 import '../provider/signup_provider_impl.dart';
 
 class SignupController extends GetxController {
-  final signupFormKey = GlobalKey<FormState>();
   late TextEditingController name;
   late TextEditingController email;
   late TextEditingController password;
@@ -68,20 +67,18 @@ class SignupController extends GetxController {
   Future signup() async {
     _changeSigningState();
     try {
-      if (signupFormKey.currentState!.validate()) {
-        ResponseModel? response = await _signupProvider.registerUser(
-          data: User(
-            name: name.text.trim(),
-            email: email.text.trim(),
-            password: password.text,
-          ).toJson(),
-        );
-        FlashMessage(response!.state, message: response.message);
-        Get.toNamed(
-          Routes.TOKEN_VERIFCATION,
-          arguments: email.text.trim(),
-        );
-      }
+      ResponseModel? response = await _signupProvider.registerUser(
+        data: User(
+          name: name.text.trim(),
+          email: email.text.trim(),
+          password: password.text,
+        ).toJson(),
+      );
+      FlashMessage(response!.state, message: response.message);
+      Get.toNamed(
+        Routes.TOKEN_VERIFCATION,
+        arguments: email.text.trim(),
+      );
     } catch (e) {
       print(e);
     }

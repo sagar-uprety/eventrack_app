@@ -12,6 +12,9 @@ import '../../../utilities/colors.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
+  final controller = Get.find<LoginController>();
+  final loginFormKey = GlobalKey<FormState>();
+  final bottomSheetFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return ETScaffold(
@@ -29,7 +32,7 @@ class LoginView extends GetView<LoginController> {
               image: AssetImage('assets/images/2.png'),
             ),
             Form(
-              key: controller.loginFormKey,
+              key: loginFormKey,
               child: Column(
                 children: [
                   FormInputField(
@@ -55,8 +58,11 @@ class LoginView extends GetView<LoginController> {
                     () => !controller.logging.value
                         ? ETElevatedButton(
                             childText: 'Login',
-                            onPressed: controller.login,
-                          ).paddingOnly(top: 12)
+                            onPressed: () async {
+                              if (loginFormKey.currentState!.validate()) {
+                                await controller.login();
+                              }
+                            }).paddingOnly(top: 12)
                         : CircularProgressIndicator(),
                   ),
                 ],
@@ -78,7 +84,7 @@ class LoginView extends GetView<LoginController> {
                       backgroundColor: AppColors.transparent,
                       builder: (_) => ETBottomSheet(
                         child: Form(
-                          key: controller.bottomSheetFormKey,
+                          key: bottomSheetFormKey,
                           child: Column(
                             children: [
                               Text(
@@ -94,7 +100,12 @@ class LoginView extends GetView<LoginController> {
                               ).paddingSymmetric(vertical: 14),
                               ETElevatedButton(
                                 childText: 'Get Token',
-                                onPressed: controller.getToken,
+                                onPressed: () async {
+                                  if (bottomSheetFormKey.currentState!
+                                      .validate()) {
+                                    await controller.getToken();
+                                  }
+                                },
                               )
                             ],
                           ),
