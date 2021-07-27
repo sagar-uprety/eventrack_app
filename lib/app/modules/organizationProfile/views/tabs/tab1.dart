@@ -43,6 +43,12 @@ class OrganizationProfileTab1 extends GetView<OrganizationProfileController> {
             onPressed: controller.toggleDescriptionDisplay,
           ),
         ),
+        Center(
+          child: ETElevatedButton(
+            onPressed: () {},
+            childText: 'Create Organization',
+          ),
+        ),
       ],
     ).paddingSymmetric(horizontal: 20);
   }
