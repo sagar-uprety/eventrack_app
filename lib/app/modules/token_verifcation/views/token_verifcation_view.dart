@@ -17,43 +17,45 @@ class TokenVerifcationView extends GetView<TokenVerifcationController> {
         title: 'Verify Your Token',
         hasLeading: false,
       ),
-      body: Center(
-        child: Form(
-          key: controller.formKey,
-          child: Column(
-            children: [
-              Image.asset(
-                'assets/icons/verificationotp.png',
-                height: 60,
-              ).paddingOnly(top: 24, bottom: 10),
-              Text(
-                'Enter the verification number',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              FormInputField(
-                key: ValueKey('token'),
-                label: 'Enter Token',
-                controller: controller.token,
-                validator: controller.tokenValidator,
-                maxLength: 6,
-                width: 200,
-              ).paddingSymmetric(vertical: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ETElevatedButton(
-                    childText: 'Verify',
-                    onPressed: controller.verifyToken,
-                  ),
-                  ETElevatedButton(
-                    childText: 'Cancel',
-                    fontSize: 18,
-                    isGrey: true,
-                    onPressed: () => Get.toNamed(Routes.LOGIN),
-                  ),
-                ],
-              ).paddingOnly(top: 8),
-            ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Form(
+            key: controller.formKey,
+            child: Column(
+              children: [
+                Image.asset(
+                  'assets/icons/verificationotp.png',
+                  height: 60,
+                ).paddingOnly(top: 24, bottom: 10),
+                Text(
+                  'Enter the verification number',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                FormInputField(
+                  key: ValueKey('token'),
+                  label: 'Enter Token',
+                  controller: controller.token,
+                  validator: controller.tokenValidator,
+                  maxLength: 6,
+                  width: 200,
+                ).paddingSymmetric(vertical: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ETElevatedButton(
+                      childText: 'Verify',
+                      onPressed: controller.verifyToken,
+                    ),
+                    ETElevatedButton(
+                      childText: 'Cancel',
+                      fontSize: 18,
+                      isGrey: true,
+                      onPressed: () => Get.toNamed(Routes.LOGIN),
+                    ),
+                  ],
+                ).paddingOnly(top: 8),
+              ],
+            ),
           ),
         ),
       ),
