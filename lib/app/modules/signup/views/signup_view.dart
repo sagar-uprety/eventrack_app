@@ -1,4 +1,3 @@
-import 'package:eventrack_app/app/global_widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -6,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../global_widgets/appBar.dart';
 import '../../../global_widgets/button.dart';
 import '../../../global_widgets/formField.dart';
+import '../../../global_widgets/scaffold.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utilities/colors.dart';
 import '../controllers/signup_controller.dart';

@@ -1,4 +1,3 @@
-import 'package:eventrack_app/app/global_widgets/scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +6,7 @@ import 'package:get/get.dart';
 import '../../../global_widgets/appBar.dart';
 import '../../../global_widgets/button.dart';
 import '../../../global_widgets/formField.dart';
+import '../../../global_widgets/scaffold.dart';
 import '../../../utilities/colors.dart';
 import '../controllers/edit_user_profile_controller.dart';
 
@@ -57,8 +57,7 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
                                 print("Change picture");
                               },
                               shape: CircleBorder(
-                                side:
-                                    BorderSide(width: 3, color: Colors.white),
+                                side: BorderSide(width: 3, color: Colors.white),
                               ),
                             ),
                           ),

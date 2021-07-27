@@ -1,7 +1,9 @@
-import 'package:eventrack_app/app/global_widgets/tiles/eventCard.dart';
-import 'package:eventrack_app/app/modules/organizationProfile/controllers/organization_profile_controller.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
+import '../../../../global_widgets/tiles/eventCard.dart';
+import '../../controllers/organization_profile_controller.dart';
 
 class OrganizationProfileTab2 extends GetView<OrganizationProfileController> {
   const OrganizationProfileTab2({Key? key}) : super(key: key);

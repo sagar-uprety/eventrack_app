@@ -1,11 +1,11 @@
-import 'package:eventrack_app/app/models/event/event.dart';
-import 'package:eventrack_app/app/models/response.dart';
-import 'package:eventrack_app/app/modules/organizationProfile/provider/org_profile_provider.dart';
-import 'package:eventrack_app/app/modules/organizationProfile/provider/org_profile_provider_impl.dart';
-import 'package:eventrack_app/app/temp_data.dart';
 import 'package:get/get.dart';
 
+import '../../../models/event/event.dart';
 import '../../../models/organization/organization.dart';
+import '../../../models/response.dart';
+import '../../../temp_data.dart';
+import '../provider/org_profile_provider.dart';
+import '../provider/org_profile_provider_impl.dart';
 
 class OrganizationProfileController extends GetxController {
   final RxBool showMore = false.obs;

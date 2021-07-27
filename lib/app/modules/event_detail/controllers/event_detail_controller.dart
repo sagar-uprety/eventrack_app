@@ -1,18 +1,14 @@
-import 'package:eventrack_app/app/global_widgets/message.dart';
-import 'package:eventrack_app/app/models/user/user.dart';
-import 'package:eventrack_app/app/modules/event_detail/provider/event_detail_provider_impl.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../../global_widgets/message.dart';
 import '../../../models/event/event.dart';
-import '../../../models/user/user.dart';
 import '../../../models/response.dart';
-import '../../../temp_data.dart';
+import '../../../models/user/user.dart';
 import '../provider/event_detail_provider.dart';
 import '../provider/event_detail_provider_impl.dart';
-import '../../../global_widgets/message.dart';
 
 class EventDetailController extends GetxController {
   final RxBool showMore = false.obs;
@@ -20,8 +16,7 @@ class EventDetailController extends GetxController {
   // late GlobalController globalController;
   late EventDetailProvider _eventDetailProvider;
 
-  Event get event => TempData.event;
-  //TODO: get.arguments garne
+  Event get event => Get.arguments;
 
   // get users => TempData.users;
   late TextEditingController searchText;
