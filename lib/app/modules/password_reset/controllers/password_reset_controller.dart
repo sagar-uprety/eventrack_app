@@ -62,7 +62,7 @@ class PasswordResetController extends GetxController {
       ResponseModel res = await _provider
           .changePassword({'email': _email, 'password': newPassword.text});
       FlashMessage(res.state, message: res.message!, displayOnSuccess: true);
-      if (res.state) Get.offNamedUntil(Routes.LOGIN, (route) => false);
+      if (res.state) Get.toNamed(Routes.LOGIN);
     }
   }
 }

@@ -42,7 +42,7 @@ class EventListController extends GetxController {
     _eventsProvider = Get.find<EventListProviderImpl>();
     _global = Get.find<InitLoadController>();
 
-    // _events = !arguments ?? _global.events;
+    _events = passedevents;
     filteredEvents.value = _events;
     update();
     print(_global.currentUser.toJson());
