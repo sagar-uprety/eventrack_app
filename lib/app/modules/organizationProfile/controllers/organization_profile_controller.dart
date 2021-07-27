@@ -14,11 +14,11 @@ class OrganizationProfileController extends GetxController {
   late RxList<Event> createdEventList;
 
   @override
-  void onInit() {
+  void onInit() async {
     _orgProfileProvider = Get.find<OrgProfileProviderImpl>();
-    // createdEventList = <Event>[].obs;
+    createdEventList = <Event>[].obs;
     print(orgData.toJson());
-    createdEventList = TempData.events.obs;
+    getCreatedEventsData();
     super.onInit();
   }
 
@@ -26,7 +26,7 @@ class OrganizationProfileController extends GetxController {
     try {
       ResponseModel? events =
           await _orgProfileProvider.getCreatedEvents(orgData.id!);
-      //this result is already parsed and is converted to List<Events>
+      // this result is already parsed and is converted to List<Events>
       if (events!.state) {
         print("Created Events data found");
         createdEventList.value = events.eventList!;
