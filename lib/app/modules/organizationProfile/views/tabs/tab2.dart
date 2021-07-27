@@ -14,6 +14,10 @@ class OrganizationProfileTab2 extends GetView<OrganizationProfileController> {
     return Obx(
       () => Stack(
         children: [
+          Text(
+            "Organized Events", 
+            style:
+                Get.textTheme.headline4!.copyWith(fontWeight: FontWeight.w700),).paddingOnly(left: 24, top: 10),
           controller.createdEventList.length != 0
               ? ListView.builder(
                   shrinkWrap: true,

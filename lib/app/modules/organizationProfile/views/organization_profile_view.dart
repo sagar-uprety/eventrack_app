@@ -49,7 +49,7 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
           DraggableSheet(
             tabIcons: [
               Icons.event_note,
-              Icons.circle,
+              Icons.view_list,
             ],
             tabs: [
               OrganizationProfileTab1(),

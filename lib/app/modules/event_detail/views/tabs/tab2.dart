@@ -13,6 +13,10 @@ class EventDetailTab2 extends GetView<EventDetailController> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        Text(
+            "Participants List", 
+            style:
+                Get.textTheme.headline4!.copyWith(fontWeight: FontWeight.w700),).paddingOnly(left: 24, top: 10),
         ListView.builder(
           shrinkWrap: true,
           itemCount: controller.partcipantList.length,
