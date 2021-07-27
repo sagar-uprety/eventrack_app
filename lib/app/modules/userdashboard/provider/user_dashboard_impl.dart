@@ -30,7 +30,6 @@ class UserProviderImpl implements UserDashboardProvider {
   Future<ResponseModel?> getMyEvents() async {
     try {
       final ResponseModel response = await _httpService.getRequest('/user/myEvents');
-      print('Hi');
       print(response.toJson());
       return response;
     } on Exception catch (e) {

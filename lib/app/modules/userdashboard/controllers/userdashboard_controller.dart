@@ -53,10 +53,7 @@ class UserdashboardController extends GetxController {
       ResponseModel? events = await dashboardProvider.getMyEvents();
       if(events!.state){
         print('MyFavourite Events found');
-        print(events.state);
-        print(events.toJson());
         _myEvents.value = events.eventList!;
-        print(_myFavourite[0].toJson());
       }
       else{
         print('My Events not found');
