@@ -26,8 +26,9 @@ class OrganizationProfileController extends GetxController {
     try {
       ResponseModel? events =
           await _orgProfileProvider.getCreatedEvents(orgData.id!);
+      print('Response: ${events!.toJson()}');
       // this result is already parsed and is converted to List<Events>
-      if (events!.state) {
+      if (events.state) {
         print("Created Events data found");
         createdEventList.value = events.eventList!;
       } else {

@@ -23,21 +23,6 @@ class EventDetailTab1 extends GetView<EventDetailController> {
             style: Get.textTheme.headline5!
                 .copyWith(fontWeight: FontWeight.w700, color: AppColors.dark80),
           ),
-          //TODO: Change this after you add a method to get author's data.
-          subtitle: ListTile(
-            contentPadding: EdgeInsets.all(0),
-            leading: CircleAvatar(
-              radius: 18,
-              backgroundImage: NetworkImage(
-                TempData.user.profileImage!, //? Event author profile picture
-              ),
-            ),
-            title: Text(
-              TempData.user.name!, //? Event author name
-              style: Get.textTheme.subtitle1!
-                  .copyWith(fontWeight: FontWeight.w500),
-            ),
-          ).paddingOnly(top: 4),
           trailing: IconButton(
             icon: Icon(Icons.bookmark_border),
             iconSize: 34,
@@ -111,6 +96,12 @@ class EventDetailTab1 extends GetView<EventDetailController> {
             ),
           ),
         ),
+        Center(
+          child: ETElevatedButton(
+            childText: 'Register',
+            onPressed: controller.registerforevent,
+          ),
+        )
       ],
     ).paddingSymmetric(horizontal: 20);
   }
