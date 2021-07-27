@@ -1,3 +1,5 @@
+import 'package:eventrack_app/app/global_widgets/button.dart';
+import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -39,7 +41,7 @@ class UserProfileView extends GetView<UserProfileController> {
                               borderRadius: BorderRadius.circular(50),
                               image: DecorationImage(
                                 image: NetworkImage(
-                                    userController.user.profileImage!),
+                                    userController.global.currentUser.profileImage!),
                               ),
                             ),
                           ),
@@ -73,25 +75,40 @@ class UserProfileView extends GetView<UserProfileController> {
               ),
               UserProfileCard(
                 title: "Name",
-                value: userController.user.name!,
+                value: userController.global.currentUser.name!,
               ),
               UserProfileCard(
                 title: "Email",
-                value: userController.user.email!,
+                value: userController.global.currentUser.email!,
               ),
-              UserProfileCard(
-                  title: "Phone number", value: userController.user.phone!),
-              UserProfileCard(
+              
+              (userController.global.currentUser.phone != null) ? UserProfileCard(
+                  title: "Phone number", value: userController.global.currentUser.phone!): 
+                  UserProfileCard(
+                  title: "Phone number", value: "No Number Added") ,
+              (userController.global.currentUser.address != null) ? UserProfileCard(
                 title: "Address",
-                value: userController.user.address!,
+                value: userController.global.currentUser.address!,
+              ): UserProfileCard(
+                title: "Address",
+                value: "No Address Added",
               ),
-              UserProfileCard(
+             (userController.global.currentUser.gender != null) ? UserProfileCard(
                 title: "Gender",
-                value: userController.user.gender!,
+                value: userController.global.currentUser.gender!,
+              ): UserProfileCard(
+                title: "Gender",
+                value: "Nothing Added",
               ),
               SizedBox(
                 height: hrheight * 0.05,
-              )
+              ),
+              ETElevatedButton(
+                childText: 'Edit Profile',
+                onPressed: () {
+                  Get.toNamed(Routes.EDIT_USER_PROFILE);
+                },
+              ).paddingOnly(top: 24, left: 220),
             ],
           ),
         ),

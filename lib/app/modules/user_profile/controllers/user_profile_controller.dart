@@ -1,34 +1,26 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart' as Dio;
+import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-
-import '../../../controllers/controllers/global_controller.dart';
 import '../../../models/user/user.dart';
 import '../../../pickers/filePicker.dart';
 import '../provider/userProfile_provider.dart';
 import '../provider/userProfile_provider_impl.dart';
 
 class UserProfileController extends GetxController {
-  final user = User(
-      profileImage:
-          "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg",
-      name: "Rose Watson",
-      email: "rosewatson@example.com",
-      phone: "+977 9863556656",
-      address: "New York",
-      gender: "Female");
+
 
   late UserProfileProvider _provider;
-  late GlobalController _globalController;
+  late InitLoadController global;
   @override
   void onInit() {
-    //TODO: Find not working
-    _globalController = Get.put(GlobalController());
-    // _globalController = Get.find<GlobalController>();
+   global = Get.find<InitLoadController>();
     _provider = Get.find<UserProfileProviderImpl>();
-    print(_globalController.currentUser.name);
+    print(global);
+    print(
+        'User: ${global.currentUser.toJson()}\n\n\n Organizaiton: ${global.organization.toJson()}\n\n\n First Event: ${global.events.length}');
     super.onInit();
   }
 
