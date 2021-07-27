@@ -7,9 +7,12 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../models/event/event.dart';
+import '../../../models/user/user.dart';
 import '../../../models/response.dart';
 import '../../../temp_data.dart';
 import '../provider/event_detail_provider.dart';
+import '../provider/event_detail_provider_impl.dart';
+import '../../../global_widgets/message.dart';
 
 class EventDetailController extends GetxController {
   final RxBool showMore = false.obs;
