@@ -21,7 +21,7 @@ class OrganizationProfileTab1 extends GetView<OrganizationProfileController> {
                 Get.textTheme.headline4!.copyWith(fontWeight: FontWeight.w700),
           ),
           subtitle: Text(
-            'Jason Mark', //? Organization's address
+            controller.orgData.address!, //? Organization's address
             style:
                 Get.textTheme.subtitle1!.copyWith(fontWeight: FontWeight.w500),
           ),

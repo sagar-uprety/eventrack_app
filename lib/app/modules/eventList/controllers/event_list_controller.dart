@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../controllers/controllers/global_controller.dart';
 import '../../../models/event/event.dart';
 import '../../../pickers/datetimepicker.dart';
 import '../provider/event_list_provider.dart';
@@ -12,13 +13,12 @@ class EventListController extends GetxController {
   late EventListProvider _eventsProvider;
   final searchFormKey = GlobalKey<FormState>();
   late TextEditingController searchText;
-
-  late List<Event> events;
+  late GlobalController _global;
+  late List<Event> _events;
   final RxList<Event> filteredEvents = <Event>[].obs;
 
   late List<String> filterDate = [];
   late RxList<String> filterCategories = <String>[].obs;
-
 
   List<String> categoriesList = [
     'Award',
@@ -34,16 +34,15 @@ class EventListController extends GetxController {
     'Workshop',
     'Others'
   ];
-
- 
   @override
-  void onInit()async{
-    events = []; // assign all events
-    filteredEvents.value = events;
+  void onInit() async {
     searchText = TextEditingController();
     _eventsProvider = Get.find<EventListProviderImpl>();
-    await loadEventList();
-    searchText = TextEditingController();
+    _global = Get.find<GlobalController>();
+    _events = _global.events;
+    filteredEvents.value = _events;
+    update();
+    print(_global.currentUser.toJson());
     super.onInit();
   }
 
@@ -55,7 +54,7 @@ class EventListController extends GetxController {
     final result = await _eventsProvider.getEventList();
     //this result is already parsed and is converted to List<Events>
     if (result != null) {
-      events = result.obs;
+      _events = result.obs;
       hideLoading();
     } else {
       print("Data Not Found");
@@ -87,34 +86,35 @@ class EventListController extends GetxController {
   }
 
   void clearFilter() {
-    filteredEvents.value = events;
+    filteredEvents.value = _events;
     searchText.text = '';
     filterCategories.value = [];
     filterDate = [];
   }
 
-  Future search() async{
-    try{
+  Future search() async {
+    try {
       if (searchFormKey.currentState!.validate()) {
-      //assign the received `response.eventList` to `filteredEvents
-    final ResponseModel? result = await _eventsProvider.getSearchList(data: { "title": searchText.text, "category": filterCategories, "date": filterDate } );
-    print(result!.toJson());
-    if (result.state) {
-      filteredEvents.value  = result.eventList!;
-      hideLoading();
-    } else {
-      print("Data Not Found");
-      hideLoading();
-    }
-      
+        //assign the received `response.eventList` to `filteredEvents
+        final ResponseModel? result = await _eventsProvider.getSearchList(
+            data: {
+              "title": searchText.text,
+              "category": filterCategories,
+              "date": filterDate
+            });
+        print(result);
+        if (result!.state) {
+          filteredEvents.value = result.eventList!;
+          hideLoading();
+        } else {
+          print("Data Not Found");
+          hideLoading();
+        }
       }
-    
-    }
-     catch (e) {
+    } catch (e) {
       print(e);
     }
-      print(
-          'Text: ${searchText.text}\nCategories: ${filterCategories.join(", ")}\nDate: ${filterDate.join("-")}');
-    }
+    print(
+        'Text: ${searchText.text}\nCategories: ${filterCategories.join(", ")}\nDate: ${filterDate.join("-")}');
   }
-
+}

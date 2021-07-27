@@ -26,4 +26,16 @@ class EventDetailProviderImpl implements EventDetailProvider {
       return null;
     }
   }
+
+  @override
+  Future<ResponseModel?> getParticipants(String id) async {
+    try {
+      final ResponseModel response =
+          await _httpService.getRequest('/events/participants/$id');
+      return response;
+    } on Exception catch (e) {
+      print(e);
+      return null;
+    }
+  }
 }

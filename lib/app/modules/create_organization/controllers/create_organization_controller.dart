@@ -17,6 +17,7 @@ class CreateOrganizationController extends GetxController {
   late TextEditingController email;
   late TextEditingController description;
   late TextEditingController phone;
+  late TextEditingController address;
   late TextEditingController website;
   // late TextEditingController docPath;
   // File? _document;
@@ -32,7 +33,9 @@ class CreateOrganizationController extends GetxController {
     email = TextEditingController();
     description = TextEditingController();
     phone = TextEditingController();
+    address = TextEditingController();
     website = TextEditingController();
+
     // docPath = TextEditingController();
 
     _provider = Get.find<CreateOrganizationProviderImpl>();
@@ -50,6 +53,7 @@ class CreateOrganizationController extends GetxController {
     name.dispose();
     email.dispose();
     description.dispose();
+    address.dispose();
     phone.dispose();
     website.dispose();
     // docPath.dispose();
@@ -98,6 +102,13 @@ class CreateOrganizationController extends GetxController {
     return null;
   }
 
+  String? addressValidator(String? value) {
+    if (value!.isEmpty) return 'This field cannot be empty';
+    if (!GetUtils.isLengthBetween(value, 8, 100))
+      return 'Address must be between 8 to 100 characters.';
+    return null;
+  }
+
   // String? documentValidator(String? value) {
   //   if (_document!.path.isEmpty) return 'This field cannot be empty';
   //   if (!GetUtils.isPDF(_document!.path))
@@ -115,6 +126,7 @@ class CreateOrganizationController extends GetxController {
           email: email.text.trim().toLowerCase(),
           description: description.text.trim(),
           contact: [phone.text.trim()],
+          address: address.text.trim(),
           website: website.text.trim().toLowerCase(),
         );
         ResponseModel? res = await _provider.createOrganization(

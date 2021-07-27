@@ -15,9 +15,9 @@ class EventDetailTab2 extends GetView<EventDetailController> {
       children: [
         ListView.builder(
           shrinkWrap: true,
-          itemCount: controller.users.length,
+          itemCount: controller.partcipantList.length,
           itemBuilder: (_, index) {
-            return ParticipantCard(controller.users[index]);
+            return ParticipantCard(controller.partcipantList[index]);
           },
         ).paddingOnly(top: 12, bottom: 15),
         Form(
