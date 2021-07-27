@@ -31,19 +31,17 @@ class OrganizationProfileTab1 extends GetView<OrganizationProfileController> {
           'About',
           style: Get.textTheme.headline6!.copyWith(fontWeight: FontWeight.w600),
         ).paddingOnly(top: 12),
-        Obx(
-          () => Text(
-            controller.orgData.description!, //? Organization's description
-            maxLines: !controller.showMore.value ? 12 : null,
-            style: Get.textTheme.bodyText1,
-          ),
+        Text(
+          controller.orgData.description!, //? Organization's description
+          // maxLines: !controller.showMore.value ? 12 : null,
+          style: Get.textTheme.bodyText1,
         ),
-        Obx(
-          () => ETTextButton(
-            !controller.showMore.value ? 'Show More' : 'Show Less',
-            onPressed: controller.toggleDescriptionDisplay,
-          ),
-        ),
+        // Obx(
+        //   () => ETTextButton(
+        //     !controller.showMore.value ? 'Show More' : 'Show Less',
+        //     onPressed: controller.toggleDescriptionDisplay,
+        //   ),
+        // ),
         Center(
           child: ETElevatedButton(
             onPressed: () async {
@@ -51,7 +49,7 @@ class OrganizationProfileTab1 extends GetView<OrganizationProfileController> {
             },
             childText: 'Create Event',
           ),
-        ),
+        ).paddingSymmetric(vertical: 20),
       ],
     ).paddingSymmetric(horizontal: 20);
   }

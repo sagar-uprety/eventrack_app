@@ -80,22 +80,20 @@ class EventDetailTab1 extends GetView<EventDetailController> {
           'Description',
           style: Get.textTheme.headline6!.copyWith(fontWeight: FontWeight.w600),
         ).paddingOnly(top: 12),
-        Obx(
-          () => Text(
-            '${controller.event.description}', //? Organization's description
-            maxLines: !controller.showMore.value ? 12 : null,
-            style: Get.textTheme.bodyText1,
-          ),
+        Text(
+          '${controller.event.description}', //? Organization's description
+          // maxLines: !controller.showMore.value ? 12 : null,
+          style: Get.textTheme.bodyText1,
         ),
-        Obx(
-          () => Padding(
-            padding: const EdgeInsets.only(bottom: 20.0),
-            child: ETTextButton(
-              !controller.showMore.value ? 'Show More' : 'Show Less',
-              onPressed: controller.toggleDescriptionDisplay,
-            ),
-          ),
-        ),
+        // Obx(
+        //   () => Padding(
+        //     padding: const EdgeInsets.only(bottom: 20.0),
+        //     child: ETTextButton(
+        //       !controller.showMore.value ? 'Show More' : 'Show Less',
+        //       onPressed: controller.toggleDescriptionDisplay,
+        //     ),
+        //   ),
+        // ),
         Obx(
           () => Center(
             child: !controller.registering.value
@@ -105,7 +103,7 @@ class EventDetailTab1 extends GetView<EventDetailController> {
                   )
                 : CircularProgressIndicator(),
           ),
-        ),
+        ).paddingSymmetric(vertical: 20),
       ],
     ).paddingSymmetric(horizontal: 20);
   }

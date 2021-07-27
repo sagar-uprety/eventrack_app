@@ -29,7 +29,7 @@ class EventDetailView extends GetView<EventDetailController> {
               decoration: BoxDecoration(
                 image: controller.event.eventProfile != null
                     ? DecorationImage(
-                        image: NetworkImage(controller.event.eventProfilex),
+                        image: NetworkImage(controller.event.eventProfile),
                         fit: BoxFit.cover,
                       )
                     : null,
