@@ -1,3 +1,5 @@
+import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
+import 'package:eventrack_app/app/modules/userdashboard/controllers/userdashboard_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -217,8 +219,15 @@ class CreateEventController extends GetxController {
         ResponseModel? response = await _createEventProvider.createEvent(event);
 
         FlashMessage(response!.state, message: response.message);
-
-        Get.toNamed(Routes.EVENT_LIST);
+        if (response.state) {
+          UserdashboardController _dashboard =
+              Get.find<UserdashboardController>();
+          InitLoadController _controller = Get.find<InitLoadController>();
+          List<Event> events = _controller.events;
+          events.add(response.event!);
+          _controller.updateEvents(events);
+          _dashboard.seeAll('all');
+        }
       }
     } on Exception catch (e) {
       print(e);

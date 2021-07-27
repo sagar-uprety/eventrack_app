@@ -1,8 +1,16 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
+import 'package:dio/dio.dart' as Dio;
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:dart_date/dart_date.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
+import 'package:eventrack_app/app/pickers/filePicker.dart';
+
+import '../../../pickers/datetimepicker.dart';
 import '../../../global_widgets/message.dart';
 import '../../../models/event/event.dart';
 import '../../../models/response.dart';
@@ -15,17 +23,30 @@ class EventDetailController extends GetxController {
   late GoogleMapController? mapController;
   // late GlobalController globalController;
   late EventDetailProvider _eventDetailProvider;
+  late InitLoadController global;
+  late Rx<Event> _event = Event().obs;
 
-  Event get event => Get.arguments;
+  get event => _event.value;
+
+  final RxBool registered = false.obs;
 
   // get users => TempData.users;
   late TextEditingController searchText;
   late RxList<User> partcipantList;
 
+  List<String> get formattedDates {
+    List<String> dates = [];
+    event.dateTime!.dates.forEach((element) =>
+        dates.add(DateTime.parse(element).format('EEEE, MMM d, ' 'yyyy')));
+    return dates;
+  }
+
   @override
   void onInit() {
+    _event.value = Get.arguments;
+    print(_event.value.dateTime!.toJson());
     searchText = TextEditingController();
-    // globalController = Get.find<GlobalController>();
+    global = Get.find<InitLoadController>();
     _eventDetailProvider = Get.find<EventDetailProviderImpl>();
     partcipantList = <User>[].obs;
     getParticipantsData();
@@ -41,6 +62,7 @@ class EventDetailController extends GetxController {
         print("User registered");
         FlashMessage(register.state,
             message: register.message, displayOnSuccess: true);
+        registered.value = true;
       } else {
         print("Data Not Found");
       }
@@ -91,5 +113,23 @@ class EventDetailController extends GetxController {
   void createMap(GoogleMapController newMapController) {
     mapController = newMapController;
     update();
+  }
+
+  Future pickProfile() async {
+    PlatformFile? pickedFile = await ETFilePicker.selectAnImage();
+    File file = File(pickedFile!.path!);
+    Dio.FormData data = Dio.FormData.fromMap({
+      'image': await Dio.MultipartFile.fromFile(file.path,
+          filename: file.path.split('/').last)
+    });
+    ResponseModel response =
+        await _eventDetailProvider.uploadProfile(event.id, data);
+    FlashMessage(response.state,
+        message: response.message, displayOnSuccess: false);
+    print(response.message);
+    if (response.state) {
+      global.updateEvents(response.eventList!);
+      _event.value = response.event!;
+    }
   }
 }

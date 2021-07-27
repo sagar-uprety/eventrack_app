@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart' as Dio;
 import 'package:eventrack_app/app/global_widgets/message.dart';
 import 'package:get/get.dart';
 
@@ -44,6 +45,14 @@ class EventDetailProviderImpl implements EventDetailProvider {
   Future<ResponseModel> addtoFavourites(String id) async {
     final ResponseModel response =
         await _httpService.postRequest('/user/myfavourites/$id');
+
+    return response;
+  }
+
+  @override
+  Future<ResponseModel> uploadProfile(String id, Dio.FormData data) async {
+    final ResponseModel response =
+        await _httpService.postRequest('/events/$id/uploadProfile', data: data);
 
     return response;
   }

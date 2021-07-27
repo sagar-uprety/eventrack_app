@@ -21,20 +21,23 @@ Drawer buildAppDrawer() {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    child: Icon(
-                      Icons.check,
-                      size: 60,
+                  Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image:
+                            NetworkImage(_controller.currentUser.profileImage!),
+                      ),
+                      borderRadius: BorderRadius.circular(90),
+                      color: Colors.blueGrey,
                     ),
-                    radius: 50,
-                    backgroundColor: Colors.blueGrey,
                   ),
                   Text(
-                    'EventTrack',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
+                    _controller.currentUser.name!,
+                    style: Get.textTheme.headline6,
+                  ).paddingOnly(top: 5),
                 ],
               ),
             ),

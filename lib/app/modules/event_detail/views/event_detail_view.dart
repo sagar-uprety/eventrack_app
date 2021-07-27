@@ -19,57 +19,80 @@ class EventDetailView extends GetView<EventDetailController> {
       appBar: ETAppBar(
         addBackButton: true,
       ),
-      body: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            width: Get.width,
-            height: Get.height * 0.42,
-            decoration: BoxDecoration(
-              image: controller.event.eventProfile != null
-                  ? DecorationImage(
-                      image: NetworkImage(controller.event.eventProfile!),
-                      fit: BoxFit.cover,
+      body: Obx(
+        () => Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              width: Get.width,
+              height: Get.height * 0.42,
+              decoration: BoxDecoration(
+                image: controller.event.eventProfile != null
+                    ? DecorationImage(
+                        image: NetworkImage(controller.event.eventProfilex),
+                        fit: BoxFit.cover,
+                      )
+                    : null,
+                gradient: RadialGradient(
+                  center: Alignment.topRight,
+                  radius: 2.0,
+                  colors: <Color>[
+                    AppColors.dark65,
+                    AppColors.dark10,
+                  ],
+                ),
+              ),
+              child: !(controller.event.eventProfile != null)
+                  ? Center(
+                      child: Text(
+                        controller.event.title.toUpperCase(),
+                        textAlign: TextAlign.center,
+                        style: Get.textTheme.headline1!
+                            .copyWith(color: AppColors.dark80),
+                      ).paddingAll(20),
                     )
-                  : null,
-              gradient: RadialGradient(
-                center: Alignment.topRight,
-                radius: 2.0,
-                colors: <Color>[
-                  AppColors.dark65,
-                  AppColors.dark10,
-                ],
+                  : Center(),
+            ),
+            Positioned(
+              top: 40,
+              right: 20,
+              child: IconButton(
+                onPressed: () async {
+                  print('Hello');
+                  await controller.pickProfile();
+                },
+                iconSize: 30,
+                icon: Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                      color: AppColors.dark10,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Icon(
+                    Icons.camera_alt,
+                  ),
+                ),
               ),
             ),
-            child: !(controller.event.eventProfile != null)
-                ? Center(
-                    child: Text(
-                      controller.event.title!.toUpperCase(),
-                      textAlign: TextAlign.center,
-                      style: Get.textTheme.headline1!
-                          .copyWith(color: AppColors.dark80),
-                    ).paddingAll(20),
-                  )
-                : Center(),
-          ),
-          DraggableSheet(
-            tabIcons: [
-              Icons.description,
-              Icons.circle,
-              Icons.location_on,
-            ],
-            tabs: [
-              EventDetailTab1(),
-              EventDetailTab2(),
-              EventDetailTab3(),
-            ],
-          ),
-          Container(
-            padding: EdgeInsets.only(top: 750.0, left: 50.0),
-            child: RoundButton(
-                text: 'Register', onPress: controller.registerforevent),
-          ),
-        ],
+            DraggableSheet(
+              tabIcons: [
+                Icons.description,
+                Icons.circle,
+                Icons.location_on,
+              ],
+              tabs: [
+                EventDetailTab1(),
+                EventDetailTab2(),
+                EventDetailTab3(),
+              ],
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 750.0, left: 50.0),
+              child: RoundButton(
+                  text: 'Register', onPress: controller.registerforevent),
+            ),
+          ],
+        ),
       ),
     );
   }
