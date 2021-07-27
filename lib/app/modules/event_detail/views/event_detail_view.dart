@@ -55,7 +55,7 @@ class EventDetailView extends GetView<EventDetailController> {
           DraggableSheet(
             tabIcons: [
               Icons.description,
-              Icons.circle,
+              Icons.people,
               Icons.location_on,
             ],
             tabs: [
