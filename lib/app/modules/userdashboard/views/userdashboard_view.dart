@@ -14,32 +14,36 @@ import '../controllers/userdashboard_controller.dart';
 class UserdashboardView extends GetView<UserdashboardController> {
   @override
   Widget build(BuildContext context) {
+    print(controller.favourites);
     return Scaffold(
       appBar: ETAppBar(
         title: 'Home',
       ),
       drawer: buildAppDrawer(),
       body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            _buildEventList(
-              'New Events',
-              controller.events,
-              vertical: false,
-            ),
-            _buildEventList(
-              'My Events',
-              controller.events,
-            ),
-            _buildEventList(
-              'My Favourites',
-              controller.events,
-            ),
-          ],
+        child: Obx(()=> Column(
+            children: <Widget>[
+              _buildEventList(
+                'New Events',
+                controller.events,
+                vertical: false,
+              ),
+              _buildEventList(
+                'My Events',
+                controller.events,
+              ),
+              _buildEventList(
+                'My Favourites',
+                controller.favourites,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+
+
 
   Widget _buildEventList(String title, List<Event> list,
       {bool vertical = true}) {
@@ -79,12 +83,15 @@ class UserdashboardView extends GetView<UserdashboardController> {
 
   Widget _verticalList(List<Event> list) {
     return SizedBox(
-      height: 350,
+      height: 250,
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: false,
         itemCount: !(list.length >= 3) ? list.length : 3,
-        itemBuilder: (_, i) => EventCard(list[i]),
+        itemBuilder: (_, i){
+          print(i);
+         return EventCard(list[i]);
+        } ,
       ),
     );
   }
