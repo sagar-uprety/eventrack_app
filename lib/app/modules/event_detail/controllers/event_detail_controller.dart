@@ -69,6 +69,22 @@ class EventDetailController extends GetxController {
     }
   }
 
+  addtoFavorites() async {
+    try {
+      ResponseModel? added =
+          await _eventDetailProvider.addToFavorites(event.id!);
+
+      if (participants!.state) {
+        print("Users data found");
+        partcipantList.value = participants.userList!;
+      } else {
+        print("Users Data Not Found");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   void search() {
     print('Search for ${searchText.text}');
   }
