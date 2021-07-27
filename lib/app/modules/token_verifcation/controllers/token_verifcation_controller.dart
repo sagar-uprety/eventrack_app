@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../global_widgets/message.dart';
 import '../../../models/response.dart';
+import '../../../routes/app_pages.dart';
 import '../providers/token_verification_provider.dart';
 import '../providers/token_verification_provider_impl.dart';
 
@@ -38,20 +39,18 @@ class TokenVerifcationController extends GetxController {
     return null;
   }
 
-  void submit() {
-    if (formKey.currentState!.validate())
-      print('Token Submitted for verification');
+  Future sendToken() async {
+    ResponseModel? response = await _provider.sendToken({'email': _email});
+    FlashMessage(response!.state,
+        message: response.message, displayOnSuccess: true);
   }
 
-  Future sendToken() async {
-    try {
-      print('Sending Token...');
-      ResponseModel? response = await _provider.sendToken({'email': _email});
-      FlashMessage(response!.state,
-          message: response.message, displayOnSuccess: true);
-    } on Exception catch (e) {
-      print(e);
-      return null;
+  Future verifyToken() async {
+    if (formKey.currentState!.validate()) {
+      ResponseModel? response =
+          await _provider.verifyToken({'email': _email, 'token': token.text});
+      FlashMessage(response!.state, message: response.message);
+      if (response.state) Get.offNamed(Routes.PASSWORD_RESET);
     }
   }
 }

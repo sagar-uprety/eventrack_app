@@ -28,13 +28,12 @@ class UserProfileController extends GetxController {
     _globalController = Get.put(GlobalController());
     // _globalController = Get.find<GlobalController>();
     _provider = Get.find<UserProfileProviderImpl>();
-     print(_globalController.currentUser.name);
+    print(_globalController.currentUser.name);
     super.onInit();
   }
 
   @override
   void onReady() {
-   
     super.onReady();
   }
 

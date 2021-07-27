@@ -1,4 +1,3 @@
-import 'package:eventrack_app/app/global_widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,6 +6,7 @@ import '../../../global_widgets/appBar.dart';
 import '../../../global_widgets/bottomSheet.dart';
 import '../../../global_widgets/button.dart';
 import '../../../global_widgets/formField.dart';
+import '../../../global_widgets/scaffold.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utilities/colors.dart';
 import '../controllers/login_controller.dart';
@@ -22,6 +22,10 @@ class LoginView extends GetView<LoginController> {
       ),
       body: Column(
         children: [
+          Image(
+            height: 200.0,
+            image: AssetImage('assets/images/2.png'),
+          ),
           Form(
             key: controller.loginFormKey,
             child: Column(

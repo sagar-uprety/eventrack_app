@@ -55,7 +55,7 @@ class OrganizationProfileView extends GetView<OrganizationProfileController> {
               OrganizationProfileTab1(),
               OrganizationProfileTab2(),
             ],
-          )
+          ),
         ],
       ),
     );

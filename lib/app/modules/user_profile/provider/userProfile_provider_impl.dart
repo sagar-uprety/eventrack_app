@@ -14,7 +14,6 @@ class UserProfileProviderImpl implements UserProfileProvider {
     _httpService = Get.put(HttpImplementation());
     _httpService.init();
   }
-  
 
   @override
   Future<ResponseModel> uploadCover(Dio.FormData data) async {
@@ -28,5 +27,4 @@ class UserProfileProviderImpl implements UserProfileProvider {
       return ResponseModel(message: 'Error Uploading Image.', state: false);
     }
   }
-
 }

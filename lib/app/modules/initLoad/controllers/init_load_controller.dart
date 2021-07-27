@@ -1,10 +1,10 @@
-import 'package:eventrack_app/app/models/event/event.dart';
-import 'package:eventrack_app/app/models/organization/organization.dart';
-import 'package:eventrack_app/app/models/user/user.dart';
 import 'package:get/get.dart';
 
 import '../../../global_widgets/message.dart';
+import '../../../models/event/event.dart';
+import '../../../models/organization/organization.dart';
 import '../../../models/response.dart';
+import '../../../models/user/user.dart';
 import '../../../routes/app_pages.dart';
 import '../../../services/shared_prefs.dart';
 import '../provider/home_pro_impl.dart';
@@ -43,6 +43,7 @@ class InitLoadController extends GetxController {
 
   Future getCurrentUser() async {
     final ResponseModel? response = await _provider.getCurrentUser();
+    print('Making reques');
     FlashMessage(response!.state,
         message: response.message, displayOnSuccess: false);
     if (response.state) {
@@ -51,7 +52,16 @@ class InitLoadController extends GetxController {
         events: response.eventList!,
         organization: response.organization,
       );
-      Get.offAllNamed(Routes.USERDASHBOARD);
+      Get.toNamed(Routes.USERDASHBOARD);
+      // if (response.user!.isVerified!) {
+      //   await _controller.getuser(
+      //     user: response.user!,
+      //     events: response.eventList!,
+      //     organization: response.organization,
+      //   );
+      //   Get.offAllNamed(Routes.USERDASHBOARD);
+      // } else
+      //   Get.offAllNamed(Routes.TOKEN_VERIFCATION);
     } else
       await SharedPreference.requestLogout();
   }

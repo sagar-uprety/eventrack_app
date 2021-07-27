@@ -6,6 +6,7 @@ import 'package:eventrack_app/app/modules/userdashboard/provider/user_provider.d
 import 'package:get/get.dart';
 
 import '../../../models/event/event.dart';
+import '../../initLoad/controllers/init_load_controller.dart';
 
 class UserdashboardController extends GetxController {
   late List<Event> events;
@@ -22,7 +23,6 @@ class UserdashboardController extends GetxController {
     print(
         'User: ${global.currentUser.toJson()}\n\n\n Organizaiton: ${global.organization.toJson()}\n\n\n First Event: ${global.events.length}');
     super.onInit();
-   
   }
 
 
