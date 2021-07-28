@@ -77,7 +77,7 @@ class SignupController extends GetxController {
       FlashMessage(response!.state, message: response.message);
       Get.toNamed(
         Routes.TOKEN_VERIFCATION,
-        arguments: email.text.trim(),
+        arguments: {'email': email.text.trim(), 'type': 'email'},
       );
     } catch (e) {
       print(e);
