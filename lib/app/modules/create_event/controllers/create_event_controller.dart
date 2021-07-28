@@ -224,7 +224,7 @@ class CreateEventController extends GetxController {
               Get.find<UserdashboardController>();
           InitLoadController _controller = Get.find<InitLoadController>();
           List<Event> events = _controller.events;
-          events.add(response.event!);
+          events.insert(0, response.event!);
           _controller.updateEvents(events);
           _dashboard.seeAll('all');
         }
