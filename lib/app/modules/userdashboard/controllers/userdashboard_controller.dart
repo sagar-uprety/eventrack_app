@@ -48,12 +48,12 @@ class UserdashboardController extends GetxController {
   updateMyFavourite(bool state, Event event) => state
       ? _myFavourite.removeAt(
           _myFavourite.indexWhere((element) => element.id == event.id))
-      : _myFavourite.add(event);
+      : _myFavourite.insert(0, event);
 
   updateMyEvents(bool state, Event event) => state
       ? _myEvents
           .removeAt(_myEvents.indexWhere((element) => element.id == event.id))
-      : _myEvents.add(event);
+      : _myEvents.insert(0, event);
 
   getMyFavourite() async {
     ResponseModel? events = await dashboardProvider.getMyFavouriteEvents();

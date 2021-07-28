@@ -48,7 +48,7 @@ class EventDetailTab1 extends GetView<EventDetailController> {
         Column(
           children: [
             SizedBox(
-              height: 40.0,
+              height: 50.0,
               child: ListTile(
                 contentPadding: EdgeInsets.all(0),
                 leading: Icon(Icons.calendar_today_outlined),
@@ -96,19 +96,19 @@ class EventDetailTab1 extends GetView<EventDetailController> {
         //     ),
         //   ),
         // ),
-        // if (!controller.myEvent)
-        //   Obx(
-        //     () => Center(
-        //       child: !controller.registering.value
-        //           ? ETElevatedButton(
-        //               childText: controller.registered.value
-        //                   ? 'Registered'
-        //                   : "Register",
-        //               onPressed: controller.registerforevent,
-        //             )
-        //           : CircularProgressIndicator(),
-        //     ),
-        //   ).paddingSymmetric(vertical: 20),
+        if (!controller.myEvent)
+          Obx(
+            () => Center(
+              child: !controller.registering.value
+                  ? ETElevatedButton(
+                      childText: controller.registered.value
+                          ? 'Registered'
+                          : "Register",
+                      onPressed: controller.registerforevent,
+                    )
+                  : CircularProgressIndicator(),
+            ),
+          ).paddingSymmetric(vertical: 20),
       ],
     ).paddingSymmetric(horizontal: 20);
   }

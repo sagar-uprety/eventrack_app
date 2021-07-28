@@ -13,14 +13,15 @@ import '../controllers/userdashboard_controller.dart';
 class UserdashboardView extends GetView<UserdashboardController> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ETAppBar(
-        title: 'Home',
-      ),
-      drawer: buildAppDrawer(),
-      body: SingleChildScrollView(
-        child: Obx(
-          () => Column(
+    return Obx(
+      () => Scaffold(
+        appBar: ETAppBar(
+          title: 'Home',
+        ),
+        drawer:
+            controller.global.currentUser.id != null ? buildAppDrawer() : null,
+        body: SingleChildScrollView(
+          child: Column(
             children: <Widget>[
               _buildEventList(
                 'New Events',
