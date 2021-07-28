@@ -22,6 +22,7 @@ class EventDetailController extends GetxController {
   final RxBool registered = false.obs;
   final RxBool registering = false.obs;
   final RxBool showMore = false.obs;
+  final RxBool addedToFavourites = false.obs;
   late GoogleMapController? mapController;
   late InitLoadController globalController = Get.find<InitLoadController>();
   late EventDetailProvider _eventDetailProvider;
@@ -50,6 +51,7 @@ class EventDetailController extends GetxController {
     _dashboard = Get.find<UserdashboardController>();
     _myEvent.value = (globalController.organization.id == _event.value.author);
     registerValue();
+    favouritesValue();
     partcipantList = <User>[].obs;
     await getParticipantsData();
     super.onInit();
@@ -60,9 +62,14 @@ class EventDetailController extends GetxController {
     update();
   }
 
+  favouritesValue() {
+    addedToFavourites.value = _currentUser.favourites!.contains(event.id);
+    update();
+  }
+
   changeMyEvents() {
     bool state = _dashboard.myEvents.any((element) => event.id == element.id);
-    _dashboard.updateMyEvents(state, event.id);
+    _dashboard.updateMyEvents(state, event);
   }
 
   changeMyFavourites() {
@@ -93,9 +100,18 @@ class EventDetailController extends GetxController {
     if (participants!.state) partcipantList.value = participants.userList!;
   }
 
-  addtoFavorites(String id) async {
-    ResponseModel added = await _eventDetailProvider.addtoFavourites(event.id!);
-    FlashMessage(added.state, message: added.message, displayOnSuccess: true);
+  addtoFavorites(String id) {
+    // ResponseModel added = await _eventDetailProvider.addtoFavourites(event.id!);
+    String? message;
+    if (addedToFavourites.value)
+      message = 'This event has been added to your favourites.';
+    else
+      message = 'This event has been removed from your favourites.';
+
+    FlashMessage(addedToFavourites.value,
+        message: message, displayOnSuccess: true);
+    addedToFavourites.value = !addedToFavourites.value;
+    changeMyFavourites();
   }
 
   void toggleDescriptionDisplay() => showMore.value = !showMore.value;

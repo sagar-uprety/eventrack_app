@@ -42,18 +42,15 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
               label: 'Address',
               validator: controller.addressValidator,
             ),
-            // _dropdown(),
-            ETTextButton(
-              'Change Password',
-              onPressed: () => print('Change Password'),
-              underline: false,
-            ),
-            ETElevatedButton(
-              childText: 'Save',
-              onPressed: () async {
-                await controller.editUserProfile();
-              },
-            ).paddingOnly(top: 24),
+            _dropdown(),
+            !controller.editProfile.value
+                ? ETElevatedButton(
+                    childText: 'Save',
+                    onPressed: controller.editUserProfile,
+                  ).paddingOnly(top: 24)
+                : Center(
+                    child: CircularProgressIndicator(),
+                  ),
           ],
         ),
       ),
@@ -63,10 +60,10 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
   Widget _dropdown() {
     return DropdownButtonFormField<String>(
       key: ValueKey('gender'),
-      value: controller.gender.text,
+      // value: controller.gender.text ?? '',
       onChanged: controller.changeGender,
       icon: Icon(Icons.arrow_drop_down_outlined),
-      // validator: controller.genderValidator,
+      validator: controller.genderValidator,
       decoration: InputDecoration(
         counterText: '',
         labelText: 'Gender',

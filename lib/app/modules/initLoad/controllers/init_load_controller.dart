@@ -76,11 +76,11 @@ class InitLoadController extends GetxController {
   updateOrganization(Organization organization) =>
       _organization.value = organization;
 
-  Future getuser({
+  getuser({
     required User user,
     Organization? organization,
     List<Event> events = const [],
-  }) async {
+  }) {
     updateUser(user);
     if (events.length > 0) updateEvents(events);
     if (user.organization != null) {

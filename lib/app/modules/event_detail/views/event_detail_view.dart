@@ -84,11 +84,19 @@ class EventDetailView extends GetView<EventDetailController> {
                 EventDetailTab3(),
               ],
             ),
-            Container(
-              padding: EdgeInsets.only(top: 750.0, left: 50.0),
-              child: RoundButton(
-                  text: 'Register', onPress: controller.registerforevent),
-            ),
+            if (!controller.myEvent)
+              Obx(
+                () => Align(
+                  alignment: Alignment.bottomCenter,
+                  child: !controller.registering.value
+                      ? RoundButton(
+                          text: controller.registered.value
+                              ? 'Registered'
+                              : "Register",
+                          onPress: controller.registerforevent)
+                      : CircularProgressIndicator(),
+                ),
+              ),
           ],
         ),
       ),

@@ -24,11 +24,11 @@ class EventDetailTab1 extends GetView<EventDetailController> {
                 .copyWith(fontWeight: FontWeight.w700, color: AppColors.dark80),
           ),
           trailing: IconButton(
-            icon: Icon(Icons.bookmark_border),
+            icon: Icon(!controller.addedToFavourites.value
+                ? Icons.bookmark_border
+                : Icons.bookmark),
             iconSize: 34,
-            onPressed: () async {
-              await controller.addtoFavorites(controller.event.id!);
-            },
+            onPressed: controller.addtoFavorites(controller.event.id!),
           ),
         ).paddingSymmetric(vertical: 8),
         Wrap(
@@ -94,19 +94,19 @@ class EventDetailTab1 extends GetView<EventDetailController> {
         //     ),
         //   ),
         // ),
-        if (!controller.myEvent)
-          Obx(
-            () => Center(
-              child: !controller.registering.value
-                  ? ETElevatedButton(
-                      childText: controller.registered.value
-                          ? 'Registered'
-                          : "Register",
-                      onPressed: controller.registerforevent,
-                    )
-                  : CircularProgressIndicator(),
-            ),
-          ).paddingSymmetric(vertical: 20),
+        // if (!controller.myEvent)
+        //   Obx(
+        //     () => Center(
+        //       child: !controller.registering.value
+        //           ? ETElevatedButton(
+        //               childText: controller.registered.value
+        //                   ? 'Registered'
+        //                   : "Register",
+        //               onPressed: controller.registerforevent,
+        //             )
+        //           : CircularProgressIndicator(),
+        //     ),
+        //   ).paddingSymmetric(vertical: 20),
       ],
     ).paddingSymmetric(horizontal: 20);
   }
