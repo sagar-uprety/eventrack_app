@@ -16,21 +16,23 @@ class EventDetailTab1 extends GetView<EventDetailController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ListTile(
-          contentPadding: EdgeInsets.all(0),
-          title: Text(
-            '${controller.event.title}', //? Event Title
-            style: Get.textTheme.headline5!
-                .copyWith(fontWeight: FontWeight.w700, color: AppColors.dark80),
-          ),
-          trailing: IconButton(
-            icon: Icon(!controller.addedToFavourites.value
-                ? Icons.bookmark_border
-                : Icons.bookmark),
-            iconSize: 34,
-            onPressed: controller.addtoFavorites(controller.event.id!),
-          ),
-        ).paddingSymmetric(vertical: 8),
+        Obx(
+          () => ListTile(
+            contentPadding: EdgeInsets.all(0),
+            title: Text(
+              '${controller.event.title}', //? Event Title
+              style: Get.textTheme.headline5!.copyWith(
+                  fontWeight: FontWeight.w700, color: AppColors.dark80),
+            ),
+            trailing: IconButton(
+              icon: Icon(!controller.addedToFavourites.value
+                  ? Icons.bookmark_border
+                  : Icons.bookmark),
+              iconSize: 34,
+              onPressed: controller.addtoFavorites,
+            ),
+          ).paddingSymmetric(vertical: 8),
+        ),
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.start,
           spacing: 12,

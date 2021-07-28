@@ -74,7 +74,7 @@ class EventDetailController extends GetxController {
 
   changeMyFavourites() {
     bool state = _dashboard.favourites.any((element) => event.id == element.id);
-    _dashboard.updateMyFavourite(state, event.id);
+    _dashboard.updateMyFavourite(state, event);
   }
 
   registerforevent() async {
@@ -100,15 +100,15 @@ class EventDetailController extends GetxController {
     if (participants!.state) partcipantList.value = participants.userList!;
   }
 
-  addtoFavorites(String id) {
+  addtoFavorites() {
     // ResponseModel added = await _eventDetailProvider.addtoFavourites(event.id!);
     String? message;
-    if (addedToFavourites.value)
+    if (!addedToFavourites.value)
       message = 'This event has been added to your favourites.';
     else
       message = 'This event has been removed from your favourites.';
 
-    FlashMessage(addedToFavourites.value,
+    FlashMessage(!addedToFavourites.value,
         message: message, displayOnSuccess: true);
     addedToFavourites.value = !addedToFavourites.value;
     changeMyFavourites();
