@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -70,16 +71,18 @@ class UserdashboardView extends GetView<UserdashboardController> {
   }
 
   Widget _horizontalList(List<Event> list) {
-    return Obx(() => SizedBox(
-          height: 200,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            itemCount: !(list.length >= 8) ? list.length : 8,
-            itemBuilder: (_, i) => HorizontalEventCard(list[i]),
-          ),
-        ));
+    return Obx(
+      () => SizedBox(
+        height: 200,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          padding: EdgeInsets.symmetric(horizontal: 12),
+          itemCount: !(list.length >= 8) ? list.length : 8,
+          itemBuilder: (_, i) => HorizontalEventCard(list[i]),
+        ),
+      ),
+    );
   }
 
   Widget _verticalList(List<Event> list) {

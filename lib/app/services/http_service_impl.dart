@@ -39,9 +39,9 @@ class HttpImplementation implements HttpService {
       response = await _dio.get(url, queryParameters: data);
       return ResponseModel.fromJson(response.data);
     } on Exception catch (e) {
-      print(e);
+      print('$e');
       return ResponseModel(
-          message: 'Error Occured while making request.', state: false);
+          message: 'Error connecting to the Host.', state: false);
     }
   }
 
@@ -55,9 +55,9 @@ class HttpImplementation implements HttpService {
       response = await _dio.post(url, data: data);
       return ResponseModel.fromJson(response.data);
     } on Exception catch (e) {
-      print(e);
+      print('$e');
       return ResponseModel(
-          message: 'Error Occured while making request.', state: false);
+          message: 'Error connecting to the Host.', state: false);
     }
   }
 

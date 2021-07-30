@@ -19,6 +19,7 @@ Event _$EventFromJson(Map<String, dynamic> json) {
     dateTime: json['dateTime'] == null
         ? null
         : TimeDate.fromJson(json['dateTime'] as Map<String, dynamic>),
+    maxParticipants: json['maxParticipants'] as int?,
     location: json['location'] == null
         ? null
         : Location.fromJson(json['location'] as Map<String, dynamic>),

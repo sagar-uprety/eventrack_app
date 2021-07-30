@@ -40,6 +40,7 @@ class Event {
     this.categories,
     this.maxParticipants,
     this.dateTime,
+    this.maxParticipants,
     this.location,
     this.author,
     this.verificationState,

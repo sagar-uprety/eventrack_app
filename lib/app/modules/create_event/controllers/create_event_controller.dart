@@ -27,6 +27,7 @@ class CreateEventController extends GetxController {
   late TextEditingController description;
   late TextEditingController categoriesText;
   late TextEditingController location;
+  late TextEditingController maxParticipants;
   final Rx<LatLng> coordinates = LatLng(0, 0).obs;
   late List<String> selectedCategories = [];
   final dates = Rx<List<String>>([]);
@@ -61,6 +62,7 @@ class CreateEventController extends GetxController {
     categoriesText = TextEditingController();
     maxParticipants = TextEditingController();
     location = TextEditingController();
+    maxParticipants = TextEditingController();
     _createEventProvider = Get.find<CreateEventProviderImpl>();
     super.onInit();
   }
@@ -230,7 +232,7 @@ class CreateEventController extends GetxController {
               Get.find<UserdashboardController>();
           InitLoadController _controller = Get.find<InitLoadController>();
           List<Event> events = _controller.events;
-          events.add(response.event!);
+          events.insert(0, response.event!);
           _controller.updateEvents(events);
           _dashboard.seeAll('all');
         }
