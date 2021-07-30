@@ -32,7 +32,6 @@ class CreateEventController extends GetxController {
   late List<String> selectedCategories = [];
   final dates = Rx<List<String>>([]);
   final times = Rx<List<String>>([]);
-  late TextEditingController maxParticipants;
   final RxBool isOneDayEvent = true.obs;
   final RxBool hasParticipantLimit = false.obs;
 
