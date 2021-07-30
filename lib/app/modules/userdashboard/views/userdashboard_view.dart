@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -14,14 +15,15 @@ import '../controllers/userdashboard_controller.dart';
 class UserdashboardView extends GetView<UserdashboardController> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ETAppBar(
-        title: 'Home',
-      ),
-      drawer: buildAppDrawer(),
-      body: SingleChildScrollView(
-        child: Obx(
-          () => Column(
+    return Obx(
+      () => Scaffold(
+        appBar: ETAppBar(
+          title: 'Home',
+        ),
+        drawer:
+            controller.global.currentUser.id != null ? buildAppDrawer() : null,
+        body: SingleChildScrollView(
+          child: Column(
             children: <Widget>[
               _buildEventList(
                 'New Events',
@@ -70,24 +72,27 @@ class UserdashboardView extends GetView<UserdashboardController> {
   }
 
   Widget _horizontalList(List<Event> list) {
-    // double height = ;
-    // if()
-
-    return SizedBox(
-      height: 174,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        padding: EdgeInsets.symmetric(horizontal: 12),
-        itemCount: !(list.length >= 8) ? list.length : 8,
-        itemBuilder: (_, i) => HorizontalEventCard(list[i]),
+    return Obx(
+      () => SizedBox(
+        height: 174,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          padding: EdgeInsets.symmetric(horizontal: 12),
+          itemCount: !(list.length >= 8) ? list.length : 8,
+          itemBuilder: (_, i) => HorizontalEventCard(list[i]),
+        ),
       ),
     );
   }
 
   Widget _verticalList(List<Event> list) {
+    double height = 360;
+    if (list.length == 1)
+      height = 120;
+    else if (list.length == 2) height = 240;
     return SizedBox(
-      height: 250,
+      height: height,
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: false,

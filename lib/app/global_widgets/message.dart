@@ -28,19 +28,19 @@ class FlashMessage {
         'Success',
         textAlign: TextAlign.center,
         style: Get.textTheme.bodyText1!.copyWith(
-          color: AppColors.dark10,
+          color: AppColors.dark80,
         ),
       ),
       messageText: Text(
         message!,
         textAlign: TextAlign.center,
         style: Get.textTheme.bodyText1!.copyWith(
-          color: AppColors.dark10,
+          color: AppColors.dark80,
         ),
       ),
       isDismissible: false,
       duration: Duration(seconds: 3),
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: Colors.blue[300]!,
       colorText: Colors.white,
       snackPosition: SnackPosition.BOTTOM,
       snackStyle: SnackStyle.GROUNDED,

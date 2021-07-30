@@ -30,8 +30,6 @@ class UserdashboardController extends GetxController {
     getMyFavourite();
     getMyEvents();
     events = global.events;
-    print(
-        'User: ${global.currentUser.toJson()}\n\n\n Organizaiton: ${global.organization.toJson()}\n\n\n First Event: ${global.events.length}');
     super.onInit();
   }
 
