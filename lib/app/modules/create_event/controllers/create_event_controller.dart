@@ -9,7 +9,6 @@ import '../../../global_widgets/message.dart';
 import '../../../models/event/event.dart';
 import '../../../models/response.dart';
 import '../../../pickers/datetimepicker.dart';
-import '../../../routes/app_pages.dart';
 import '../providers/create_event_provider.dart';
 import '../providers/create_event_providerImpl.dart';
 
@@ -32,7 +31,9 @@ class CreateEventController extends GetxController {
   late List<String> selectedCategories = [];
   final dates = Rx<List<String>>([]);
   final times = Rx<List<String>>([]);
+  late TextEditingController maxParticipants;
   final RxBool isOneDayEvent = true.obs;
+  final RxBool hasParticipantLimit = false.obs;
 
   final RxBool saving = false.obs;
 
@@ -58,6 +59,7 @@ class CreateEventController extends GetxController {
     eventName = TextEditingController();
     description = TextEditingController();
     categoriesText = TextEditingController();
+    maxParticipants = TextEditingController();
     location = TextEditingController();
     _createEventProvider = Get.find<CreateEventProviderImpl>();
     super.onInit();
@@ -79,6 +81,9 @@ class CreateEventController extends GetxController {
   void toggleOneDayMode(bool? value) {
     isOneDayEvent.value = value!;
   }
+
+  void toggleParticipantLimit(bool? value) =>
+      hasParticipantLimit.value = value!;
 
   void _toggleSavingState() => saving.value = !saving.value;
 
@@ -121,6 +126,12 @@ class CreateEventController extends GetxController {
     if (value!.isEmpty) return 'At least 1 category must be selected.';
     if (!GetUtils.isLengthLessOrEqual(selectedCategories, 3))
       return 'Upto 3 categories can only be selected.';
+    return null;
+  }
+
+  String? maxParticipantsValidator(String? value) {
+    if (!GetUtils.isNumericOnly(value!)) return 'Please enter a valid count.';
+    if (int.parse(value) <= 10) return 'Maximum participants count is too low.';
     return null;
   }
 
@@ -173,7 +184,7 @@ class CreateEventController extends GetxController {
     return null;
   }
 
-  coordinatesValidator() {
+  bool coordinatesValidator() {
     if (coordinates.value == origin) {
       FlashMessage(false, message: 'Location coordinates not picked.');
       return false;
@@ -207,6 +218,7 @@ class CreateEventController extends GetxController {
             dates: dates.value,
             times: times.value,
           ),
+          maxParticipants: int.parse(maxParticipants.text),
           location: Location(
             latitude: coordinates.value.latitude,
             longitude: coordinates.value.longitude,

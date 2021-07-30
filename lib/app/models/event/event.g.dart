@@ -15,6 +15,7 @@ Event _$EventFromJson(Map<String, dynamic> json) {
     categories: (json['categories'] as List<dynamic>?)
         ?.map((e) => e as String)
         .toList(),
+    maxParticipants: json['maxParticipants'] as int?,
     dateTime: json['dateTime'] == null
         ? null
         : TimeDate.fromJson(json['dateTime'] as Map<String, dynamic>),
@@ -47,6 +48,7 @@ Map<String, dynamic> _$EventToJson(Event instance) {
   writeNotNull('eventProfile', instance.eventProfile);
   writeNotNull('categories', instance.categories);
   writeNotNull('dateTime', instance.dateTime?.toJson());
+  writeNotNull('maxParticipants', instance.maxParticipants);
   writeNotNull('location', instance.location?.toJson());
   writeNotNull('author', instance.author);
   writeNotNull('verificationState', instance.verificationState?.toJson());
