@@ -15,8 +15,7 @@ import '../controllers/create_event_controller.dart';
 import 'categoryBar.dart';
 
 class CreateEventView extends GetView<CreateEventController> {
-  final controller = Get.find<CreateEventController>();
-  final GlobalKey<FormState> _key = GlobalKey();
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return ETScaffold(
@@ -218,16 +217,18 @@ class CreateEventView extends GetView<CreateEventController> {
             },
           ).paddingSymmetric(vertical: 10),
           Obx(
-            () => Text(
-              controller.coordinates.value != controller.origin
-                  ? 'Latitude: ${controller.coordinates.value.latitude}\nLongitude: ${controller.coordinates.value.longitude}'
-                  : '',
-              textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6!
-                  .copyWith(color: AppColors.dark65),
-            ).paddingSymmetric(vertical: 20),
+            () => !(controller.coordinates.value.latitude == 0)
+                ? Text(
+                    controller.coordinates.value != controller.origin
+                        ? 'Latitude: ${controller.coordinates.value.latitude}\nLongitude: ${controller.coordinates.value.longitude}'
+                        : '',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .copyWith(color: AppColors.dark65),
+                  ).paddingSymmetric(vertical: 20)
+                : Center(),
           ),
           SwitchListTile(
             value: controller.hasParticipantLimit.value,

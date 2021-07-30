@@ -28,9 +28,9 @@ class UserdashboardController extends GetxController {
     dashboardProvider = Get.find<UserProviderImpl>();
     _myFavourite = <Event>[].obs;
     _myEvents = <Event>[].obs;
+    events = global.events;
     getMyFavourite();
     getMyEvents();
-    events = global.events;
     super.onInit();
   }
 

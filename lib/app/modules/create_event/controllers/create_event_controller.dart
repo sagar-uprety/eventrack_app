@@ -66,16 +66,12 @@ class CreateEventController extends GetxController {
   }
 
   @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
   void onClose() {
     eventName.dispose();
     description.dispose();
     categoriesText.dispose();
     location.dispose();
+    maxParticipants.dispose();
   }
 
   void toggleOneDayMode(bool? value) {

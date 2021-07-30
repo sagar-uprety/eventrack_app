@@ -22,6 +22,7 @@ class InitLoadController extends GetxController {
   Organization get organization => _organization.value;
 
   late String? authToken;
+
   @override
   void onInit() async {
     _provider = Get.find<HomeProviderImpl>();
@@ -32,14 +33,14 @@ class InitLoadController extends GetxController {
     super.onInit();
   }
 
-  InitLoadController() {
-    _provider = Get.find<HomeProviderImpl>();
-    _currentUser = User().obs;
-    _organization = Organization().obs;
-    _events = <Event>[].obs;
-    getAuthToken().then((value) => print('All Set'));
-    super.onInit();
-  }
+  // InitLoadController() {
+  //   _provider = Get.find<HomeProviderImpl>();
+  //   _currentUser = User().obs;
+  //   _organization = Organization().obs;
+  //   _events = <Event>[].obs;
+  //   getAuthToken().then((val) => print('Init Loaded...'));
+  //   super.onInit();
+  // }
 
   Future getAuthToken() async {
     authToken = await SharedPreference.getAuthState();
