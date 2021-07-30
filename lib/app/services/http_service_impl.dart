@@ -33,20 +33,32 @@ class HttpImplementation implements HttpService {
   @override
   Future<ResponseModel> getRequest(String url,
       {Map<String, dynamic>? data}) async {
-    late Response response;
-    if (authToken != null) _dio.options.headers = {'auth-token': authToken};
-    response = await _dio.get(url, queryParameters: data);
-    return ResponseModel.fromJson(response.data);
+    try {
+      late Response response;
+      if (authToken != null) _dio.options.headers = {'auth-token': authToken};
+      response = await _dio.get(url, queryParameters: data);
+      return ResponseModel.fromJson(response.data);
+    } on Exception catch (e) {
+      print('$e');
+      return ResponseModel(
+          message: 'Error connecting to the Host.', state: false);
+    }
   }
 
   //POST REQUEST
   ///`data` can be either `Map` or a `Dio.FormData`.
   @override
   Future<ResponseModel> postRequest(String url, {data}) async {
-    late Response response;
-    if (authToken != null) _dio.options.headers = {'auth-token': authToken};
-    response = await _dio.post(url, data: data);
-    return ResponseModel.fromJson(response.data);
+    try {
+      late Response response;
+      if (authToken != null) _dio.options.headers = {'auth-token': authToken};
+      response = await _dio.post(url, data: data);
+      return ResponseModel.fromJson(response.data);
+    } on Exception catch (e) {
+      print('$e');
+      return ResponseModel(
+          message: 'Error connecting to the Host.', state: false);
+    }
   }
 
   //These intercepts intercepts all of our requests, responses and error

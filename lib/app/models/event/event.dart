@@ -22,6 +22,8 @@ class Event {
 
   final TimeDate? dateTime;
 
+  final int? maxParticipants;
+
   final Location? location;
 
   final String? author;
@@ -37,6 +39,7 @@ class Event {
     this.eventProfile,
     this.categories,
     this.dateTime,
+    this.maxParticipants,
     this.location,
     this.author,
     this.verificationState,

@@ -225,6 +225,28 @@ class CreateEventView extends GetView<CreateEventController> {
                   .copyWith(color: AppColors.dark65),
             ).paddingSymmetric(vertical: 20),
           ),
+          SwitchListTile(
+            value: controller.hasParticipantLimit.value,
+            onChanged: controller.toggleParticipantLimit,
+            title: Text(
+              'Set Participant Limit',
+              style: Get.textTheme.overline,
+            ),
+            inactiveThumbColor: AppColors.dark65,
+            activeColor: AppColors.blue,
+            inactiveTrackColor: AppColors.dark50,
+          ),
+          Obx(
+            () => controller.hasParticipantLimit.value
+                ? FormInputField(
+                    key: ValueKey('Participant count'),
+                    label: 'Maximum No. of Participants',
+                    controller: controller.maxParticipants,
+                    keyboardType: TextInputType.number,
+                    validator: controller.maxParticipantsValidator,
+                  )
+                : Center(),
+          ),
         ],
       ),
     );

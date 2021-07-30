@@ -114,7 +114,7 @@ class EventListView extends GetView<EventListController> {
                         print(controller.filteredEvents[index].title);
                         return EventCard(controller.filteredEvents[index]);
                       },
-                    ).paddingOnly(top: 10, bottom: 15),
+                    ),
                   ),
           ],
         ),
