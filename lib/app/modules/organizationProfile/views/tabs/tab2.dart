@@ -27,7 +27,7 @@ class OrganizationProfileTab2 extends GetView<OrganizationProfileController> {
                     itemBuilder: (_, index) {
                       return EventCard(controller.createdEventList[index]);
                     },
-                  ).paddingOnly(top: 12, bottom: 15),
+                  ),
                 )
               : Center(
                   child: Text('Data not found'),

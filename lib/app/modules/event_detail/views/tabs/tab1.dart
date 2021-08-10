@@ -20,7 +20,7 @@ class EventDetailTab1 extends GetView<EventDetailController> {
           () => ListTile(
             contentPadding: EdgeInsets.all(0),
             title: Text(
-              '${controller.event.title}', //? Event Title
+              '${controller.event.title}',
               style: Get.textTheme.headline5!.copyWith(
                   fontWeight: FontWeight.w700, color: AppColors.dark80),
             ),
@@ -73,6 +73,27 @@ class EventDetailTab1 extends GetView<EventDetailController> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 40.0,
+              child: ListTile(
+                  contentPadding: EdgeInsets.all(0),
+                  horizontalTitleGap: 0,
+                  leading: Icon(Icons.people),
+                  title: Row(
+                    children: [
+                      Text(
+                        'Participants: ',
+                        style: Get.textTheme.overline,
+                      ),
+                      Text(
+                        controller.event.maxParticipants == null
+                            ? '${controller.event.registeredUsers.length}'
+                            : '${controller.event.registeredUsers.length}/${controller.event.registeredUsers.length}',
+                        style: Get.textTheme.bodyText1,
+                      ),
+                    ],
+                  )),
+            ),
           ],
         ),
         SizedBox(
@@ -83,7 +104,7 @@ class EventDetailTab1 extends GetView<EventDetailController> {
           style: Get.textTheme.headline6!.copyWith(fontWeight: FontWeight.w600),
         ).paddingOnly(top: 12),
         Text(
-          '${controller.event.description}', //? Organization's description
+          '${controller.event.description}',
           // maxLines: !controller.showMore.value ? 12 : null,
           style: Get.textTheme.bodyText1,
         ),

@@ -22,10 +22,10 @@ class EventDetailView extends GetView<EventDetailController> {
             ? [
                 IconButton(
                   onPressed: controller.pickProfile,
-                  iconSize: 30,
+                  iconSize: 20,
                   icon: Container(
-                    height: 50,
-                    width: 50,
+                    height: 30,
+                    width: 30,
                     decoration: BoxDecoration(
                       color: AppColors.dark10,
                       borderRadius: BorderRadius.circular(10),

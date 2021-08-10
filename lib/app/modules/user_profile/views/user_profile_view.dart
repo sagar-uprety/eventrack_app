@@ -85,8 +85,7 @@ class UserProfileView extends GetView<UserProfileController> {
                     ? UserProfileCard(
                         title: "Phone number",
                         value: controller.currentUser.phone!)
-                    : UserProfileCard(
-                        title: "Phone number", value: "No Number Added"),
+                    : UserProfileCard(title: "Phone number", value: "UNKNOWN"),
                 (controller.currentUser.address != null)
                     ? UserProfileCard(
                         title: "Address",
@@ -94,7 +93,7 @@ class UserProfileView extends GetView<UserProfileController> {
                       )
                     : UserProfileCard(
                         title: "Address",
-                        value: "No Address Added",
+                        value: "UNKNOWN",
                       ),
                 (controller.currentUser.gender != null)
                     ? UserProfileCard(
@@ -103,7 +102,7 @@ class UserProfileView extends GetView<UserProfileController> {
                       )
                     : UserProfileCard(
                         title: "Gender",
-                        value: "Nothing Added",
+                        value: "UNKNOWN",
                       ),
                 SizedBox(
                   height: hrheight * 0.05,

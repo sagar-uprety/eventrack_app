@@ -80,6 +80,7 @@ class ETTextButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         '$text',
+        textAlign: TextAlign.center,
         style: Get.textTheme.button!.copyWith(
           color: AppColors.blue,
           fontSize: fontSize,
