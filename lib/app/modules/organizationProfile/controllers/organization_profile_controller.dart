@@ -1,16 +1,15 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart' as Dio;
-import 'package:eventrack_app/app/global_widgets/message.dart';
-import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
-import 'package:eventrack_app/app/pickers/filePicker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 
+import '../../../global_widgets/message.dart';
 import '../../../models/event/event.dart';
 import '../../../models/organization/organization.dart';
 import '../../../models/response.dart';
-import '../../../temp_data.dart';
+import '../../../pickers/filePicker.dart';
+import '../../initLoad/controllers/init_load_controller.dart';
 import '../provider/org_profile_provider.dart';
 import '../provider/org_profile_provider_impl.dart';
 

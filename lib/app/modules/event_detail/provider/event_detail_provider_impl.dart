@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart' as Dio;
-import 'package:eventrack_app/app/global_widgets/message.dart';
 import 'package:get/get.dart';
 
 import '../../../models/response.dart';

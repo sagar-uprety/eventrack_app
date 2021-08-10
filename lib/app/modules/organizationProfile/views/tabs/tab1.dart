@@ -1,9 +1,9 @@
-import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../../../../global_widgets/button.dart';
+import '../../../../routes/app_pages.dart';
 import '../../controllers/organization_profile_controller.dart';
 
 class OrganizationProfileTab1 extends GetView<OrganizationProfileController> {

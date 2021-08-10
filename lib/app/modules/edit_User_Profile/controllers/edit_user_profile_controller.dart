@@ -1,13 +1,14 @@
-import 'package:eventrack_app/app/global_widgets/message.dart';
-import 'package:eventrack_app/app/models/response.dart';
-import 'package:eventrack_app/app/models/user/user.dart';
-import 'package:eventrack_app/app/modules/edit_User_Profile/Provider/editprofile_provider.dart';
-import 'package:eventrack_app/app/modules/edit_User_Profile/Provider/editprofile_providerImpl.dart';
-import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
-import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
+
+import '../../../global_widgets/message.dart';
+import '../../../models/response.dart';
+import '../../../models/user/user.dart';
+import '../../../routes/app_pages.dart';
+import '../../initLoad/controllers/init_load_controller.dart';
+import '../Provider/editprofile_provider.dart';
+import '../Provider/editprofile_providerImpl.dart';
 
 class EditUserProfileController extends GetxController {
   late TextEditingController name;

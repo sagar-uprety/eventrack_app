@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../global_widgets/formField.dart';
 import '../../../../global_widgets/tiles/participantCard.dart';
 import '../../controllers/event_detail_controller.dart';
 

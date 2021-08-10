@@ -1,11 +1,12 @@
-import 'package:eventrack_app/app/global_widgets/message.dart';
-import 'package:eventrack_app/app/models/response.dart';
-import 'package:eventrack_app/app/modules/password_reset/provider/password_reset_provider.dart';
-import 'package:eventrack_app/app/modules/password_reset/provider/password_reset_provider_impl.dart';
-import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+
+import '../../../global_widgets/message.dart';
+import '../../../models/response.dart';
+import '../../../routes/app_pages.dart';
+import '../provider/password_reset_provider.dart';
+import '../provider/password_reset_provider_impl.dart';
 
 class PasswordResetController extends GetxController {
   late TextEditingController newPassword;

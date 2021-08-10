@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../global_widgets/button.dart';
-import '../../../../pickers/datetimepicker.dart';
-import '../../../../temp_data.dart';
 import '../../../../utilities/colors.dart';
 import '../../controllers/event_detail_controller.dart';
 

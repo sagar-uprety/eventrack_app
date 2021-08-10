@@ -1,9 +1,9 @@
-import 'package:eventrack_app/app/modules/userdashboard/controllers/userdashboard_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../modules/initLoad/controllers/init_load_controller.dart';
+import '../modules/userdashboard/controllers/userdashboard_controller.dart';
 import '../routes/app_pages.dart';
 import '../services/shared_prefs.dart';
 

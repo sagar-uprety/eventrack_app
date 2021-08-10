@@ -1,9 +1,9 @@
-import 'package:eventrack_app/app/modules/password_reset/provider/password_reset_provider.dart';
 import 'package:get/get.dart';
 
 import '../../../models/response.dart';
 import '../../../services/http_service.dart';
 import '../../../services/http_service_impl.dart';
+import 'password_reset_provider.dart';
 
 class PasswordResetProviderImpl implements PasswordResetProvider {
   late HttpService _httpService;

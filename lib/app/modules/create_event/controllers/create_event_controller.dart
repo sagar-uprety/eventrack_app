@@ -1,5 +1,3 @@
-import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
-import 'package:eventrack_app/app/modules/userdashboard/controllers/userdashboard_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,6 +7,8 @@ import '../../../global_widgets/message.dart';
 import '../../../models/event/event.dart';
 import '../../../models/response.dart';
 import '../../../pickers/datetimepicker.dart';
+import '../../initLoad/controllers/init_load_controller.dart';
+import '../../userdashboard/controllers/userdashboard_controller.dart';
 import '../providers/create_event_provider.dart';
 import '../providers/create_event_providerImpl.dart';
 

@@ -1,4 +1,3 @@
-import 'package:eventrack_app/app/global_widgets/tiles/participantCard.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

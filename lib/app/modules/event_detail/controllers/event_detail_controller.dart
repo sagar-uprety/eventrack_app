@@ -1,20 +1,18 @@
-import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
-import 'package:eventrack_app/app/modules/userdashboard/controllers/userdashboard_controller.dart';
-import 'package:flutter/material.dart';
 import 'dart:io';
 
+import 'package:dart_date/dart_date.dart';
 import 'package:dio/dio.dart' as Dio;
 import 'package:file_picker/file_picker.dart';
-import 'package:dart_date/dart_date.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-import 'package:eventrack_app/app/pickers/filePicker.dart';
 
 import '../../../global_widgets/message.dart';
 import '../../../models/event/event.dart';
 import '../../../models/response.dart';
 import '../../../models/user/user.dart';
+import '../../../pickers/filePicker.dart';
+import '../../initLoad/controllers/init_load_controller.dart';
+import '../../userdashboard/controllers/userdashboard_controller.dart';
 import '../provider/event_detail_provider.dart';
 import '../provider/event_detail_provider_impl.dart';
 

@@ -1,4 +1,3 @@
-import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
@@ -8,6 +7,7 @@ import '../../../models/organization/organization.dart';
 import '../../../models/response.dart';
 import '../../../models/user/user.dart';
 import '../../../routes/app_pages.dart';
+import '../../initLoad/controllers/init_load_controller.dart';
 import '../providers/create_organization_provider.dart';
 import '../providers/create_organization_providerImpl.dart';
 

@@ -1,13 +1,12 @@
-import 'package:eventrack_app/app/global_widgets/message.dart';
-import 'package:eventrack_app/app/models/response.dart';
-import 'package:eventrack_app/app/modules/initLoad/controllers/init_load_controller.dart';
-import 'package:eventrack_app/app/modules/userdashboard/provider/user_dashboard_impl.dart';
-import 'package:eventrack_app/app/modules/userdashboard/provider/user_provider.dart';
-import 'package:eventrack_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
+import '../../../global_widgets/message.dart';
 import '../../../models/event/event.dart';
+import '../../../models/response.dart';
+import '../../../routes/app_pages.dart';
 import '../../initLoad/controllers/init_load_controller.dart';
+import '../provider/user_dashboard_impl.dart';
+import '../provider/user_provider.dart';
 
 class UserdashboardController extends GetxController {
   late List<Event> events;
