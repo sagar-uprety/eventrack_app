@@ -6,7 +6,6 @@ import '../../../global_widgets/appBar.dart';
 import '../../../global_widgets/draggableSheet.dart';
 import '../../../utilities/colors.dart';
 import '../controllers/event_detail_controller.dart';
-import 'Button/RoundedButton.dart';
 import 'tabs/tab1.dart';
 import 'tabs/tab2.dart';
 import 'tabs/tab3.dart';
