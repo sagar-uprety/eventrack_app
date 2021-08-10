@@ -17,7 +17,6 @@ class EditUserProfileController extends GetxController {
   late EditprofileProvider _editprofileProvider;
 
   late InitLoadController _global;
-  late User _currentUser = User();
   List<String> gendersList = ["Male", "Female"];
   final Rx<bool> editProfile = false.obs;
   final editUserKey = GlobalKey<FormState>();
@@ -105,7 +104,6 @@ class EditUserProfileController extends GetxController {
       FlashMessage(response!.state,
           message: response.message, displayOnSuccess: true);
       if (response.state) {
-        _currentUser = response.user!;
         _global.updateUser(response.user!);
         Get.offAllNamed(Routes.USER_PROFILE);
       }

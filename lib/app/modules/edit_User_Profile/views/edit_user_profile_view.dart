@@ -21,37 +21,39 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
         title: 'Edit Your Profile',
         addBackButton: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            FormInputField(
-              key: ValueKey('name'),
-              controller: controller.name,
-              label: 'Name',
-              validator: controller.nameValidator,
-            ),
-            FormInputField(
-              key: ValueKey('phone'),
-              controller: controller.phone,
-              label: 'Phone',
-              validator: controller.phoneValidator,
-            ),
-            FormInputField(
-              key: ValueKey('address'),
-              controller: controller.address,
-              label: 'Address',
-              validator: controller.addressValidator,
-            ),
-            _dropdown(),
-            !controller.editProfile.value
-                ? ETElevatedButton(
-                    childText: 'Save',
-                    onPressed: controller.editUserProfile,
-                  ).paddingOnly(top: 24)
-                : Center(
-                    child: CircularProgressIndicator(),
-                  ),
-          ],
+      body: Obx(
+        () => SingleChildScrollView(
+          child: Column(
+            children: [
+              FormInputField(
+                key: ValueKey('name'),
+                controller: controller.name,
+                label: 'Name',
+                validator: controller.nameValidator,
+              ),
+              FormInputField(
+                key: ValueKey('phone'),
+                controller: controller.phone,
+                label: 'Phone',
+                validator: controller.phoneValidator,
+              ),
+              FormInputField(
+                key: ValueKey('address'),
+                controller: controller.address,
+                label: 'Address',
+                validator: controller.addressValidator,
+              ),
+              _dropdown(),
+              !controller.editProfile.value
+                  ? ETElevatedButton(
+                      childText: 'Save',
+                      onPressed: controller.editUserProfile,
+                    ).paddingOnly(top: 24)
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    ),
+            ],
+          ),
         ),
       ),
     );
@@ -60,7 +62,6 @@ class EditUserProfileView extends GetView<EditUserProfileController> {
   Widget _dropdown() {
     return DropdownButtonFormField<String>(
       key: ValueKey('gender'),
-      // value: controller.gender.text ?? '',
       onChanged: controller.changeGender,
       icon: Icon(Icons.arrow_drop_down_outlined),
       validator: controller.genderValidator,
