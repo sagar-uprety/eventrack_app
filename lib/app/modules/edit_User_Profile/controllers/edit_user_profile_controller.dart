@@ -10,8 +10,6 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class EditUserProfileController extends GetxController {
-  final profileImage =
-      "https://oesexportimport.com/wp-content/uploads/2020/07/user1.jpg";
   late TextEditingController name;
   late TextEditingController phone;
   late TextEditingController address;
@@ -27,10 +25,10 @@ class EditUserProfileController extends GetxController {
   @override
   void onInit() {
     _global = Get.find<InitLoadController>();
-    name = TextEditingController();
-    phone = TextEditingController();
-    address = TextEditingController();
-    gender = TextEditingController();
+    name = TextEditingController(text: _global.currentUser.name);
+    phone = TextEditingController(text: _global.currentUser.phone);
+    address = TextEditingController(text: _global.currentUser.address);
+    gender = TextEditingController(text: _global.currentUser.gender);
     print(_global.currentUser.toJson());
     _editprofileProvider = Get.find<EditprofileProviderImpl>();
     // getData();
@@ -57,58 +55,64 @@ class EditUserProfileController extends GetxController {
     gender.text = value!;
   }
 
-  void _changeEditProfileState() => editProfile.value = !editProfile.value;
-
-  Future editUserProfile() async {
-    _changeEditProfileState();
-    try {
-      if (editUserKey.currentState!.validate()) {
-        final user = User(
-          name: name.text.trim(),
-          phone: phone.text.trim(),
-          address: address.text.trim(),
-          gender: gender.text.trim(),
-        ).toJson();
-        print(user);
-        ResponseModel? response =
-            await _editprofileProvider.userProfile(data: user);
-
-        FlashMessage(response!.state,
-            message: response.message, displayOnSuccess: true);
-        if (response.state) {
-          _currentUser = response.user!;
-          _global.updateUser(response.user!);
-          Get.offAllNamed(Routes.USER_PROFILE);
-        }
-      }
-    } catch (e) {
-      print(e);
-    }
-    _changeEditProfileState();
-  }
-
   String? nameValidator(String? value) {
     if (value!.isEmpty) return 'This field cannot be empty.';
     return null;
   }
 
   String? phoneValidator(String? value) {
-    if (value!.isNotEmpty) if (!GetUtils.isPhoneNumber(value)) {
-      return 'Please enter a valid email';
+    if (value != null) {
+      if (!GetUtils.isPhoneNumber(value)) {
+        return 'Please enter a valid email';
+      }
     }
+
     return null;
   }
 
   String? addressValidator(String? value) {
-    if (value!.isNotEmpty) if (GetUtils.isLengthBetween(value, 5, 32))
-      return 'Address must be between 5 to 32 characters.';
+    if (value != null) {
+      if (GetUtils.isLengthBetween(value, 5, 32))
+        return 'Address must be between 5 to 32 characters.';
+    }
 
     return null;
   }
 
   String? genderValidator(String? value) {
-    if (value!.isNotEmpty) if (!gendersList.contains(value))
-      return 'Invalid gender.';
+    if (value != null) {
+      if (!gendersList.contains(value)) return 'Invalid gender.';
+    }
+
     return null;
+  }
+
+  void _changeEditProfileState() => editProfile.value = !editProfile.value;
+
+  Future editUserProfile() async {
+    _changeEditProfileState();
+    try {
+      // if (editUserKey.currentState!.validate()) {
+      final user = User(
+        name: name.text.trim(),
+        phone: phone.text.trim(),
+        address: address.text.trim(),
+        gender: gender.text.trim(),
+      ).toJson();
+      ResponseModel? response =
+          await _editprofileProvider.userProfile(data: user);
+
+      FlashMessage(response!.state,
+          message: response.message, displayOnSuccess: true);
+      if (response.state) {
+        _currentUser = response.user!;
+        _global.updateUser(response.user!);
+        Get.offAllNamed(Routes.USER_PROFILE);
+      }
+      // }
+    } catch (e) {
+      print(e);
+    }
+    _changeEditProfileState();
   }
 }

@@ -18,9 +18,9 @@ class EditprofileProviderImpl implements EditprofileProvider {
   Future<ResponseModel?> userProfile({Map<String, dynamic>? data}) async {
     try {
       //*This is where it uses our HttpService class to make dio requests and call API (backend)
-
+      print('pro');
       final ResponseModel? response =
-          await _httpService.postRequest('/user/editUserprofile', data: data!);
+          await _httpService.postRequest('/user/edit', data: data!);
       return response;
     } on Exception catch (e) {
       print(e);
