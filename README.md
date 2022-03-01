@@ -22,7 +22,7 @@ EventTrack is a Flutter based mobile app to find nearby events, register and man
 
 #### Clone the repository and navigate to the project root directory. Make sure you have [Flutter](https://docs.flutter.dev/get-started/install) installed on your machine.
 
-*Note: The application depends on server made with ExpressJS. Find the source code [here]() and make sure its running before you run this Flutter app.*
+*Note: The application depends on server made with ExpressJS. Find the source code [here](https://github.com/sagar-uprety/eventrack_server) and make sure its running before you run this Flutter app.*
 
 ```bash
 # Get packages
